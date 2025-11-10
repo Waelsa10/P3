@@ -1,19 +1,39 @@
-import { ClipLoader } from "react-spinners";
+import React from "react";
+import { CircularProgress } from "@mui/material";
+import styled from "styled-components";
 
 function Loading() {
   return (
-    <center style={{ display: "grid", placeItems: "center", height: "100vh" }}>
-      <div>
-        <img
-          src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c543.png"
-          alt=""
-          style={{ marginBottom: 10 }}
-          height={200}
+    <Container>
+      <SpinnerWrapper>
+        <Logo
+          src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c543.png"
+          alt="Logo"
         />
-        <ClipLoader color="#3CBC28" size={60} />
-      </div>
-    </center>
+        <CircularProgress color="success" size={60} />
+      </SpinnerWrapper>
+    </Container>
   );
 }
 
 export default Loading;
+
+// Styled Components
+const Container = styled.div`
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background-color: whitesmoke;
+`;
+
+const SpinnerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Logo = styled.img`
+  height: 200px;
+  width: 200px;
+  margin-bottom: 20px;
+`;

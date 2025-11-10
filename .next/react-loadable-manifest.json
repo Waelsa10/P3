@@ -1,1 +1,17 @@
-{}
+{
+  "chat\\[id].js -> ../../components/ChatScreen": {
+    "id": 9823,
+    "files": [
+      "static/chunks/75fc9c18.8a887c49b3994da9.js",
+      "static/chunks/1-e5af0a6e4f566de6.js",
+      "static/chunks/823.eb729eb44ea71178.js"
+    ]
+  },
+  "chat\\[id].js -> ../../components/Sidebar": {
+    "id": 6467,
+    "files": [
+      "static/chunks/1-e5af0a6e4f566de6.js",
+      "static/chunks/467.e7ec4219ffb901c9.js"
+    ]
+  }
+}

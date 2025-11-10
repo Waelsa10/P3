@@ -12,29 +12,31 @@ function Chat({ id, users }) {
   const router = useRouter();
   const [user] = useAuthState(auth);
 
-  // Firebase v9 modular query
-  const recipientQuery = query(
-    collection(db, "users"),
-    where("email", "==", getRecipientEmail(users, user))
-  );
+  // compute recipient email safely
+  const recipientEmail = user ? getRecipientEmail(users, user) : null;
+
+  // Only build the query when recipientEmail is available
+  const recipientQuery = recipientEmail
+    ? query(collection(db, "users"), where("email", "==", recipientEmail))
+    : null;
 
   const [recipientSnapshot] = useCollection(recipientQuery);
 
   const enterChat = () => {
+    if (!id) return;
     router.push(`/chat/${id}`);
   };
 
   const recipient = recipientSnapshot?.docs?.[0]?.data();
-  const recipientEmail = getRecipientEmail(users, user);
 
   return (
     <Container onClick={enterChat}>
       {recipient ? (
         <UserAvatar src={recipient.photoURL} />
       ) : (
-        <UserAvatar>{recipientEmail[0]}</UserAvatar>
+        <UserAvatar>{recipientEmail ? recipientEmail[0] : "?"}</UserAvatar>
       )}
-      <p>{recipientEmail}</p>
+      <p>{recipientEmail ?? "Loading..."}</p>
     </Container>
   );
 }

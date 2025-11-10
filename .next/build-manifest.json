@@ -5,40 +5,38 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/dAtmXy2j2J1v7lfLyb3nL/_buildManifest.js",
-    "static/dAtmXy2j2J1v7lfLyb3nL/_ssgManifest.js"
+    "static/VylAHEXIKCKQlLhtrGxfP/_buildManifest.js",
+    "static/VylAHEXIKCKQlLhtrGxfP/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
     "/": [
-      "static/chunks/webpack-eeb1e4a6befe36e1.js",
+      "static/chunks/webpack-dbe704f22d36f7ff.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-34a23a4c308061b6.js",
-      "static/chunks/822-b3349866fb898ad1.js",
-      "static/chunks/pages/index-c1225b68491a2912.js"
+      "static/chunks/1-e5af0a6e4f566de6.js",
+      "static/chunks/pages/index-2e54ad9bd17d8d5a.js"
     ],
     "/_app": [
-      "static/chunks/webpack-eeb1e4a6befe36e1.js",
+      "static/chunks/webpack-dbe704f22d36f7ff.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-34a23a4c308061b6.js",
-      "static/chunks/pages/_app-4a39baf32b4ddad2.js"
+      "static/chunks/pages/_app-3b0a0ff895cf3cbe.js"
     ],
     "/_error": [
-      "static/chunks/webpack-eeb1e4a6befe36e1.js",
+      "static/chunks/webpack-dbe704f22d36f7ff.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-34a23a4c308061b6.js",
       "static/chunks/pages/_error-a4ba2246ff8fb532.js"
     ],
     "/chat/[id]": [
-      "static/chunks/webpack-eeb1e4a6befe36e1.js",
+      "static/chunks/webpack-dbe704f22d36f7ff.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-34a23a4c308061b6.js",
-      "static/chunks/75fc9c18-8a887c49b3994da9.js",
-      "static/chunks/822-b3349866fb898ad1.js",
-      "static/chunks/pages/chat/[id]-d7858a04a8673105.js"
+      "static/chunks/pages/chat/[id]-eb92905777038d8d.js"
     ],
     "/login": [
-      "static/chunks/webpack-eeb1e4a6befe36e1.js",
+      "static/chunks/webpack-dbe704f22d36f7ff.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-34a23a4c308061b6.js",
       "static/chunks/pages/login-684c71492aa151f5.js"

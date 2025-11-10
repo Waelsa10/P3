@@ -15,17 +15,26 @@ import { collection, query, where, addDoc } from "firebase/firestore";
 
 function Sidebar() {
   const [user] = useAuthState(auth);
-  const userChatsRef = query(
-    collection(db, "chats"),
-    where("users", "array-contains", user.email)
-  );
+
+  // Add conditional query to prevent errors when user is null
+  const userChatsRef = user
+    ? query(
+        collection(db, "chats"),
+        where("users", "array-contains", user.email)
+      )
+    : null;
+
   const [chatsSnapshot] = useCollection(userChatsRef);
 
   const createChat = async () => {
+    if (!user) return; // Guard clause
+
     const input = prompt(
       "Please enter an email address for the user you wish to chat with"
     );
+    
     if (!input) return;
+    
     if (
       EmailValidator.validate(input) &&
       !chatAlreadyExist(input) &&
@@ -41,6 +50,9 @@ function Sidebar() {
     !!chatsSnapshot?.docs.find((chat) =>
       chat.data().users.includes(recipientEmail)
     );
+
+  // Show loading state if user is not loaded yet
+  if (!user) return <Container>Loading...</Container>;
 
   return (
     <Container>
@@ -72,9 +84,7 @@ function Sidebar() {
 
 export default Sidebar;
 
-// styled-components remain the same
-
-
+// Styled Components
 const Container = styled.div`
   flex: 0.45;
   border-right: 1px solid whitesmoke;
@@ -134,4 +144,4 @@ const Header = styled.div`
   border-bottom: 1px solid whitesmoke;
 `;
 
-const IconsContainer = styled.div``;
+const IconsContainer = styled.div``

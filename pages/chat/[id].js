@@ -6,6 +6,7 @@ import ChatScreen from "../../components/ChatScreen";
 import Head from "next/head";
 import { useAuthState } from "react-firebase-hooks/auth";
 import getRecipientEmail from "../../utils/getRecipientEmail";
+import { doc, getDoc, collection, query, orderBy, getDocs } from "firebase/firestore";
 
 function Chat({ chat, messages }) {
   const [user] = useAuthState(auth);
@@ -26,37 +27,53 @@ function Chat({ chat, messages }) {
 export default Chat;
 
 export async function getServerSideProps(context) {
-  const ref = db.collection("chats").doc(context.query.id);
+  const chatId = context.query.id;
 
-  // Prep the Messages...
-  const messagesRes = await ref
-    .collection("messages")
-    .orderBy("timestamp", "asc")
-    .get();
+  try {
+    // Get the chat document
+    const chatRef = doc(db, "chats", chatId);
+    const chatSnap = await getDoc(chatRef);
 
-  const messages = messagesRes.docs
-    .map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }))
-    .map((messages) => ({
-      ...messages,
-      timestamp: messages.timestamp.toDate().getTime(),
-    }));
+    // Check if chat exists
+    if (!chatSnap.exists()) {
+      return {
+        notFound: true,
+      };
+    }
 
-  // Prep the Chats...
-  const chatRes = await ref.get();
-  const chat = {
-    id: chatRes.id,
-    ...chatRes.data(),
-  };
+    // Prep the Messages...
+    const messagesRef = collection(db, "chats", chatId, "messages");
+    const messagesQuery = query(messagesRef, orderBy("timestamp", "asc"));
+    const messagesSnap = await getDocs(messagesQuery);
 
-  return {
-    props: {
-      messages: JSON.stringify(messages),
-      chat: chat,
-    },
-  };
+    const messages = messagesSnap.docs
+      .map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      .map((message) => ({
+        ...message,
+        timestamp: message.timestamp ? message.timestamp.toDate().getTime() : null,
+      }));
+
+    // Prep the Chats...
+    const chat = {
+      id: chatSnap.id,
+      ...chatSnap.data(),
+    };
+
+    return {
+      props: {
+        messages: JSON.stringify(messages),
+        chat: chat,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching chat data:", error);
+    return {
+      notFound: true,
+    };
+  }
 }
 
 const Container = styled.div`
@@ -74,4 +91,4 @@ const ChatContainer = styled.div`
   }
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-`;
+`

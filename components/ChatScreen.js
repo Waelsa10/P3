@@ -487,15 +487,21 @@ function ChatScreen({ chat, messages }) {
 
       // In sendMessage function
     if (replyingTo) {
-      messageData.replyTo = {
+      const replyToData = {
         id: replyingTo.id,
         user: replyingTo.user,
         message: replyingTo.message,
-        ...(replyingTo.fileName && { fileName: replyingTo.fileName }),
-        ...(replyingTo.fileType && { fileType: replyingTo.fileType }),
-        ...(replyingTo.voiceURL && { voiceURL: replyingTo.voiceURL }),
-        ...(replyingTo.voiceDuration && { voiceDuration: replyingTo.voiceDuration }),
       };
+      
+      // Only add these fields if they exist
+      if (replyingTo.fileName) replyToData.fileName = replyingTo.fileName;
+      if (replyingTo.fileType) replyToData.fileType = replyingTo.fileType;
+      if (replyingTo.voiceURL) replyToData.voiceURL = replyingTo.voiceURL;
+      if (replyingTo.voiceDuration !== undefined) replyToData.voiceDuration = replyingTo.voiceDuration;
+      if (replyingTo.fileURL) replyToData.fileURL = replyingTo.fileURL;
+      
+      messageData.replyTo = replyToData;
+  
 }
 
       await addDoc(collection(db, "chats", chatId, "messages"), messageData);

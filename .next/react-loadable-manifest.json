@@ -1,18 +1,19 @@
 {
   "chat\\[id].js -> ../../components/ChatScreen": {
-    "id": 9823,
+    "id": 5685,
     "files": [
       "static/chunks/75fc9c18.8a887c49b3994da9.js",
-      "static/chunks/633-496f5e2d26464aa6.js",
-      "static/chunks/823.fbbcff5d1e1bf029.js"
+      "static/chunks/267-63ea751f835bffb2.js",
+      "static/chunks/406.119fc6d30a547f27.js",
+      "static/chunks/685.f89391a6b8307d31.js"
     ]
   },
   "chat\\[id].js -> ../../components/Sidebar": {
     "id": 6467,
     "files": [
-      "static/chunks/633-496f5e2d26464aa6.js",
-      "static/chunks/66-5cd5f6fb4073fef6.js",
-      "static/chunks/467.a0c93216e51d2bd3.js"
+      "static/chunks/267-63ea751f835bffb2.js",
+      "static/chunks/187-3d1c2cf2a5a2d890.js",
+      "static/chunks/467.9d3f0a329855c9d5.js"
     ]
   }
 }

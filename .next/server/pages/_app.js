@@ -192,6 +192,13 @@ module.exports = import("firebase/auth");;
 
 module.exports = import("firebase/firestore");;
 
+/***/ }),
+
+/***/ 3392:
+/***/ ((module) => {
+
+module.exports = import("firebase/storage");;
+
 /***/ })
 
 };

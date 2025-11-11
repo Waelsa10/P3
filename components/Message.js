@@ -1,26 +1,75 @@
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import styled from "styled-components";
 import moment from "moment";
-import { IconButton } from "@mui/material";
+import { IconButton, Menu, MenuItem, ListItemIcon, ListItemText } from "@mui/material";
 import DownloadIcon from "@mui/icons-material/Download";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import ImageIcon from "@mui/icons-material/Image";
 import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 import AudiotrackIcon from "@mui/icons-material/Audiotrack";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ReplyIcon from "@mui/icons-material/Reply";
 import { useContext, useState } from "react";
 import { DarkModeContext } from "./DarkModeProvider";
 
-function Message({ user, message }) {
+function Message({ user, message, messageId, onDelete, onReply }) {
   const [userLoggedIn] = useAuthState(auth);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   // Get dark mode context
   const darkModeContext = useContext(DarkModeContext);
   const { darkMode } = darkModeContext || { darkMode: false };
 
   const TypeOfMessage = user === userLoggedIn?.email ? Sender : Reciever;
+
+  // Check if message is less than 1 hour old
+  const isRecentMessage = () => {
+    if (!message.timestamp) return false;
+    const messageTime = moment(message.timestamp);
+    const now = moment();
+    const hoursDiff = now.diff(messageTime, 'hours');
+    return hoursDiff < 1;
+  };
+
+  // Open menu
+  const handleMenuOpen = (event) => {
+    event.stopPropagation();
+    setAnchorEl(event.currentTarget);
+  };
+
+  // Close menu
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  // Handle delete
+  const handleDelete = () => {
+    handleMenuClose();
+    if (onDelete && messageId) {
+      onDelete(messageId);
+    }
+  };
+
+  // Handle reply
+  const handleReply = () => {
+    handleMenuClose();
+    if (onReply) {
+      onReply({
+        id: messageId,
+        user: user,
+        message: message.message,
+        timestamp: message.timestamp,
+        fileURL: message.fileURL,
+        fileName: message.fileName,
+        fileType: message.fileType,
+        voiceURL: message.voiceURL,
+      });
+    }
+  };
 
   // Optimize Cloudinary image URLs with transformations
   const getOptimizedImageUrl = (url) => {
@@ -107,10 +156,69 @@ function Message({ user, message }) {
 
   const fileIconData = getFileIcon(message.fileType);
   const FileIconComponent = fileIconData.icon;
+  const showDelete = isRecentMessage();
 
   return (
     <Container>
       <TypeOfMessage darkMode={darkMode} isSender={user === userLoggedIn?.email}>
+        {/* Three Dots Menu */}
+        <MessageMenuButton
+          onClick={handleMenuOpen}
+          size="small"
+          darkMode={darkMode}
+          isSender={user === userLoggedIn?.email}
+        >
+          <MoreVertIcon fontSize="small" />
+        </MessageMenuButton>
+
+        {/* Menu */}
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+          PaperProps={{
+            style: {
+              backgroundColor: darkMode ? '#2a2a2a' : 'white',
+              color: darkMode ? '#e0e0e0' : 'black',
+            },
+          }}
+        >
+          <MenuItem onClick={handleReply}>
+            <ListItemIcon>
+              <ReplyIcon fontSize="small" style={{ color: darkMode ? '#64b5f6' : '#1976d2' }} />
+            </ListItemIcon>
+            <ListItemText style={{ color: darkMode ? '#e0e0e0' : 'black' }}>
+              Reply
+            </ListItemText>
+          </MenuItem>
+          
+          {showDelete && (
+            <MenuItem onClick={handleDelete}>
+              <ListItemIcon>
+                <DeleteIcon fontSize="small" style={{ color: '#d32f2f' }} />
+              </ListItemIcon>
+              <ListItemText style={{ color: darkMode ? '#e0e0e0' : 'black' }}>
+                Delete
+              </ListItemText>
+            </MenuItem>
+          )}
+        </Menu>
+
+        {/* Reply Preview (if this message is a reply) */}
+        {message.replyTo && (
+          <ReplyPreview darkMode={darkMode}>
+            <ReplyBar isSender={user === userLoggedIn?.email} />
+            <ReplyContent>
+              <ReplyUser darkMode={darkMode}>
+                {message.replyTo.user === userLoggedIn?.email ? 'You' : message.replyTo.user}
+              </ReplyUser>
+              <ReplyText darkMode={darkMode}>
+                {message.replyTo.message || message.replyTo.fileName || '🎤 Voice message'}
+              </ReplyText>
+            </ReplyContent>
+          </ReplyPreview>
+        )}
+
         {/* File Attachment */}
         {message.fileURL && (
           <FileAttachment>
@@ -243,6 +351,7 @@ const MessageElement = styled.div`
   width: fit-content;
   max-width: 65%;
   padding: 10px 15px;
+  padding-top: 15px;
   border-radius: 8px;
   margin: 10px;
   min-width: 60px;
@@ -268,6 +377,58 @@ const Reciever = styled(MessageElement)`
   color: ${props => props.darkMode ? '#e0e0e0' : 'black'};
   text-align: left;
   border-radius: 8px 8px 8px 0;
+`;
+
+const MessageMenuButton = styled(IconButton)`
+  position: absolute !important;
+  top: 2px !important;
+  right: ${props => props.isSender ? '2px' : 'auto'} !important;
+  left: ${props => props.isSender ? 'auto' : '2px'} !important;
+  opacity: 0.6 !important;
+  padding: 4px !important;
+  color: ${props => props.darkMode ? '#e0e0e0' : '#666'} !important;
+  
+  &:hover {
+    opacity: 1 !important;
+    background-color: ${props => props.darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'} !important;
+  }
+`;
+
+const ReplyPreview = styled.div`
+  display: flex;
+  margin-bottom: 8px;
+  padding: 8px;
+  background-color: ${props => props.darkMode ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.05)'};
+  border-radius: 6px;
+  margin-top: 5px;
+`;
+
+const ReplyBar = styled.div`
+  width: 4px;
+  background-color: ${props => props.isSender ? '#00a884' : '#1976d2'};
+  border-radius: 2px;
+  margin-right: 8px;
+  flex-shrink: 0;
+`;
+
+const ReplyContent = styled.div`
+  flex: 1;
+  overflow: hidden;
+`;
+
+const ReplyUser = styled.div`
+  font-size: 12px;
+  font-weight: 600;
+  color: ${props => props.darkMode ? '#64b5f6' : '#1976d2'};
+  margin-bottom: 2px;
+`;
+
+const ReplyText = styled.div`
+  font-size: 13px;
+  color: ${props => props.darkMode ? '#aaa' : '#666'};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const MessageText = styled.p`

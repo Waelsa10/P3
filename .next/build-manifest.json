@@ -5,39 +5,40 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/dnJCJkG0cucLsUFdP4ojS/_buildManifest.js",
-    "static/dnJCJkG0cucLsUFdP4ojS/_ssgManifest.js"
+    "static/8EwHILngQirmwPO2wZtlv/_buildManifest.js",
+    "static/8EwHILngQirmwPO2wZtlv/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
     "/": [
-      "static/chunks/webpack-b8f5bd5358705947.js",
+      "static/chunks/webpack-0186aec40d2129db.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-34a23a4c308061b6.js",
-      "static/chunks/267-63ea751f835bffb2.js",
-      "static/chunks/187-3d1c2cf2a5a2d890.js",
-      "static/chunks/pages/index-6aea180e49161037.js"
+      "static/chunks/37-3d18b6eddc6e744b.js",
+      "static/chunks/131-f47ea100e7164811.js",
+      "static/chunks/pages/index-3dfc94f08fc0224a.js"
     ],
     "/_app": [
-      "static/chunks/webpack-b8f5bd5358705947.js",
+      "static/chunks/webpack-0186aec40d2129db.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-34a23a4c308061b6.js",
-      "static/chunks/pages/_app-1c8210eefc9de127.js"
+      "static/css/99119a34b88b181b.css",
+      "static/chunks/pages/_app-571b89141e5ca8af.js"
     ],
     "/_error": [
-      "static/chunks/webpack-b8f5bd5358705947.js",
+      "static/chunks/webpack-0186aec40d2129db.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-34a23a4c308061b6.js",
       "static/chunks/pages/_error-a4ba2246ff8fb532.js"
     ],
     "/chat/[id]": [
-      "static/chunks/webpack-b8f5bd5358705947.js",
+      "static/chunks/webpack-0186aec40d2129db.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-34a23a4c308061b6.js",
-      "static/chunks/pages/chat/[id]-cc2d132ab898ff7f.js"
+      "static/chunks/pages/chat/[id]-25bf46ac10c88fcc.js"
     ],
     "/login": [
-      "static/chunks/webpack-b8f5bd5358705947.js",
+      "static/chunks/webpack-0186aec40d2129db.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-34a23a4c308061b6.js",
       "static/chunks/pages/login-684c71492aa151f5.js"

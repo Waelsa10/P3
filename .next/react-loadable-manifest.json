@@ -3,17 +3,17 @@
     "id": 5685,
     "files": [
       "static/chunks/75fc9c18.8a887c49b3994da9.js",
-      "static/chunks/267-63ea751f835bffb2.js",
-      "static/chunks/406.119fc6d30a547f27.js",
-      "static/chunks/685.f89391a6b8307d31.js"
+      "static/chunks/37-3d18b6eddc6e744b.js",
+      "static/chunks/397.7028116c3724fb38.js",
+      "static/chunks/685.7811ee974e2e88ba.js"
     ]
   },
   "chat\\[id].js -> ../../components/Sidebar": {
     "id": 6467,
     "files": [
-      "static/chunks/267-63ea751f835bffb2.js",
-      "static/chunks/187-3d1c2cf2a5a2d890.js",
-      "static/chunks/467.9d3f0a329855c9d5.js"
+      "static/chunks/37-3d18b6eddc6e744b.js",
+      "static/chunks/131-f47ea100e7164811.js",
+      "static/chunks/467.7fb705c0e62aac68.js"
     ]
   }
 }

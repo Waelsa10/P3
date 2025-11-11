@@ -20,6 +20,7 @@ import {
   serverTimestamp,
   enableNetwork,
   disableNetwork,
+  deleteDoc,
 } from "firebase/firestore";
 
 import { 
@@ -193,7 +194,7 @@ const EMOJIS = {
     "🇸🇸", "🇪🇸", "🇱🇰", "🇧🇱", "🇸🇭", "🇰🇳", "🇱🇨", "🇵🇲", "🇻🇨", "🇸🇩", "🇸🇷",
     "🇸🇪", "🇨🇭", "🇸🇾", "🇹🇼", "🇹🇯", "🇹🇿", "🇹🇭", "🇹🇱", "🇹🇬", "🇹🇰", "🇹🇴",
     "🇹🇹", "🇹🇳", "🇹🇷", "🇹🇲", "🇹🇨", "🇹🇻", "🇻🇮", "🇺🇬", "🇺🇦", "🇦🇪", "🇬🇧",
-    "🏴󐁧󐁢󐁥󐁮󐁧󐁿", "🏴󐁧󐁢󐁳󐁣󐁴󐁿", "🏴󐁧󐁢󐁷󐁬󐁳󐁿", "🇺🇸", "🇺🇾", "🇺🇿", "🇻🇺", "🇻🇦", "🇻🇪",
+    "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "🏴󠁧󠁢󠁷󠁬󠁳󠁿", "🇺🇸", "🇺🇾", "🇺🇿", "🇻🇺", "🇻🇦", "🇻🇪",
     "🇻🇳", "🇼🇫", "🇪🇭", "🇾🇪", "🇿🇲", "🇿🇼"
   ],
 };
@@ -232,6 +233,9 @@ function ChatScreen({ chat, messages }) {
   const [selectedEmojiCategory, setSelectedEmojiCategory] = useState("recent");
   const [recentEmojis, setRecentEmojis] = useState([]);
   const [emojiSearchTerm, setEmojiSearchTerm] = useState("");
+  
+  // Reply state
+  const [replyingTo, setReplyingTo] = useState(null);
 
   // Get dark mode context
   const darkModeContext = useContext(DarkModeContext);
@@ -306,21 +310,55 @@ function ChatScreen({ chat, messages }) {
   const recipientQuery = recipientEmail ? query(usersRef, where("email", "==", recipientEmail)) : null;
   const [recipientSnapshot] = useCollection(recipientQuery || null);
 
+  // Delete message
+  const deleteMessage = async (messageId) => {
+    if (!chatId || !messageId) return;
+    
+    try {
+      await deleteDoc(doc(db, "chats", chatId, "messages", messageId));
+      console.log("Message deleted successfully");
+    } catch (error) {
+      console.error("Error deleting message:", error);
+      setSendingError("Failed to delete message. Please try again.");
+    }
+  };
+
+  // Set reply
+  const handleReply = (messageData) => {
+    setReplyingTo(messageData);
+    inputRef.current?.focus();
+  };
+
+  // Cancel reply
+  const cancelReply = () => {
+    setReplyingTo(null);
+  };
+
   const showMessages = () => {
     if (messagesSnapshot) {
       return messagesSnapshot.docs.map((message) => (
         <Message
           key={message.id}
+          messageId={message.id}
           user={message.data().user}
           message={{
             ...message.data(),
             timestamp: message.data().timestamp?.toMillis(),
           }}
+          onDelete={deleteMessage}
+          onReply={handleReply}
         />
       ));
     } else {
       return messages ? JSON.parse(messages).map((message) => (
-        <Message key={message.id} user={message.user} message={message} />
+        <Message 
+          key={message.id} 
+          messageId={message.id}
+          user={message.user} 
+          message={message}
+          onDelete={deleteMessage}
+          onReply={handleReply}
+        />
       )) : null;
     }
   };
@@ -403,7 +441,7 @@ function ChatScreen({ chat, messages }) {
     }
   };
 
-  // ✅ ADDED: Cancel file selection function
+  // Cancel file selection function
   const cancelFileSelection = () => {
     setSelectedFile(null);
     setFilePreview(null);
@@ -436,7 +474,7 @@ function ChatScreen({ chat, messages }) {
         { merge: true }
       );
 
-      await addDoc(collection(db, "chats", chatId, "messages"), {
+      const messageData = {
         timestamp: serverTimestamp(),
         message: input || "",
         user: user.email,
@@ -445,7 +483,20 @@ function ChatScreen({ chat, messages }) {
         fileName: selectedFile.name,
         fileType: selectedFile.type,
         fileSize: selectedFile.size,
-      });
+      };
+
+      // Add reply data if replying
+      if (replyingTo) {
+        messageData.replyTo = {
+          id: replyingTo.id,
+          user: replyingTo.user,
+          message: replyingTo.message,
+          fileName: replyingTo.fileName,
+          fileType: replyingTo.fileType,
+        };
+      }
+
+      await addDoc(collection(db, "chats", chatId, "messages"), messageData);
 
       // Reset states
       setInput("");
@@ -453,6 +504,7 @@ function ChatScreen({ chat, messages }) {
       setFilePreview(null);
       setShowFileConfirmation(false);
       setUploadProgress(0);
+      setReplyingTo(null);
       scrollToBottom();
     } catch (error) {
       console.error("Error sending file:", error);
@@ -479,14 +531,28 @@ function ChatScreen({ chat, messages }) {
         { merge: true }
       );
 
-      await addDoc(collection(db, "chats", chatId, "messages"), {
+      const messageData = {
         timestamp: serverTimestamp(),
         message: input,
         user: user.email,
         photoURL: user.photoURL,
-      });
+      };
+
+      // Add reply data if replying
+      if (replyingTo) {
+        messageData.replyTo = {
+          id: replyingTo.id,
+          user: replyingTo.user,
+          message: replyingTo.message,
+          fileName: replyingTo.fileName,
+          fileType: replyingTo.fileType,
+        };
+      }
+
+      await addDoc(collection(db, "chats", chatId, "messages"), messageData);
 
       setInput("");
+      setReplyingTo(null);
       scrollToBottom();
     } catch (error) {
       console.error("Error sending message:", error);
@@ -494,7 +560,6 @@ function ChatScreen({ chat, messages }) {
     }
   };
 
-  // Start voice recording
   // Start voice recording
   const startRecording = async () => {
     try {
@@ -561,6 +626,7 @@ function ChatScreen({ chat, messages }) {
       setSendingError("Failed to access microphone. Please check permissions.");
     }
   };
+
   // Stop voice recording
   const stopRecording = () => {
     if (mediaRecorderRef.current && isRecording) {
@@ -591,17 +657,31 @@ function ChatScreen({ chat, messages }) {
         { merge: true }
       );
 
-      await addDoc(collection(db, "chats", chatId, "messages"), {
+      const messageData = {
         timestamp: serverTimestamp(),
         message: "🎤 Voice message",
         user: user.email,
         photoURL: user.photoURL,
         voiceURL: voiceURL,
         voiceDuration: recordingTime,
-      });
+      };
+
+      // Add reply data if replying
+      if (replyingTo) {
+        messageData.replyTo = {
+          id: replyingTo.id,
+          user: replyingTo.user,
+          message: replyingTo.message,
+          fileName: replyingTo.fileName,
+          fileType: replyingTo.fileType,
+        };
+      }
+
+      await addDoc(collection(db, "chats", chatId, "messages"), messageData);
 
       setAudioBlob(null);
       setUploadProgress(0);
+      setReplyingTo(null);
       scrollToBottom();
     } catch (error) {
       console.error("Error sending voice message:", error);
@@ -961,6 +1041,26 @@ function ChatScreen({ chat, messages }) {
         </DialogActions>
       </Dialog>
 
+      {/* Reply Preview */}
+      {replyingTo && (
+        <ReplyPreviewBar darkMode={darkMode}>
+          <ReplyBarIndicator />
+          <ReplyPreviewContent>
+            <ReplyPreviewHeader>
+              <span>
+                Replying to {replyingTo.user === user?.email ? 'yourself' : replyingTo.user}
+              </span>
+              <IconButton onClick={cancelReply} size="small">
+                <CloseIcon fontSize="small" style={{ color: darkMode ? '#e0e0e0' : 'inherit' }} />
+              </IconButton>
+            </ReplyPreviewHeader>
+            <ReplyPreviewText darkMode={darkMode}>
+              {replyingTo.message || replyingTo.fileName || '🎤 Voice message'}
+            </ReplyPreviewText>
+          </ReplyPreviewContent>
+        </ReplyPreviewBar>
+      )}
+
       <InputContainer onSubmit={sendMessage} darkMode={darkMode}>
         <IconButton onClick={handleEmojiPickerOpen}>
           <InsertEmoticonIcon style={{ color: darkMode ? '#e0e0e0' : 'inherit' }} />
@@ -1005,7 +1105,7 @@ function ChatScreen({ chat, messages }) {
 
 export default ChatScreen;
 
-// Styled Components (keep all your existing styled components here)
+// Styled Components
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -1352,4 +1452,48 @@ const NoEmojisMessage = styled.div`
   padding: 40px 20px;
   color: ${props => props.darkMode ? '#888' : '#999'};
   font-size: 14px;
+`;
+
+// Reply Preview Styled Components
+const ReplyPreviewBar = styled.div`
+  display: flex;
+  padding: 12px 16px;
+  background-color: ${props => props.darkMode ? '#2a2a2a' : '#f5f5f5'};
+  border-top: 1px solid ${props => props.darkMode ? '#333' : '#e0e0e0'};
+  gap: 12px;
+  align-items: center;
+`;
+
+const ReplyBarIndicator = styled.div`
+  width: 4px;
+  height: 50px;
+  background-color: #00a884;
+  border-radius: 2px;
+  flex-shrink: 0;
+`;
+
+const ReplyPreviewContent = styled.div`
+  flex: 1;
+  overflow: hidden;
+`;
+
+const ReplyPreviewHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  
+  span {
+    font-size: 13px;
+    font-weight: 600;
+    color: #00a884;
+  }
+`;
+
+const ReplyPreviewText = styled.div`
+  font-size: 14px;
+  color: ${props => props.darkMode ? '#aaa' : '#666'};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

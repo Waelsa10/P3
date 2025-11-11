@@ -15,6 +15,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^5.18.0",
     "@mui/material": "^5.18.0",
+    "bootstrap": "^5.3.8",
     "caniuse-lite": "^1.0.30001754",
     "cloudinary": "^2.8.0",
     "email-validator": "^2.0.4",

@@ -1,8 +1,8 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/chat/[id]": "pages/chat/[id].html",
   "/api/hello": "pages/api/hello.js",
+  "/chat/[id]": "pages/chat/[id].html",
   "/": "pages/index.html",
   "/login": "pages/login.html",
   "/_document": "pages/_document.js",

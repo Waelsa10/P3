@@ -5,62 +5,88 @@ exports.id = 888;
 exports.ids = [888,459];
 exports.modules = {
 
-/***/ 7910:
+/***/ 4461:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "Z": () => (/* binding */ components_Loading)
-});
-
-// EXTERNAL MODULE: external "react/jsx-runtime"
-var jsx_runtime_ = __webpack_require__(997);
-// EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__(6689);
-;// CONCATENATED MODULE: external "@mui/material"
-const material_namespaceObject = require("@mui/material");
-// EXTERNAL MODULE: external "styled-components"
-var external_styled_components_ = __webpack_require__(7518);
-var external_styled_components_default = /*#__PURE__*/__webpack_require__.n(external_styled_components_);
-;// CONCATENATED MODULE: ./components/Loading.js
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7518);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 
 function Loading() {
-    return /*#__PURE__*/ jsx_runtime_.jsx(Container, {
-        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(SpinnerWrapper, {
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Container, {
+        className: "d-flex justify-content-center align-items-center min-vh-100",
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+            className: "text-center",
             children: [
-                /*#__PURE__*/ jsx_runtime_.jsx(Logo, {
-                    src: "https://assets.stickpng.com/images/580b57fcd9996e24bc43c543.png",
-                    alt: "Logo"
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                    className: "mb-4",
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Logo, {
+                        src: "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg",
+                        alt: "Logo",
+                        className: "img-fluid"
+                    })
                 }),
-                /*#__PURE__*/ jsx_runtime_.jsx(material_namespaceObject.CircularProgress, {
-                    color: "success",
-                    size: 60
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(DotsContainer, {
+                    className: "d-flex justify-content-center gap-2 mb-3",
+                    children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Dot, {
+                            className: "bg-primary",
+                            delay: "0s"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Dot, {
+                            className: "bg-primary",
+                            delay: "0.15s"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Dot, {
+                            className: "bg-primary",
+                            delay: "0.3s"
+                        })
+                    ]
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                    className: "text-secondary fw-normal",
+                    children: "Connecting..."
                 })
             ]
         })
     });
 }
-/* harmony default export */ const components_Loading = (Loading);
-// Styled Components
-const Container = (external_styled_components_default()).div`
-  display: grid;
-  place-items: center;
-  height: 100vh;
-  background-color: whitesmoke;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Loading);
+const bounce = styled_components__WEBPACK_IMPORTED_MODULE_2__.keyframes`
+  0%, 80%, 100% { 
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% { 
+    transform: scale(1.2);
+    opacity: 1;
+  }
 `;
-const SpinnerWrapper = (external_styled_components_default()).div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const Container = (styled_components__WEBPACK_IMPORTED_MODULE_2___default().div)`
+  background-color: #f8f9fa;
 `;
-const Logo = (external_styled_components_default()).img`
-  height: 200px;
-  width: 200px;
-  margin-bottom: 20px;
+const Logo = (styled_components__WEBPACK_IMPORTED_MODULE_2___default().img)`
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
+`;
+const DotsContainer = (styled_components__WEBPACK_IMPORTED_MODULE_2___default().div)``;
+const Dot = (styled_components__WEBPACK_IMPORTED_MODULE_2___default().div)`
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  animation: ${bounce} 1.4s infinite ease-in-out;
+  animation-delay: ${(props)=>props.delay};
 `;
 
 
@@ -81,7 +107,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_firebase_hooks_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(830);
 /* harmony import */ var react_firebase_hooks_auth__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_firebase_hooks_auth__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2356);
-/* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7910);
+/* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4461);
 /* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4984);
 /* harmony import */ var _components_DarkModeProvider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5931);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_firebase__WEBPACK_IMPORTED_MODULE_3__, _login__WEBPACK_IMPORTED_MODULE_5__]);

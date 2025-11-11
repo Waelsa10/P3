@@ -16,13 +16,17 @@ var __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dynamic$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dynamic.js [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$head$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/head.js [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/router.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$firebase$2d$hooks$2f$auth__$5b$external$5d$__$28$react$2d$firebase$2d$hooks$2f$auth$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react-firebase-hooks/auth [external] (react-firebase-hooks/auth, cjs)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__ = __turbopack_context__.i("[externals]/firebase/firestore [external] (firebase/firestore, esm_import)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$DarkModeProvider$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/DarkModeProvider.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/constants.js [ssr] (ecmascript)");
 var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
     __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__,
     __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__
 ]);
 [__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__] = __turbopack_async_dependencies__.then ? (await __turbopack_async_dependencies__)() : __turbopack_async_dependencies__;
+;
+;
 ;
 ;
 ;
@@ -51,6 +55,7 @@ const ChatScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modu
     ssr: false
 });
 function ChatPage() {
+    const [user] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$firebase$2d$hooks$2f$auth__$5b$external$5d$__$28$react$2d$firebase$2d$hooks$2f$auth$2c$__cjs$29$__["useAuthState"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["auth"]);
     const [isOnline, setIsOnline] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(true);
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(null);
     const [chat, setChat] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(null);
@@ -59,7 +64,6 @@ function ChatPage() {
     const [isMobile, setIsMobile] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(false);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     const chatId = router.query.id;
-    // Get dark mode context
     const darkModeContext = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useContext"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$DarkModeProvider$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["DarkModeContext"]);
     const { darkMode } = darkModeContext || {
         darkMode: false
@@ -117,7 +121,6 @@ function ChatPage() {
                 console.error("Error fetching chat:", err);
                 if (mounted) {
                     setError(err.message);
-                    // Only redirect on specific errors
                     if (err.code === "not-found") {
                         router.replace("/");
                     }
@@ -135,6 +138,72 @@ function ChatPage() {
         router,
         isOnline
     ]);
+    // ✅ FIXED: Only update messages RECEIVED by current user, not sent by them
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        if (!chatId || !user?.email || !isOnline) return;
+        let isActive = true;
+        const updateReceivedMessagesToRead = async ()=>{
+            try {
+                const messagesRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "chats", chatId, "messages");
+                const snapshot = await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["getDocs"])(messagesRef);
+                if (snapshot.empty || !isActive) return;
+                const batch = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["writeBatch"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"]);
+                let deliveredCount = 0;
+                let readCount = 0;
+                snapshot.docs.forEach((messageDoc)=>{
+                    const data = messageDoc.data();
+                    // ✅ CRITICAL FIX: Only update messages FROM OTHER USERS (that I received)
+                    // Do NOT touch messages I sent (data.user === user.email)
+                    const isReceivedMessage = data.user !== user.email;
+                    if (!isReceivedMessage) {
+                        // Skip messages I sent - let the RECIPIENT update their status
+                        return;
+                    }
+                    // Update received "sent" messages to "delivered"
+                    if (data.status === __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].SENT) {
+                        batch.update(messageDoc.ref, {
+                            status: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].DELIVERED,
+                            deliveredAt: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
+                        });
+                        deliveredCount++;
+                    } else if (data.status === __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].DELIVERED) {
+                        batch.update(messageDoc.ref, {
+                            status: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].READ,
+                            readAt: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
+                        });
+                        readCount++;
+                    }
+                });
+                if ((deliveredCount > 0 || readCount > 0) && isActive) {
+                    await batch.commit();
+                    console.log(`✅ [Chat ${chatId}] Received messages updated: ${deliveredCount} delivered, ${readCount} read`);
+                }
+            } catch (error) {
+                if (error.code !== 'failed-precondition') {
+                    console.error(`❌ [Chat ${chatId}] Error updating received messages:`, error);
+                }
+            }
+        };
+        // Initial update
+        updateReceivedMessagesToRead();
+        // Update on window focus
+        const handleFocus = ()=>{
+            if (isOnline && isActive) {
+                updateReceivedMessagesToRead();
+            }
+        };
+        window.addEventListener('focus', handleFocus);
+        // ✅ REMOVED: No periodic updates - only on focus
+        // This prevents constant updates of your own sent messages
+        return ()=>{
+            isActive = false;
+            window.removeEventListener('focus', handleFocus);
+        };
+    }, [
+        chatId,
+        user,
+        isOnline
+    ]);
     if (!isOnline) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Container, {
             darkMode: darkMode,
@@ -144,12 +213,12 @@ function ChatPage() {
                         children: "Offline - Chat"
                     }, void 0, false, {
                         fileName: "[project]/pages/chat/[id].js",
-                        lineNumber: 105,
+                        lineNumber: 192,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/pages/chat/[id].js",
-                    lineNumber: 104,
+                    lineNumber: 191,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(OfflineMessage, {
@@ -157,13 +226,13 @@ function ChatPage() {
                     children: "You are currently offline. Please check your internet connection."
                 }, void 0, false, {
                     fileName: "[project]/pages/chat/[id].js",
-                    lineNumber: 107,
+                    lineNumber: 194,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/pages/chat/[id].js",
-            lineNumber: 103,
+            lineNumber: 190,
             columnNumber: 7
         }, this);
     }
@@ -176,12 +245,12 @@ function ChatPage() {
                         children: "Error - Chat"
                     }, void 0, false, {
                         fileName: "[project]/pages/chat/[id].js",
-                        lineNumber: 118,
+                        lineNumber: 205,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/pages/chat/[id].js",
-                    lineNumber: 117,
+                    lineNumber: 204,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(ErrorContainer, {
@@ -191,14 +260,14 @@ function ChatPage() {
                             children: "Error loading chat"
                         }, void 0, false, {
                             fileName: "[project]/pages/chat/[id].js",
-                            lineNumber: 121,
+                            lineNumber: 208,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/pages/chat/[id].js",
-                            lineNumber: 122,
+                            lineNumber: 209,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
@@ -206,19 +275,19 @@ function ChatPage() {
                             children: "Return to Home"
                         }, void 0, false, {
                             fileName: "[project]/pages/chat/[id].js",
-                            lineNumber: 123,
+                            lineNumber: 210,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/pages/chat/[id].js",
-                    lineNumber: 120,
+                    lineNumber: 207,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/pages/chat/[id].js",
-            lineNumber: 116,
+            lineNumber: 203,
             columnNumber: 7
         }, this);
     }
@@ -231,12 +300,12 @@ function ChatPage() {
                         children: "Loading..."
                     }, void 0, false, {
                         fileName: "[project]/pages/chat/[id].js",
-                        lineNumber: 133,
+                        lineNumber: 220,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/pages/chat/[id].js",
-                    lineNumber: 132,
+                    lineNumber: 219,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(LoadingContainer, {
@@ -246,26 +315,26 @@ function ChatPage() {
                             darkMode: darkMode
                         }, void 0, false, {
                             fileName: "[project]/pages/chat/[id].js",
-                            lineNumber: 136,
+                            lineNumber: 223,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
                             children: "Loading chat..."
                         }, void 0, false, {
                             fileName: "[project]/pages/chat/[id].js",
-                            lineNumber: 137,
+                            lineNumber: 224,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/pages/chat/[id].js",
-                    lineNumber: 135,
+                    lineNumber: 222,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/pages/chat/[id].js",
-            lineNumber: 131,
+            lineNumber: 218,
             columnNumber: 7
         }, this);
     }
@@ -278,7 +347,7 @@ function ChatPage() {
                         children: "Chat"
                     }, void 0, false, {
                         fileName: "[project]/pages/chat/[id].js",
-                        lineNumber: 146,
+                        lineNumber: 233,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("meta", {
@@ -286,13 +355,13 @@ function ChatPage() {
                         content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
                     }, void 0, false, {
                         fileName: "[project]/pages/chat/[id].js",
-                        lineNumber: 147,
+                        lineNumber: 234,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/chat/[id].js",
-                lineNumber: 145,
+                lineNumber: 232,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(AppContainer, {
@@ -301,7 +370,7 @@ function ChatPage() {
                         onClick: ()=>setSidebarOpen(false)
                     }, void 0, false, {
                         fileName: "[project]/pages/chat/[id].js",
-                        lineNumber: 153,
+                        lineNumber: 239,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Sidebar, {
@@ -310,7 +379,7 @@ function ChatPage() {
                         setSidebarOpen: setSidebarOpen
                     }, void 0, false, {
                         fileName: "[project]/pages/chat/[id].js",
-                        lineNumber: 156,
+                        lineNumber: 242,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(ChatContainer, {
@@ -322,29 +391,29 @@ function ChatPage() {
                             onToggleSidebar: ()=>setSidebarOpen(true)
                         }, void 0, false, {
                             fileName: "[project]/pages/chat/[id].js",
-                            lineNumber: 163,
+                            lineNumber: 249,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/pages/chat/[id].js",
-                        lineNumber: 162,
+                        lineNumber: 248,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/chat/[id].js",
-                lineNumber: 150,
+                lineNumber: 237,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/pages/chat/[id].js",
-        lineNumber: 144,
+        lineNumber: 231,
         columnNumber: 5
     }, this);
 }
 const __TURBOPACK__default__export__ = ChatPage;
-// Styled Components
+// Styled Components (unchanged)
 const Container = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
   background-color: ${(props)=>props.darkMode ? '#1e1e1e' : 'white'};
   min-height: 100vh;

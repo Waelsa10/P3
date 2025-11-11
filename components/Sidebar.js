@@ -1,5 +1,5 @@
 // components/Sidebar.jsx
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useMemo, useCallback } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import styled from "styled-components";
@@ -42,7 +42,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 import { DarkModeContext } from "./DarkModeProvider";
 
-function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
+const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
   const [user] = useAuthState(auth);
   const [anchorEl, setAnchorEl] = useState(null);
   const [headerAnchorEl, setHeaderAnchorEl] = useState(null);
@@ -73,7 +73,7 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
   const currentUserData = userDocSnapshot?.docs?.[0]?.data();
   const blockedUsers = currentUserData?.blockedUsers || [];
 
-  // Sort chats by latest message
+  // ✅ OPTIMIZED: Load and sort chats with cleaned users array
   useEffect(() => {
     if (!chatsSnapshot || !user) {
       setChatsList([]);
@@ -89,6 +89,17 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
           })
           .map(async (chat) => {
             try {
+              const chatData = chat.data();
+              
+              // ✅ FIXED: Validate and clean users array
+              if (!chatData.users || !Array.isArray(chatData.users)) {
+                console.error(`❌ Invalid users array for chat ${chat.id}:`, chatData.users);
+                return null;
+              }
+              
+              // ✅ FIXED: Remove duplicates for display (but keep original for self-chat detection)
+              const cleanUsers = chatData.users.filter(email => email && typeof email === 'string');
+              
               const messagesRef = collection(db, "chats", chat.id, "messages");
               const q = query(messagesRef, orderBy("timestamp", "desc"), limit(1));
               const snapshot = await getDocs(q);
@@ -102,7 +113,10 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
 
               return {
                 id: chat.id,
-                data: chat.data(),
+                data: {
+                  ...chatData,
+                  users: cleanUsers, // ✅ Clean users array
+                },
                 latestMessage,
                 latestTimestamp: latestMessage?.timestamp || 0,
               };
@@ -118,8 +132,11 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
           })
       );
 
+      // ✅ Filter out any null entries
+      const validChats = chatsWithMessages.filter(Boolean);
+
       // Sort by latest message timestamp (newest first)
-      const sortedChats = chatsWithMessages.sort((a, b) => {
+      const sortedChats = validChats.sort((a, b) => {
         return b.latestTimestamp - a.latestTimestamp;
       });
 
@@ -129,13 +146,8 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
     loadChatsWithLatestMessage();
   }, [chatsSnapshot, user]);
 
-  useEffect(() => {
-    if (error) {
-      console.error("Collection error:", error);
-    }
-  }, [error]);
-
-  const chatAlreadyExist = (recipientEmail) => {
+  // ✅ MEMOIZED: Check if chat already exists
+  const chatAlreadyExist = useCallback((recipientEmail) => {
     if (!chatsSnapshot) return false;
     
     if (recipientEmail === user.email) {
@@ -149,9 +161,10 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
       const users = chat.data().users;
       return users.includes(recipientEmail) && users.includes(user.email);
     });
-  };
+  }, [chatsSnapshot, user]);
 
-  const createChat = async () => {
+  // ✅ MEMOIZED: Create chat function
+  const createChat = useCallback(async () => {
     if (!user) {
       console.error("No user logged in");
       return;
@@ -185,56 +198,58 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
       console.error("Error creating chat:", error);
       alert(`Failed to create chat: ${error.message}`);
     }
-  };
+  }, [user, chatAlreadyExist]);
 
-  const handleMenuOpen = (event, chatId, chatUsers) => {
+  // ✅ MEMOIZED: Menu handlers
+  const handleMenuOpen = useCallback((event, chatId, chatUsers) => {
     setAnchorEl(event.currentTarget);
     setSelectedChatId(chatId);
     setSelectedChatUsers(chatUsers);
-  };
+  }, []);
 
-  const handleMenuClose = () => {
+  const handleMenuClose = useCallback(() => {
     setAnchorEl(null);
     setSelectedChatId(null);
     setSelectedChatUsers(null);
-  };
+  }, []);
 
-  const handleHeaderMenuOpen = (event) => {
+  const handleHeaderMenuOpen = useCallback((event) => {
     setHeaderAnchorEl(event.currentTarget);
-  };
+  }, []);
 
-  const handleHeaderMenuClose = () => {
+  const handleHeaderMenuClose = useCallback(() => {
     setHeaderAnchorEl(null);
-  };
+  }, []);
 
-  const handleSettingsOpen = () => {
+  const handleSettingsOpen = useCallback(() => {
     setSettingsOpen(true);
     handleHeaderMenuClose();
-  };
+  }, [handleHeaderMenuClose]);
 
-  const handleSettingsClose = () => {
+  const handleSettingsClose = useCallback(() => {
     setSettingsOpen(false);
-  };
+  }, []);
 
-  const handleAboutOpen = () => {
+  const handleAboutOpen = useCallback(() => {
     setAboutOpen(true);
     handleHeaderMenuClose();
-  };
+  }, [handleHeaderMenuClose]);
 
-  const handleAboutClose = () => {
+  const handleAboutClose = useCallback(() => {
     setAboutOpen(false);
-  };
+  }, []);
 
-  const handleBlockedUsersOpen = () => {
+  const handleBlockedUsersOpen = useCallback(() => {
     setBlockedUsersOpen(true);
     handleHeaderMenuClose();
-  };
+  }, [handleHeaderMenuClose]);
 
-  const handleBlockedUsersClose = () => {
+  const handleBlockedUsersClose = useCallback(() => {
     setBlockedUsersOpen(false);
-  };
+  }, []);
 
-  const deleteChat = async () => {
+  // ✅ MEMOIZED: Delete chat
+  const deleteChat = useCallback(async () => {
     if (!selectedChatId || !user) return;
     try {
       const chatRef = doc(db, "chats", selectedChatId);
@@ -247,9 +262,10 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
       console.error("Error deleting chat:", error);
       alert("Failed to delete chat");
     }
-  };
+  }, [selectedChatId, user, handleMenuClose]);
 
-  const blockUser = async () => {
+  // ✅ MEMOIZED: Block user
+  const blockUser = useCallback(async () => {
     if (!selectedChatUsers || !user) return;
     
     const recipientEmail = selectedChatUsers.find((email) => email !== user.email);
@@ -273,9 +289,10 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
       console.error("Error blocking user:", error);
       alert("Failed to block user");
     }
-  };
+  }, [selectedChatUsers, user, handleMenuClose]);
 
-  const unblockUser = async (emailToUnblock) => {
+  // ✅ MEMOIZED: Unblock user
+  const unblockUser = useCallback(async (emailToUnblock) => {
     if (!user) return;
     
     try {
@@ -290,29 +307,34 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
       console.error("Error unblocking user:", error);
       alert("Failed to unblock user");
     }
-  };
+  }, [user]);
 
-  const isUserBlocked = () => {
+  // ✅ MEMOIZED: Check if user is blocked
+  const isUserBlocked = useCallback(() => {
     if (!selectedChatUsers || !user) return false;
     const recipientEmail = selectedChatUsers.find((email) => email !== user.email);
     if (!recipientEmail) return false;
     return blockedUsers.includes(recipientEmail);
-  };
+  }, [selectedChatUsers, user, blockedUsers]);
+
+  // ✅ MEMOIZED: Filter chats by search term
+  const filteredChats = useMemo(() => {
+    if (!searchTerm.trim()) return chatsList;
+    
+    const searchLower = searchTerm.toLowerCase();
+    return chatsList.filter((chat) => {
+      const chatUsers = chat.data.users || [];
+      const otherUser = chatUsers.find((email) => email !== user.email);
+      
+      if (!otherUser) {
+        return user.email?.toLowerCase().includes(searchLower);
+      }
+      
+      return otherUser?.toLowerCase().includes(searchLower);
+    });
+  }, [chatsList, searchTerm, user]);
 
   if (!user) return <Container darkMode={darkMode}>Loading...</Container>;
-
-  const filteredChats = chatsList.filter((chat) => {
-    if (!searchTerm.trim()) return true;
-    
-    const chatUsers = chat.data.users || [];
-    const otherUser = chatUsers.find((email) => email !== user.email);
-    
-    if (!otherUser) {
-      return user.email?.toLowerCase().includes(searchTerm.toLowerCase());
-    }
-    
-    return otherUser?.toLowerCase().includes(searchTerm.toLowerCase());
-  });
 
   return (
     <>
@@ -379,7 +401,6 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
           ))
         )}
 
-        {/* All your existing menus and dialogs remain the same */}
         <Menu
           anchorEl={headerAnchorEl}
           open={Boolean(headerAnchorEl)}
@@ -554,11 +575,13 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
       </Container>
     </>
   );
-}
+});
+
+Sidebar.displayName = 'Sidebar';
 
 export default Sidebar;
 
-// Updated Styled Components with responsive design
+// Styled Components
 const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -573,7 +596,6 @@ const Overlay = styled.div`
   }
 `;
 
-// components/Sidebar.jsx - Better responsive Container
 const Container = styled.div`
   flex: 0.45;
   border-right: 1px solid ${props => props.darkMode ? '#333' : 'whitesmoke'};
@@ -593,10 +615,8 @@ const Container = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
 
-  /* Mobile and Tablet Responsive */
   @media (max-width: 1024px) {
     ${props => props.sidebarOpen ? `
-      /* When sidebar is open on mobile - take full width */
       position: fixed;
       left: 0;
       top: 0;
@@ -607,7 +627,6 @@ const Container = styled.div`
       width: 100%;
       transform: translateX(0);
     ` : `
-      /* When sidebar is closed - hide off screen */
       position: fixed;
       left: 0;
       top: 0;

@@ -5,13 +5,23 @@ import styled from "styled-components";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { doc, getDoc } from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { 
+  doc, 
+  getDoc, 
+  collection, 
+  getDocs,
+  serverTimestamp,
+  writeBatch
+} from "firebase/firestore";
 import { DarkModeContext } from "../../components/DarkModeProvider";
+import { MESSAGE_STATUS } from "../../components/ChatScreen/constants";
 
 const Sidebar = dynamic(() => import("../../components/Sidebar"), { ssr: false });
 const ChatScreen = dynamic(() => import("../../components/ChatScreen"), { ssr: false });
 
 function ChatPage() {
+  const [user] = useAuthState(auth);
   const [isOnline, setIsOnline] = useState(true);
   const [error, setError] = useState(null);
   const [chat, setChat] = useState(null);
@@ -22,7 +32,6 @@ function ChatPage() {
   const router = useRouter();
   const chatId = router.query.id;
 
-  // Get dark mode context
   const darkModeContext = useContext(DarkModeContext);
   const { darkMode } = darkModeContext || { darkMode: false };
 
@@ -82,7 +91,6 @@ function ChatPage() {
         console.error("Error fetching chat:", err);
         if (mounted) {
           setError(err.message);
-          // Only redirect on specific errors
           if (err.code === "not-found") {
             router.replace("/");
           }
@@ -97,6 +105,85 @@ function ChatPage() {
       mounted = false;
     };
   }, [chatId, router, isOnline]);
+
+  // ✅ FIXED: Only update messages RECEIVED by current user, not sent by them
+  useEffect(() => {
+    if (!chatId || !user?.email || !isOnline) return;
+
+    let isActive = true;
+
+    const updateReceivedMessagesToRead = async () => {
+      try {
+        const messagesRef = collection(db, "chats", chatId, "messages");
+        const snapshot = await getDocs(messagesRef);
+        
+        if (snapshot.empty || !isActive) return;
+
+        const batch = writeBatch(db);
+        let deliveredCount = 0;
+        let readCount = 0;
+        
+        snapshot.docs.forEach((messageDoc) => {
+          const data = messageDoc.data();
+          
+          // ✅ CRITICAL FIX: Only update messages FROM OTHER USERS (that I received)
+          // Do NOT touch messages I sent (data.user === user.email)
+          const isReceivedMessage = data.user !== user.email;
+          
+          if (!isReceivedMessage) {
+            // Skip messages I sent - let the RECIPIENT update their status
+            return;
+          }
+          
+          // Update received "sent" messages to "delivered"
+          if (data.status === MESSAGE_STATUS.SENT) {
+            batch.update(messageDoc.ref, {
+              status: MESSAGE_STATUS.DELIVERED,
+              deliveredAt: serverTimestamp()
+            });
+            deliveredCount++;
+          }
+          // Update received "delivered" messages to "read" (I'm viewing the chat)
+          else if (data.status === MESSAGE_STATUS.DELIVERED) {
+            batch.update(messageDoc.ref, {
+              status: MESSAGE_STATUS.READ,
+              readAt: serverTimestamp()
+            });
+            readCount++;
+          }
+        });
+
+        if ((deliveredCount > 0 || readCount > 0) && isActive) {
+          await batch.commit();
+          console.log(`✅ [Chat ${chatId}] Received messages updated: ${deliveredCount} delivered, ${readCount} read`);
+        }
+      } catch (error) {
+        if (error.code !== 'failed-precondition') {
+          console.error(`❌ [Chat ${chatId}] Error updating received messages:`, error);
+        }
+      }
+    };
+
+    // Initial update
+    updateReceivedMessagesToRead();
+
+    // Update on window focus
+    const handleFocus = () => {
+      if (isOnline && isActive) {
+        updateReceivedMessagesToRead();
+      }
+    };
+
+    window.addEventListener('focus', handleFocus);
+
+    // ✅ REMOVED: No periodic updates - only on focus
+    // This prevents constant updates of your own sent messages
+
+    return () => {
+      isActive = false;
+      window.removeEventListener('focus', handleFocus);
+    };
+  }, [chatId, user, isOnline]);
 
   if (!isOnline) {
     return (
@@ -148,7 +235,6 @@ function ChatPage() {
       </Head>
 
       <AppContainer>
-        {/* Mobile overlay */}
         {isMobile && sidebarOpen && (
           <Overlay onClick={() => setSidebarOpen(false)} />
         )}
@@ -174,7 +260,7 @@ function ChatPage() {
 
 export default ChatPage;
 
-// Styled Components
+// Styled Components (unchanged)
 const Container = styled.div`
   background-color: ${props => props.darkMode ? '#1e1e1e' : 'white'};
   min-height: 100vh;

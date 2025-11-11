@@ -490,8 +490,8 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__ = __turbopack_context__.i("[externals]/firebase/firestore [external] (firebase/firestore, esm_import)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/firebase.js [ssr] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$firebase$2d$hooks$2f$auth__$5b$external$5d$__$28$react$2d$firebase$2d$hooks$2f$auth$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react-firebase-hooks/auth [external] (react-firebase-hooks/auth, cjs)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/firebase.js [ssr] (ecmascript) <locals>");
 var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
     __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__,
     __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__
@@ -501,46 +501,70 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 ;
 ;
-;
 const useOnlineStatus = ()=>{
     const [user] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$firebase$2d$hooks$2f$auth__$5b$external$5d$__$28$react$2d$firebase$2d$hooks$2f$auth$2c$__cjs$29$__["useAuthState"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["auth"]);
+    const isUpdating = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useRef"])(false); // Prevent overlapping writes
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
         if (!user) return;
         const userRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users", user.uid);
-        // Set user as online
-        const setOnline = async ()=>{
-            await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["setDoc"])(userRef, {
-                isOnline: true,
-                lastSeen: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
-            }, {
-                merge: true
-            });
-        };
-        // Set user as offline
-        const setOffline = async ()=>{
-            await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["setDoc"])(userRef, {
-                isOnline: false,
-                lastSeen: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
-            }, {
-                merge: true
-            });
-        };
-        setOnline();
-        // Set offline on window close
-        window.addEventListener("beforeunload", setOffline);
-        // Set offline on visibility change
-        const handleVisibilityChange = ()=>{
-            if (document.hidden) {
-                setOffline();
-            } else {
-                setOnline();
+        const updateStatus = async (isOnline)=>{
+            // Prevent spamming Firestore on rapid events
+            if (isUpdating.current) return;
+            isUpdating.current = true;
+            try {
+                await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["setDoc"])(userRef, {
+                    isOnline,
+                    lastSeen: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
+                }, {
+                    merge: true
+                });
+            } catch (err) {
+                console.error("❌ Error updating online status:", err);
+            } finally{
+                // Allow next update after 1 second
+                setTimeout(()=>{
+                    isUpdating.current = false;
+                }, 1000);
             }
         };
-        document.addEventListener("visibilitychange", handleVisibilityChange);
-        return ()=>{
+        const setOnline = ()=>updateStatus(true);
+        const setOffline = ()=>updateStatus(false);
+        // Mark online immediately
+        setOnline();
+        // Handle visibility changes (switching tabs or minimizing window)
+        const handleVisibilityChange = ()=>{
+            if (document.hidden) setOffline();
+            else setOnline();
+        };
+        // Handle browser connection (Wi-Fi) changes
+        const handleOnline = ()=>setOnline();
+        const handleOffline = ()=>setOffline();
+        // Handle window/tab closing
+        const handleBeforeUnload = ()=>{
+            navigator.sendBeacon(`/api/setOffline?uid=${user.uid}`, JSON.stringify({
+                uid: user.uid
+            }));
             setOffline();
-            window.removeEventListener("beforeunload", setOffline);
+        };
+        // Add event listeners
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+        window.addEventListener("online", handleOnline);
+        window.addEventListener("offline", handleOffline);
+        window.addEventListener("beforeunload", handleBeforeUnload);
+        // Update every 25 seconds while active (like WhatsApp)
+        const interval = setInterval(()=>{
+            if (!document.hidden && navigator.onLine) {
+                setOnline();
+            }
+        }, 25000);
+        // Cleanup
+        return ()=>{
+            clearInterval(interval);
             document.removeEventListener("visibilitychange", handleVisibilityChange);
+            window.removeEventListener("online", handleOnline);
+            window.removeEventListener("offline", handleOffline);
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+            setOffline();
         };
     }, [
         user
@@ -553,6 +577,7 @@ __turbopack_async_result__();
 
 return __turbopack_context__.a(async (__turbopack_handle_async_dependencies__, __turbopack_async_result__) => { try {
 
+// pages/_app.jsx (or _app.js)
 __turbopack_context__.s([
     "default",
     ()=>__TURBOPACK__default__export__
@@ -581,31 +606,51 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 ;
 ;
+;
 function MyApp({ Component, pageProps }) {
     const [user, loading] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$firebase$2d$hooks$2f$auth__$5b$external$5d$__$28$react$2d$firebase$2d$hooks$2f$auth$2c$__cjs$29$__["useAuthState"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["auth"]);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useOnlineStatus$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["useOnlineStatus"])(); // Track user online status
+    // Track online/offline status
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useOnlineStatus$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["useOnlineStatus"])();
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
-        if (user) {
-            const userRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users", user.uid);
-            (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["setDoc"])(userRef, {
-                email: user.email,
-                lastSeen: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])(),
-                photoURL: user.photoURL
-            }, {
-                merge: true
-            });
-        }
+        if (!user) return;
+        const userRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users", user.uid);
+        // Function to update lastSeen
+        const updateLastSeen = async ()=>{
+            try {
+                await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["setDoc"])(userRef, {
+                    email: user.email,
+                    lastSeen: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])(),
+                    photoURL: user.photoURL || null
+                }, {
+                    merge: true
+                });
+            // console.log(`✅ Updated lastSeen for ${user.email}`);
+            } catch (error) {
+                console.error("❌ Error updating lastSeen:", error);
+            }
+        };
+        // Initial update when user logs in
+        updateLastSeen();
+        // Update every 20 seconds while app is open
+        const interval = setInterval(updateLastSeen, 20000);
+        // Update when window/tab regains focus
+        window.addEventListener("focus", updateLastSeen);
+        // Cleanup on unmount
+        return ()=>{
+            clearInterval(interval);
+            window.removeEventListener("focus", updateLastSeen);
+        };
     }, [
         user
     ]);
     if (loading) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Loading$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
         fileName: "[project]/pages/_app.js",
-        lineNumber: 29,
+        lineNumber: 56,
         columnNumber: 23
     }, this);
     if (!user) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$pages$2f$login$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
         fileName: "[project]/pages/_app.js",
-        lineNumber: 30,
+        lineNumber: 57,
         columnNumber: 21
     }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$DarkModeProvider$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["DarkModeProvider"], {
@@ -613,12 +658,12 @@ function MyApp({ Component, pageProps }) {
             ...pageProps
         }, void 0, false, {
             fileName: "[project]/pages/_app.js",
-            lineNumber: 35,
+            lineNumber: 61,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/pages/_app.js",
-        lineNumber: 34,
+        lineNumber: 60,
         columnNumber: 5
     }, this);
 }

@@ -151,7 +151,9 @@ export const EMOJIS = {
   ],
 };
 export const MESSAGE_STATUS = {
+  SENDING: 'sending',
   SENT: 'sent',
   DELIVERED: 'delivered',
-  READ: 'read'
+  READ: 'read',
+  FAILED: 'failed'
 };

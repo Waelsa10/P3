@@ -1,5 +1,5 @@
 // components/Chat.jsx
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useMemo } from "react";
 import styled from "styled-components";
 import { Avatar } from "@mui/material";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -19,7 +19,7 @@ import MessageStatus from "./ChatScreen/components/MessageStatus";
 import { MESSAGE_STATUS } from "./ChatScreen/constants";
 import { DarkModeContext } from "./DarkModeProvider";
 
-function Chat({ id, users, latestMessage: propLatestMessage }) {
+const Chat = React.memo(({ id, users, latestMessage: propLatestMessage }) => {
   const router = useRouter();
   const [user] = useAuthState(auth);
   const [latestMessage, setLatestMessage] = useState(propLatestMessage || null);
@@ -29,11 +29,21 @@ function Chat({ id, users, latestMessage: propLatestMessage }) {
   const darkModeContext = useContext(DarkModeContext);
   const { darkMode } = darkModeContext || { darkMode: false };
 
-const recipientEmail = getRecipientEmail(users, user);
-const isSelfChat = users?.length === 2 && 
-                   users.every(email => email?.toLowerCase() === user?.email?.toLowerCase());
+  // ✅ MEMOIZED: Calculate recipient email
+  const recipientEmail = useMemo(() => {
+    if (!users || !user) return null;
+    return getRecipientEmail(users, user);
+  }, [users, user]);
+
+  // ✅ MEMOIZED: Check if self-chat
+  const isSelfChat = useMemo(() => {
+    if (!users || !user) return false;
+    const cleanUsers = [...new Set(users.filter(Boolean).map(e => e.toLowerCase()))];
+    return cleanUsers.length === 1 && cleanUsers[0] === user.email.toLowerCase();
+  }, [users, user]);
+
   // Get recipient info - only query if recipientEmail exists
-  const recipientQuery = recipientEmail
+  const recipientQuery = recipientEmail && !isSelfChat
     ? query(collection(db, "users"), where("email", "==", recipientEmail))
     : null;
   const [recipientSnapshot] = useCollection(recipientQuery);
@@ -43,7 +53,6 @@ const isSelfChat = users?.length === 2 &&
   useEffect(() => {
     // Exit early if required data is missing
     if (!id || !user || !recipientEmail) {
-      console.log("Missing required data for Chat:", { id, user: !!user, recipientEmail });
       return;
     }
 
@@ -92,9 +101,7 @@ const isSelfChat = users?.length === 2 &&
       );
     }
 
-    return () => {<RecipientName darkMode={darkMode}>
-  {isSelfChat ? `${user.displayName || user.email} (You)` : recipientEmail}
-</RecipientName>
+    return () => {
       unsubscribeMessages();
       unsubscribeUnread();
     };
@@ -104,45 +111,49 @@ const isSelfChat = users?.length === 2 &&
     router.push(`/chat/${id}`);
   };
 
-  // Format timestamp
-  const formatTimestamp = (timestamp) => {
-    if (!timestamp) return "";
-    
-    const messageDate = new Date(timestamp);
-    const today = new Date();
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
+  // ✅ MEMOIZED: Format timestamp
+  const formatTimestamp = useMemo(() => {
+    return (timestamp) => {
+      if (!timestamp) return "";
+      
+      const messageDate = new Date(timestamp);
+      const today = new Date();
+      const yesterday = new Date(today);
+      yesterday.setDate(yesterday.getDate() - 1);
 
-    // Check if today
-    if (messageDate.toDateString() === today.toDateString()) {
-      return messageDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
-    
-    // Check if yesterday
-    if (messageDate.toDateString() === yesterday.toDateString()) {
-      return "Yesterday";
-    }
-    
-    // Check if within this week
-    const weekAgo = new Date(today);
-    weekAgo.setDate(weekAgo.getDate() - 7);
-    if (messageDate > weekAgo) {
-      return messageDate.toLocaleDateString([], { weekday: 'short' });
-    }
-    
-    // Older messages
-    return messageDate.toLocaleDateString([], { month: 'short', day: 'numeric' });
-  };
+      // Check if today
+      if (messageDate.toDateString() === today.toDateString()) {
+        return messageDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      }
+      
+      // Check if yesterday
+      if (messageDate.toDateString() === yesterday.toDateString()) {
+        return "Yesterday";
+      }
+      
+      // Check if within this week
+      const weekAgo = new Date(today);
+      weekAgo.setDate(weekAgo.getDate() - 7);
+      if (messageDate > weekAgo) {
+        return messageDate.toLocaleDateString([], { weekday: 'short' });
+      }
+      
+      // Older messages
+      return messageDate.toLocaleDateString([], { month: 'short', day: 'numeric' });
+    };
+  }, []);
 
-  // Truncate message
-  const truncateMessage = (message, maxLength = 35) => {
-    if (!message) return "";
-    if (message.length <= maxLength) return message;
-    return message.substring(0, maxLength) + "...";
-  };
+  // ✅ MEMOIZED: Truncate message
+  const truncateMessage = useMemo(() => {
+    return (message, maxLength = 35) => {
+      if (!message) return "";
+      if (message.length <= maxLength) return message;
+      return message.substring(0, maxLength) + "...";
+    };
+  }, []);
 
-  // Get preview text for the message
-  const getMessagePreview = () => {
+  // ✅ MEMOIZED: Get message preview
+  const messagePreview = useMemo(() => {
     if (!latestMessage) return "No messages yet";
 
     // Voice message
@@ -166,7 +177,7 @@ const isSelfChat = users?.length === 2 &&
 
     // Regular text message
     return truncateMessage(latestMessage.message);
-  };
+  }, [latestMessage, truncateMessage]);
 
   const isOwnMessage = latestMessage?.user === user?.email;
   const hasUnread = unreadCount > 0 && !isOwnMessage;
@@ -178,7 +189,9 @@ const isSelfChat = users?.length === 2 &&
 
   return (
     <Container onClick={enterChat} darkMode={darkMode}>
-      {recipient ? (
+      {isSelfChat ? (
+        <UserAvatar src={user?.photoURL}>{user?.email?.[0]?.toUpperCase()}</UserAvatar>
+      ) : recipient ? (
         <UserAvatar src={recipient?.photoURL} />
       ) : (
         <UserAvatar>{recipientEmail?.[0]?.toUpperCase()}</UserAvatar>
@@ -205,7 +218,7 @@ const isSelfChat = users?.length === 2 &&
               </StatusWrapper>
             )}
             <MessageText hasUnread={hasUnread} darkMode={darkMode}>
-              {getMessagePreview()}
+              {messagePreview}
             </MessageText>
           </LastMessage>
           {hasUnread && (
@@ -215,7 +228,17 @@ const isSelfChat = users?.length === 2 &&
       </ChatContent>
     </Container>
   );
-}
+}, (prevProps, nextProps) => {
+  // ✅ Custom comparison - only re-render if these change
+  return (
+    prevProps.id === nextProps.id &&
+    JSON.stringify(prevProps.users) === JSON.stringify(nextProps.users) &&
+    prevProps.latestMessage?.timestamp === nextProps.latestMessage?.timestamp &&
+    prevProps.latestMessage?.message === nextProps.latestMessage?.message
+  );
+});
+
+Chat.displayName = 'Chat';
 
 export default Chat;
 

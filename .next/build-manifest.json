@@ -3,22 +3,22 @@
     "/": [
       "static/chunks/6c075da1e77a561a.js",
       "static/chunks/90981a0e2f9f9031.js",
-      "static/chunks/2da904b160ae5de8.js",
+      "static/chunks/e397c20475fd38d3.js",
       "static/chunks/64510272b5addb17.js",
-      "static/chunks/989ae54853890986.js",
+      "static/chunks/6107867bca084b37.js",
       "static/chunks/455ec68eb86ab306.js",
       "static/chunks/ce76d314b915fd43.js",
-      "static/chunks/980d8ba80f2b628d.js",
-      "static/chunks/turbopack-b178455bcf64cf14.js"
+      "static/chunks/8373394538baf9e2.js",
+      "static/chunks/turbopack-16d29d6dd269b00e.js"
     ],
     "/_app": [
-      "static/chunks/c9d6df6840005cd0.js",
+      "static/chunks/e5e3c7ec366ec75a.js",
       "static/chunks/90981a0e2f9f9031.js",
       "static/chunks/455ec68eb86ab306.js",
-      "static/chunks/19beb28ee6878cdf.js",
+      "static/chunks/0b593e7c8d73e745.js",
       "static/chunks/0f3b6848b31757eb.js",
       "static/chunks/d43ab978ac5b76ce.css",
-      "static/chunks/turbopack-776b3c74f53559b6.js"
+      "static/chunks/turbopack-0dbe2425e6e31995.js"
     ],
     "/_error": [
       "static/chunks/c6a19890619978f0.js",
@@ -27,26 +27,26 @@
       "static/chunks/turbopack-ac436a46264ac8ee.js"
     ],
     "/chat/[id]": [
-      "static/chunks/87c53c5d5858eebd.js",
+      "static/chunks/77209beef85a358b.js",
       "static/chunks/90981a0e2f9f9031.js",
-      "static/chunks/a56f47f636906ff7.js",
+      "static/chunks/f8e1b11606fc84a5.js",
       "static/chunks/455ec68eb86ab306.js",
-      "static/chunks/turbopack-1d2c143f3b5d1a57.js"
+      "static/chunks/turbopack-cf1a024ec320c059.js"
     ],
     "/login": [
       "static/chunks/0bd410c94aae8aa1.js",
       "static/chunks/90981a0e2f9f9031.js",
       "static/chunks/455ec68eb86ab306.js",
-      "static/chunks/a56f47f636906ff7.js",
+      "static/chunks/f8e1b11606fc84a5.js",
       "static/chunks/0f3b6848b31757eb.js",
-      "static/chunks/turbopack-ae20e28401d71092.js"
+      "static/chunks/turbopack-9590133b98012205.js"
     ]
   },
   "devFiles": [],
   "polyfillFiles": [],
   "lowPriorityFiles": [
-    "static/nUDtgm5VaSSYq3Lcs1v0S/_ssgManifest.js",
-    "static/nUDtgm5VaSSYq3Lcs1v0S/_buildManifest.js"
+    "static/0X6qAvFFOm2GUzqVa0fSp/_ssgManifest.js",
+    "static/0X6qAvFFOm2GUzqVa0fSp/_buildManifest.js"
   ],
   "rootMainFiles": []
 }

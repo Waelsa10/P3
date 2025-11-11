@@ -1,35 +1,54 @@
 // utils/getRecipientEmail.js
+
+/**
+ * Get the recipient email for a chat (WhatsApp-style)
+ * @param {string[]} users - Array of user emails in the chat
+ * @param {Object} userLoggedIn - Current logged-in user
+ * @returns {string|null} Recipient email or null
+ */
 const getRecipientEmail = (users, userLoggedIn) => {
-  // Return null if either users or userLoggedIn is missing
+  // ===================================
+  // 1️⃣ VALIDATION
+  // ===================================
   if (!users || !Array.isArray(users) || !userLoggedIn?.email) {
-    console.log("getRecipientEmail: Missing data", { users, hasUser: !!userLoggedIn });
     return null;
   }
 
-  // Normalize emails to lowercase for comparison
-  const normalizedUserEmail = userLoggedIn.email.toLowerCase();
-  const normalizedUsers = users.map(email => email?.toLowerCase()).filter(Boolean);
+  const currentUserEmail = userLoggedIn.email.toLowerCase().trim();
+  
+  // Clean and normalize all emails
+  const cleanedUsers = users
+    .filter(email => email && typeof email === 'string')
+    .map(email => email.toLowerCase().trim());
 
-  console.log("getRecipientEmail: Processing", { normalizedUsers, normalizedUserEmail });
-
-  // Check if this is a self-chat (both users are the same)
-  const isSelfChat = normalizedUsers.length === 2 && 
-                     normalizedUsers.every(email => email === normalizedUserEmail);
-
-  if (isSelfChat) {
-    console.log("getRecipientEmail: Self-chat detected");
-    return userLoggedIn.email; // Return original email (not normalized)
+  // Chat must have at least 1 user
+  if (cleanedUsers.length === 0) {
+    return null;
   }
 
-  // Filter out the current user's email to find the other participant
-  const recipientEmails = users.filter(email => 
-    email && email.toLowerCase() !== normalizedUserEmail
-  );
+  // ===================================
+  // 2️⃣ SELF-CHAT DETECTION (Saved Messages)
+  // ===================================
+  // Get unique participants
+  const uniqueParticipants = [...new Set(cleanedUsers)];
 
-  console.log("getRecipientEmail: Found recipients", recipientEmails);
+  // If there's only ONE unique participant and it's ME → Self-chat
+  if (uniqueParticipants.length === 1 && uniqueParticipants[0] === currentUserEmail) {
+    return currentUserEmail;
+  }
 
-  // Return the first recipient email, or user's email if none found
-  return recipientEmails.length > 0 ? recipientEmails[0] : userLoggedIn.email;
+  // ===================================
+  // 3️⃣ REGULAR CHAT - Find Other Person
+  // ===================================
+  // Find the first person who is NOT me
+  const recipient = cleanedUsers.find(email => email !== currentUserEmail);
+
+  if (recipient) {
+    return recipient;
+  }
+
+  // No valid recipient found
+  return null;
 };
 
 export default getRecipientEmail;

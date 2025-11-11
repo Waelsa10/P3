@@ -3,37 +3,50 @@
 "use strict";
 
 // utils/getRecipientEmail.js
-__turbopack_context__.s([
+/**
+ * Get the recipient email for a chat (WhatsApp-style)
+ * @param {string[]} users - Array of user emails in the chat
+ * @param {Object} userLoggedIn - Current logged-in user
+ * @returns {string|null} Recipient email or null
+ */ __turbopack_context__.s([
     "default",
     ()=>__TURBOPACK__default__export__
 ]);
 const getRecipientEmail = (users, userLoggedIn)=>{
-    // Return null if either users or userLoggedIn is missing
+    // ===================================
+    // 1️⃣ VALIDATION
+    // ===================================
     if (!users || !Array.isArray(users) || !userLoggedIn?.email) {
-        console.log("getRecipientEmail: Missing data", {
-            users,
-            hasUser: !!userLoggedIn
-        });
         return null;
     }
-    // Normalize emails to lowercase for comparison
-    const normalizedUserEmail = userLoggedIn.email.toLowerCase();
-    const normalizedUsers = users.map((email)=>email?.toLowerCase()).filter(Boolean);
-    console.log("getRecipientEmail: Processing", {
-        normalizedUsers,
-        normalizedUserEmail
-    });
-    // Check if this is a self-chat (both users are the same)
-    const isSelfChat = normalizedUsers.length === 2 && normalizedUsers.every((email)=>email === normalizedUserEmail);
-    if (isSelfChat) {
-        console.log("getRecipientEmail: Self-chat detected");
-        return userLoggedIn.email; // Return original email (not normalized)
+    const currentUserEmail = userLoggedIn.email.toLowerCase().trim();
+    // Clean and normalize all emails
+    const cleanedUsers = users.filter((email)=>email && typeof email === 'string').map((email)=>email.toLowerCase().trim());
+    // Chat must have at least 1 user
+    if (cleanedUsers.length === 0) {
+        return null;
     }
-    // Filter out the current user's email to find the other participant
-    const recipientEmails = users.filter((email)=>email && email.toLowerCase() !== normalizedUserEmail);
-    console.log("getRecipientEmail: Found recipients", recipientEmails);
-    // Return the first recipient email, or user's email if none found
-    return recipientEmails.length > 0 ? recipientEmails[0] : userLoggedIn.email;
+    // ===================================
+    // 2️⃣ SELF-CHAT DETECTION (Saved Messages)
+    // ===================================
+    // Get unique participants
+    const uniqueParticipants = [
+        ...new Set(cleanedUsers)
+    ];
+    // If there's only ONE unique participant and it's ME → Self-chat
+    if (uniqueParticipants.length === 1 && uniqueParticipants[0] === currentUserEmail) {
+        return currentUserEmail;
+    }
+    // ===================================
+    // 3️⃣ REGULAR CHAT - Find Other Person
+    // ===================================
+    // Find the first person who is NOT me
+    const recipient = cleanedUsers.find((email)=>email !== currentUserEmail);
+    if (recipient) {
+        return recipient;
+    }
+    // No valid recipient found
+    return null;
 };
 const __TURBOPACK__default__export__ = getRecipientEmail;
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
@@ -1569,9 +1582,11 @@ const EMOJIS = {
     ]
 };
 const MESSAGE_STATUS = {
+    SENDING: 'sending',
     SENT: 'sent',
     DELIVERED: 'delivered',
-    READ: 'read'
+    READ: 'read',
+    FAILED: 'failed'
 };
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
@@ -1736,7 +1751,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function Chat({ id, users, latestMessage: propLatestMessage }) {
+const Chat = /*#__PURE__*/ _s(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].memo(_c = _s(({ id, users, latestMessage: propLatestMessage })=>{
     _s();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const [user] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$auth$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useAuthState"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["auth"]);
@@ -1747,10 +1762,33 @@ function Chat({ id, users, latestMessage: propLatestMessage }) {
     const { darkMode } = darkModeContext || {
         darkMode: false
     };
-    const recipientEmail = (0, __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$getRecipientEmail$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"])(users, user);
-    const isSelfChat = users?.length === 2 && users.every((email)=>email?.toLowerCase() === user?.email?.toLowerCase());
+    // ✅ MEMOIZED: Calculate recipient email
+    const recipientEmail = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "Chat.useMemo[recipientEmail]": ()=>{
+            if (!users || !user) return null;
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$getRecipientEmail$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"])(users, user);
+        }
+    }["Chat.useMemo[recipientEmail]"], [
+        users,
+        user
+    ]);
+    // ✅ MEMOIZED: Check if self-chat
+    const isSelfChat = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "Chat.useMemo[isSelfChat]": ()=>{
+            if (!users || !user) return false;
+            const cleanUsers = [
+                ...new Set(users.filter(Boolean).map({
+                    "Chat.useMemo[isSelfChat]": (e)=>e.toLowerCase()
+                }["Chat.useMemo[isSelfChat]"]))
+            ];
+            return cleanUsers.length === 1 && cleanUsers[0] === user.email.toLowerCase();
+        }
+    }["Chat.useMemo[isSelfChat]"], [
+        users,
+        user
+    ]);
     // Get recipient info - only query if recipientEmail exists
-    const recipientQuery = recipientEmail ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["query"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users"), (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["where"])("email", "==", recipientEmail)) : null;
+    const recipientQuery = recipientEmail && !isSelfChat ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["query"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users"), (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["where"])("email", "==", recipientEmail)) : null;
     const [recipientSnapshot] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCollection"])(recipientQuery);
     const recipient = recipientSnapshot?.docs?.[0]?.data();
     // Real-time listener for latest message and unread count
@@ -1758,11 +1796,6 @@ function Chat({ id, users, latestMessage: propLatestMessage }) {
         "Chat.useEffect": ()=>{
             // Exit early if required data is missing
             if (!id || !user || !recipientEmail) {
-                console.log("Missing required data for Chat:", {
-                    id,
-                    user: !!user,
-                    recipientEmail
-                });
                 return;
             }
             // Real-time listener for latest message
@@ -1808,14 +1841,6 @@ function Chat({ id, users, latestMessage: propLatestMessage }) {
             }
             return ({
                 "Chat.useEffect": ()=>{
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(RecipientName, {
-                        darkMode: darkMode,
-                        children: isSelfChat ? `${user.displayName || user.email} (You)` : recipientEmail
-                    }, void 0, false, {
-                        fileName: "[project]/components/Chat.js",
-                        lineNumber: 95,
-                        columnNumber: 19
-                    }, this);
                     unsubscribeMessages();
                     unsubscribeUnread();
                 }
@@ -1830,67 +1855,84 @@ function Chat({ id, users, latestMessage: propLatestMessage }) {
     const enterChat = ()=>{
         router.push(`/chat/${id}`);
     };
-    // Format timestamp
-    const formatTimestamp = (timestamp)=>{
-        if (!timestamp) return "";
-        const messageDate = new Date(timestamp);
-        const today = new Date();
-        const yesterday = new Date(today);
-        yesterday.setDate(yesterday.getDate() - 1);
-        // Check if today
-        if (messageDate.toDateString() === today.toDateString()) {
-            return messageDate.toLocaleTimeString([], {
-                hour: '2-digit',
-                minute: '2-digit'
-            });
+    // ✅ MEMOIZED: Format timestamp
+    const formatTimestamp = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "Chat.useMemo[formatTimestamp]": ()=>{
+            return ({
+                "Chat.useMemo[formatTimestamp]": (timestamp)=>{
+                    if (!timestamp) return "";
+                    const messageDate = new Date(timestamp);
+                    const today = new Date();
+                    const yesterday = new Date(today);
+                    yesterday.setDate(yesterday.getDate() - 1);
+                    // Check if today
+                    if (messageDate.toDateString() === today.toDateString()) {
+                        return messageDate.toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+                    }
+                    // Check if yesterday
+                    if (messageDate.toDateString() === yesterday.toDateString()) {
+                        return "Yesterday";
+                    }
+                    // Check if within this week
+                    const weekAgo = new Date(today);
+                    weekAgo.setDate(weekAgo.getDate() - 7);
+                    if (messageDate > weekAgo) {
+                        return messageDate.toLocaleDateString([], {
+                            weekday: 'short'
+                        });
+                    }
+                    // Older messages
+                    return messageDate.toLocaleDateString([], {
+                        month: 'short',
+                        day: 'numeric'
+                    });
+                }
+            })["Chat.useMemo[formatTimestamp]"];
         }
-        // Check if yesterday
-        if (messageDate.toDateString() === yesterday.toDateString()) {
-            return "Yesterday";
+    }["Chat.useMemo[formatTimestamp]"], []);
+    // ✅ MEMOIZED: Truncate message
+    const truncateMessage = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "Chat.useMemo[truncateMessage]": ()=>{
+            return ({
+                "Chat.useMemo[truncateMessage]": (message, maxLength = 35)=>{
+                    if (!message) return "";
+                    if (message.length <= maxLength) return message;
+                    return message.substring(0, maxLength) + "...";
+                }
+            })["Chat.useMemo[truncateMessage]"];
         }
-        // Check if within this week
-        const weekAgo = new Date(today);
-        weekAgo.setDate(weekAgo.getDate() - 7);
-        if (messageDate > weekAgo) {
-            return messageDate.toLocaleDateString([], {
-                weekday: 'short'
-            });
-        }
-        // Older messages
-        return messageDate.toLocaleDateString([], {
-            month: 'short',
-            day: 'numeric'
-        });
-    };
-    // Truncate message
-    const truncateMessage = (message, maxLength = 35)=>{
-        if (!message) return "";
-        if (message.length <= maxLength) return message;
-        return message.substring(0, maxLength) + "...";
-    };
-    // Get preview text for the message
-    const getMessagePreview = ()=>{
-        if (!latestMessage) return "No messages yet";
-        // Voice message
-        if (latestMessage.voiceURL) {
-            return "🎤 Voice message";
-        }
-        // File attachment
-        if (latestMessage.fileURL) {
-            if (latestMessage.fileType?.startsWith('image/')) {
-                return "📷 Photo";
+    }["Chat.useMemo[truncateMessage]"], []);
+    // ✅ MEMOIZED: Get message preview
+    const messagePreview = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "Chat.useMemo[messagePreview]": ()=>{
+            if (!latestMessage) return "No messages yet";
+            // Voice message
+            if (latestMessage.voiceURL) {
+                return "🎤 Voice message";
             }
-            if (latestMessage.fileType?.startsWith('video/')) {
-                return "🎥 Video";
+            // File attachment
+            if (latestMessage.fileURL) {
+                if (latestMessage.fileType?.startsWith('image/')) {
+                    return "📷 Photo";
+                }
+                if (latestMessage.fileType?.startsWith('video/')) {
+                    return "🎥 Video";
+                }
+                if (latestMessage.fileType?.startsWith('audio/')) {
+                    return "🎵 Audio";
+                }
+                return `📎 ${truncateMessage(latestMessage.fileName || 'File', 25)}`;
             }
-            if (latestMessage.fileType?.startsWith('audio/')) {
-                return "🎵 Audio";
-            }
-            return `📎 ${truncateMessage(latestMessage.fileName || 'File', 25)}`;
+            // Regular text message
+            return truncateMessage(latestMessage.message);
         }
-        // Regular text message
-        return truncateMessage(latestMessage.message);
-    };
+    }["Chat.useMemo[messagePreview]"], [
+        latestMessage,
+        truncateMessage
+    ]);
     const isOwnMessage = latestMessage?.user === user?.email;
     const hasUnread = unreadCount > 0 && !isOwnMessage;
     // Don't render if missing essential data
@@ -1901,19 +1943,26 @@ function Chat({ id, users, latestMessage: propLatestMessage }) {
         onClick: enterChat,
         darkMode: darkMode,
         children: [
-            recipient ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(UserAvatar, {
+            isSelfChat ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(UserAvatar, {
+                src: user?.photoURL,
+                children: user?.email?.[0]?.toUpperCase()
+            }, void 0, false, {
+                fileName: "[project]/components/Chat.js",
+                lineNumber: 193,
+                columnNumber: 9
+            }, ("TURBOPACK compile-time value", void 0)) : recipient ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(UserAvatar, {
                 src: recipient?.photoURL
             }, void 0, false, {
                 fileName: "[project]/components/Chat.js",
-                lineNumber: 182,
+                lineNumber: 195,
                 columnNumber: 9
-            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(UserAvatar, {
+            }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(UserAvatar, {
                 children: recipientEmail?.[0]?.toUpperCase()
             }, void 0, false, {
                 fileName: "[project]/components/Chat.js",
-                lineNumber: 184,
+                lineNumber: 197,
                 columnNumber: 9
-            }, this),
+            }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ChatContent, {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ChatHeader, {
@@ -1923,23 +1972,23 @@ function Chat({ id, users, latestMessage: propLatestMessage }) {
                                 children: isSelfChat ? `${recipientEmail} (You)` : recipientEmail
                             }, void 0, false, {
                                 fileName: "[project]/components/Chat.js",
-                                lineNumber: 188,
+                                lineNumber: 201,
                                 columnNumber: 11
-                            }, this),
+                            }, ("TURBOPACK compile-time value", void 0)),
                             latestMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MessageTime, {
                                 darkMode: darkMode,
                                 children: formatTimestamp(latestMessage.timestamp)
                             }, void 0, false, {
                                 fileName: "[project]/components/Chat.js",
-                                lineNumber: 192,
+                                lineNumber: 205,
                                 columnNumber: 13
-                            }, this)
+                            }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Chat.js",
-                        lineNumber: 187,
+                        lineNumber: 200,
                         columnNumber: 9
-                    }, this),
+                    }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(LastMessageContainer, {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(LastMessage, {
@@ -1951,64 +2000,73 @@ function Chat({ id, users, latestMessage: propLatestMessage }) {
                                             darkMode: darkMode
                                         }, void 0, false, {
                                             fileName: "[project]/components/Chat.js",
-                                            lineNumber: 201,
+                                            lineNumber: 214,
                                             columnNumber: 17
-                                        }, this)
+                                        }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/Chat.js",
-                                        lineNumber: 200,
+                                        lineNumber: 213,
                                         columnNumber: 15
-                                    }, this),
+                                    }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MessageText, {
                                         hasUnread: hasUnread,
                                         darkMode: darkMode,
-                                        children: getMessagePreview()
+                                        children: messagePreview
                                     }, void 0, false, {
                                         fileName: "[project]/components/Chat.js",
-                                        lineNumber: 207,
+                                        lineNumber: 220,
                                         columnNumber: 13
-                                    }, this)
+                                    }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Chat.js",
-                                lineNumber: 198,
+                                lineNumber: 211,
                                 columnNumber: 11
-                            }, this),
+                            }, ("TURBOPACK compile-time value", void 0)),
                             hasUnread && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(UnreadBadge, {
                                 darkMode: darkMode,
                                 children: unreadCount
                             }, void 0, false, {
                                 fileName: "[project]/components/Chat.js",
-                                lineNumber: 212,
+                                lineNumber: 225,
                                 columnNumber: 13
-                            }, this)
+                            }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Chat.js",
-                        lineNumber: 197,
+                        lineNumber: 210,
                         columnNumber: 9
-                    }, this)
+                    }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Chat.js",
-                lineNumber: 186,
+                lineNumber: 199,
                 columnNumber: 7
-            }, this)
+            }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/components/Chat.js",
-        lineNumber: 180,
+        lineNumber: 191,
         columnNumber: 5
-    }, this);
-}
-_s(Chat, "DvXXRaQ5OossMZ6Gzr0INVXl/po=", false, function() {
+    }, ("TURBOPACK compile-time value", void 0));
+}, "/9KZyHGmf68DpqHfx7RPfGui6Es=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRouter"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$auth$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useAuthState"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCollection"]
+    ];
+}), (prevProps, nextProps)=>{
+    // ✅ Custom comparison - only re-render if these change
+    return prevProps.id === nextProps.id && JSON.stringify(prevProps.users) === JSON.stringify(nextProps.users) && prevProps.latestMessage?.timestamp === nextProps.latestMessage?.timestamp && prevProps.latestMessage?.message === nextProps.latestMessage?.message;
+}), "/9KZyHGmf68DpqHfx7RPfGui6Es=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$auth$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useAuthState"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCollection"]
     ];
 });
-_c = Chat;
+_c1 = Chat;
+Chat.displayName = 'Chat';
 const __TURBOPACK__default__export__ = Chat;
 // Styled Components
 const Container = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
@@ -2023,13 +2081,13 @@ const Container = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2
     background-color: ${(props)=>props.darkMode ? '#2a2a2a' : '#f5f5f5'};
   }
 `;
-_c1 = Container;
+_c2 = Container;
 const UserAvatar = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Avatar$2f$Avatar$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Avatar$3e$__["Avatar"])`
   margin: 5px;
   margin-right: 15px;
   flex-shrink: 0;
 `;
-_c2 = UserAvatar;
+_c3 = UserAvatar;
 const ChatContent = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   flex: 1;
   display: flex;
@@ -2037,14 +2095,14 @@ const ChatContent = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules
   overflow: hidden;
   min-width: 0;
 `;
-_c3 = ChatContent;
+_c4 = ChatContent;
 const ChatHeader = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 4px;
 `;
-_c4 = ChatHeader;
+_c5 = ChatHeader;
 const RecipientName = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].p`
   margin: 0;
   font-weight: 600;
@@ -2055,21 +2113,21 @@ const RecipientName = __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
   white-space: nowrap;
   flex: 1;
 `;
-_c5 = RecipientName;
+_c6 = RecipientName;
 const MessageTime = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].span`
   font-size: 12px;
   color: ${(props)=>props.darkMode ? '#8696a0' : '#667781'};
   margin-left: 8px;
   flex-shrink: 0;
 `;
-_c6 = MessageTime;
+_c7 = MessageTime;
 const LastMessageContainer = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
 `;
-_c7 = LastMessageContainer;
+_c8 = LastMessageContainer;
 const LastMessage = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   display: flex;
   align-items: center;
@@ -2077,13 +2135,13 @@ const LastMessage = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules
   flex: 1;
   min-width: 0;
 `;
-_c8 = LastMessage;
+_c9 = LastMessage;
 const StatusWrapper = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].span`
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
 `;
-_c9 = StatusWrapper;
+_c10 = StatusWrapper;
 const MessageText = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].span`
   font-size: 14px;
   color: ${(props)=>{
@@ -2098,7 +2156,7 @@ const MessageText = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules
   text-overflow: ellipsis;
   flex: 1;
 `;
-_c10 = MessageText;
+_c11 = MessageText;
 const UnreadBadge = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   background-color: ${(props)=>props.darkMode ? '#00a884' : '#25d366'};
   color: white;
@@ -2113,20 +2171,21 @@ const UnreadBadge = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules
   padding: 0 6px;
   flex-shrink: 0;
 `;
-_c11 = UnreadBadge;
-var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11;
-__turbopack_context__.k.register(_c, "Chat");
-__turbopack_context__.k.register(_c1, "Container");
-__turbopack_context__.k.register(_c2, "UserAvatar");
-__turbopack_context__.k.register(_c3, "ChatContent");
-__turbopack_context__.k.register(_c4, "ChatHeader");
-__turbopack_context__.k.register(_c5, "RecipientName");
-__turbopack_context__.k.register(_c6, "MessageTime");
-__turbopack_context__.k.register(_c7, "LastMessageContainer");
-__turbopack_context__.k.register(_c8, "LastMessage");
-__turbopack_context__.k.register(_c9, "StatusWrapper");
-__turbopack_context__.k.register(_c10, "MessageText");
-__turbopack_context__.k.register(_c11, "UnreadBadge");
+_c12 = UnreadBadge;
+var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12;
+__turbopack_context__.k.register(_c, "Chat$React.memo");
+__turbopack_context__.k.register(_c1, "Chat");
+__turbopack_context__.k.register(_c2, "Container");
+__turbopack_context__.k.register(_c3, "UserAvatar");
+__turbopack_context__.k.register(_c4, "ChatContent");
+__turbopack_context__.k.register(_c5, "ChatHeader");
+__turbopack_context__.k.register(_c6, "RecipientName");
+__turbopack_context__.k.register(_c7, "MessageTime");
+__turbopack_context__.k.register(_c8, "LastMessageContainer");
+__turbopack_context__.k.register(_c9, "LastMessage");
+__turbopack_context__.k.register(_c10, "StatusWrapper");
+__turbopack_context__.k.register(_c11, "MessageText");
+__turbopack_context__.k.register(_c12, "UnreadBadge");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -2201,7 +2260,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
+const Sidebar = /*#__PURE__*/ _s(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].memo(_c = _s(({ isMobile, sidebarOpen, setSidebarOpen })=>{
     _s();
     const [user] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$auth$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useAuthState"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["auth"]);
     const [anchorEl, setAnchorEl] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(null);
@@ -2226,7 +2285,7 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
     const [userDocSnapshot] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCollection"])(userDocRef ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["query"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users"), (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["where"])("__name__", "==", user.uid)) : null);
     const currentUserData = userDocSnapshot?.docs?.[0]?.data();
     const blockedUsers = currentUserData?.blockedUsers || [];
-    // Sort chats by latest message
+    // ✅ OPTIMIZED: Load and sort chats with cleaned users array
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Sidebar.useEffect": ()=>{
             if (!chatsSnapshot || !user) {
@@ -2243,6 +2302,16 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                     }["Sidebar.useEffect.loadChatsWithLatestMessage"]).map({
                         "Sidebar.useEffect.loadChatsWithLatestMessage": async (chat)=>{
                             try {
+                                const chatData = chat.data();
+                                // ✅ FIXED: Validate and clean users array
+                                if (!chatData.users || !Array.isArray(chatData.users)) {
+                                    console.error(`❌ Invalid users array for chat ${chat.id}:`, chatData.users);
+                                    return null;
+                                }
+                                // ✅ FIXED: Remove duplicates for display (but keep original for self-chat detection)
+                                const cleanUsers = chatData.users.filter({
+                                    "Sidebar.useEffect.loadChatsWithLatestMessage.cleanUsers": (email)=>email && typeof email === 'string'
+                                }["Sidebar.useEffect.loadChatsWithLatestMessage.cleanUsers"]);
                                 const messagesRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "chats", chat.id, "messages");
                                 const q = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["query"])(messagesRef, (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["orderBy"])("timestamp", "desc"), (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["limit"])(1));
                                 const snapshot = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["getDocs"])(q);
@@ -2252,7 +2321,10 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                 };
                                 return {
                                     id: chat.id,
-                                    data: chat.data(),
+                                    data: {
+                                        ...chatData,
+                                        users: cleanUsers
+                                    },
                                     latestMessage,
                                     latestTimestamp: latestMessage?.timestamp || 0
                                 };
@@ -2267,8 +2339,10 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                             }
                         }
                     }["Sidebar.useEffect.loadChatsWithLatestMessage"]));
+                    // ✅ Filter out any null entries
+                    const validChats = chatsWithMessages.filter(Boolean);
                     // Sort by latest message timestamp (newest first)
-                    const sortedChats = chatsWithMessages.sort({
+                    const sortedChats = validChats.sort({
                         "Sidebar.useEffect.loadChatsWithLatestMessage.sortedChats": (a, b)=>{
                             return b.latestTimestamp - a.latestTimestamp;
                         }
@@ -2282,177 +2356,255 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
         chatsSnapshot,
         user
     ]);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "Sidebar.useEffect": ()=>{
-            if (error) {
-                console.error("Collection error:", error);
+    // ✅ MEMOIZED: Check if chat already exists
+    const chatAlreadyExist = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[chatAlreadyExist]": (recipientEmail)=>{
+            if (!chatsSnapshot) return false;
+            if (recipientEmail === user.email) {
+                return !!chatsSnapshot.docs.find({
+                    "Sidebar.useCallback[chatAlreadyExist]": (chat)=>{
+                        const users = chat.data().users;
+                        return users.length === 2 && users[0] === user.email && users[1] === user.email;
+                    }
+                }["Sidebar.useCallback[chatAlreadyExist]"]);
+            }
+            return !!chatsSnapshot.docs.find({
+                "Sidebar.useCallback[chatAlreadyExist]": (chat)=>{
+                    const users = chat.data().users;
+                    return users.includes(recipientEmail) && users.includes(user.email);
+                }
+            }["Sidebar.useCallback[chatAlreadyExist]"]);
+        }
+    }["Sidebar.useCallback[chatAlreadyExist]"], [
+        chatsSnapshot,
+        user
+    ]);
+    // ✅ MEMOIZED: Create chat function
+    const createChat = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[createChat]": async ()=>{
+            if (!user) {
+                console.error("No user logged in");
+                return;
+            }
+            const input = prompt("Please enter an email address for the user you wish to chat with");
+            if (!input) {
+                return;
+            }
+            if (!__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$email$2d$validator$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["validate"](input)) {
+                alert("Please enter a valid email address");
+                return;
+            }
+            if (chatAlreadyExist(input)) {
+                alert("Chat already exists with this user");
+                return;
+            }
+            try {
+                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["addDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "chats"), {
+                    users: [
+                        user.email,
+                        input
+                    ],
+                    deletedBy: [],
+                    createdAt: new Date()
+                });
+            } catch (error) {
+                console.error("Error creating chat:", error);
+                alert(`Failed to create chat: ${error.message}`);
             }
         }
-    }["Sidebar.useEffect"], [
-        error
+    }["Sidebar.useCallback[createChat]"], [
+        user,
+        chatAlreadyExist
     ]);
-    const chatAlreadyExist = (recipientEmail)=>{
-        if (!chatsSnapshot) return false;
-        if (recipientEmail === user.email) {
-            return !!chatsSnapshot.docs.find((chat)=>{
-                const users = chat.data().users;
-                return users.length === 2 && users[0] === user.email && users[1] === user.email;
-            });
+    // ✅ MEMOIZED: Menu handlers
+    const handleMenuOpen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[handleMenuOpen]": (event, chatId, chatUsers)=>{
+            setAnchorEl(event.currentTarget);
+            setSelectedChatId(chatId);
+            setSelectedChatUsers(chatUsers);
         }
-        return !!chatsSnapshot.docs.find((chat)=>{
-            const users = chat.data().users;
-            return users.includes(recipientEmail) && users.includes(user.email);
-        });
-    };
-    const createChat = async ()=>{
-        if (!user) {
-            console.error("No user logged in");
-            return;
+    }["Sidebar.useCallback[handleMenuOpen]"], []);
+    const handleMenuClose = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[handleMenuClose]": ()=>{
+            setAnchorEl(null);
+            setSelectedChatId(null);
+            setSelectedChatUsers(null);
         }
-        const input = prompt("Please enter an email address for the user you wish to chat with");
-        if (!input) {
-            return;
+    }["Sidebar.useCallback[handleMenuClose]"], []);
+    const handleHeaderMenuOpen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[handleHeaderMenuOpen]": (event)=>{
+            setHeaderAnchorEl(event.currentTarget);
         }
-        if (!__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$email$2d$validator$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["validate"](input)) {
-            alert("Please enter a valid email address");
-            return;
+    }["Sidebar.useCallback[handleHeaderMenuOpen]"], []);
+    const handleHeaderMenuClose = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[handleHeaderMenuClose]": ()=>{
+            setHeaderAnchorEl(null);
         }
-        if (chatAlreadyExist(input)) {
-            alert("Chat already exists with this user");
-            return;
+    }["Sidebar.useCallback[handleHeaderMenuClose]"], []);
+    const handleSettingsOpen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[handleSettingsOpen]": ()=>{
+            setSettingsOpen(true);
+            handleHeaderMenuClose();
         }
-        try {
-            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["addDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "chats"), {
-                users: [
-                    user.email,
-                    input
-                ],
-                deletedBy: [],
-                createdAt: new Date()
-            });
-        } catch (error) {
-            console.error("Error creating chat:", error);
-            alert(`Failed to create chat: ${error.message}`);
+    }["Sidebar.useCallback[handleSettingsOpen]"], [
+        handleHeaderMenuClose
+    ]);
+    const handleSettingsClose = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[handleSettingsClose]": ()=>{
+            setSettingsOpen(false);
         }
-    };
-    const handleMenuOpen = (event, chatId, chatUsers)=>{
-        setAnchorEl(event.currentTarget);
-        setSelectedChatId(chatId);
-        setSelectedChatUsers(chatUsers);
-    };
-    const handleMenuClose = ()=>{
-        setAnchorEl(null);
-        setSelectedChatId(null);
-        setSelectedChatUsers(null);
-    };
-    const handleHeaderMenuOpen = (event)=>{
-        setHeaderAnchorEl(event.currentTarget);
-    };
-    const handleHeaderMenuClose = ()=>{
-        setHeaderAnchorEl(null);
-    };
-    const handleSettingsOpen = ()=>{
-        setSettingsOpen(true);
-        handleHeaderMenuClose();
-    };
-    const handleSettingsClose = ()=>{
-        setSettingsOpen(false);
-    };
-    const handleAboutOpen = ()=>{
-        setAboutOpen(true);
-        handleHeaderMenuClose();
-    };
-    const handleAboutClose = ()=>{
-        setAboutOpen(false);
-    };
-    const handleBlockedUsersOpen = ()=>{
-        setBlockedUsersOpen(true);
-        handleHeaderMenuClose();
-    };
-    const handleBlockedUsersClose = ()=>{
-        setBlockedUsersOpen(false);
-    };
-    const deleteChat = async ()=>{
-        if (!selectedChatId || !user) return;
-        try {
-            const chatRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "chats", selectedChatId);
-            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["updateDoc"])(chatRef, {
-                deletedBy: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["arrayUnion"])(user.email)
-            });
-            handleMenuClose();
-            alert("Chat deleted");
-        } catch (error) {
-            console.error("Error deleting chat:", error);
-            alert("Failed to delete chat");
+    }["Sidebar.useCallback[handleSettingsClose]"], []);
+    const handleAboutOpen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[handleAboutOpen]": ()=>{
+            setAboutOpen(true);
+            handleHeaderMenuClose();
         }
-    };
-    const blockUser = async ()=>{
-        if (!selectedChatUsers || !user) return;
-        const recipientEmail = selectedChatUsers.find((email)=>email !== user.email);
-        if (!recipientEmail || recipientEmail === user.email) {
-            alert("You cannot block yourself");
-            return;
+    }["Sidebar.useCallback[handleAboutOpen]"], [
+        handleHeaderMenuClose
+    ]);
+    const handleAboutClose = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[handleAboutClose]": ()=>{
+            setAboutOpen(false);
         }
-        try {
-            const userDocRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users", user.uid);
-            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["setDoc"])(userDocRef, {
-                email: user.email,
-                blockedUsers: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["arrayUnion"])(recipientEmail)
-            }, {
-                merge: true
-            });
-            handleMenuClose();
-            alert(`${recipientEmail} has been blocked. They can no longer send you messages.`);
-        } catch (error) {
-            console.error("Error blocking user:", error);
-            alert("Failed to block user");
+    }["Sidebar.useCallback[handleAboutClose]"], []);
+    const handleBlockedUsersOpen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[handleBlockedUsersOpen]": ()=>{
+            setBlockedUsersOpen(true);
+            handleHeaderMenuClose();
         }
-    };
-    const unblockUser = async (emailToUnblock)=>{
-        if (!user) return;
-        try {
-            const userDocRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users", user.uid);
-            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["updateDoc"])(userDocRef, {
-                blockedUsers: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["arrayRemove"])(emailToUnblock)
-            });
-            alert(`${emailToUnblock} has been unblocked`);
-        } catch (error) {
-            console.error("Error unblocking user:", error);
-            alert("Failed to unblock user");
+    }["Sidebar.useCallback[handleBlockedUsersOpen]"], [
+        handleHeaderMenuClose
+    ]);
+    const handleBlockedUsersClose = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[handleBlockedUsersClose]": ()=>{
+            setBlockedUsersOpen(false);
         }
-    };
-    const isUserBlocked = ()=>{
-        if (!selectedChatUsers || !user) return false;
-        const recipientEmail = selectedChatUsers.find((email)=>email !== user.email);
-        if (!recipientEmail) return false;
-        return blockedUsers.includes(recipientEmail);
-    };
+    }["Sidebar.useCallback[handleBlockedUsersClose]"], []);
+    // ✅ MEMOIZED: Delete chat
+    const deleteChat = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[deleteChat]": async ()=>{
+            if (!selectedChatId || !user) return;
+            try {
+                const chatRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "chats", selectedChatId);
+                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["updateDoc"])(chatRef, {
+                    deletedBy: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["arrayUnion"])(user.email)
+                });
+                handleMenuClose();
+                alert("Chat deleted");
+            } catch (error) {
+                console.error("Error deleting chat:", error);
+                alert("Failed to delete chat");
+            }
+        }
+    }["Sidebar.useCallback[deleteChat]"], [
+        selectedChatId,
+        user,
+        handleMenuClose
+    ]);
+    // ✅ MEMOIZED: Block user
+    const blockUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[blockUser]": async ()=>{
+            if (!selectedChatUsers || !user) return;
+            const recipientEmail = selectedChatUsers.find({
+                "Sidebar.useCallback[blockUser].recipientEmail": (email)=>email !== user.email
+            }["Sidebar.useCallback[blockUser].recipientEmail"]);
+            if (!recipientEmail || recipientEmail === user.email) {
+                alert("You cannot block yourself");
+                return;
+            }
+            try {
+                const userDocRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users", user.uid);
+                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["setDoc"])(userDocRef, {
+                    email: user.email,
+                    blockedUsers: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["arrayUnion"])(recipientEmail)
+                }, {
+                    merge: true
+                });
+                handleMenuClose();
+                alert(`${recipientEmail} has been blocked. They can no longer send you messages.`);
+            } catch (error) {
+                console.error("Error blocking user:", error);
+                alert("Failed to block user");
+            }
+        }
+    }["Sidebar.useCallback[blockUser]"], [
+        selectedChatUsers,
+        user,
+        handleMenuClose
+    ]);
+    // ✅ MEMOIZED: Unblock user
+    const unblockUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[unblockUser]": async (emailToUnblock)=>{
+            if (!user) return;
+            try {
+                const userDocRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users", user.uid);
+                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["updateDoc"])(userDocRef, {
+                    blockedUsers: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["arrayRemove"])(emailToUnblock)
+                });
+                alert(`${emailToUnblock} has been unblocked`);
+            } catch (error) {
+                console.error("Error unblocking user:", error);
+                alert("Failed to unblock user");
+            }
+        }
+    }["Sidebar.useCallback[unblockUser]"], [
+        user
+    ]);
+    // ✅ MEMOIZED: Check if user is blocked
+    const isUserBlocked = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Sidebar.useCallback[isUserBlocked]": ()=>{
+            if (!selectedChatUsers || !user) return false;
+            const recipientEmail = selectedChatUsers.find({
+                "Sidebar.useCallback[isUserBlocked].recipientEmail": (email)=>email !== user.email
+            }["Sidebar.useCallback[isUserBlocked].recipientEmail"]);
+            if (!recipientEmail) return false;
+            return blockedUsers.includes(recipientEmail);
+        }
+    }["Sidebar.useCallback[isUserBlocked]"], [
+        selectedChatUsers,
+        user,
+        blockedUsers
+    ]);
+    // ✅ MEMOIZED: Filter chats by search term
+    const filteredChats = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "Sidebar.useMemo[filteredChats]": ()=>{
+            if (!searchTerm.trim()) return chatsList;
+            const searchLower = searchTerm.toLowerCase();
+            return chatsList.filter({
+                "Sidebar.useMemo[filteredChats]": (chat)=>{
+                    const chatUsers = chat.data.users || [];
+                    const otherUser = chatUsers.find({
+                        "Sidebar.useMemo[filteredChats].otherUser": (email)=>email !== user.email
+                    }["Sidebar.useMemo[filteredChats].otherUser"]);
+                    if (!otherUser) {
+                        return user.email?.toLowerCase().includes(searchLower);
+                    }
+                    return otherUser?.toLowerCase().includes(searchLower);
+                }
+            }["Sidebar.useMemo[filteredChats]"]);
+        }
+    }["Sidebar.useMemo[filteredChats]"], [
+        chatsList,
+        searchTerm,
+        user
+    ]);
     if (!user) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Container, {
         darkMode: darkMode,
         children: "Loading..."
     }, void 0, false, {
         fileName: "[project]/components/Sidebar.js",
-        lineNumber: 302,
+        lineNumber: 337,
         columnNumber: 21
-    }, this);
-    const filteredChats = chatsList.filter((chat)=>{
-        if (!searchTerm.trim()) return true;
-        const chatUsers = chat.data.users || [];
-        const otherUser = chatUsers.find((email)=>email !== user.email);
-        if (!otherUser) {
-            return user.email?.toLowerCase().includes(searchTerm.toLowerCase());
-        }
-        return otherUser?.toLowerCase().includes(searchTerm.toLowerCase());
-    });
+    }, ("TURBOPACK compile-time value", void 0));
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             isMobile && sidebarOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Overlay, {
                 onClick: ()=>setSidebarOpen(false)
             }, void 0, false, {
                 fileName: "[project]/components/Sidebar.js",
-                lineNumber: 321,
+                lineNumber: 343,
                 columnNumber: 9
-            }, this),
+            }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Container, {
                 darkMode: darkMode,
                 isMobile: isMobile,
@@ -2466,66 +2618,66 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                 src: user.photoURL
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 330,
+                                lineNumber: 352,
                                 columnNumber: 11
-                            }, this),
+                            }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(IconsContainer, {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Chat$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                             fileName: "[project]/components/Sidebar.js",
-                                            lineNumber: 333,
+                                            lineNumber: 355,
                                             columnNumber: 15
-                                        }, this)
+                                        }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 332,
+                                        lineNumber: 354,
                                         columnNumber: 13
-                                    }, this),
+                                    }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                         onClick: handleHeaderMenuOpen,
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$MoreVert$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                             fileName: "[project]/components/Sidebar.js",
-                                            lineNumber: 336,
+                                            lineNumber: 358,
                                             columnNumber: 15
-                                        }, this)
+                                        }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 335,
+                                        lineNumber: 357,
                                         columnNumber: 13
-                                    }, this),
+                                    }, ("TURBOPACK compile-time value", void 0)),
                                     isMobile && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                         onClick: ()=>setSidebarOpen(false),
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Close$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                             fileName: "[project]/components/Sidebar.js",
-                                            lineNumber: 340,
+                                            lineNumber: 362,
                                             columnNumber: 17
-                                        }, this)
+                                        }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 339,
+                                        lineNumber: 361,
                                         columnNumber: 15
-                                    }, this)
+                                    }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 331,
+                                lineNumber: 353,
                                 columnNumber: 11
-                            }, this)
+                            }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 329,
+                        lineNumber: 351,
                         columnNumber: 9
-                    }, this),
+                    }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Search, {
                         darkMode: darkMode,
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Search$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 347,
+                                lineNumber: 369,
                                 columnNumber: 11
-                            }, this),
+                            }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SearchInput, {
                                 darkMode: darkMode,
                                 placeholder: "Search in chats",
@@ -2534,38 +2686,38 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                 onChange: (e)=>setSearchTerm(e.target.value)
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 348,
+                                lineNumber: 370,
                                 columnNumber: 11
-                            }, this)
+                            }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 346,
+                        lineNumber: 368,
                         columnNumber: 9
-                    }, this),
+                    }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SidebarButton, {
                         onClick: createChat,
                         disabled: loading,
                         children: "Start a new chat"
                     }, void 0, false, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 357,
+                        lineNumber: 379,
                         columnNumber: 9
-                    }, this),
+                    }, ("TURBOPACK compile-time value", void 0)),
                     loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(LoadingContainer, {
                         darkMode: darkMode,
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Typography$2f$Typography$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                             children: "Loading chats..."
                         }, void 0, false, {
                             fileName: "[project]/components/Sidebar.js",
-                            lineNumber: 363,
+                            lineNumber: 385,
                             columnNumber: 13
-                        }, this)
+                        }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 362,
+                        lineNumber: 384,
                         columnNumber: 11
-                    }, this) : filteredChats.map((chat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ChatWrapper, {
+                    }, ("TURBOPACK compile-time value", void 0)) : filteredChats.map((chat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ChatWrapper, {
                             darkMode: darkMode,
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Chat$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2574,29 +2726,29 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                     latestMessage: chat.latestMessage
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 368,
+                                    lineNumber: 390,
                                     columnNumber: 15
-                                }, this),
+                                }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(OptionsButton, {
                                     onClick: (e)=>handleMenuOpen(e, chat.id, chat.data.users),
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$MoreVert$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                         fontSize: "small"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 376,
+                                        lineNumber: 398,
                                         columnNumber: 17
-                                    }, this)
+                                    }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 373,
+                                    lineNumber: 395,
                                     columnNumber: 15
-                                }, this)
+                                }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, chat.id, true, {
                             fileName: "[project]/components/Sidebar.js",
-                            lineNumber: 367,
+                            lineNumber: 389,
                             columnNumber: 13
-                        }, this)),
+                        }, ("TURBOPACK compile-time value", void 0))),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Menu$2f$Menu$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                         anchorEl: headerAnchorEl,
                         open: Boolean(headerAnchorEl),
@@ -2613,31 +2765,31 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                 children: "Settings"
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 394,
+                                lineNumber: 415,
                                 columnNumber: 11
-                            }, this),
+                            }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$MenuItem$2f$MenuItem$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                 onClick: handleBlockedUsersOpen,
                                 children: "Blocked Users"
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 395,
+                                lineNumber: 416,
                                 columnNumber: 11
-                            }, this),
+                            }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$MenuItem$2f$MenuItem$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                 onClick: handleAboutOpen,
                                 children: "About"
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 396,
+                                lineNumber: 417,
                                 columnNumber: 11
-                            }, this)
+                            }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 383,
+                        lineNumber: 404,
                         columnNumber: 9
-                    }, this),
+                    }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Menu$2f$Menu$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                         anchorEl: anchorEl,
                         open: Boolean(anchorEl),
@@ -2659,31 +2811,31 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                     children: "Unblock User"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 413,
+                                    lineNumber: 434,
                                     columnNumber: 17
-                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$MenuItem$2f$MenuItem$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
+                                }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$MenuItem$2f$MenuItem$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                     onClick: blockUser,
                                     children: "Block User"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 421,
+                                    lineNumber: 442,
                                     columnNumber: 17
-                                }, this)
+                                }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$MenuItem$2f$MenuItem$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                 onClick: deleteChat,
                                 children: "Delete Chat"
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 425,
+                                lineNumber: 446,
                                 columnNumber: 11
-                            }, this)
+                            }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 399,
+                        lineNumber: 420,
                         columnNumber: 9
-                    }, this),
+                    }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Dialog$2f$Dialog$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                         open: settingsOpen,
                         onClose: handleSettingsClose,
@@ -2700,9 +2852,9 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                 children: "Settings"
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 440,
+                                lineNumber: 461,
                                 columnNumber: 11
-                            }, this),
+                            }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogContent$2f$DialogContent$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$FormControlLabel$2f$FormControlLabel$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                     control: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Switch$2f$Switch$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2711,40 +2863,40 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                         color: "primary"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 444,
+                                        lineNumber: 465,
                                         columnNumber: 17
                                     }, void 0),
                                     label: "Dark Mode"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 442,
+                                    lineNumber: 463,
                                     columnNumber: 13
-                                }, this)
+                                }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 441,
+                                lineNumber: 462,
                                 columnNumber: 11
-                            }, this),
+                            }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogActions$2f$DialogActions$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Button$2f$Button$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                     onClick: handleSettingsClose,
                                     children: "Close"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 454,
+                                    lineNumber: 475,
                                     columnNumber: 13
-                                }, this)
+                                }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 453,
+                                lineNumber: 474,
                                 columnNumber: 11
-                            }, this)
+                            }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 428,
+                        lineNumber: 449,
                         columnNumber: 9
-                    }, this),
+                    }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Dialog$2f$Dialog$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                         open: blockedUsersOpen,
                         onClose: handleBlockedUsersClose,
@@ -2761,9 +2913,9 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                 children: "Blocked Users"
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 470,
+                                lineNumber: 491,
                                 columnNumber: 11
-                            }, this),
+                            }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogContent$2f$DialogContent$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                 children: blockedUsers.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Typography$2f$Typography$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                     variant: "body2",
@@ -2771,9 +2923,9 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                     children: "No blocked users"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 473,
+                                    lineNumber: 494,
                                     columnNumber: 15
-                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$List$2f$List$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
+                                }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$List$2f$List$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                     children: blockedUsers.map((blockedEmail)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$ListItem$2f$ListItem$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$ListItemText$2f$ListItemText$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2785,9 +2937,9 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 480,
+                                                    lineNumber: 501,
                                                     columnNumber: 21
-                                                }, this),
+                                                }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$ListItemSecondaryAction$2f$ListItemSecondaryAction$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Button$2f$Button$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                                         variant: "outlined",
@@ -2796,50 +2948,50 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                                         children: "Unblock"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/Sidebar.js",
-                                                        lineNumber: 487,
+                                                        lineNumber: 508,
                                                         columnNumber: 23
-                                                    }, this)
+                                                    }, ("TURBOPACK compile-time value", void 0))
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 486,
+                                                    lineNumber: 507,
                                                     columnNumber: 21
-                                                }, this)
+                                                }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, blockedEmail, true, {
                                             fileName: "[project]/components/Sidebar.js",
-                                            lineNumber: 479,
+                                            lineNumber: 500,
                                             columnNumber: 19
-                                        }, this))
+                                        }, ("TURBOPACK compile-time value", void 0)))
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 477,
+                                    lineNumber: 498,
                                     columnNumber: 15
-                                }, this)
+                                }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 471,
+                                lineNumber: 492,
                                 columnNumber: 11
-                            }, this),
+                            }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogActions$2f$DialogActions$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Button$2f$Button$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                     onClick: handleBlockedUsersClose,
                                     children: "Close"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 501,
+                                    lineNumber: 522,
                                     columnNumber: 13
-                                }, this)
+                                }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 500,
+                                lineNumber: 521,
                                 columnNumber: 11
-                            }, this)
+                            }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 458,
+                        lineNumber: 479,
                         columnNumber: 9
-                    }, this),
+                    }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Dialog$2f$Dialog$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                         open: aboutOpen,
                         onClose: handleAboutClose,
@@ -2856,9 +3008,9 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                 children: "About"
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 517,
+                                lineNumber: 538,
                                 columnNumber: 11
-                            }, this),
+                            }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogContent$2f$DialogContent$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Typography$2f$Typography$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2867,27 +3019,27 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                         children: "Chat Application"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 519,
+                                        lineNumber: 540,
                                         columnNumber: 13
-                                    }, this),
+                                    }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Typography$2f$Typography$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                         variant: "body1",
                                         paragraph: true,
                                         children: "Version: 1.0.0"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 522,
+                                        lineNumber: 543,
                                         columnNumber: 13
-                                    }, this),
+                                    }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Typography$2f$Typography$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                         variant: "body2",
                                         paragraph: true,
                                         children: "A real-time messaging application built with React and Firebase. Connect with friends and family through instant messaging."
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 525,
+                                        lineNumber: 546,
                                         columnNumber: 13
-                                    }, this),
+                                    }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Typography$2f$Typography$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                         variant: "body2",
                                         paragraph: true,
@@ -2895,14 +3047,14 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                             children: "Features:"
                                         }, void 0, false, {
                                             fileName: "[project]/components/Sidebar.js",
-                                            lineNumber: 530,
+                                            lineNumber: 551,
                                             columnNumber: 15
-                                        }, this)
+                                        }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 529,
+                                        lineNumber: 550,
                                         columnNumber: 13
-                                    }, this),
+                                    }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Typography$2f$Typography$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                         variant: "body2",
                                         component: "div",
@@ -2912,83 +3064,83 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                                     children: "Real-time messaging"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 534,
+                                                    lineNumber: 555,
                                                     columnNumber: 17
-                                                }, this),
+                                                }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                     children: "User authentication"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 535,
+                                                    lineNumber: 556,
                                                     columnNumber: 17
-                                                }, this),
+                                                }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                     children: "Search chats"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 536,
+                                                    lineNumber: 557,
                                                     columnNumber: 17
-                                                }, this),
+                                                }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                     children: "Block/Unblock users"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 537,
+                                                    lineNumber: 558,
                                                     columnNumber: 17
-                                                }, this),
+                                                }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                     children: "Delete conversations"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 538,
+                                                    lineNumber: 559,
                                                     columnNumber: 17
-                                                }, this),
+                                                }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                     children: "Dark mode support"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 539,
+                                                    lineNumber: 560,
                                                     columnNumber: 17
-                                                }, this),
+                                                }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                     children: "Chat with yourself (like WhatsApp)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 540,
+                                                    lineNumber: 561,
                                                     columnNumber: 17
-                                                }, this),
+                                                }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                     children: "Sorted by latest message"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 541,
+                                                    lineNumber: 562,
                                                     columnNumber: 17
-                                                }, this),
+                                                }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                     children: "File sharing support"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 542,
+                                                    lineNumber: 563,
                                                     columnNumber: 17
-                                                }, this),
+                                                }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                     children: "Voice messages"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 543,
+                                                    lineNumber: 564,
                                                     columnNumber: 17
-                                                }, this)
+                                                }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Sidebar.js",
-                                            lineNumber: 533,
+                                            lineNumber: 554,
                                             columnNumber: 15
-                                        }, this)
+                                        }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 532,
+                                        lineNumber: 553,
                                         columnNumber: 13
-                                    }, this),
+                                    }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Typography$2f$Typography$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                         variant: "body2",
                                         color: "textSecondary",
@@ -2998,54 +3150,60 @@ function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
                                         children: "© 2024 Chat App. All rights reserved."
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 546,
+                                        lineNumber: 567,
                                         columnNumber: 13
-                                    }, this)
+                                    }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 518,
+                                lineNumber: 539,
                                 columnNumber: 11
-                            }, this),
+                            }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogActions$2f$DialogActions$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Button$2f$Button$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                     onClick: handleAboutClose,
                                     children: "Close"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 551,
+                                    lineNumber: 572,
                                     columnNumber: 13
-                                }, this)
+                                }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 550,
+                                lineNumber: 571,
                                 columnNumber: 11
-                            }, this)
+                            }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 505,
+                        lineNumber: 526,
                         columnNumber: 9
-                    }, this)
+                    }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Sidebar.js",
-                lineNumber: 324,
+                lineNumber: 346,
                 columnNumber: 7
-            }, this)
+            }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true);
-}
-_s(Sidebar, "sgIBcw5QMggtIggGszQjstG7aP4=", false, function() {
+}, "05M1wYmf33Dr/FmvcC4yvWpi1VM=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$auth$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useAuthState"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCollection"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCollection"]
+    ];
+})), "05M1wYmf33Dr/FmvcC4yvWpi1VM=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$auth$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useAuthState"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCollection"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$firestore$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCollection"]
     ];
 });
-_c = Sidebar;
+_c1 = Sidebar;
+Sidebar.displayName = 'Sidebar';
 const __TURBOPACK__default__export__ = Sidebar;
-// Updated Styled Components with responsive design
+// Styled Components
 const Overlay = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   position: fixed;
   top: 0;
@@ -3059,8 +3217,7 @@ const Overlay = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$
     display: none;
   }
 `;
-_c1 = Overlay;
-// components/Sidebar.jsx - Better responsive Container
+_c2 = Overlay;
 const Container = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   flex: 0.45;
   border-right: 1px solid ${(props)=>props.darkMode ? '#333' : 'whitesmoke'};
@@ -3080,10 +3237,8 @@ const Container = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2
   -ms-overflow-style: none;
   scrollbar-width: none;
 
-  /* Mobile and Tablet Responsive */
   @media (max-width: 1024px) {
     ${(props)=>props.sidebarOpen ? `
-      /* When sidebar is open on mobile - take full width */
       position: fixed;
       left: 0;
       top: 0;
@@ -3094,7 +3249,6 @@ const Container = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2
       width: 100%;
       transform: translateX(0);
     ` : `
-      /* When sidebar is closed - hide off screen */
       position: fixed;
       left: 0;
       top: 0;
@@ -3108,7 +3262,7 @@ const Container = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2
     box-shadow: ${(props)=>props.sidebarOpen ? '2px 0 10px rgba(0,0,0,0.3)' : 'none'};
   }
 `;
-_c2 = Container;
+_c3 = Container;
 const UserAvatar = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Avatar$2f$Avatar$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"])`
   cursor: pointer;
 
@@ -3116,7 +3270,7 @@ const UserAvatar = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modu
     opacity: 0.8;
   }
 `;
-_c3 = UserAvatar;
+_c4 = UserAvatar;
 const SidebarButton = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Button$2f$Button$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"])`
   width: 100%;
   &&& {
@@ -3124,7 +3278,7 @@ const SidebarButton = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_m
     border-bottom: 1px solid whitesmoke;
   }
 `;
-_c4 = SidebarButton;
+_c5 = SidebarButton;
 const Search = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   display: flex;
   align-items: center;
@@ -3133,7 +3287,7 @@ const Search = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$s
   padding: 20px;
   background-color: ${(props)=>props.darkMode ? '#2a2a2a' : 'white'};
 `;
-_c5 = Search;
+_c6 = Search;
 const SearchInput = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].input`
   outline-width: 0;
   border: none;
@@ -3145,7 +3299,7 @@ const SearchInput = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules
     color: ${(props)=>props.darkMode ? '#888' : '#999'};
   }
 `;
-_c6 = SearchInput;
+_c7 = SearchInput;
 const Header = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   display: flex;
   position: sticky;
@@ -3158,12 +3312,12 @@ const Header = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$s
   height: 80px;
   border-bottom: 1px solid ${(props)=>props.darkMode ? '#333' : 'whitesmoke'};
 `;
-_c7 = Header;
+_c8 = Header;
 const IconsContainer = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   display: flex;
   align-items: center;
 `;
-_c8 = IconsContainer;
+_c9 = IconsContainer;
 const ChatWrapper = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   display: flex;
   align-items: center;
@@ -3174,7 +3328,7 @@ const ChatWrapper = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules
     background-color: ${(props)=>props.darkMode ? '#2a2a2a' : '#f5f5f5'};
   }
 `;
-_c9 = ChatWrapper;
+_c10 = ChatWrapper;
 const OptionsButton = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"])`
   visibility: hidden;
   
@@ -3182,7 +3336,7 @@ const OptionsButton = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_m
     visibility: visible;
   }
 `;
-_c10 = OptionsButton;
+_c11 = OptionsButton;
 const LoadingContainer = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   display: flex;
   justify-content: center;
@@ -3190,20 +3344,21 @@ const LoadingContainer = __TURBOPACK__imported__module__$5b$project$5d2f$node_mo
   padding: 20px;
   color: ${(props)=>props.darkMode ? '#888' : '#666'};
 `;
-_c11 = LoadingContainer;
-var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11;
-__turbopack_context__.k.register(_c, "Sidebar");
-__turbopack_context__.k.register(_c1, "Overlay");
-__turbopack_context__.k.register(_c2, "Container");
-__turbopack_context__.k.register(_c3, "UserAvatar");
-__turbopack_context__.k.register(_c4, "SidebarButton");
-__turbopack_context__.k.register(_c5, "Search");
-__turbopack_context__.k.register(_c6, "SearchInput");
-__turbopack_context__.k.register(_c7, "Header");
-__turbopack_context__.k.register(_c8, "IconsContainer");
-__turbopack_context__.k.register(_c9, "ChatWrapper");
-__turbopack_context__.k.register(_c10, "OptionsButton");
-__turbopack_context__.k.register(_c11, "LoadingContainer");
+_c12 = LoadingContainer;
+var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12;
+__turbopack_context__.k.register(_c, "Sidebar$React.memo");
+__turbopack_context__.k.register(_c1, "Sidebar");
+__turbopack_context__.k.register(_c2, "Overlay");
+__turbopack_context__.k.register(_c3, "Container");
+__turbopack_context__.k.register(_c4, "UserAvatar");
+__turbopack_context__.k.register(_c5, "SidebarButton");
+__turbopack_context__.k.register(_c6, "Search");
+__turbopack_context__.k.register(_c7, "SearchInput");
+__turbopack_context__.k.register(_c8, "Header");
+__turbopack_context__.k.register(_c9, "IconsContainer");
+__turbopack_context__.k.register(_c10, "ChatWrapper");
+__turbopack_context__.k.register(_c11, "OptionsButton");
+__turbopack_context__.k.register(_c12, "LoadingContainer");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }

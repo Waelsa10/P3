@@ -15,7 +15,7 @@
   "static/chunks/node_modules_@mui_system_d9f68b22._.js",
   "static/chunks/node_modules_@mui_material_6dc36002._.js",
   "static/chunks/node_modules_24c8904d._.js",
-  "static/chunks/[root-of-the-server]__ba479e8b._.js",
+  "static/chunks/[root-of-the-server]__6005b393._.js",
   "static/chunks/node_modules_bootstrap_dist_css_bootstrap_min_06485c1b.css"
 ],
     source: "entry"

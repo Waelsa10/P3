@@ -5,38 +5,39 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/VylAHEXIKCKQlLhtrGxfP/_buildManifest.js",
-    "static/VylAHEXIKCKQlLhtrGxfP/_ssgManifest.js"
+    "static/Gm7QVMZruqEdYUJD5qKBg/_buildManifest.js",
+    "static/Gm7QVMZruqEdYUJD5qKBg/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
     "/": [
-      "static/chunks/webpack-dbe704f22d36f7ff.js",
+      "static/chunks/webpack-64d88c864fd5e034.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-34a23a4c308061b6.js",
-      "static/chunks/1-e5af0a6e4f566de6.js",
-      "static/chunks/pages/index-2e54ad9bd17d8d5a.js"
+      "static/chunks/633-496f5e2d26464aa6.js",
+      "static/chunks/66-5cd5f6fb4073fef6.js",
+      "static/chunks/pages/index-0f2793bd4c26c1d5.js"
     ],
     "/_app": [
-      "static/chunks/webpack-dbe704f22d36f7ff.js",
+      "static/chunks/webpack-64d88c864fd5e034.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-34a23a4c308061b6.js",
-      "static/chunks/pages/_app-3b0a0ff895cf3cbe.js"
+      "static/chunks/pages/_app-c047d4d9e049f0a5.js"
     ],
     "/_error": [
-      "static/chunks/webpack-dbe704f22d36f7ff.js",
+      "static/chunks/webpack-64d88c864fd5e034.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-34a23a4c308061b6.js",
       "static/chunks/pages/_error-a4ba2246ff8fb532.js"
     ],
     "/chat/[id]": [
-      "static/chunks/webpack-dbe704f22d36f7ff.js",
+      "static/chunks/webpack-64d88c864fd5e034.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-34a23a4c308061b6.js",
-      "static/chunks/pages/chat/[id]-eb92905777038d8d.js"
+      "static/chunks/pages/chat/[id]-fc6d10030159c501.js"
     ],
     "/login": [
-      "static/chunks/webpack-dbe704f22d36f7ff.js",
+      "static/chunks/webpack-64d88c864fd5e034.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-34a23a4c308061b6.js",
       "static/chunks/pages/login-684c71492aa151f5.js"

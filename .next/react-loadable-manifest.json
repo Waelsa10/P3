@@ -3,15 +3,16 @@
     "id": 9823,
     "files": [
       "static/chunks/75fc9c18.8a887c49b3994da9.js",
-      "static/chunks/1-e5af0a6e4f566de6.js",
-      "static/chunks/823.eb729eb44ea71178.js"
+      "static/chunks/633-496f5e2d26464aa6.js",
+      "static/chunks/823.fbbcff5d1e1bf029.js"
     ]
   },
   "chat\\[id].js -> ../../components/Sidebar": {
     "id": 6467,
     "files": [
-      "static/chunks/1-e5af0a6e4f566de6.js",
-      "static/chunks/467.e7ec4219ffb901c9.js"
+      "static/chunks/633-496f5e2d26464aa6.js",
+      "static/chunks/66-5cd5f6fb4073fef6.js",
+      "static/chunks/467.a0c93216e51d2bd3.js"
     ]
   }
 }

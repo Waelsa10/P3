@@ -5,7 +5,7 @@ exports.id = 888;
 exports.ids = [888,459];
 exports.modules = {
 
-/***/ 910:
+/***/ 7910:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -17,11 +17,11 @@ __webpack_require__.d(__webpack_exports__, {
 // EXTERNAL MODULE: external "react/jsx-runtime"
 var jsx_runtime_ = __webpack_require__(997);
 // EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__(689);
+var external_react_ = __webpack_require__(6689);
 ;// CONCATENATED MODULE: external "@mui/material"
 const material_namespaceObject = require("@mui/material");
 // EXTERNAL MODULE: external "styled-components"
-var external_styled_components_ = __webpack_require__(518);
+var external_styled_components_ = __webpack_require__(7518);
 var external_styled_components_default = /*#__PURE__*/__webpack_require__.n(external_styled_components_);
 ;// CONCATENATED MODULE: ./components/Loading.js
 
@@ -66,7 +66,7 @@ const Logo = (external_styled_components_default()).img`
 
 /***/ }),
 
-/***/ 510:
+/***/ 8510:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
@@ -76,15 +76,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_firebase_hooks_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(830);
 /* harmony import */ var react_firebase_hooks_auth__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_firebase_hooks_auth__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(356);
-/* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(910);
-/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(984);
+/* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2356);
+/* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7910);
+/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4984);
+/* harmony import */ var _components_DarkModeProvider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5931);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_firebase__WEBPACK_IMPORTED_MODULE_3__, _login__WEBPACK_IMPORTED_MODULE_5__]);
 ([_firebase__WEBPACK_IMPORTED_MODULE_3__, _login__WEBPACK_IMPORTED_MODULE_5__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
@@ -109,8 +111,10 @@ function MyApp({ Component , pageProps  }) {
     ]);
     if (loading) return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Loading__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {});
     if (!user) return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_login__WEBPACK_IMPORTED_MODULE_5__["default"], {});
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Component, {
-        ...pageProps
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_DarkModeProvider__WEBPACK_IMPORTED_MODULE_6__/* .DarkModeProvider */ .W, {
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Component, {
+            ...pageProps
+        })
     });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MyApp);
@@ -120,7 +124,7 @@ __webpack_async_result__();
 
 /***/ }),
 
-/***/ 819:
+/***/ 3819:
 /***/ ((module) => {
 
 module.exports = require("@mui/material/Button");
@@ -134,14 +138,14 @@ module.exports = require("next/head");
 
 /***/ }),
 
-/***/ 853:
+/***/ 1853:
 /***/ ((module) => {
 
 module.exports = require("next/router");
 
 /***/ }),
 
-/***/ 689:
+/***/ 6689:
 /***/ ((module) => {
 
 module.exports = require("react");
@@ -162,14 +166,14 @@ module.exports = require("react/jsx-runtime");
 
 /***/ }),
 
-/***/ 518:
+/***/ 7518:
 /***/ ((module) => {
 
 module.exports = require("styled-components");
 
 /***/ }),
 
-/***/ 745:
+/***/ 3745:
 /***/ ((module) => {
 
 module.exports = import("firebase/app");;
@@ -183,7 +187,7 @@ module.exports = import("firebase/auth");;
 
 /***/ }),
 
-/***/ 492:
+/***/ 1492:
 /***/ ((module) => {
 
 module.exports = import("firebase/firestore");;
@@ -197,7 +201,7 @@ module.exports = import("firebase/firestore");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [356,984], () => (__webpack_exec__(510)));
+var __webpack_exports__ = __webpack_require__.X(0, [356,931,984], () => (__webpack_exec__(8510)));
 module.exports = __webpack_exports__;
 
 })();

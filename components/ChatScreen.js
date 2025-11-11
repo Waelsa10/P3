@@ -1,11 +1,12 @@
-import React, { useRef, useState, useEffect, useMemo } from "react";
+import React, { useRef, useState, useEffect, useMemo, useContext } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { auth, db } from "../firebase"; // adjust path if needed
+import { auth, db } from "../firebase";
 import getRecipientEmail from "../utils/getRecipientEmail";
 import Message from "./Message";
+import { DarkModeContext } from "./DarkModeProvider";
 
 import {
   collection,
@@ -37,6 +38,10 @@ function ChatScreen({ chat, messages }) {
   const [error, setError] = useState(null);
   const [sendingError, setSendingError] = useState(null);
 
+  // Get dark mode context
+  const darkModeContext = useContext(DarkModeContext);
+  const { darkMode } = darkModeContext || { darkMode: false };
+
   // Monitor online status
   useEffect(() => {
     const handleOnline = () => {
@@ -58,12 +63,8 @@ function ChatScreen({ chat, messages }) {
     };
   }, []);
 
-  // Wait until router has the id (prevents invalid Firestore paths)
   const chatId = router?.query?.id || null;
 
-  // --------------------
-  // Firestore references (guarded)
-  // --------------------
   const messagesRef = useMemo(() => {
     if (!chatId) return null;
     return collection(db, "chats", chatId, "messages");
@@ -78,14 +79,10 @@ function ChatScreen({ chat, messages }) {
 
   const usersRef = collection(db, "users");
 
-  // compute recipientEmail only when both user and chat are available
   const recipientEmail = user && chat ? getRecipientEmail(chat.users, user) : null;
   const recipientQuery = recipientEmail ? query(usersRef, where("email", "==", recipientEmail)) : null;
   const [recipientSnapshot] = useCollection(recipientQuery || null);
 
-  // --------------------
-  // Display messages
-  // --------------------
   const showMessages = () => {
     if (messagesSnapshot) {
       return messagesSnapshot.docs.map((message) => (
@@ -99,14 +96,12 @@ function ChatScreen({ chat, messages }) {
         />
       ));
     } else {
-      // messages (server-rendered) may be undefined — guard it
       return messages ? JSON.parse(messages).map((message) => (
         <Message key={message.id} user={message.user} message={message} />
       )) : null;
     }
   };
 
-  // Scroll to bottom
   const scrollToBottom = () => {
     if (endOfMessagesRef?.current) {
       endOfMessagesRef.current.scrollIntoView({
@@ -116,26 +111,17 @@ function ChatScreen({ chat, messages }) {
     }
   };
 
-  // ensure we scroll when messages update
   useEffect(() => {
     scrollToBottom();
   }, [messagesSnapshot]);
 
-  // Send a message (guarded)
   const sendMessage = async (e) => {
     e.preventDefault();
     setSendingError(null);
 
     if (!input?.trim() || !chatId || !user) return;
-    <SendButton
-  type="submit"
-  disabled={!input?.trim()}  // ← Only disabled if input is empty
->
-  Send
-</SendButton>
 
     try {
-      // Update user's last seen
       const userRef = doc(db, "users", user.uid);
       await setDoc(
         userRef,
@@ -145,7 +131,6 @@ function ChatScreen({ chat, messages }) {
         { merge: true }
       );
 
-      // Add new message
       await addDoc(collection(db, "chats", chatId, "messages"), {
         timestamp: serverTimestamp(),
         message: input,
@@ -162,13 +147,11 @@ function ChatScreen({ chat, messages }) {
   };
 
   const recipient = recipientSnapshot?.docs?.[0]?.data();
-  // recipientEmail already computed above
 
-  // Add error display
   if (!isOnline) {
     return (
-      <Container>
-        <OfflineMessage>
+      <Container darkMode={darkMode}>
+        <OfflineMessage darkMode={darkMode}>
           You are currently offline. Please check your internet connection.
         </OfflineMessage>
       </Container>
@@ -177,21 +160,21 @@ function ChatScreen({ chat, messages }) {
 
   if (error) {
     return (
-      <Container>
-        <ErrorMessage>{error}</ErrorMessage>
+      <Container darkMode={darkMode}>
+        <ErrorMessage darkMode={darkMode}>{error}</ErrorMessage>
       </Container>
     );
   }
 
   return (
-    <Container>
-      <Header>
+    <Container darkMode={darkMode}>
+      <Header darkMode={darkMode}>
         {recipient ? (
           <Avatar src={recipient.photoURL} />
         ) : (
           <Avatar>{recipientEmail ? recipientEmail[0] : "?"}</Avatar>
         )}
-        <HeaderInformation>
+        <HeaderInformation darkMode={darkMode}>
           <h3>{recipientEmail ?? "Loading..."}</h3>
           <p>
             Last active:{" "}
@@ -199,7 +182,7 @@ function ChatScreen({ chat, messages }) {
               recipient?.lastSeen?.toDate ? (
                 <TimeAgo datetime={recipient.lastSeen.toDate()} />
               ) : (
-                "Unavailable"
+                "user not registered"
               )
             ) : (
               "Loading Last active..."
@@ -208,25 +191,26 @@ function ChatScreen({ chat, messages }) {
         </HeaderInformation>
         <HeaderIcons>
           <IconButton>
-            <AttachFileIcon />
+            <AttachFileIcon style={{ color: darkMode ? '#e0e0e0' : 'inherit' }} />
           </IconButton>
           <IconButton>
-            <MoreVertIcon />
+            <MoreVertIcon style={{ color: darkMode ? '#e0e0e0' : 'inherit' }} />
           </IconButton>
         </HeaderIcons>
       </Header>
 
-      <MessageContainer>
+      <MessageContainer darkMode={darkMode}>
         {showMessages()}
-        {sendingError && <ErrorAlert>{sendingError}</ErrorAlert>}
+        {sendingError && <ErrorAlert darkMode={darkMode}>{sendingError}</ErrorAlert>}
         <EndOfMessage ref={endOfMessagesRef} />
       </MessageContainer>
 
-      <InputContainer onSubmit={sendMessage}>
+      <InputContainer onSubmit={sendMessage} darkMode={darkMode}>
         <IconButton>
-          <InsertEmoticonIcon />
+          <InsertEmoticonIcon style={{ color: darkMode ? '#e0e0e0' : 'inherit' }} />
         </IconButton>
         <Input
+          darkMode={darkMode}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type a message"
@@ -235,11 +219,12 @@ function ChatScreen({ chat, messages }) {
         <SendButton
           type="submit"
           disabled={!input?.trim()}
+          darkMode={darkMode}
         >
           Send
         </SendButton>
         <IconButton>
-          <MicIcon />
+          <MicIcon style={{ color: darkMode ? '#e0e0e0' : 'inherit' }} />
         </IconButton>
       </InputContainer>
     </Container>
@@ -249,37 +234,42 @@ function ChatScreen({ chat, messages }) {
 export default ChatScreen;
 
 // --------------------
-// Styled Components
+// Styled Components with Dark Mode
 // --------------------
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;  // ← ADD THIS
-  overflow: hidden;  // ← ADD THIS
+  height: 100vh;
+  overflow: hidden;
+  background-color: ${props => props.darkMode ? '#1e1e1e' : 'white'};
 `;
 
 const Header = styled.div`
   position: sticky;
-  background-color: white;
+  background-color: ${props => props.darkMode ? '#2a2a2a' : 'white'};
+  color: ${props => props.darkMode ? '#e0e0e0' : 'black'};
   z-index: 100;
   top: 0;
   display: flex;
   padding: 11px;
   height: 80px;
   align-items: center;
-  border-bottom: 1px solid whitesmoke;
+  border-bottom: 1px solid ${props => props.darkMode ? '#333' : 'whitesmoke'};
+  flex-shrink: 0;
 `;
 
 const HeaderInformation = styled.div`
   margin-left: 15px;
   flex: 1;
+  color: ${props => props.darkMode ? '#e0e0e0' : 'black'};
 
   > h3 {
     margin-bottom: 3px;
+    color: ${props => props.darkMode ? '#e0e0e0' : 'black'};
   }
   > p {
     font-size: 14px;
-    color: gray;
+    color: ${props => props.darkMode ? '#aaa' : 'gray'};
   }
 `;
 
@@ -287,35 +277,40 @@ const HeaderIcons = styled.div``;
 
 const MessageContainer = styled.div`
   padding: 30px;
-  background-color: #e5ded8;
-  min-height: 90vh;  // ← CHANGE THIS
-  flex: 1;  // ← ADD THIS instead
-  overflow-y: auto;  // ← ADD THIS for scrolling
+  background-color: ${props => props.darkMode ? '#0d1117' : '#e5ded8'};
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 `;
 
 const InputContainer = styled.form`
   display: flex;
   align-items: center;
   padding: 10px;
-  position: sticky;
-  bottom: 0;
-  background-color: white;
-  z-index: 100;
+  background-color: ${props => props.darkMode ? '#2a2a2a' : 'white'};
   gap: 10px;
-  flex-shrink: 0;  // ← ADD THIS
+  flex-shrink: 0;
+  border-top: 1px solid ${props => props.darkMode ? '#333' : 'whitesmoke'};
 `;
 
 const Input = styled.input`
   flex: 1;
-  flex-shrink: 1;  // ← ADD THIS if needed
+  flex-shrink: 1;
   outline: 0;
   border: none;
   border-radius: 10px;
-  background-color: whitesmoke;
+  background-color: ${props => props.darkMode ? '#1e1e1e' : 'whitesmoke'};
+  color: ${props => props.darkMode ? '#e0e0e0' : 'black'};
   padding: 15px;
   margin-left: 5px;
   margin-right: 5px;
   font-size: 16px;
+
+  ::placeholder {
+    color: ${props => props.darkMode ? '#888' : '#999'};
+  }
 `;
 
 const EndOfMessage = styled.div`
@@ -325,9 +320,9 @@ const EndOfMessage = styled.div`
 const OfflineMessage = styled.div`
   text-align: center;
   padding: 20px;
-  color: #721c24;
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
+  color: ${props => props.darkMode ? '#f8d7da' : '#721c24'};
+  background-color: ${props => props.darkMode ? '#5a1f1f' : '#f8d7da'};
+  border: 1px solid ${props => props.darkMode ? '#721c24' : '#f5c6cb'};
   border-radius: 4px;
   margin: 20px;
 `;
@@ -335,17 +330,17 @@ const OfflineMessage = styled.div`
 const ErrorMessage = styled.div`
   text-align: center;
   padding: 20px;
-  color: #856404;
-  background-color: #fff3cd;
-  border: 1px solid #ffeeba;
+  color: ${props => props.darkMode ? '#ffeeba' : '#856404'};
+  background-color: ${props => props.darkMode ? '#664d03' : '#fff3cd'};
+  border: 1px solid ${props => props.darkMode ? '#856404' : '#ffeeba'};
   border-radius: 4px;
   margin: 20px;
 `;
 
 const ErrorAlert = styled.div`
-  color: #721c24;
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
+  color: ${props => props.darkMode ? '#f8d7da' : '#721c24'};
+  background-color: ${props => props.darkMode ? '#5a1f1f' : '#f8d7da'};
+  border: 1px solid ${props => props.darkMode ? '#721c24' : '#f5c6cb'};
   padding: 10px;
   margin: 10px;
   border-radius: 4px;
@@ -353,7 +348,7 @@ const ErrorAlert = styled.div`
 `;
 
 const SendButton = styled.button`
-  background-color: red !important;
+  background-color: ${props => props.darkMode ? '#d32f2f' : '#f44336'} !important;
   color: white !important;
   padding: 10px 20px !important;
   border: none !important;
@@ -364,5 +359,13 @@ const SendButton = styled.button`
   width: auto !important;
   height: auto !important;
   visibility: visible !important;
-  opacity: 1 !important;
+  opacity: ${props => props.disabled ? '0.5' : '1'} !important;
+  
+  &:hover {
+    background-color: ${props => props.darkMode ? '#b71c1c' : '#d32f2f'} !important;
+  }
+
+  &:disabled {
+    cursor: not-allowed !important;
+  }
 `;

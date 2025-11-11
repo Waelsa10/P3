@@ -2,7 +2,7 @@ exports.id = 152;
 exports.ids = [152];
 exports.modules = {
 
-/***/ 495:
+/***/ 6495:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -33,7 +33,7 @@ function extends_() {
 
 /***/ }),
 
-/***/ 648:
+/***/ 2648:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -63,10 +63,10 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = dynamic;
 exports.noSSR = noSSR;
-var _extends = (__webpack_require__(495)/* ["default"] */ .Z);
-var _interop_require_default = (__webpack_require__(648)/* ["default"] */ .Z);
-var _react = _interop_require_default(__webpack_require__(689));
-var _loadable = _interop_require_default(__webpack_require__(832));
+var _extends = (__webpack_require__(6495)/* ["default"] */ .Z);
+var _interop_require_default = (__webpack_require__(2648)/* ["default"] */ .Z);
+var _react = _interop_require_default(__webpack_require__(6689));
+var _loadable = _interop_require_default(__webpack_require__(5832));
 function dynamic(dynamicOptions, options) {
     let loadableFn = _loadable.default;
     let loadableOptions = (options == null ? void 0 : options.suspense) ? {} : {
@@ -147,7 +147,7 @@ if ((typeof exports.default === "function" || typeof exports.default === "object
 
 /***/ }),
 
-/***/ 152:
+/***/ 5152:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__(638)

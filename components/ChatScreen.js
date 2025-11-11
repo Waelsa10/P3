@@ -487,18 +487,28 @@ function ChatScreen({ chat, messages }) {
 
       // Add reply data if replying
       if (replyingTo) {
-        const replyToData = Object.fromEntries(
-          Object.entries({
-            id: replyingTo.id,
-            user: replyingTo.user,
-            message: replyingTo.message,
-            fileName: replyingTo.fileName,
-            fileType: replyingTo.fileType,
-            fileURL: replyingTo.fileURL,
-            voiceURL: replyingTo.voiceURL,
-            voiceDuration: replyingTo.voiceDuration,
-          }).filter(([_, value]) => value !== undefined && value !== null)
-        );
+        const replyToData = {
+          id: replyingTo.id,
+          user: replyingTo.user,
+          message: replyingTo.message,
+        };
+        
+        // Only add optional fields if they exist
+        if (replyingTo.fileName) {
+          replyToData.fileName = replyingTo.fileName;
+        }
+        if (replyingTo.fileType) {
+          replyToData.fileType = replyingTo.fileType;
+        }
+        if (replyingTo.fileURL) {
+          replyToData.fileURL = replyingTo.fileURL;
+        }
+        if (replyingTo.voiceURL) {
+          replyToData.voiceURL = replyingTo.voiceURL;
+        }
+        if (replyingTo.voiceDuration !== undefined && replyingTo.voiceDuration !== null) {
+          replyToData.voiceDuration = replyingTo.voiceDuration;
+        }
         
         messageData.replyTo = replyToData;
       }
@@ -547,18 +557,28 @@ function ChatScreen({ chat, messages }) {
 
       // Add reply data if replying
       if (replyingTo) {
-        const replyToData = Object.fromEntries(
-          Object.entries({
-            id: replyingTo.id,
-            user: replyingTo.user,
-            message: replyingTo.message,
-            fileName: replyingTo.fileName,
-            fileType: replyingTo.fileType,
-            fileURL: replyingTo.fileURL,
-            voiceURL: replyingTo.voiceURL,
-            voiceDuration: replyingTo.voiceDuration,
-          }).filter(([_, value]) => value !== undefined && value !== null)
-        );
+        const replyToData = {
+          id: replyingTo.id,
+          user: replyingTo.user,
+          message: replyingTo.message,
+        };
+        
+        // Only add optional fields if they exist
+        if (replyingTo.fileName) {
+          replyToData.fileName = replyingTo.fileName;
+        }
+        if (replyingTo.fileType) {
+          replyToData.fileType = replyingTo.fileType;
+        }
+        if (replyingTo.fileURL) {
+          replyToData.fileURL = replyingTo.fileURL;
+        }
+        if (replyingTo.voiceURL) {
+          replyToData.voiceURL = replyingTo.voiceURL;
+        }
+        if (replyingTo.voiceDuration !== undefined && replyingTo.voiceDuration !== null) {
+          replyToData.voiceDuration = replyingTo.voiceDuration;
+        }
         
         messageData.replyTo = replyToData;
       }
@@ -682,18 +702,28 @@ function ChatScreen({ chat, messages }) {
 
       // Add reply data if replying
       if (replyingTo) {
-        const replyToData = Object.fromEntries(
-          Object.entries({
-            id: replyingTo.id,
-            user: replyingTo.user,
-            message: replyingTo.message,
-            fileName: replyingTo.fileName,
-            fileType: replyingTo.fileType,
-            fileURL: replyingTo.fileURL,
-            voiceURL: replyingTo.voiceURL,
-            voiceDuration: replyingTo.voiceDuration,
-          }).filter(([_, value]) => value !== undefined && value !== null)
-        );
+        const replyToData = {
+          id: replyingTo.id,
+          user: replyingTo.user,
+          message: replyingTo.message,
+        };
+        
+        // Only add optional fields if they exist
+        if (replyingTo.fileName) {
+          replyToData.fileName = replyingTo.fileName;
+        }
+        if (replyingTo.fileType) {
+          replyToData.fileType = replyingTo.fileType;
+        }
+        if (replyingTo.fileURL) {
+          replyToData.fileURL = replyingTo.fileURL;
+        }
+        if (replyingTo.voiceURL) {
+          replyToData.voiceURL = replyingTo.voiceURL;
+        }
+        if (replyingTo.voiceDuration !== undefined && replyingTo.voiceDuration !== null) {
+          replyToData.voiceDuration = replyingTo.voiceDuration;
+        }
         
         messageData.replyTo = replyToData;
       }
@@ -1126,7 +1156,7 @@ function ChatScreen({ chat, messages }) {
 
 export default ChatScreen;
 
-// Styled Components
+// Styled Components (same as before - keeping them unchanged)
 const Container = styled.div`
   display: flex;
   flex-direction: column;

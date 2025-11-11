@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+// components/Sidebar.jsx
+import React, { useState, useContext, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import styled from "styled-components";
@@ -21,6 +22,9 @@ import {
   arrayUnion,
   arrayRemove,
   setDoc,
+  orderBy,
+  limit,
+  getDocs,
 } from "firebase/firestore";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -47,6 +51,7 @@ function Sidebar() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [blockedUsersOpen, setBlockedUsersOpen] = useState(false);
+  const [chatsList, setChatsList] = useState([]);
   
   // Get dark mode context
   const darkModeContext = useContext(DarkModeContext);
@@ -67,7 +72,63 @@ function Sidebar() {
   const currentUserData = userDocSnapshot?.docs?.[0]?.data();
   const blockedUsers = currentUserData?.blockedUsers || [];
 
-  React.useEffect(() => {
+  // Sort chats by latest message
+  useEffect(() => {
+    if (!chatsSnapshot || !user) {
+      setChatsList([]);
+      return;
+    }
+
+    const loadChatsWithLatestMessage = async () => {
+      const chatsWithMessages = await Promise.all(
+        chatsSnapshot.docs
+          .filter((chat) => {
+            const deletedBy = chat.data().deletedBy || [];
+            return !deletedBy.includes(user.email);
+          })
+          .map(async (chat) => {
+            try {
+              const messagesRef = collection(db, "chats", chat.id, "messages");
+              const q = query(messagesRef, orderBy("timestamp", "desc"), limit(1));
+              const snapshot = await getDocs(q);
+              
+              const latestMessage = snapshot.empty 
+                ? null 
+                : {
+                    ...snapshot.docs[0].data(),
+                    timestamp: snapshot.docs[0].data().timestamp?.toMillis() || 0
+                  };
+
+              return {
+                id: chat.id,
+                data: chat.data(),
+                latestMessage,
+                latestTimestamp: latestMessage?.timestamp || 0,
+              };
+            } catch (error) {
+              console.error("Error loading message for chat:", chat.id, error);
+              return {
+                id: chat.id,
+                data: chat.data(),
+                latestMessage: null,
+                latestTimestamp: 0,
+              };
+            }
+          })
+      );
+
+      // Sort by latest message timestamp (newest first)
+      const sortedChats = chatsWithMessages.sort((a, b) => {
+        return b.latestTimestamp - a.latestTimestamp;
+      });
+
+      setChatsList(sortedChats);
+    };
+
+    loadChatsWithLatestMessage();
+  }, [chatsSnapshot, user]);
+
+  useEffect(() => {
     if (error) {
       console.error("Collection error:", error);
     }
@@ -75,9 +136,20 @@ function Sidebar() {
 
   const chatAlreadyExist = (recipientEmail) => {
     if (!chatsSnapshot) return false;
-    return !!chatsSnapshot.docs.find((chat) =>
-      chat.data().users.includes(recipientEmail)
-    );
+    
+    // For self-chat, check if both users in the array are the current user
+    if (recipientEmail === user.email) {
+      return !!chatsSnapshot.docs.find((chat) => {
+        const users = chat.data().users;
+        return users.length === 2 && users[0] === user.email && users[1] === user.email;
+      });
+    }
+    
+    // For regular chats, check if a chat exists with both users
+    return !!chatsSnapshot.docs.find((chat) => {
+      const users = chat.data().users;
+      return users.includes(recipientEmail) && users.includes(user.email);
+    });
   };
 
   const createChat = async () => {
@@ -101,11 +173,6 @@ function Sidebar() {
 
     if (!EmailValidator.validate(input)) {
       alert("Please enter a valid email address");
-      return;
-    }
-
-    if (input === user.email) {
-      alert("You cannot chat with yourself");
       return;
     }
 
@@ -204,6 +271,12 @@ function Sidebar() {
     
     const recipientEmail = selectedChatUsers.find((email) => email !== user.email);
     
+    // Don't allow blocking yourself
+    if (!recipientEmail || recipientEmail === user.email) {
+      alert("You cannot block yourself");
+      return;
+    }
+    
     try {
       const userDocRef = doc(db, "users", user.uid);
       
@@ -242,24 +315,26 @@ function Sidebar() {
   const isUserBlocked = () => {
     if (!selectedChatUsers || !user) return false;
     const recipientEmail = selectedChatUsers.find((email) => email !== user.email);
+    if (!recipientEmail) return false; // Self-chat case
     return blockedUsers.includes(recipientEmail);
   };
 
   if (!user) return <Container darkMode={darkMode}>Loading...</Container>;
 
-  const filteredChats = chatsSnapshot?.docs
-    .filter((chat) => {
-      const deletedBy = chat.data().deletedBy || [];
-      return !deletedBy.includes(user.email);
-    })
-    .filter((chat) => {
-      if (!searchTerm.trim()) return true;
-      
-      const chatUsers = chat.data().users || [];
-      const otherUser = chatUsers.find((email) => email !== user.email);
-      
-      return otherUser?.toLowerCase().includes(searchTerm.toLowerCase());
-    });
+  // Filter chats based on search term
+  const filteredChats = chatsList.filter((chat) => {
+    if (!searchTerm.trim()) return true;
+    
+    const chatUsers = chat.data.users || [];
+    const otherUser = chatUsers.find((email) => email !== user.email);
+    
+    // For self-chat, search by own email
+    if (!otherUser) {
+      return user.email?.toLowerCase().includes(searchTerm.toLowerCase());
+    }
+    
+    return otherUser?.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   return (
     <Container darkMode={darkMode}>
@@ -290,22 +365,38 @@ function Sidebar() {
         Start a new chat
       </SidebarButton>
 
-      {filteredChats?.map((chat) => (
-        <ChatWrapper key={chat.id} darkMode={darkMode}>
-          <Chat id={chat.id} users={chat.data().users} />
-          <OptionsButton
-            onClick={(e) => handleMenuOpen(e, chat.id, chat.data().users)}
-          >
-            <MoreVertIcon fontSize="small" />
-          </OptionsButton>
-        </ChatWrapper>
-      ))}
+      {loading ? (
+        <LoadingContainer darkMode={darkMode}>
+          <Typography>Loading chats...</Typography>
+        </LoadingContainer>
+      ) : (
+        filteredChats.map((chat) => (
+          <ChatWrapper key={chat.id} darkMode={darkMode}>
+            <Chat 
+              id={chat.id} 
+              users={chat.data.users} 
+              latestMessage={chat.latestMessage}
+            />
+            <OptionsButton
+              onClick={(e) => handleMenuOpen(e, chat.id, chat.data.users)}
+            >
+              <MoreVertIcon fontSize="small" />
+            </OptionsButton>
+          </ChatWrapper>
+        ))
+      )}
 
       {/* Header Menu */}
       <Menu
         anchorEl={headerAnchorEl}
         open={Boolean(headerAnchorEl)}
         onClose={handleHeaderMenuClose}
+        PaperProps={{
+          style: {
+            backgroundColor: darkMode ? '#2a2a2a' : 'white',
+            color: darkMode ? '#e0e0e0' : 'black',
+          },
+        }}
       >
         <MenuItem onClick={handleSettingsOpen}>Settings</MenuItem>
         <MenuItem onClick={handleBlockedUsersOpen}>Blocked Users</MenuItem>
@@ -317,23 +408,44 @@ function Sidebar() {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
+        PaperProps={{
+          style: {
+            backgroundColor: darkMode ? '#2a2a2a' : 'white',
+            color: darkMode ? '#e0e0e0' : 'black',
+          },
+        }}
       >
-        {isUserBlocked() ? (
-          <MenuItem onClick={() => {
-            const recipientEmail = selectedChatUsers.find((email) => email !== user.email);
-            unblockUser(recipientEmail);
-            handleMenuClose();
-          }}>
-            Unblock User
-          </MenuItem>
-        ) : (
-          <MenuItem onClick={blockUser}>Block User</MenuItem>
+        {selectedChatUsers && selectedChatUsers.find((email) => email !== user.email) && (
+          <>
+            {isUserBlocked() ? (
+              <MenuItem onClick={() => {
+                const recipientEmail = selectedChatUsers.find((email) => email !== user.email);
+                unblockUser(recipientEmail);
+                handleMenuClose();
+              }}>
+                Unblock User
+              </MenuItem>
+            ) : (
+              <MenuItem onClick={blockUser}>Block User</MenuItem>
+            )}
+          </>
         )}
         <MenuItem onClick={deleteChat}>Delete Chat</MenuItem>
       </Menu>
 
       {/* Settings Dialog */}
-      <Dialog open={settingsOpen} onClose={handleSettingsClose} maxWidth="sm" fullWidth>
+      <Dialog 
+        open={settingsOpen} 
+        onClose={handleSettingsClose} 
+        maxWidth="sm" 
+        fullWidth
+        PaperProps={{
+          style: {
+            backgroundColor: darkMode ? '#1e1e1e' : 'white',
+            color: darkMode ? '#e0e0e0' : 'black',
+          },
+        }}
+      >
         <DialogTitle>Settings</DialogTitle>
         <DialogContent>
           <FormControlLabel
@@ -353,7 +465,18 @@ function Sidebar() {
       </Dialog>
 
       {/* Blocked Users Dialog */}
-      <Dialog open={blockedUsersOpen} onClose={handleBlockedUsersClose} maxWidth="sm" fullWidth>
+      <Dialog 
+        open={blockedUsersOpen} 
+        onClose={handleBlockedUsersClose} 
+        maxWidth="sm" 
+        fullWidth
+        PaperProps={{
+          style: {
+            backgroundColor: darkMode ? '#1e1e1e' : 'white',
+            color: darkMode ? '#e0e0e0' : 'black',
+          },
+        }}
+      >
         <DialogTitle>Blocked Users</DialogTitle>
         <DialogContent>
           {blockedUsers.length === 0 ? (
@@ -364,7 +487,12 @@ function Sidebar() {
             <List>
               {blockedUsers.map((blockedEmail) => (
                 <ListItem key={blockedEmail}>
-                  <ListItemText primary={blockedEmail} />
+                  <ListItemText 
+                    primary={blockedEmail}
+                    primaryTypographyProps={{
+                      style: { color: darkMode ? '#e0e0e0' : 'black' }
+                    }}
+                  />
                   <ListItemSecondaryAction>
                     <Button 
                       variant="outlined" 
@@ -385,7 +513,18 @@ function Sidebar() {
       </Dialog>
 
       {/* About Dialog */}
-      <Dialog open={aboutOpen} onClose={handleAboutClose} maxWidth="sm" fullWidth>
+      <Dialog 
+        open={aboutOpen} 
+        onClose={handleAboutClose} 
+        maxWidth="sm" 
+        fullWidth
+        PaperProps={{
+          style: {
+            backgroundColor: darkMode ? '#1e1e1e' : 'white',
+            color: darkMode ? '#e0e0e0' : 'black',
+          },
+        }}
+      >
         <DialogTitle>About</DialogTitle>
         <DialogContent>
           <Typography variant="h6" gutterBottom>
@@ -409,6 +548,10 @@ function Sidebar() {
               <li>Block/Unblock users</li>
               <li>Delete conversations</li>
               <li>Dark mode support</li>
+              <li>Chat with yourself (like WhatsApp)</li>
+              <li>Sorted by latest message</li>
+              <li>File sharing support</li>
+              <li>Voice messages</li>
             </ul>
           </Typography>
           <Typography variant="body2" color="textSecondary" style={{ marginTop: 20 }}>
@@ -515,4 +658,12 @@ const OptionsButton = styled(IconButton)`
   ${ChatWrapper}:hover & {
     visibility: visible;
   }
+`;
+
+const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: ${props => props.darkMode ? '#888' : '#666'};
 `;

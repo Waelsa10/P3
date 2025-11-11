@@ -1,5 +1,6 @@
+// components/Message.jsx
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db } from "../firebase";
+import { auth } from "../firebase";
 import styled from "styled-components";
 import moment from "moment";
 import { IconButton, Menu, MenuItem, ListItemIcon, ListItemText } from "@mui/material";
@@ -13,6 +14,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ReplyIcon from "@mui/icons-material/Reply";
 import { useContext, useState } from "react";
 import { DarkModeContext } from "./DarkModeProvider";
+import MessageStatus from "./ChatScreen/components/MessageStatus";
+import { MESSAGE_STATUS } from "./ChatScreen/constants";
 
 function Message({ user, message, messageId, onDelete, onReply }) {
   const [userLoggedIn] = useAuthState(auth);
@@ -24,7 +27,8 @@ function Message({ user, message, messageId, onDelete, onReply }) {
   const darkModeContext = useContext(DarkModeContext);
   const { darkMode } = darkModeContext || { darkMode: false };
 
-  const TypeOfMessage = user === userLoggedIn?.email ? Sender : Reciever;
+  const TypeOfMessage = user === userLoggedIn?.email ? Sender : Receiver;
+  const isOwnMessage = user === userLoggedIn?.email;
 
   // Check if message is less than 1 hour old
   const isRecentMessage = () => {
@@ -67,6 +71,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
         fileName: message.fileName,
         fileType: message.fileType,
         voiceURL: message.voiceURL,
+        voiceDuration: message.voiceDuration,
       });
     }
   };
@@ -74,8 +79,6 @@ function Message({ user, message, messageId, onDelete, onReply }) {
   // Optimize Cloudinary image URLs with transformations
   const getOptimizedImageUrl = (url) => {
     if (!url || !url.includes('cloudinary.com')) return url;
-    
-    // Insert transformation parameters before /upload/
     const transformation = '/w_600,h_600,c_limit,f_auto,q_auto';
     return url.replace('/upload/', `/upload${transformation}/`);
   };
@@ -83,8 +86,6 @@ function Message({ user, message, messageId, onDelete, onReply }) {
   // Get thumbnail for video
   const getVideoThumbnail = (url) => {
     if (!url || !url.includes('cloudinary.com')) return null;
-    
-    // Generate video thumbnail
     const transformation = '/w_600,h_400,c_fill,f_jpg,q_auto';
     return url.replace('/upload/', `/upload${transformation}/`).replace(/\.[^.]+$/, '.jpg');
   };
@@ -92,7 +93,6 @@ function Message({ user, message, messageId, onDelete, onReply }) {
   // Download file function with better Cloudinary support
   const downloadFile = async (url, fileName) => {
     try {
-      // For Cloudinary URLs, add download flag
       let downloadUrl = url;
       if (url.includes('cloudinary.com')) {
         downloadUrl = url.replace('/upload/', '/upload/fl_attachment/');
@@ -109,11 +109,9 @@ function Message({ user, message, messageId, onDelete, onReply }) {
       link.click();
       document.body.removeChild(link);
       
-      // Clean up blob URL
       setTimeout(() => window.URL.revokeObjectURL(blobUrl), 100);
     } catch (error) {
       console.error("Download failed:", error);
-      // Fallback to direct link
       window.open(url, '_blank');
     }
   };
@@ -139,18 +137,11 @@ function Message({ user, message, messageId, onDelete, onReply }) {
   const getFileIcon = (fileType) => {
     if (!fileType) return { icon: InsertDriveFileIcon, color: darkMode ? '#64b5f6' : '#1976d2' };
     
-    if (fileType.includes('pdf')) {
-      return { icon: InsertDriveFileIcon, color: '#d32f2f' };
-    }
-    if (fileType.includes('word') || fileType.includes('document')) {
-      return { icon: InsertDriveFileIcon, color: '#2196f3' };
-    }
-    if (fileType.includes('sheet') || fileType.includes('excel')) {
-      return { icon: InsertDriveFileIcon, color: '#4caf50' };
-    }
-    if (fileType.includes('zip') || fileType.includes('rar')) {
-      return { icon: InsertDriveFileIcon, color: '#ff9800' };
-    }
+    if (fileType.includes('pdf')) return { icon: InsertDriveFileIcon, color: '#d32f2f' };
+    if (fileType.includes('word') || fileType.includes('document')) return { icon: InsertDriveFileIcon, color: '#2196f3' };
+    if (fileType.includes('sheet') || fileType.includes('excel')) return { icon: InsertDriveFileIcon, color: '#4caf50' };
+    if (fileType.includes('zip') || fileType.includes('rar')) return { icon: InsertDriveFileIcon, color: '#ff9800' };
+    
     return { icon: InsertDriveFileIcon, color: darkMode ? '#64b5f6' : '#1976d2' };
   };
 
@@ -160,16 +151,160 @@ function Message({ user, message, messageId, onDelete, onReply }) {
 
   return (
     <Container>
-      <TypeOfMessage darkMode={darkMode} isSender={user === userLoggedIn?.email}>
+      <TypeOfMessage darkMode={darkMode} isSender={isOwnMessage}>
+        <MessageContent>
+          {/* Reply Preview (if this message is a reply) */}
+          {message.replyTo && (
+            <ReplyPreview darkMode={darkMode}>
+              <ReplyBar isSender={isOwnMessage} />
+              <ReplyContent>
+                <ReplyUser darkMode={darkMode}>
+                  {message.replyTo.user === userLoggedIn?.email ? 'You' : message.replyTo.user}
+                </ReplyUser>
+                <ReplyText darkMode={darkMode}>
+                  {message.replyTo.message || message.replyTo.fileName || '🎤 Voice message'}
+                </ReplyText>
+              </ReplyContent>
+            </ReplyPreview>
+          )}
+
+          {/* File Attachment */}
+          {message.fileURL && (
+            <FileAttachment>
+              {/* Image Preview */}
+              {message.fileType?.startsWith("image/") ? (
+                <ImageContainer>
+                  {!imageLoaded && !imageError && (
+                    <ImagePlaceholder darkMode={darkMode}>
+                      <ImageIcon style={{ fontSize: 48, color: darkMode ? '#555' : '#ccc' }} />
+                    </ImagePlaceholder>
+                  )}
+                  {imageError ? (
+                    <ImageError darkMode={darkMode}>
+                      <ImageIcon style={{ fontSize: 48, color: darkMode ? '#666' : '#999' }} />
+                      <p>Failed to load image</p>
+                    </ImageError>
+                  ) : (
+                    <ImagePreview
+                      src={getOptimizedImageUrl(message.fileURL)}
+                      alt={message.fileName || "Image"}
+                      onClick={() => window.open(message.fileURL, "_blank")}
+                      onLoad={() => setImageLoaded(true)}
+                      onError={() => setImageError(true)}
+                      loading="lazy"
+                      style={{ display: imageLoaded ? 'block' : 'none' }}
+                    />
+                  )}
+                  {message.fileName && (
+                    <ImageFileName darkMode={darkMode}>{message.fileName}</ImageFileName>
+                  )}
+                </ImageContainer>
+              ) : message.fileType?.startsWith("video/") ? (
+                /* Video Preview */
+                <VideoContainer>
+                  <VideoPreview 
+                    controls 
+                    preload="metadata"
+                    poster={getVideoThumbnail(message.fileURL)}
+                  >
+                    <source src={message.fileURL} type={message.fileType} />
+                    Your browser does not support the video tag.
+                  </VideoPreview>
+                  {message.fileName && (
+                    <VideoFileName darkMode={darkMode}>
+                      <VideoLibraryIcon style={{ fontSize: 16, marginRight: 4 }} />
+                      {message.fileName}
+                    </VideoFileName>
+                  )}
+                </VideoContainer>
+              ) : message.fileType?.startsWith("audio/") && !message.voiceURL ? (
+                /* Audio File (not voice message) */
+                <AudioFileContainer darkMode={darkMode}>
+                  <AudioFileHeader>
+                    <AudiotrackIcon style={{ fontSize: 32, color: darkMode ? '#64b5f6' : '#1976d2' }} />
+                    <AudioFileInfo>
+                      <AudioFileName darkMode={darkMode}>
+                        {message.fileName || "Audio File"}
+                      </AudioFileName>
+                      <AudioFileSize darkMode={darkMode}>
+                        {formatFileSize(message.fileSize)}
+                      </AudioFileSize>
+                    </AudioFileInfo>
+                  </AudioFileHeader>
+                  <AudioPlayer controls src={message.fileURL} darkMode={darkMode}>
+                    Your browser does not support the audio element.
+                  </AudioPlayer>
+                </AudioFileContainer>
+              ) : (
+                /* Other Files (PDF, Documents, etc.) */
+                <FileInfo darkMode={darkMode}>
+                  <FileIconComponent style={{ fontSize: 40, color: fileIconData.color }} />
+                  <FileDetails>
+                    <FileName darkMode={darkMode}>{message.fileName || "File"}</FileName>
+                    <FileSize darkMode={darkMode}>
+                      {formatFileSize(message.fileSize)}
+                    </FileSize>
+                  </FileDetails>
+                </FileInfo>
+              )}
+
+              {/* Download Button */}
+              <DownloadButton
+                onClick={() => downloadFile(message.fileURL, message.fileName)}
+                size="small"
+                darkMode={darkMode}
+              >
+                <DownloadIcon fontSize="small" />
+                <span style={{ marginLeft: 5, fontSize: 12 }}>Download</span>
+              </DownloadButton>
+            </FileAttachment>
+          )}
+
+          {/* Voice Message */}
+          {message.voiceURL && (
+            <VoiceMessageContainer darkMode={darkMode}>
+              <VoiceLabel darkMode={darkMode}>🎤 Voice Message</VoiceLabel>
+              <AudioPlayer controls src={message.voiceURL} darkMode={darkMode}>
+                Your browser does not support the audio element.
+              </AudioPlayer>
+              {message.voiceDuration && (
+                <VoiceDuration darkMode={darkMode}>
+                  Duration: {formatDuration(message.voiceDuration)}
+                </VoiceDuration>
+              )}
+            </VoiceMessageContainer>
+          )}
+
+          {/* Text Message */}
+          {message.message && message.message.trim() && (
+            <MessageText darkMode={darkMode}>{message.message}</MessageText>
+          )}
+
+          {/* Message Footer with Timestamp and Status */}
+          <MessageFooter>
+            <Timestamp darkMode={darkMode}>
+              {message.timestamp ? moment(message.timestamp).format("LT") : "..."}
+            </Timestamp>
+            {isOwnMessage && (
+              <MessageStatus 
+                status={message.status || MESSAGE_STATUS.SENT} 
+                darkMode={darkMode} 
+              />
+            )}
+          </MessageFooter>
+        </MessageContent>
+
         {/* Three Dots Menu */}
-        <MessageMenuButton
-          onClick={handleMenuOpen}
-          size="small"
-          darkMode={darkMode}
-          isSender={user === userLoggedIn?.email}
-        >
-          <MoreVertIcon fontSize="small" />
-        </MessageMenuButton>
+        <MessageActions>
+          <MessageMenuButton
+            onClick={handleMenuOpen}
+            size="small"
+            darkMode={darkMode}
+            isSender={isOwnMessage}
+          >
+            <MoreVertIcon fontSize="small" />
+          </MessageMenuButton>
+        </MessageActions>
 
         {/* Menu */}
         <Menu
@@ -192,7 +327,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
             </ListItemText>
           </MenuItem>
           
-          {showDelete && (
+          {showDelete && isOwnMessage && (
             <MenuItem onClick={handleDelete}>
               <ListItemIcon>
                 <DeleteIcon fontSize="small" style={{ color: '#d32f2f' }} />
@@ -203,138 +338,6 @@ function Message({ user, message, messageId, onDelete, onReply }) {
             </MenuItem>
           )}
         </Menu>
-
-        {/* Reply Preview (if this message is a reply) */}
-        {message.replyTo && (
-          <ReplyPreview darkMode={darkMode}>
-            <ReplyBar isSender={user === userLoggedIn?.email} />
-            <ReplyContent>
-              <ReplyUser darkMode={darkMode}>
-                {message.replyTo.user === userLoggedIn?.email ? 'You' : message.replyTo.user}
-              </ReplyUser>
-              <ReplyText darkMode={darkMode}>
-                {message.replyTo.message || message.replyTo.fileName || '🎤 Voice message'}
-              </ReplyText>
-            </ReplyContent>
-          </ReplyPreview>
-        )}
-
-        {/* File Attachment */}
-        {message.fileURL && (
-          <FileAttachment>
-            {/* Image Preview */}
-            {message.fileType?.startsWith("image/") ? (
-              <ImageContainer>
-                {!imageLoaded && !imageError && (
-                  <ImagePlaceholder darkMode={darkMode}>
-                    <ImageIcon style={{ fontSize: 48, color: darkMode ? '#555' : '#ccc' }} />
-                  </ImagePlaceholder>
-                )}
-                {imageError ? (
-                  <ImageError darkMode={darkMode}>
-                    <ImageIcon style={{ fontSize: 48, color: darkMode ? '#666' : '#999' }} />
-                    <p>Failed to load image</p>
-                  </ImageError>
-                ) : (
-                  <ImagePreview
-                    src={getOptimizedImageUrl(message.fileURL)}
-                    alt={message.fileName || "Image"}
-                    onClick={() => window.open(message.fileURL, "_blank")}
-                    onLoad={() => setImageLoaded(true)}
-                    onError={() => setImageError(true)}
-                    loading="lazy"
-                    style={{ display: imageLoaded ? 'block' : 'none' }}
-                  />
-                )}
-                {message.fileName && (
-                  <ImageFileName darkMode={darkMode}>{message.fileName}</ImageFileName>
-                )}
-              </ImageContainer>
-            ) : message.fileType?.startsWith("video/") ? (
-              /* Video Preview */
-              <VideoContainer>
-                <VideoPreview 
-                  controls 
-                  preload="metadata"
-                  poster={getVideoThumbnail(message.fileURL)}
-                >
-                  <source src={message.fileURL} type={message.fileType} />
-                  Your browser does not support the video tag.
-                </VideoPreview>
-                {message.fileName && (
-                  <VideoFileName darkMode={darkMode}>
-                    <VideoLibraryIcon style={{ fontSize: 16, marginRight: 4 }} />
-                    {message.fileName}
-                  </VideoFileName>
-                )}
-              </VideoContainer>
-            ) : message.fileType?.startsWith("audio/") && !message.voiceURL ? (
-              /* Audio File (not voice message) */
-              <AudioFileContainer darkMode={darkMode}>
-                <AudioFileHeader>
-                  <AudiotrackIcon style={{ fontSize: 32, color: darkMode ? '#64b5f6' : '#1976d2' }} />
-                  <AudioFileInfo>
-                    <AudioFileName darkMode={darkMode}>
-                      {message.fileName || "Audio File"}
-                    </AudioFileName>
-                    <AudioFileSize darkMode={darkMode}>
-                      {formatFileSize(message.fileSize)}
-                    </AudioFileSize>
-                  </AudioFileInfo>
-                </AudioFileHeader>
-                <AudioPlayer controls src={message.fileURL} darkMode={darkMode}>
-                  Your browser does not support the audio element.
-                </AudioPlayer>
-              </AudioFileContainer>
-            ) : (
-              /* Other Files (PDF, Documents, etc.) */
-              <FileInfo darkMode={darkMode}>
-                <FileIconComponent style={{ fontSize: 40, color: fileIconData.color }} />
-                <FileDetails>
-                  <FileName darkMode={darkMode}>{message.fileName || "File"}</FileName>
-                  <FileSize darkMode={darkMode}>
-                    {formatFileSize(message.fileSize)}
-                  </FileSize>
-                </FileDetails>
-              </FileInfo>
-            )}
-
-            {/* Download Button */}
-            <DownloadButton
-              onClick={() => downloadFile(message.fileURL, message.fileName)}
-              size="small"
-              darkMode={darkMode}
-            >
-              <DownloadIcon fontSize="small" />
-              <span style={{ marginLeft: 5, fontSize: 12 }}>Download</span>
-            </DownloadButton>
-          </FileAttachment>
-        )}
-
-        {/* Voice Message */}
-        {message.voiceURL && (
-          <VoiceMessageContainer darkMode={darkMode}>
-            <VoiceLabel darkMode={darkMode}>🎤 Voice Message</VoiceLabel>
-            <AudioPlayer controls src={message.voiceURL} darkMode={darkMode}>
-              Your browser does not support the audio element.
-            </AudioPlayer>
-            {message.voiceDuration && (
-              <VoiceDuration darkMode={darkMode}>
-                Duration: {formatDuration(message.voiceDuration)}
-              </VoiceDuration>
-            )}
-          </VoiceMessageContainer>
-        )}
-
-        {/* Text Message */}
-        {message.message && message.message.trim() && (
-          <MessageText darkMode={darkMode}>{message.message}</MessageText>
-        )}
-
-        {/* Timestamp */}
-        <Timestamp darkMode={darkMode}>
-          {message.timestamp ? moment(message.timestamp).format("LT") : "..."}
-        </Timestamp>
       </TypeOfMessage>
     </Container>
   );
@@ -345,9 +348,20 @@ export default Message;
 // Styled Components
 const Container = styled.div`
   margin: 5px 0;
+  
+  &:hover {
+    ${props => `
+      ${MessageActions} {
+        opacity: 1;
+      }
+    `}
+  }
 `;
 
 const MessageElement = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
   width: fit-content;
   max-width: 65%;
   padding: 10px 15px;
@@ -355,7 +369,7 @@ const MessageElement = styled.div`
   border-radius: 8px;
   margin: 10px;
   min-width: 60px;
-  padding-bottom: 26px;
+  padding-bottom: 8px;
   position: relative;
   word-wrap: break-word;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -372,18 +386,28 @@ const Sender = styled(MessageElement)`
   border-radius: 8px 8px 0 8px;
 `;
 
-const Reciever = styled(MessageElement)`
+const Receiver = styled(MessageElement)`
   background-color: ${props => props.darkMode ? '#1f2c33' : 'whitesmoke'};
   color: ${props => props.darkMode ? '#e0e0e0' : 'black'};
   text-align: left;
   border-radius: 8px 8px 8px 0;
+  margin-left: 10px;
+  margin-right: auto;
+`;
+
+const MessageContent = styled.div`
+  flex: 1;
+  min-width: 0;
+`;
+
+const MessageActions = styled.div`
+  opacity: 0;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: flex-start;
 `;
 
 const MessageMenuButton = styled(IconButton)`
-  position: absolute !important;
-  top: 2px !important;
-  right: ${props => props.isSender ? '2px' : 'auto'} !important;
-  left: ${props => props.isSender ? 'auto' : '2px'} !important;
   opacity: 0.6 !important;
   padding: 4px !important;
   color: ${props => props.darkMode ? '#e0e0e0' : '#666'} !important;
@@ -394,13 +418,21 @@ const MessageMenuButton = styled(IconButton)`
   }
 `;
 
+const MessageFooter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 4px;
+  padding-top: 2px;
+`;
+
 const ReplyPreview = styled.div`
   display: flex;
   margin-bottom: 8px;
   padding: 8px;
   background-color: ${props => props.darkMode ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.05)'};
   border-radius: 6px;
-  margin-top: 5px;
 `;
 
 const ReplyBar = styled.div`
@@ -442,12 +474,8 @@ const MessageText = styled.p`
 
 const Timestamp = styled.span`
   color: ${props => props.darkMode ? '#8696a0' : 'gray'};
-  padding: 10px;
-  font-size: 9px;
-  position: absolute;
-  bottom: 2px;
-  text-align: right;
-  right: 5px;
+  font-size: 11px;
+  margin-left: 8px;
 `;
 
 const FileAttachment = styled.div`

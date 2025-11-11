@@ -4,10 +4,13 @@ import { auth, db, serverTimestamp, doc, setDoc } from "../firebase";
 import Loading from "../components/Loading";
 import Login from "./login";
 import { DarkModeProvider } from "../components/DarkModeProvider";
-
+import { useOnlineStatus } from "../components/ChatScreen/hooks/useOnlineStatus";
 function MyApp({ Component, pageProps }) {
   const [user, loading] = useAuthState(auth);
+    useOnlineStatus(); // Track user online status
 
+  
+  
   useEffect(() => {
     if (user) {
       const userRef = doc(db, "users", user.uid);
@@ -25,6 +28,7 @@ function MyApp({ Component, pageProps }) {
 
   if (loading) return <Loading />;
   if (!user) return <Login />;
+  
 
   return (
     <DarkModeProvider>

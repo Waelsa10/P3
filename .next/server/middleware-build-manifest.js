@@ -1,0 +1,52 @@
+globalThis.__BUILD_MANIFEST = {
+  "pages": {
+    "/": [
+      "static/chunks/fbad4aafe25683a2.js",
+      "static/chunks/dfb7e7bce099b8cf.js",
+      "static/chunks/90981a0e2f9f9031.js",
+      "static/chunks/d912d7b922e68e7c.js",
+      "static/chunks/3d7a7f1a350b7dc1.js",
+      "static/chunks/455ec68eb86ab306.js",
+      "static/chunks/ce5919899f38cbaf.js",
+      "static/chunks/turbopack-774612c6a4a6bd40.js"
+    ],
+    "/_app": [
+      "static/chunks/e426a72a055c0e4f.js",
+      "static/chunks/90981a0e2f9f9031.js",
+      "static/chunks/455ec68eb86ab306.js",
+      "static/chunks/85f356ecc34b2d6b.js",
+      "static/chunks/50c552f523d301c8.js",
+      "static/chunks/d43ab978ac5b76ce.css",
+      "static/chunks/turbopack-c6088930747f7673.js"
+    ],
+    "/_error": [
+      "static/chunks/c6a19890619978f0.js",
+      "static/chunks/455ec68eb86ab306.js",
+      "static/chunks/90981a0e2f9f9031.js",
+      "static/chunks/turbopack-ac436a46264ac8ee.js"
+    ],
+    "/chat/[id]": [
+      "static/chunks/6ced8daa7205e16f.js",
+      "static/chunks/90981a0e2f9f9031.js",
+      "static/chunks/ce80408237b5fc98.js",
+      "static/chunks/455ec68eb86ab306.js",
+      "static/chunks/turbopack-b59bc494d9628a54.js"
+    ],
+    "/login": [
+      "static/chunks/0bd410c94aae8aa1.js",
+      "static/chunks/90981a0e2f9f9031.js",
+      "static/chunks/455ec68eb86ab306.js",
+      "static/chunks/ce80408237b5fc98.js",
+      "static/chunks/50c552f523d301c8.js",
+      "static/chunks/turbopack-fb3d393623b37b44.js"
+    ]
+  },
+  "devFiles": [],
+  "polyfillFiles": [],
+  "lowPriorityFiles": [],
+  "rootMainFiles": []
+};
+globalThis.__BUILD_MANIFEST.lowPriorityFiles = [
+"/static/" + process.env.__NEXT_BUILD_ID + "/_buildManifest.js",
+"/static/" + process.env.__NEXT_BUILD_ID + "/_ssgManifest.js"
+];

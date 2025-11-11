@@ -1,62 +1,324 @@
-import React from "react";
-import { useRouter } from "next/router";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollection } from "react-firebase-hooks/firestore";
+// components/Chat.jsx
+import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
-import Avatar from "@mui/material/Avatar"; // MUI v5
+import { Avatar } from "@mui/material";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import getRecipientEmail from "../utils/getRecipientEmail";
-import { collection, query, where } from "firebase/firestore"; // Firebase v9
+import { useRouter } from "next/router";
+import { 
+  collection, 
+  query, 
+  where, 
+  orderBy, 
+  limit,
+  onSnapshot 
+} from "firebase/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
+import MessageStatus from "./ChatScreen/components/MessageStatus";
+import { MESSAGE_STATUS } from "./ChatScreen/constants";
+import { DarkModeContext } from "./DarkModeProvider";
 
-function Chat({ id, users }) {
+function Chat({ id, users, latestMessage: propLatestMessage }) {
   const router = useRouter();
   const [user] = useAuthState(auth);
+  const [latestMessage, setLatestMessage] = useState(propLatestMessage || null);
+  const [unreadCount, setUnreadCount] = useState(0);
 
-  // compute recipient email safely
-  const recipientEmail = user ? getRecipientEmail(users, user) : null;
+  // Get dark mode context
+  const darkModeContext = useContext(DarkModeContext);
+  const { darkMode } = darkModeContext || { darkMode: false };
 
-  // Only build the query when recipientEmail is available
+const recipientEmail = getRecipientEmail(users, user);
+const isSelfChat = users?.length === 2 && 
+                   users.every(email => email?.toLowerCase() === user?.email?.toLowerCase());
+  // Get recipient info - only query if recipientEmail exists
   const recipientQuery = recipientEmail
     ? query(collection(db, "users"), where("email", "==", recipientEmail))
     : null;
-
   const [recipientSnapshot] = useCollection(recipientQuery);
+  const recipient = recipientSnapshot?.docs?.[0]?.data();
+
+  // Real-time listener for latest message and unread count
+  useEffect(() => {
+    // Exit early if required data is missing
+    if (!id || !user || !recipientEmail) {
+      console.log("Missing required data for Chat:", { id, user: !!user, recipientEmail });
+      return;
+    }
+
+    // Real-time listener for latest message
+    const messagesRef = collection(db, "chats", id, "messages");
+    const q = query(messagesRef, orderBy("timestamp", "desc"), limit(1));
+    
+    const unsubscribeMessages = onSnapshot(
+      q, 
+      (snapshot) => {
+        if (!snapshot.empty) {
+          const messageData = snapshot.docs[0].data();
+          setLatestMessage({
+            id: snapshot.docs[0].id,
+            ...messageData,
+            timestamp: messageData.timestamp?.toMillis(),
+          });
+        } else {
+          setLatestMessage(null);
+        }
+      }, 
+      (error) => {
+        console.error("Error listening to messages:", error);
+      }
+    );
+
+    // Real-time listener for unread count (skip for self-chat)
+    let unsubscribeUnread = () => {};
+    
+    if (!isSelfChat && recipientEmail) {
+      const unreadQuery = query(
+        messagesRef,
+        where("user", "==", recipientEmail),
+        where("status", "in", [MESSAGE_STATUS.SENT, MESSAGE_STATUS.DELIVERED])
+      );
+      
+      unsubscribeUnread = onSnapshot(
+        unreadQuery, 
+        (snapshot) => {
+          setUnreadCount(snapshot.docs.length);
+        }, 
+        (error) => {
+          console.error("Error listening to unread count:", error);
+          setUnreadCount(0);
+        }
+      );
+    }
+
+    return () => {<RecipientName darkMode={darkMode}>
+  {isSelfChat ? `${user.displayName || user.email} (You)` : recipientEmail}
+</RecipientName>
+      unsubscribeMessages();
+      unsubscribeUnread();
+    };
+  }, [id, user, recipientEmail, isSelfChat]);
 
   const enterChat = () => {
-    if (!id) return;
     router.push(`/chat/${id}`);
   };
 
-  const recipient = recipientSnapshot?.docs?.[0]?.data();
+  // Format timestamp
+  const formatTimestamp = (timestamp) => {
+    if (!timestamp) return "";
+    
+    const messageDate = new Date(timestamp);
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    // Check if today
+    if (messageDate.toDateString() === today.toDateString()) {
+      return messageDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+    
+    // Check if yesterday
+    if (messageDate.toDateString() === yesterday.toDateString()) {
+      return "Yesterday";
+    }
+    
+    // Check if within this week
+    const weekAgo = new Date(today);
+    weekAgo.setDate(weekAgo.getDate() - 7);
+    if (messageDate > weekAgo) {
+      return messageDate.toLocaleDateString([], { weekday: 'short' });
+    }
+    
+    // Older messages
+    return messageDate.toLocaleDateString([], { month: 'short', day: 'numeric' });
+  };
+
+  // Truncate message
+  const truncateMessage = (message, maxLength = 35) => {
+    if (!message) return "";
+    if (message.length <= maxLength) return message;
+    return message.substring(0, maxLength) + "...";
+  };
+
+  // Get preview text for the message
+  const getMessagePreview = () => {
+    if (!latestMessage) return "No messages yet";
+
+    // Voice message
+    if (latestMessage.voiceURL) {
+      return "🎤 Voice message";
+    }
+
+    // File attachment
+    if (latestMessage.fileURL) {
+      if (latestMessage.fileType?.startsWith('image/')) {
+        return "📷 Photo";
+      }
+      if (latestMessage.fileType?.startsWith('video/')) {
+        return "🎥 Video";
+      }
+      if (latestMessage.fileType?.startsWith('audio/')) {
+        return "🎵 Audio";
+      }
+      return `📎 ${truncateMessage(latestMessage.fileName || 'File', 25)}`;
+    }
+
+    // Regular text message
+    return truncateMessage(latestMessage.message);
+  };
+
+  const isOwnMessage = latestMessage?.user === user?.email;
+  const hasUnread = unreadCount > 0 && !isOwnMessage;
+
+  // Don't render if missing essential data
+  if (!recipientEmail) {
+    return null;
+  }
 
   return (
-    <Container onClick={enterChat}>
+    <Container onClick={enterChat} darkMode={darkMode}>
       {recipient ? (
-        <UserAvatar src={recipient.photoURL} />
+        <UserAvatar src={recipient?.photoURL} />
       ) : (
-        <UserAvatar>{recipientEmail ? recipientEmail[0] : "?"}</UserAvatar>
+        <UserAvatar>{recipientEmail?.[0]?.toUpperCase()}</UserAvatar>
       )}
-      <p>{recipientEmail ?? "Loading..."}</p>
+      <ChatContent>
+        <ChatHeader>
+          <RecipientName darkMode={darkMode}>
+            {isSelfChat ? `${recipientEmail} (You)` : recipientEmail}
+          </RecipientName>
+          {latestMessage && (
+            <MessageTime darkMode={darkMode}>
+              {formatTimestamp(latestMessage.timestamp)}
+            </MessageTime>
+          )}
+        </ChatHeader>
+        <LastMessageContainer>
+          <LastMessage isOwnMessage={isOwnMessage}>
+            {isOwnMessage && latestMessage && (
+              <StatusWrapper>
+                <MessageStatus 
+                  status={latestMessage.status || MESSAGE_STATUS.SENT}
+                  darkMode={darkMode}
+                />
+              </StatusWrapper>
+            )}
+            <MessageText hasUnread={hasUnread} darkMode={darkMode}>
+              {getMessagePreview()}
+            </MessageText>
+          </LastMessage>
+          {hasUnread && (
+            <UnreadBadge darkMode={darkMode}>{unreadCount}</UnreadBadge>
+          )}
+        </LastMessageContainer>
+      </ChatContent>
     </Container>
   );
 }
 
 export default Chat;
 
-// styled-components
+// Styled Components
 const Container = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
   padding: 15px;
   word-break: break-word;
+  transition: background-color 0.2s;
 
   :hover {
-    background-color: #e9eaeb;
+    background-color: ${props => props.darkMode ? '#2a2a2a' : '#f5f5f5'};
   }
 `;
 
 const UserAvatar = styled(Avatar)`
   margin: 5px;
   margin-right: 15px;
+  flex-shrink: 0;
+`;
+
+const ChatContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+`;
+
+const ChatHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+`;
+
+const RecipientName = styled.p`
+  margin: 0;
+  font-weight: 600;
+  font-size: 15px;
+  color: ${props => props.darkMode ? '#e0e0e0' : '#000'};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+`;
+
+const MessageTime = styled.span`
+  font-size: 12px;
+  color: ${props => props.darkMode ? '#8696a0' : '#667781'};
+  margin-left: 8px;
+  flex-shrink: 0;
+`;
+
+const LastMessageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+`;
+
+const LastMessage = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+`;
+
+const StatusWrapper = styled.span`
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+`;
+
+const MessageText = styled.span`
+  font-size: 14px;
+  color: ${props => {
+    if (props.hasUnread) {
+      return props.darkMode ? '#e0e0e0' : '#000';
+    }
+    return props.darkMode ? '#8696a0' : '#667781';
+  }};
+  font-weight: ${props => props.hasUnread ? '600' : '400'};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+`;
+
+const UnreadBadge = styled.div`
+  background-color: ${props => props.darkMode ? '#00a884' : '#25d366'};
+  color: white;
+  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 0 6px;
+  flex-shrink: 0;
 `;

@@ -1,0 +1,84 @@
+globalThis.__BUILD_MANIFEST = {
+  "pages": {
+    "/": [
+      "static/chunks/node_modules_next_dist_compiled_c629999b._.js",
+      "static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js",
+      "static/chunks/node_modules_next_dist_client_d0aa886c._.js",
+      "static/chunks/node_modules_next_dist_7fdbac9b._.js",
+      "static/chunks/node_modules_next_cfb04b16._.js",
+      "static/chunks/node_modules_react_e3593a73._.js",
+      "static/chunks/node_modules_react-dom_cjs_react-dom_development_2b5e0eb3.js",
+      "static/chunks/node_modules_react-dom_8a8085df._.js",
+      "static/chunks/node_modules_@firebase_auth_dist_esm2017_5e0a66ed._.js",
+      "static/chunks/node_modules_@firebase_firestore_dist_index_esm2017_39b5671e.js",
+      "static/chunks/node_modules_@firebase_storage_dist_index_esm2017_965eeb4b.js",
+      "static/chunks/node_modules_@mui_system_d153eec2._.js",
+      "static/chunks/node_modules_@mui_material_ee6d4f84._.js",
+      "static/chunks/node_modules_83560577._.js",
+      "static/chunks/[root-of-the-server]__c72818e5._.js",
+      "static/chunks/pages_index_2da965e7._.js",
+      "static/chunks/turbopack-pages_index_507b6889._.js"
+    ],
+    "/_app": [
+      "static/chunks/node_modules_next_dist_compiled_c629999b._.js",
+      "static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js",
+      "static/chunks/node_modules_next_dist_client_d0aa886c._.js",
+      "static/chunks/node_modules_next_dist_7fdbac9b._.js",
+      "static/chunks/node_modules_next_cfb04b16._.js",
+      "static/chunks/node_modules_react_e3593a73._.js",
+      "static/chunks/node_modules_react-dom_cjs_react-dom_development_2b5e0eb3.js",
+      "static/chunks/node_modules_react-dom_8a8085df._.js",
+      "static/chunks/node_modules_@firebase_auth_dist_esm2017_5e0a66ed._.js",
+      "static/chunks/node_modules_@firebase_firestore_dist_index_esm2017_39b5671e.js",
+      "static/chunks/node_modules_@firebase_storage_dist_index_esm2017_965eeb4b.js",
+      "static/chunks/node_modules_@mui_system_d9f68b22._.js",
+      "static/chunks/node_modules_@mui_material_6dc36002._.js",
+      "static/chunks/node_modules_24c8904d._.js",
+      "static/chunks/[root-of-the-server]__ba479e8b._.js",
+      "static/chunks/node_modules_bootstrap_dist_css_bootstrap_min_06485c1b.css",
+      "static/chunks/pages__app_2da965e7._.js",
+      "static/chunks/turbopack-pages__app_3f7121fe._.js"
+    ],
+    "/_error": [
+      "static/chunks/node_modules_next_dist_compiled_c629999b._.js",
+      "static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js",
+      "static/chunks/node_modules_next_dist_client_d0aa886c._.js",
+      "static/chunks/node_modules_next_dist_19fd0646._.js",
+      "static/chunks/node_modules_next_error_1cfbb379.js",
+      "static/chunks/[next]_entry_page-loader_ts_43b523b5._.js",
+      "static/chunks/node_modules_react_b4bd21af._.js",
+      "static/chunks/node_modules_react-dom_cjs_react-dom_development_2b5e0eb3.js",
+      "static/chunks/node_modules_react-dom_8a8085df._.js",
+      "static/chunks/node_modules_416396d1._.js",
+      "static/chunks/[root-of-the-server]__092393de._.js",
+      "static/chunks/pages__error_2da965e7._.js",
+      "static/chunks/turbopack-pages__error_a5919942._.js"
+    ],
+    "/chat/[id]": [
+      "static/chunks/components_0ae7968d._.js",
+      "static/chunks/node_modules_next_dist_compiled_c629999b._.js",
+      "static/chunks/node_modules_next_dist_shared_lib_9f660528._.js",
+      "static/chunks/node_modules_next_dist_client_d0aa886c._.js",
+      "static/chunks/node_modules_next_dist_6024eba3._.js",
+      "static/chunks/node_modules_next_87bf7c5a._.js",
+      "static/chunks/node_modules_react_e3593a73._.js",
+      "static/chunks/node_modules_react-dom_cjs_react-dom_development_2b5e0eb3.js",
+      "static/chunks/node_modules_react-dom_8a8085df._.js",
+      "static/chunks/node_modules_@firebase_auth_dist_esm2017_5e0a66ed._.js",
+      "static/chunks/node_modules_@firebase_firestore_dist_index_esm2017_39b5671e.js",
+      "static/chunks/node_modules_@firebase_storage_dist_index_esm2017_965eeb4b.js",
+      "static/chunks/node_modules_adfa491b._.js",
+      "static/chunks/[root-of-the-server]__d7242e4d._.js",
+      "static/chunks/pages_chat_[id]_2da965e7.js",
+      "static/chunks/turbopack-pages_chat_[id]_8f98c0a0.js"
+    ]
+  },
+  "devFiles": [],
+  "polyfillFiles": [],
+  "lowPriorityFiles": [],
+  "rootMainFiles": []
+};
+globalThis.__BUILD_MANIFEST.lowPriorityFiles = [
+"/static/" + process.env.__NEXT_BUILD_ID + "/_buildManifest.js",
+"/static/" + process.env.__NEXT_BUILD_ID + "/_ssgManifest.js"
+];

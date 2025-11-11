@@ -2,22 +2,22 @@
   "[project]/components/ChatScreen/index.jsx [client] (ecmascript, next/dynamic entry)": {
     "id": "[project]/components/ChatScreen/index.jsx [client] (ecmascript, next/dynamic entry)",
     "files": [
-      "static/chunks/_d4197413._.js",
+      "static/chunks/_877695f1._.js",
       "static/chunks/node_modules_@mui_system_c9a163bd._.js",
-      "static/chunks/node_modules_@mui_material_c17f10b6._.js",
+      "static/chunks/node_modules_@mui_material_950e0bcc._.js",
       "static/chunks/node_modules_moment_0c55cd92._.js",
-      "static/chunks/node_modules_d77df043._.js",
-      "static/chunks/components_ChatScreen_index_jsx_b10827ba._.js"
+      "static/chunks/node_modules_8ad11887._.js",
+      "static/chunks/components_ChatScreen_index_jsx_2f474b89._.js"
     ]
   },
   "[project]/components/Sidebar.js [client] (ecmascript, next/dynamic entry)": {
     "id": "[project]/components/Sidebar.js [client] (ecmascript, next/dynamic entry)",
     "files": [
-      "static/chunks/_82170708._.js",
+      "static/chunks/_cf38ac5a._.js",
       "static/chunks/node_modules_@mui_system_d153eec2._.js",
       "static/chunks/node_modules_@mui_material_919490c9._.js",
-      "static/chunks/node_modules_80cf14e7._.js",
-      "static/chunks/components_Sidebar_b10827ba.js"
+      "static/chunks/node_modules_287c750d._.js",
+      "static/chunks/components_Sidebar_2f474b89.js"
     ]
   }
 }

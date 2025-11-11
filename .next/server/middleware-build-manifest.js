@@ -1,23 +1,24 @@
 globalThis.__BUILD_MANIFEST = {
   "pages": {
     "/": [
-      "static/chunks/fbad4aafe25683a2.js",
-      "static/chunks/dfb7e7bce099b8cf.js",
+      "static/chunks/5ea50bcae66d0200.js",
       "static/chunks/90981a0e2f9f9031.js",
-      "static/chunks/d912d7b922e68e7c.js",
-      "static/chunks/3d7a7f1a350b7dc1.js",
+      "static/chunks/054985ac82b480df.js",
+      "static/chunks/64510272b5addb17.js",
+      "static/chunks/989ae54853890986.js",
       "static/chunks/455ec68eb86ab306.js",
-      "static/chunks/ce5919899f38cbaf.js",
-      "static/chunks/turbopack-774612c6a4a6bd40.js"
+      "static/chunks/ce76d314b915fd43.js",
+      "static/chunks/6c9041472e0236c1.js",
+      "static/chunks/turbopack-cd816504b751821c.js"
     ],
     "/_app": [
-      "static/chunks/e426a72a055c0e4f.js",
+      "static/chunks/c9d6df6840005cd0.js",
       "static/chunks/90981a0e2f9f9031.js",
       "static/chunks/455ec68eb86ab306.js",
-      "static/chunks/85f356ecc34b2d6b.js",
-      "static/chunks/50c552f523d301c8.js",
+      "static/chunks/19beb28ee6878cdf.js",
+      "static/chunks/0f3b6848b31757eb.js",
       "static/chunks/d43ab978ac5b76ce.css",
-      "static/chunks/turbopack-c6088930747f7673.js"
+      "static/chunks/turbopack-776b3c74f53559b6.js"
     ],
     "/_error": [
       "static/chunks/c6a19890619978f0.js",
@@ -26,19 +27,19 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/turbopack-ac436a46264ac8ee.js"
     ],
     "/chat/[id]": [
-      "static/chunks/6ced8daa7205e16f.js",
+      "static/chunks/45ef15bfaa40684e.js",
       "static/chunks/90981a0e2f9f9031.js",
-      "static/chunks/ce80408237b5fc98.js",
+      "static/chunks/a56f47f636906ff7.js",
       "static/chunks/455ec68eb86ab306.js",
-      "static/chunks/turbopack-b59bc494d9628a54.js"
+      "static/chunks/turbopack-e18bcbfb2945f02f.js"
     ],
     "/login": [
       "static/chunks/0bd410c94aae8aa1.js",
       "static/chunks/90981a0e2f9f9031.js",
       "static/chunks/455ec68eb86ab306.js",
-      "static/chunks/ce80408237b5fc98.js",
-      "static/chunks/50c552f523d301c8.js",
-      "static/chunks/turbopack-fb3d393623b37b44.js"
+      "static/chunks/a56f47f636906ff7.js",
+      "static/chunks/0f3b6848b31757eb.js",
+      "static/chunks/turbopack-ae20e28401d71092.js"
     ]
   },
   "devFiles": [],

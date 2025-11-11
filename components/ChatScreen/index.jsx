@@ -43,7 +43,13 @@ import { Container, OfflineMessage, ErrorMessage } from "./ChatScreen.styles";
 import { checkIfBlocked, buildReplyData } from "./utils";
 import { MESSAGE_STATUS } from "./constants";
 
-function ChatScreen({ chat, messages }) {
+// ✅ ADD DEFAULT PROPS HERE
+function ChatScreen({ 
+  chat, 
+  messages, 
+  isMobile = false, 
+  onToggleSidebar = () => {} 
+}) {
   const [user] = useAuthState(auth);
   const router = useRouter();
   const endOfMessagesRef = useRef(null);
@@ -79,10 +85,9 @@ function ChatScreen({ chat, messages }) {
       try {
         const messagesRef = collection(db, 'chats', chatId, 'messages');
         
-        // IMPORTANT: Only mark messages sent BY THE RECIPIENT (not your own messages!)
         const unreadQuery = query(
           messagesRef,
-          where('user', '==', recipientEmail), // Messages from the other person
+          where('user', '==', recipientEmail),
           where('status', '!=', MESSAGE_STATUS.READ)
         );
 
@@ -93,7 +98,6 @@ function ChatScreen({ chat, messages }) {
           return;
         }
 
-        // Update each unread message to READ status
         const updatePromises = snapshot.docs.map(messageDoc => 
           updateDoc(messageDoc.ref, { 
             status: MESSAGE_STATUS.READ,
@@ -108,10 +112,8 @@ function ChatScreen({ chat, messages }) {
       }
     };
 
-    // Mark as read when component mounts
     markMessagesAsRead();
 
-    // Mark as read when window gains focus
     const handleFocus = () => {
       markMessagesAsRead();
     };
@@ -120,7 +122,7 @@ function ChatScreen({ chat, messages }) {
     return () => window.removeEventListener('focus', handleFocus);
   }, [chatId, user, recipientEmail, isSelfChat]);
 
-  // Update own messages to DELIVERED after a short delay (simulating network delivery)
+  // Update own messages to DELIVERED after a short delay
   useEffect(() => {
     if (!chatId || !user || !recipientEmail || isSelfChat) return;
 
@@ -128,10 +130,9 @@ function ChatScreen({ chat, messages }) {
       try {
         const messagesRef = collection(db, 'chats', chatId, 'messages');
         
-        // Only update YOUR messages that are still in SENT status
         const sentQuery = query(
           messagesRef,
-          where('user', '==', user.email), // Your own messages
+          where('user', '==', user.email),
           where('status', '==', MESSAGE_STATUS.SENT)
         );
 
@@ -139,7 +140,6 @@ function ChatScreen({ chat, messages }) {
         
         if (snapshot.empty) return;
 
-        // Update to delivered
         const updatePromises = snapshot.docs.map(messageDoc =>
           updateDoc(messageDoc.ref, { 
             status: MESSAGE_STATUS.DELIVERED,
@@ -154,7 +154,6 @@ function ChatScreen({ chat, messages }) {
       }
     };
 
-    // Update to delivered after 2 seconds (simulating delivery time)
     const timer = setTimeout(updateToDelivered, 2000);
     
     return () => clearTimeout(timer);
@@ -245,7 +244,6 @@ function ChatScreen({ chat, messages }) {
     if (!input?.trim() || !chatId || !user || !recipientEmail) return;
 
     try {
-      // Skip blocking check for self-chat
       if (!isSelfChat) {
         const isBlocked = await checkIfBlocked(user.email, recipientEmail);
         if (isBlocked) {
@@ -254,7 +252,6 @@ function ChatScreen({ chat, messages }) {
         }
       }
 
-      // Update user's last seen
       const userRef = doc(db, "users", user.uid);
       await setDoc(
         userRef,
@@ -264,25 +261,21 @@ function ChatScreen({ chat, messages }) {
         { merge: true }
       );
 
-      // Build message data
       const messageData = {
         timestamp: serverTimestamp(),
         message: input,
         user: user.email,
         photoURL: user.photoURL,
-        status: MESSAGE_STATUS.SENT, // Initial status is SENT (1 gray check)
+        status: MESSAGE_STATUS.SENT,
       };
 
-      // Add reply data if replying
       const replyData = buildReplyData(replyingTo);
       if (replyData) {
         messageData.replyTo = replyData;
       }
 
-      // Send message
       await addDoc(collection(db, "chats", chatId, "messages"), messageData);
 
-      // Clear input and reply
       setInput("");
       setReplyingTo(null);
       scrollToBottom();
@@ -320,6 +313,8 @@ function ChatScreen({ chat, messages }) {
         onAttachFile={() => fileInputRef.current?.click()}
         onMoreClick={() => setShowProfile(true)}
         darkMode={darkMode}
+        isMobile={isMobile}
+        onToggleSidebar={onToggleSidebar}
       />
 
       <input

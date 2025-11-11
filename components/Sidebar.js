@@ -9,6 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import ChatIcon from "@mui/icons-material/Chat";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from "@mui/icons-material/Close";
 import Chat from "./Chat";
 import { useCollection } from "react-firebase-hooks/firestore";
 import * as EmailValidator from "email-validator";
@@ -41,7 +42,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 import { DarkModeContext } from "./DarkModeProvider";
 
-function Sidebar() {
+function Sidebar({ isMobile, sidebarOpen, setSidebarOpen }) {
   const [user] = useAuthState(auth);
   const [anchorEl, setAnchorEl] = useState(null);
   const [headerAnchorEl, setHeaderAnchorEl] = useState(null);
@@ -137,7 +138,6 @@ function Sidebar() {
   const chatAlreadyExist = (recipientEmail) => {
     if (!chatsSnapshot) return false;
     
-    // For self-chat, check if both users in the array are the current user
     if (recipientEmail === user.email) {
       return !!chatsSnapshot.docs.find((chat) => {
         const users = chat.data().users;
@@ -145,7 +145,6 @@ function Sidebar() {
       });
     }
     
-    // For regular chats, check if a chat exists with both users
     return !!chatsSnapshot.docs.find((chat) => {
       const users = chat.data().users;
       return users.includes(recipientEmail) && users.includes(user.email);
@@ -158,18 +157,13 @@ function Sidebar() {
       return;
     }
 
-    console.log("Current user:", user.email);
-
     const input = prompt(
       "Please enter an email address for the user you wish to chat with"
     );
     
     if (!input) {
-      console.log("User cancelled prompt");
       return;
     }
-
-    console.log("Input email:", input);
 
     if (!EmailValidator.validate(input)) {
       alert("Please enter a valid email address");
@@ -182,27 +176,17 @@ function Sidebar() {
     }
 
     try {
-      console.log("Attempting to create chat with:", {
-        users: [user.email, input],
-        deletedBy: [],
-      });
-
-      const docRef = await addDoc(collection(db, "chats"), {
+      await addDoc(collection(db, "chats"), {
         users: [user.email, input],
         deletedBy: [],
         createdAt: new Date(),
       });
-
-      console.log("Chat created successfully with ID:", docRef.id);
     } catch (error) {
       console.error("Error creating chat:", error);
-      console.error("Error code:", error.code);
-      console.error("Error message:", error.message);
       alert(`Failed to create chat: ${error.message}`);
     }
   };
 
-  // Chat options menu handlers
   const handleMenuOpen = (event, chatId, chatUsers) => {
     setAnchorEl(event.currentTarget);
     setSelectedChatId(chatId);
@@ -215,7 +199,6 @@ function Sidebar() {
     setSelectedChatUsers(null);
   };
 
-  // Header menu handlers
   const handleHeaderMenuOpen = (event) => {
     setHeaderAnchorEl(event.currentTarget);
   };
@@ -271,7 +254,6 @@ function Sidebar() {
     
     const recipientEmail = selectedChatUsers.find((email) => email !== user.email);
     
-    // Don't allow blocking yourself
     if (!recipientEmail || recipientEmail === user.email) {
       alert("You cannot block yourself");
       return;
@@ -280,7 +262,6 @@ function Sidebar() {
     try {
       const userDocRef = doc(db, "users", user.uid);
       
-      // Create or update user document with blocked user
       await setDoc(userDocRef, {
         email: user.email,
         blockedUsers: arrayUnion(recipientEmail),
@@ -311,24 +292,21 @@ function Sidebar() {
     }
   };
 
-  // Check if the recipient is blocked
   const isUserBlocked = () => {
     if (!selectedChatUsers || !user) return false;
     const recipientEmail = selectedChatUsers.find((email) => email !== user.email);
-    if (!recipientEmail) return false; // Self-chat case
+    if (!recipientEmail) return false;
     return blockedUsers.includes(recipientEmail);
   };
 
   if (!user) return <Container darkMode={darkMode}>Loading...</Container>;
 
-  // Filter chats based on search term
   const filteredChats = chatsList.filter((chat) => {
     if (!searchTerm.trim()) return true;
     
     const chatUsers = chat.data.users || [];
     const otherUser = chatUsers.find((email) => email !== user.email);
     
-    // For self-chat, search by own email
     if (!otherUser) {
       return user.email?.toLowerCase().includes(searchTerm.toLowerCase());
     }
@@ -337,238 +315,264 @@ function Sidebar() {
   });
 
   return (
-    <Container darkMode={darkMode}>
-      <Header darkMode={darkMode}>
-        <UserAvatar onClick={() => auth.signOut()} src={user.photoURL} />
-        <IconsContainer>
-          <IconButton>
-            <ChatIcon />
-          </IconButton>
-          <IconButton onClick={handleHeaderMenuOpen}>
-            <MoreVertIcon />
-          </IconButton>
-        </IconsContainer>
-      </Header>
-
-      <Search darkMode={darkMode}>
-        <SearchIcon />
-        <SearchInput 
-          darkMode={darkMode}
-          placeholder="Search in chats" 
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </Search>
-
-      <SidebarButton onClick={createChat} disabled={loading}>
-        Start a new chat
-      </SidebarButton>
-
-      {loading ? (
-        <LoadingContainer darkMode={darkMode}>
-          <Typography>Loading chats...</Typography>
-        </LoadingContainer>
-      ) : (
-        filteredChats.map((chat) => (
-          <ChatWrapper key={chat.id} darkMode={darkMode}>
-            <Chat 
-              id={chat.id} 
-              users={chat.data.users} 
-              latestMessage={chat.latestMessage}
-            />
-            <OptionsButton
-              onClick={(e) => handleMenuOpen(e, chat.id, chat.data.users)}
-            >
-              <MoreVertIcon fontSize="small" />
-            </OptionsButton>
-          </ChatWrapper>
-        ))
+    <>
+      {/* Overlay for mobile */}
+      {isMobile && sidebarOpen && (
+        <Overlay onClick={() => setSidebarOpen(false)} />
       )}
 
-      {/* Header Menu */}
-      <Menu
-        anchorEl={headerAnchorEl}
-        open={Boolean(headerAnchorEl)}
-        onClose={handleHeaderMenuClose}
-        PaperProps={{
-          style: {
-            backgroundColor: darkMode ? '#2a2a2a' : 'white',
-            color: darkMode ? '#e0e0e0' : 'black',
-          },
-        }}
+      <Container 
+        darkMode={darkMode} 
+        isMobile={isMobile}
+        sidebarOpen={sidebarOpen}
       >
-        <MenuItem onClick={handleSettingsOpen}>Settings</MenuItem>
-        <MenuItem onClick={handleBlockedUsersOpen}>Blocked Users</MenuItem>
-        <MenuItem onClick={handleAboutOpen}>About</MenuItem>
-      </Menu>
-
-      {/* Chat Options Menu */}
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleMenuClose}
-        PaperProps={{
-          style: {
-            backgroundColor: darkMode ? '#2a2a2a' : 'white',
-            color: darkMode ? '#e0e0e0' : 'black',
-          },
-        }}
-      >
-        {selectedChatUsers && selectedChatUsers.find((email) => email !== user.email) && (
-          <>
-            {isUserBlocked() ? (
-              <MenuItem onClick={() => {
-                const recipientEmail = selectedChatUsers.find((email) => email !== user.email);
-                unblockUser(recipientEmail);
-                handleMenuClose();
-              }}>
-                Unblock User
-              </MenuItem>
-            ) : (
-              <MenuItem onClick={blockUser}>Block User</MenuItem>
+        <Header darkMode={darkMode}>
+          <UserAvatar onClick={() => auth.signOut()} src={user.photoURL} />
+          <IconsContainer>
+            <IconButton>
+              <ChatIcon />
+            </IconButton>
+            <IconButton onClick={handleHeaderMenuOpen}>
+              <MoreVertIcon />
+            </IconButton>
+            {isMobile && (
+              <IconButton onClick={() => setSidebarOpen(false)}>
+                <CloseIcon />
+              </IconButton>
             )}
-          </>
-        )}
-        <MenuItem onClick={deleteChat}>Delete Chat</MenuItem>
-      </Menu>
+          </IconsContainer>
+        </Header>
 
-      {/* Settings Dialog */}
-      <Dialog 
-        open={settingsOpen} 
-        onClose={handleSettingsClose} 
-        maxWidth="sm" 
-        fullWidth
-        PaperProps={{
-          style: {
-            backgroundColor: darkMode ? '#1e1e1e' : 'white',
-            color: darkMode ? '#e0e0e0' : 'black',
-          },
-        }}
-      >
-        <DialogTitle>Settings</DialogTitle>
-        <DialogContent>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={darkMode}
-                onChange={toggleDarkMode}
-                color="primary"
-              />
-            }
-            label="Dark Mode"
+        <Search darkMode={darkMode}>
+          <SearchIcon />
+          <SearchInput 
+            darkMode={darkMode}
+            placeholder="Search in chats" 
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleSettingsClose}>Close</Button>
-        </DialogActions>
-      </Dialog>
+        </Search>
 
-      {/* Blocked Users Dialog */}
-      <Dialog 
-        open={blockedUsersOpen} 
-        onClose={handleBlockedUsersClose} 
-        maxWidth="sm" 
-        fullWidth
-        PaperProps={{
-          style: {
-            backgroundColor: darkMode ? '#1e1e1e' : 'white',
-            color: darkMode ? '#e0e0e0' : 'black',
-          },
-        }}
-      >
-        <DialogTitle>Blocked Users</DialogTitle>
-        <DialogContent>
-          {blockedUsers.length === 0 ? (
-            <Typography variant="body2" color="textSecondary">
-              No blocked users
-            </Typography>
-          ) : (
-            <List>
-              {blockedUsers.map((blockedEmail) => (
-                <ListItem key={blockedEmail}>
-                  <ListItemText 
-                    primary={blockedEmail}
-                    primaryTypographyProps={{
-                      style: { color: darkMode ? '#e0e0e0' : 'black' }
-                    }}
-                  />
-                  <ListItemSecondaryAction>
-                    <Button 
-                      variant="outlined" 
-                      size="small"
-                      onClick={() => unblockUser(blockedEmail)}
-                    >
-                      Unblock
-                    </Button>
-                  </ListItemSecondaryAction>
-                </ListItem>
-              ))}
-            </List>
+        <SidebarButton onClick={createChat} disabled={loading}>
+          Start a new chat
+        </SidebarButton>
+
+        {loading ? (
+          <LoadingContainer darkMode={darkMode}>
+            <Typography>Loading chats...</Typography>
+          </LoadingContainer>
+        ) : (
+          filteredChats.map((chat) => (
+            <ChatWrapper key={chat.id} darkMode={darkMode}>
+              <Chat 
+                id={chat.id} 
+                users={chat.data.users} 
+                latestMessage={chat.latestMessage}
+              />
+              <OptionsButton
+                onClick={(e) => handleMenuOpen(e, chat.id, chat.data.users)}
+              >
+                <MoreVertIcon fontSize="small" />
+              </OptionsButton>
+            </ChatWrapper>
+          ))
+        )}
+
+        {/* All your existing menus and dialogs remain the same */}
+        <Menu
+          anchorEl={headerAnchorEl}
+          open={Boolean(headerAnchorEl)}
+          onClose={handleHeaderMenuClose}
+          PaperProps={{
+            style: {
+              backgroundColor: darkMode ? '#2a2a2a' : 'white',
+              color: darkMode ? '#e0e0e0' : 'black',
+            },
+          }}
+        >
+          <MenuItem onClick={handleSettingsOpen}>Settings</MenuItem>
+          <MenuItem onClick={handleBlockedUsersOpen}>Blocked Users</MenuItem>
+          <MenuItem onClick={handleAboutOpen}>About</MenuItem>
+        </Menu>
+
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+          PaperProps={{
+            style: {
+              backgroundColor: darkMode ? '#2a2a2a' : 'white',
+              color: darkMode ? '#e0e0e0' : 'black',
+            },
+          }}
+        >
+          {selectedChatUsers && selectedChatUsers.find((email) => email !== user.email) && (
+            <>
+              {isUserBlocked() ? (
+                <MenuItem onClick={() => {
+                  const recipientEmail = selectedChatUsers.find((email) => email !== user.email);
+                  unblockUser(recipientEmail);
+                  handleMenuClose();
+                }}>
+                  Unblock User
+                </MenuItem>
+              ) : (
+                <MenuItem onClick={blockUser}>Block User</MenuItem>
+              )}
+            </>
           )}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleBlockedUsersClose}>Close</Button>
-        </DialogActions>
-      </Dialog>
+          <MenuItem onClick={deleteChat}>Delete Chat</MenuItem>
+        </Menu>
 
-      {/* About Dialog */}
-      <Dialog 
-        open={aboutOpen} 
-        onClose={handleAboutClose} 
-        maxWidth="sm" 
-        fullWidth
-        PaperProps={{
-          style: {
-            backgroundColor: darkMode ? '#1e1e1e' : 'white',
-            color: darkMode ? '#e0e0e0' : 'black',
-          },
-        }}
-      >
-        <DialogTitle>About</DialogTitle>
-        <DialogContent>
-          <Typography variant="h6" gutterBottom>
-            Chat Application
-          </Typography>
-          <Typography variant="body1" paragraph>
-            Version: 1.0.0
-          </Typography>
-          <Typography variant="body2" paragraph>
-            A real-time messaging application built with React and Firebase.
-            Connect with friends and family through instant messaging.
-          </Typography>
-          <Typography variant="body2" paragraph>
-            <strong>Features:</strong>
-          </Typography>
-          <Typography variant="body2" component="div">
-            <ul>
-              <li>Real-time messaging</li>
-              <li>User authentication</li>
-              <li>Search chats</li>
-              <li>Block/Unblock users</li>
-              <li>Delete conversations</li>
-              <li>Dark mode support</li>
-              <li>Chat with yourself (like WhatsApp)</li>
-              <li>Sorted by latest message</li>
-              <li>File sharing support</li>
-              <li>Voice messages</li>
-            </ul>
-          </Typography>
-          <Typography variant="body2" color="textSecondary" style={{ marginTop: 20 }}>
-            © 2024 Chat App. All rights reserved.
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleAboutClose}>Close</Button>
-        </DialogActions>
-      </Dialog>
-    </Container>
+        <Dialog 
+          open={settingsOpen} 
+          onClose={handleSettingsClose} 
+          maxWidth="sm" 
+          fullWidth
+          PaperProps={{
+            style: {
+              backgroundColor: darkMode ? '#1e1e1e' : 'white',
+              color: darkMode ? '#e0e0e0' : 'black',
+            },
+          }}
+        >
+          <DialogTitle>Settings</DialogTitle>
+          <DialogContent>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={darkMode}
+                  onChange={toggleDarkMode}
+                  color="primary"
+                />
+              }
+              label="Dark Mode"
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleSettingsClose}>Close</Button>
+          </DialogActions>
+        </Dialog>
+
+        <Dialog 
+          open={blockedUsersOpen} 
+          onClose={handleBlockedUsersClose} 
+          maxWidth="sm" 
+          fullWidth
+          PaperProps={{
+            style: {
+              backgroundColor: darkMode ? '#1e1e1e' : 'white',
+              color: darkMode ? '#e0e0e0' : 'black',
+            },
+          }}
+        >
+          <DialogTitle>Blocked Users</DialogTitle>
+          <DialogContent>
+            {blockedUsers.length === 0 ? (
+              <Typography variant="body2" color="textSecondary">
+                No blocked users
+              </Typography>
+            ) : (
+              <List>
+                {blockedUsers.map((blockedEmail) => (
+                  <ListItem key={blockedEmail}>
+                    <ListItemText 
+                      primary={blockedEmail}
+                      primaryTypographyProps={{
+                        style: { color: darkMode ? '#e0e0e0' : 'black' }
+                      }}
+                    />
+                    <ListItemSecondaryAction>
+                      <Button 
+                        variant="outlined" 
+                        size="small"
+                        onClick={() => unblockUser(blockedEmail)}
+                      >
+                        Unblock
+                      </Button>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                ))}
+              </List>
+            )}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleBlockedUsersClose}>Close</Button>
+          </DialogActions>
+        </Dialog>
+
+        <Dialog 
+          open={aboutOpen} 
+          onClose={handleAboutClose} 
+          maxWidth="sm" 
+          fullWidth
+          PaperProps={{
+            style: {
+              backgroundColor: darkMode ? '#1e1e1e' : 'white',
+              color: darkMode ? '#e0e0e0' : 'black',
+            },
+          }}
+        >
+          <DialogTitle>About</DialogTitle>
+          <DialogContent>
+            <Typography variant="h6" gutterBottom>
+              Chat Application
+            </Typography>
+            <Typography variant="body1" paragraph>
+              Version: 1.0.0
+            </Typography>
+            <Typography variant="body2" paragraph>
+              A real-time messaging application built with React and Firebase.
+              Connect with friends and family through instant messaging.
+            </Typography>
+            <Typography variant="body2" paragraph>
+              <strong>Features:</strong>
+            </Typography>
+            <Typography variant="body2" component="div">
+              <ul>
+                <li>Real-time messaging</li>
+                <li>User authentication</li>
+                <li>Search chats</li>
+                <li>Block/Unblock users</li>
+                <li>Delete conversations</li>
+                <li>Dark mode support</li>
+                <li>Chat with yourself (like WhatsApp)</li>
+                <li>Sorted by latest message</li>
+                <li>File sharing support</li>
+                <li>Voice messages</li>
+              </ul>
+            </Typography>
+            <Typography variant="body2" color="textSecondary" style={{ marginTop: 20 }}>
+              © 2024 Chat App. All rights reserved.
+            </Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleAboutClose}>Close</Button>
+          </DialogActions>
+        </Dialog>
+      </Container>
+    </>
   );
 }
 
 export default Sidebar;
 
-// Styled components with dark mode support
+// Updated Styled Components with responsive design
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  
+  @media (min-width: 1025px) {
+    display: none;
+  }
+`;
+
 const Container = styled.div`
   flex: 0.45;
   border-right: 1px solid ${props => props.darkMode ? '#333' : 'whitesmoke'};
@@ -587,6 +591,25 @@ const Container = styled.div`
 
   -ms-overflow-style: none;
   scrollbar-width: none;
+
+  /* Mobile and Tablet Responsive */
+  @media (max-width: 1024px) {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    max-width: 85%;
+    width: 85%;
+    transform: ${props => props.sidebarOpen ? 'translateX(0)' : 'translateX(-100%)'};
+    transition: transform 0.3s ease-in-out;
+    box-shadow: ${props => props.sidebarOpen ? '2px 0 10px rgba(0,0,0,0.3)' : 'none'};
+  }
+
+  @media (max-width: 480px) {
+    max-width: 90%;
+    width: 90%;
+  }
 `;
 
 const UserAvatar = styled(Avatar)`
@@ -639,7 +662,10 @@ const Header = styled.div`
   border-bottom: 1px solid ${props => props.darkMode ? '#333' : 'whitesmoke'};
 `;
 
-const IconsContainer = styled.div``;
+const IconsContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const ChatWrapper = styled.div`
   display: flex;

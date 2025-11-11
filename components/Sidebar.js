@@ -573,6 +573,7 @@ const Overlay = styled.div`
   }
 `;
 
+// components/Sidebar.jsx - Better responsive Container
 const Container = styled.div`
   flex: 0.45;
   border-right: 1px solid ${props => props.darkMode ? '#333' : 'whitesmoke'};
@@ -594,21 +595,30 @@ const Container = styled.div`
 
   /* Mobile and Tablet Responsive */
   @media (max-width: 1024px) {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 999;
-    max-width: 85%;
-    width: 85%;
-    transform: ${props => props.sidebarOpen ? 'translateX(0)' : 'translateX(-100%)'};
+    ${props => props.sidebarOpen ? `
+      /* When sidebar is open on mobile - take full width */
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 999;
+      max-width: 100%;
+      width: 100%;
+      transform: translateX(0);
+    ` : `
+      /* When sidebar is closed - hide off screen */
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 999;
+      max-width: 85%;
+      width: 85%;
+      transform: translateX(-100%);
+    `}
     transition: transform 0.3s ease-in-out;
     box-shadow: ${props => props.sidebarOpen ? '2px 0 10px rgba(0,0,0,0.3)' : 'none'};
-  }
-
-  @media (max-width: 480px) {
-    max-width: 90%;
-    width: 90%;
   }
 `;
 

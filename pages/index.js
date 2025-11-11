@@ -10,7 +10,7 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 
 export default function Home() {
   const router = useRouter();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true); // ✅ Changed to true by default
   const [isMobile, setIsMobile] = useState(false);
 
   const darkModeContext = useContext(DarkModeContext);
@@ -21,14 +21,18 @@ export default function Home() {
     const checkScreenSize = () => {
       const mobile = window.innerWidth <= 1024;
       setIsMobile(mobile);
+      // On mobile, open sidebar by default when no chat selected
+      if (mobile && !router.query.id) {
+        setSidebarOpen(true);
+      }
     };
 
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
     return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
+  }, [router.query.id]);
 
-  // Close sidebar when route changes (chat selected) on mobile
+  // Close sidebar when chat selected on mobile
   useEffect(() => {
     if (isMobile && router.query.id) {
       setSidebarOpen(false);
@@ -45,6 +49,11 @@ export default function Home() {
       </Head>
 
       <AppContainer>
+        {/* Overlay for mobile - only show when sidebar is open and chat is selected */}
+        {isMobile && sidebarOpen && chatId && (
+          <Overlay onClick={() => setSidebarOpen(false)} />
+        )}
+
         <Sidebar 
           isMobile={isMobile} 
           sidebarOpen={sidebarOpen} 
@@ -57,6 +66,7 @@ export default function Home() {
             onToggleSidebar={() => setSidebarOpen(true)}
           />
         ) : (
+          // On desktop, show welcome screen. On mobile, don't show anything (sidebar takes full screen)
           !isMobile && (
             <WelcomeScreen darkMode={darkMode}>
               <WelcomeContent>

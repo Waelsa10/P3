@@ -2998,6 +2998,7 @@ const Overlay = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$comp
     display: none;
   }
 `;
+// components/Sidebar.jsx - Better responsive Container
 const Container = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
   flex: 0.45;
   border-right: 1px solid ${(props)=>props.darkMode ? '#333' : 'whitesmoke'};
@@ -3019,21 +3020,30 @@ const Container = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$co
 
   /* Mobile and Tablet Responsive */
   @media (max-width: 1024px) {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 999;
-    max-width: 85%;
-    width: 85%;
-    transform: ${(props)=>props.sidebarOpen ? 'translateX(0)' : 'translateX(-100%)'};
+    ${(props)=>props.sidebarOpen ? `
+      /* When sidebar is open on mobile - take full width */
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 999;
+      max-width: 100%;
+      width: 100%;
+      transform: translateX(0);
+    ` : `
+      /* When sidebar is closed - hide off screen */
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 999;
+      max-width: 85%;
+      width: 85%;
+      transform: translateX(-100%);
+    `}
     transition: transform 0.3s ease-in-out;
     box-shadow: ${(props)=>props.sidebarOpen ? '2px 0 10px rgba(0,0,0,0.3)' : 'none'};
-  }
-
-  @media (max-width: 480px) {
-    max-width: 90%;
-    width: 90%;
   }
 `;
 const UserAvatar = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Avatar$2f$Avatar$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"])`

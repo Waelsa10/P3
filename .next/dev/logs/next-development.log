@@ -199,3 +199,691 @@ React will try to recreate this component tree from scratch using the error boun
 [00:01:57.361] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
 [00:01:57.361] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
 [00:01:57.361] Browser LOG     getRecipientEmail: Self-chat detected
+[00:02:28.911] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:02:28.911] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:02:28.911] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:02:28.911] Browser LOG     getRecipientEmail: Self-chat detected
+[00:02:30.367] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:02:30.367] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:02:30.367] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:02:30.367] Browser LOG     getRecipientEmail: Self-chat detected
+[00:02:31.374] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:02:31.374] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:02:31.374] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:02:31.374] Browser LOG     getRecipientEmail: Self-chat detected
+[00:03:09.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:03:09.363] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:03:09.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:03:09.363] Browser LOG     getRecipientEmail: Self-chat detected
+[00:04:35.365] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:04:35.365] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:04:35.365] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:04:35.365] Browser LOG     getRecipientEmail: Self-chat detected
+[00:04:37.362] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:04:37.362] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:04:37.362] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:04:37.362] Browser LOG     getRecipientEmail: Self-chat detected
+[00:04:40.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:04:40.364] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:04:40.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:04:40.364] Browser LOG     getRecipientEmail: Self-chat detected
+[00:04:45.378] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:04:45.378] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:04:45.378] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:04:45.378] Browser LOG     getRecipientEmail: Self-chat detected
+[00:04:48.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:04:48.363] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:04:48.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:04:48.363] Browser LOG     getRecipientEmail: Self-chat detected
+[00:04:59.360] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:04:59.360] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:04:59.360] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:04:59.360] Browser LOG     getRecipientEmail: Self-chat detected
+[00:05:04.365] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:05:04.365] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:05:04.365] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:05:04.365] Browser LOG     getRecipientEmail: Self-chat detected
+[00:05:07.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:05:07.363] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:05:07.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:05:07.363] Browser LOG     getRecipientEmail: Self-chat detected
+[00:05:14.367] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:05:14.367] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:05:14.367] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:05:14.367] Browser LOG     getRecipientEmail: Self-chat detected
+[00:05:21.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:05:21.363] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:05:21.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:05:21.363] Browser LOG     getRecipientEmail: Self-chat detected
+[00:05:22.361] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:05:22.361] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:05:22.361] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:05:22.361] Browser LOG     getRecipientEmail: Self-chat detected
+[00:05:26.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:05:26.363] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:05:26.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:05:26.363] Browser LOG     getRecipientEmail: Self-chat detected
+[00:05:28.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:05:28.363] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:05:28.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:05:28.363] Browser LOG     getRecipientEmail: Self-chat detected
+[00:05:30.371] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:05:30.371] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:05:30.371] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:05:30.371] Browser LOG     getRecipientEmail: Self-chat detected
+[00:05:32.362] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:05:32.362] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:05:32.362] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:05:32.362] Browser LOG     getRecipientEmail: Self-chat detected
+[00:05:47.360] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:05:47.360] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:05:47.360] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:05:47.360] Browser LOG     getRecipientEmail: Self-chat detected
+[00:05:48.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:05:48.363] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:05:48.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:05:48.363] Browser LOG     getRecipientEmail: Self-chat detected
+[00:05:52.366] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:05:52.366] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:05:52.366] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:05:52.366] Browser LOG     getRecipientEmail: Self-chat detected
+[00:05:54.362] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:05:54.362] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:05:54.362] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:05:54.362] Browser LOG     getRecipientEmail: Self-chat detected
+[00:05:58.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:05:58.364] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:05:58.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:05:58.364] Browser LOG     getRecipientEmail: Self-chat detected
+[00:07:22.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:07:22.364] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:07:22.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:07:22.364] Browser LOG     getRecipientEmail: Self-chat detected
+[00:07:27.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:07:27.364] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:07:27.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:07:27.364] Browser LOG     getRecipientEmail: Self-chat detected
+[00:07:27.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:07:27.364] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:07:27.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:07:27.364] Browser LOG     getRecipientEmail: Self-chat detected
+[00:07:28.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:07:28.364] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:07:28.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:07:28.364] Browser LOG     getRecipientEmail: Self-chat detected
+[00:08:10.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:08:10.364] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:08:10.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:08:10.364] Browser LOG     getRecipientEmail: Self-chat detected
+[00:08:11.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:08:11.363] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:08:11.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:08:11.363] Browser LOG     getRecipientEmail: Self-chat detected
+[00:08:17.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:08:17.363] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:08:17.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:08:17.363] Browser LOG     getRecipientEmail: Self-chat detected
+[00:08:20.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:08:20.364] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:08:20.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:08:20.364] Browser LOG     getRecipientEmail: Self-chat detected
+[00:08:23.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:08:23.364] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:08:23.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:08:23.364] Browser LOG     getRecipientEmail: Self-chat detected
+[00:09:38.546] Server  LOG      ✓ Compiled in 9ms
+[00:09:39.402] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:09:39.402] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:09:39.402] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:09:39.402] Browser LOG     getRecipientEmail: Self-chat detected
+[00:09:40.883] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-iXzfSG eYLBjr img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1017:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:09:45.289] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_877695f1._.js:2634:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_877695f1._.js:4144:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_877695f1._.js:5320:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__c3920eca._.js:620:176)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1017:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:09:45.289] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_877695f1._.js:2634:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_877695f1._.js:4144:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_877695f1._.js:5320:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__c3920eca._.js:620:176)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1017:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:09:46.517] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:09:46.517] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:09:46.517] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:09:46.517] Browser LOG     getRecipientEmail: Self-chat detected
+[00:09:46.517] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:09:46.517] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:09:46.517] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:09:46.517] Browser LOG     getRecipientEmail: Self-chat detected
+[00:09:47.706] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:09:47.706] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:09:50.435] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:09:50.435] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:09:50.435] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:09:50.435] Browser LOG     getRecipientEmail: Self-chat detected
+[00:09:50.435] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:09:50.435] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:09:50.435] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:09:50.435] Browser LOG     getRecipientEmail: Self-chat detected
+[00:09:50.543] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:09:50.543] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:09:50.543] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:09:50.543] Browser LOG     getRecipientEmail: Self-chat detected
+[00:09:51.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:09:51.364] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:09:51.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:09:51.364] Browser LOG     getRecipientEmail: Self-chat detected
+[00:09:52.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:09:52.363] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:09:52.363] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:09:52.363] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:33.943] Server  LOG      ✓ Compiled in 29ms
+[00:10:34.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:34.364] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:34.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:34.364] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:34.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:34.364] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:34.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:34.364] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:34.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:34.364] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:34.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:34.364] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:35.362] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:35.362] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:35.362] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:35.362] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:35.362] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:35.362] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:35.362] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:35.362] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:35.620] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:35.620] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:35.620] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:35.620] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:36.439] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:36.439] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:36.439] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:36.439] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:37.400] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-SrznA fRlrAG img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1017:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:10:39.468] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_877695f1._.js:2634:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_877695f1._.js:4144:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_877695f1._.js:5320:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__c3920eca._.js:620:176)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1017:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:10:39.468] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_877695f1._.js:2634:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_877695f1._.js:4144:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_877695f1._.js:5320:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__c3920eca._.js:620:176)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1017:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:10:40.326] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:40.326] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:40.326] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:40.326] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:40.326] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:40.326] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:40.326] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:40.326] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:40.924] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:40.924] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:40.924] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:40.924] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:41.112] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:41.112] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:41.306] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:41.306] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:41.306] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:41.306] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:43.370] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:43.370] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:43.370] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:43.370] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:43.370] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:43.370] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:43.370] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:43.370] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:46.017] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:46.017] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:46.017] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:46.017] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:46.430] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:46.430] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:46.430] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:46.430] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:48.373] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:48.373] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:48.373] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:48.373] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:48.373] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:48.373] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:48.373] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:48.373] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:57.775] Server  LOG      ✓ Compiled in 26ms
+[00:10:58.360] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:58.360] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:58.360] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:58.360] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:58.360] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:58.360] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:58.360] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:58.360] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:58.360] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:58.360] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:58.360] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:58.360] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:58.867] Server  LOG      ✓ Compiled in 26ms
+[00:10:59.369] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:59.369] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:59.369] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:59.369] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:59.369] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:59.369] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:59.369] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:59.369] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:59.369] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:59.369] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:59.369] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:59.369] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:59.369] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:59.369] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:59.369] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:59.369] Browser LOG     getRecipientEmail: Self-chat detected
+[00:10:59.369] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:10:59.369] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:10:59.369] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:10:59.369] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:00.838] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:00.838] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:00.838] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:00.838] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:01.285] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:01.285] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:01.285] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:01.285] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:02.073] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-bJBgwP dtbLvs img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1017:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:11:06.330] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_877695f1._.js:2634:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_877695f1._.js:4144:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_877695f1._.js:5320:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__c3920eca._.js:620:176)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1017:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:11:06.330] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_877695f1._.js:2634:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_877695f1._.js:4144:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_877695f1._.js:5320:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__c3920eca._.js:620:176)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1017:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:11:07.549] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:07.549] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:07.549] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:07.549] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:07.549] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:07.549] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:07.549] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:07.549] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:08.737] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:08.737] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:13.109] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:13.109] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:13.109] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:13.109] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:14.593] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:14.593] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:14.593] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:14.593] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:16.360] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:16.360] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:16.360] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:16.360] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:17.826] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-bJBgwP dtbLvs img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1017:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:11:21.984] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_877695f1._.js:2634:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_877695f1._.js:4144:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_877695f1._.js:5320:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__c3920eca._.js:620:176)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1017:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:11:21.984] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_877695f1._.js:2634:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_877695f1._.js:4144:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_877695f1._.js:5320:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__c3920eca._.js:620:176)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1017:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:11:23.216] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:23.216] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:23.216] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:23.216] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:23.216] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:23.216] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:23.216] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:23.216] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:24.360] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:24.360] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:24.360] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:24.360] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:25.361] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:25.361] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:25.361] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:25.361] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:25.361] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:25.361] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:39.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:39.364] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:39.364] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:39.364] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:42.515] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:42.515] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:42.515] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:42.515] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:43.326] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:43.326] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:43.327] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:43.327] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:45.361] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:45.361] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:45.361] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:45.361] Browser LOG     getRecipientEmail: Self-chat detected
+[00:11:46.365] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:11:46.365] Browser LOG     getRecipientEmail: Found recipients ["abduallh1424aa1@gmail.com"]
+[00:11:46.365] Browser LOG     getRecipientEmail: Processing {"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:46.365] Browser LOG     getRecipientEmail: Self-chat detected

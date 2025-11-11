@@ -17,6 +17,7 @@ import {
   addDoc,
   doc,
   setDoc,
+  getDocs,
   serverTimestamp,
   enableNetwork,
   disableNetwork,
@@ -197,6 +198,28 @@ const EMOJIS = {
     "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "🏴󠁧󠁢󠁷󠁬󠁳󠁿", "🇺🇸", "🇺🇾", "🇺🇿", "🇻🇺", "🇻🇦", "🇻🇪",
     "🇻🇳", "🇼🇫", "🇪🇭", "🇾🇪", "🇿🇲", "🇿🇼"
   ],
+};
+
+// Helper function to check if sender is blocked by recipient
+const checkIfBlocked = async (senderEmail, recipientEmail) => {
+  try {
+    const usersRef = collection(db, "users");
+    const q = query(usersRef, where("email", "==", recipientEmail));
+    const querySnapshot = await getDocs(q);
+    
+    if (!querySnapshot.empty) {
+      const recipientDoc = querySnapshot.docs[0];
+      const recipientData = recipientDoc.data();
+      const blockedUsers = recipientData.blockedUsers || [];
+      
+      return blockedUsers.includes(senderEmail);
+    }
+    
+    return false;
+  } catch (error) {
+    console.error("Error checking block status:", error);
+    return false;
+  }
 };
 
 function ChatScreen({ chat, messages }) {
@@ -454,12 +477,20 @@ function ChatScreen({ chat, messages }) {
 
   // Send message with file using Cloudinary
   const sendFileMessage = async () => {
-    if (!selectedFile || !chatId || !user) return;
+    if (!selectedFile || !chatId || !user || !recipientEmail) return;
 
     setIsUploading(true);
     setSendingError(null);
 
     try {
+      // Check if blocked
+      const isBlocked = await checkIfBlocked(user.email, recipientEmail);
+      if (isBlocked) {
+        setSendingError("You cannot send messages to this user. You have been blocked.");
+        setIsUploading(false);
+        return;
+      }
+
       // Upload to Cloudinary with progress tracking
       const fileURL = await uploadToCloudinary(selectedFile, (progress) => {
         setUploadProgress(progress);
@@ -536,9 +567,16 @@ function ChatScreen({ chat, messages }) {
     e.preventDefault();
     setSendingError(null);
 
-    if (!input?.trim() || !chatId || !user) return;
+    if (!input?.trim() || !chatId || !user || !recipientEmail) return;
 
     try {
+      // Check if blocked
+      const isBlocked = await checkIfBlocked(user.email, recipientEmail);
+      if (isBlocked) {
+        setSendingError("You cannot send messages to this user. You have been blocked.");
+        return;
+      }
+
       const userRef = doc(db, "users", user.uid);
       await setDoc(
         userRef,
@@ -671,12 +709,20 @@ function ChatScreen({ chat, messages }) {
 
   // Send voice message using Cloudinary
   const sendVoiceMessage = async () => {
-    if (!audioBlob || !chatId || !user) return;
+    if (!audioBlob || !chatId || !user || !recipientEmail) return;
 
     setIsUploading(true);
     setSendingError(null);
 
     try {
+      // Check if blocked
+      const isBlocked = await checkIfBlocked(user.email, recipientEmail);
+      if (isBlocked) {
+        setSendingError("You cannot send messages to this user. You have been blocked.");
+        setIsUploading(false);
+        return;
+      }
+
       // Upload to Cloudinary with progress tracking
       const voiceURL = await uploadToCloudinary(audioBlob, (progress) => {
         setUploadProgress(progress);
@@ -1156,7 +1202,7 @@ function ChatScreen({ chat, messages }) {
 
 export default ChatScreen;
 
-// Styled Components (same as before - keeping them unchanged)
+// Styled Components
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -1505,7 +1551,6 @@ const NoEmojisMessage = styled.div`
   font-size: 14px;
 `;
 
-// Reply Preview Styled Components
 const ReplyPreviewBar = styled.div`
   display: flex;
   padding: 12px 16px;

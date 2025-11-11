@@ -19,6 +19,8 @@ import {
   doc, 
   updateDoc,
   arrayUnion,
+  arrayRemove,
+  setDoc,
 } from "firebase/firestore";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -29,8 +31,11 @@ import DialogActions from "@mui/material/DialogActions";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import Typography from "@mui/material/Typography";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 import { DarkModeContext } from "./DarkModeProvider";
-
 
 function Sidebar() {
   const [user] = useAuthState(auth);
@@ -41,6 +46,7 @@ function Sidebar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [blockedUsersOpen, setBlockedUsersOpen] = useState(false);
   
   // Get dark mode context
   const darkModeContext = useContext(DarkModeContext);
@@ -54,6 +60,12 @@ function Sidebar() {
     : null;
 
   const [chatsSnapshot, loading, error] = useCollection(userChatsRef);
+
+  // Get current user document to check blocked users
+  const userDocRef = user ? doc(db, "users", user.uid) : null;
+  const [userDocSnapshot] = useCollection(userDocRef ? query(collection(db, "users"), where("__name__", "==", user.uid)) : null);
+  const currentUserData = userDocSnapshot?.docs?.[0]?.data();
+  const blockedUsers = currentUserData?.blockedUsers || [];
 
   React.useEffect(() => {
     if (error) {
@@ -163,6 +175,15 @@ function Sidebar() {
     setAboutOpen(false);
   };
 
+  const handleBlockedUsersOpen = () => {
+    setBlockedUsersOpen(true);
+    handleHeaderMenuClose();
+  };
+
+  const handleBlockedUsersClose = () => {
+    setBlockedUsersOpen(false);
+  };
+
   const deleteChat = async () => {
     if (!selectedChatId || !user) return;
     try {
@@ -185,21 +206,43 @@ function Sidebar() {
     
     try {
       const userDocRef = doc(db, "users", user.uid);
-      await updateDoc(userDocRef, {
-        blockedUsers: arrayUnion(recipientEmail),
-      });
       
-      const chatRef = doc(db, "chats", selectedChatId);
-      await updateDoc(chatRef, {
-        deletedBy: arrayUnion(user.email),
-      });
+      // Create or update user document with blocked user
+      await setDoc(userDocRef, {
+        email: user.email,
+        blockedUsers: arrayUnion(recipientEmail),
+      }, { merge: true });
       
       handleMenuClose();
-      alert(`${recipientEmail} has been blocked`);
+      alert(`${recipientEmail} has been blocked. They can no longer send you messages.`);
     } catch (error) {
       console.error("Error blocking user:", error);
       alert("Failed to block user");
     }
+  };
+
+  const unblockUser = async (emailToUnblock) => {
+    if (!user) return;
+    
+    try {
+      const userDocRef = doc(db, "users", user.uid);
+      
+      await updateDoc(userDocRef, {
+        blockedUsers: arrayRemove(emailToUnblock),
+      });
+      
+      alert(`${emailToUnblock} has been unblocked`);
+    } catch (error) {
+      console.error("Error unblocking user:", error);
+      alert("Failed to unblock user");
+    }
+  };
+
+  // Check if the recipient is blocked
+  const isUserBlocked = () => {
+    if (!selectedChatUsers || !user) return false;
+    const recipientEmail = selectedChatUsers.find((email) => email !== user.email);
+    return blockedUsers.includes(recipientEmail);
   };
 
   if (!user) return <Container darkMode={darkMode}>Loading...</Container>;
@@ -265,6 +308,7 @@ function Sidebar() {
         onClose={handleHeaderMenuClose}
       >
         <MenuItem onClick={handleSettingsOpen}>Settings</MenuItem>
+        <MenuItem onClick={handleBlockedUsersOpen}>Blocked Users</MenuItem>
         <MenuItem onClick={handleAboutOpen}>About</MenuItem>
       </Menu>
 
@@ -274,7 +318,17 @@ function Sidebar() {
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={blockUser}>Block User</MenuItem>
+        {isUserBlocked() ? (
+          <MenuItem onClick={() => {
+            const recipientEmail = selectedChatUsers.find((email) => email !== user.email);
+            unblockUser(recipientEmail);
+            handleMenuClose();
+          }}>
+            Unblock User
+          </MenuItem>
+        ) : (
+          <MenuItem onClick={blockUser}>Block User</MenuItem>
+        )}
         <MenuItem onClick={deleteChat}>Delete Chat</MenuItem>
       </Menu>
 
@@ -295,6 +349,38 @@ function Sidebar() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleSettingsClose}>Close</Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Blocked Users Dialog */}
+      <Dialog open={blockedUsersOpen} onClose={handleBlockedUsersClose} maxWidth="sm" fullWidth>
+        <DialogTitle>Blocked Users</DialogTitle>
+        <DialogContent>
+          {blockedUsers.length === 0 ? (
+            <Typography variant="body2" color="textSecondary">
+              No blocked users
+            </Typography>
+          ) : (
+            <List>
+              {blockedUsers.map((blockedEmail) => (
+                <ListItem key={blockedEmail}>
+                  <ListItemText primary={blockedEmail} />
+                  <ListItemSecondaryAction>
+                    <Button 
+                      variant="outlined" 
+                      size="small"
+                      onClick={() => unblockUser(blockedEmail)}
+                    >
+                      Unblock
+                    </Button>
+                  </ListItemSecondaryAction>
+                </ListItem>
+              ))}
+            </List>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleBlockedUsersClose}>Close</Button>
         </DialogActions>
       </Dialog>
 
@@ -320,7 +406,7 @@ function Sidebar() {
               <li>Real-time messaging</li>
               <li>User authentication</li>
               <li>Search chats</li>
-              <li>Block users</li>
+              <li>Block/Unblock users</li>
               <li>Delete conversations</li>
               <li>Dark mode support</li>
             </ul>

@@ -485,24 +485,23 @@ function ChatScreen({ chat, messages }) {
         fileSize: selectedFile.size,
       };
 
-      // In sendMessage function
-    if (replyingTo) {
-      const replyToData = {
-        id: replyingTo.id,
-        user: replyingTo.user,
-        message: replyingTo.message,
-      };
-      
-      // Only add these fields if they exist
-      if (replyingTo.fileName) replyToData.fileName = replyingTo.fileName;
-      if (replyingTo.fileType) replyToData.fileType = replyingTo.fileType;
-      if (replyingTo.voiceURL) replyToData.voiceURL = replyingTo.voiceURL;
-      if (replyingTo.voiceDuration !== undefined) replyToData.voiceDuration = replyingTo.voiceDuration;
-      if (replyingTo.fileURL) replyToData.fileURL = replyingTo.fileURL;
-      
-      messageData.replyTo = replyToData;
-  
-}
+      // Add reply data if replying
+      if (replyingTo) {
+        const replyToData = Object.fromEntries(
+          Object.entries({
+            id: replyingTo.id,
+            user: replyingTo.user,
+            message: replyingTo.message,
+            fileName: replyingTo.fileName,
+            fileType: replyingTo.fileType,
+            fileURL: replyingTo.fileURL,
+            voiceURL: replyingTo.voiceURL,
+            voiceDuration: replyingTo.voiceDuration,
+          }).filter(([_, value]) => value !== undefined && value !== null)
+        );
+        
+        messageData.replyTo = replyToData;
+      }
 
       await addDoc(collection(db, "chats", chatId, "messages"), messageData);
 
@@ -548,13 +547,20 @@ function ChatScreen({ chat, messages }) {
 
       // Add reply data if replying
       if (replyingTo) {
-        messageData.replyTo = {
-          id: replyingTo.id,
-          user: replyingTo.user,
-          message: replyingTo.message,
-          fileName: replyingTo.fileName,
-          fileType: replyingTo.fileType,
-        };
+        const replyToData = Object.fromEntries(
+          Object.entries({
+            id: replyingTo.id,
+            user: replyingTo.user,
+            message: replyingTo.message,
+            fileName: replyingTo.fileName,
+            fileType: replyingTo.fileType,
+            fileURL: replyingTo.fileURL,
+            voiceURL: replyingTo.voiceURL,
+            voiceDuration: replyingTo.voiceDuration,
+          }).filter(([_, value]) => value !== undefined && value !== null)
+        );
+        
+        messageData.replyTo = replyToData;
       }
 
       await addDoc(collection(db, "chats", chatId, "messages"), messageData);
@@ -676,13 +682,20 @@ function ChatScreen({ chat, messages }) {
 
       // Add reply data if replying
       if (replyingTo) {
-        messageData.replyTo = {
-          id: replyingTo.id,
-          user: replyingTo.user,
-          message: replyingTo.message,
-          fileName: replyingTo.fileName,
-          fileType: replyingTo.fileType,
-        };
+        const replyToData = Object.fromEntries(
+          Object.entries({
+            id: replyingTo.id,
+            user: replyingTo.user,
+            message: replyingTo.message,
+            fileName: replyingTo.fileName,
+            fileType: replyingTo.fileType,
+            fileURL: replyingTo.fileURL,
+            voiceURL: replyingTo.voiceURL,
+            voiceDuration: replyingTo.voiceDuration,
+          }).filter(([_, value]) => value !== undefined && value !== null)
+        );
+        
+        messageData.replyTo = replyToData;
       }
 
       await addDoc(collection(db, "chats", chatId, "messages"), messageData);

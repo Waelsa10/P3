@@ -1,6 +1,6 @@
 [
   {
-    "origin": ["http://localhost:3000", "http://localhost:*"],
+    "origin": ["http://localhost:3000", "http://localhost:*","https://p3-gah0.onrender.com"],
     "method": ["GET", "POST", "PUT", "DELETE", "HEAD"],
     "responseHeader": ["Content-Type", "Authorization", "Content-Length"],
     "maxAgeSeconds": 3600

@@ -107,21 +107,30 @@ module.exports=[68799,(a,b,c)=>{"use strict";var d=a.r(14629);Object.definePrope
 
   /* Mobile and Tablet Responsive */
   @media (max-width: 1024px) {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 999;
-    max-width: 85%;
-    width: 85%;
-    transform: ${a=>a.sidebarOpen?"translateX(0)":"translateX(-100%)"};
+    ${a=>a.sidebarOpen?`
+      /* When sidebar is open on mobile - take full width */
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 999;
+      max-width: 100%;
+      width: 100%;
+      transform: translateX(0);
+    `:`
+      /* When sidebar is closed - hide off screen */
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 999;
+      max-width: 85%;
+      width: 85%;
+      transform: translateX(-100%);
+    `}
     transition: transform 0.3s ease-in-out;
     box-shadow: ${a=>a.sidebarOpen?"2px 0 10px rgba(0,0,0,0.3)":"none"};
-  }
-
-  @media (max-width: 480px) {
-    max-width: 90%;
-    width: 90%;
   }
 `,K=(0,h.default)(i.default)`
   cursor: pointer;

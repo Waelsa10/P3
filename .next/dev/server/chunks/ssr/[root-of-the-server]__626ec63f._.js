@@ -4101,8 +4101,6 @@ __turbopack_async_result__();
 "[project]/components/ChatScreen/components/ChatInput.jsx [ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
-return __turbopack_context__.a(async (__turbopack_handle_async_dependencies__, __turbopack_async_result__) => { try {
-
 // components/ChatScreen/components/ChatInput.jsx
 __turbopack_context__.s([
     "default",
@@ -4110,16 +4108,12 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/styled-components [external] (styled-components, cjs)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconButton$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/IconButton/IconButton.js [ssr] (ecmascript) <export default as IconButton>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$InsertEmoticon$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/InsertEmoticon.js [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Mic$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Mic.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Send$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Send.js [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Stop$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Stop.js [ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$ChatScreen$2e$styles$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/ChatScreen.styles.js [ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$utils$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/utils.js [ssr] (ecmascript)");
-var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
-    __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$utils$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__
-]);
-[__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$utils$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__] = __turbopack_async_dependencies__.then ? (await __turbopack_async_dependencies__)() : __turbopack_async_dependencies__;
 ;
 ;
 ;
@@ -4128,113 +4122,297 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 ;
 ;
-const ChatInput = ({ input, setInput, inputRef, isRecording, recordingTime, onSubmit, onEmojiClick, onStartRecording, onStopRecording, darkMode })=>{
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$ChatScreen$2e$styles$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["InputContainer"], {
-        onSubmit: onSubmit,
+function ChatInput({ input, setInput, inputRef, isRecording, recordingTime, onSubmit, onEmojiClick, onStartRecording, onStopRecording, darkMode }) {
+    const formatTime = (seconds)=>{
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins}:${secs.toString().padStart(2, "0")}`;
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(InputContainer, {
         darkMode: darkMode,
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconButton$3e$__["IconButton"], {
-                onClick: onEmojiClick,
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$InsertEmoticon$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
-                    style: {
-                        color: darkMode ? '#e0e0e0' : 'inherit'
-                    }
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Form, {
+            onSubmit: onSubmit,
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(EmojiButton, {
+                    onClick: onEmojiClick,
+                    darkMode: darkMode,
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$InsertEmoticon$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                        fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
+                        lineNumber: 32,
+                        columnNumber: 11
+                    }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
                     lineNumber: 31,
                     columnNumber: 9
-                }, ("TURBOPACK compile-time value", void 0))
-            }, void 0, false, {
-                fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
-                lineNumber: 30,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0)),
-            isRecording ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$ChatScreen$2e$styles$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["RecordingIndicator"], {
-                darkMode: darkMode,
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$ChatScreen$2e$styles$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["RecordingDot"], {}, void 0, false, {
-                        fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
-                        lineNumber: 36,
-                        columnNumber: 11
-                    }, ("TURBOPACK compile-time value", void 0)),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
-                        children: [
-                            "Recording... ",
-                            (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$utils$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["formatTime"])(recordingTime)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
-                        lineNumber: 37,
-                        columnNumber: 11
-                    }, ("TURBOPACK compile-time value", void 0)),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconButton$3e$__["IconButton"], {
-                        onClick: onStopRecording,
-                        style: {
-                            color: darkMode ? '#e0e0e0' : '#f44336'
-                        },
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Stop$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
-                            fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
-                            lineNumber: 39,
-                            columnNumber: 13
-                        }, ("TURBOPACK compile-time value", void 0))
-                    }, void 0, false, {
-                        fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
-                        lineNumber: 38,
-                        columnNumber: 11
-                    }, ("TURBOPACK compile-time value", void 0))
-                ]
-            }, void 0, true, {
-                fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
-                lineNumber: 35,
-                columnNumber: 9
-            }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$ChatScreen$2e$styles$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["Input"], {
-                ref: inputRef,
-                darkMode: darkMode,
-                value: input,
-                onChange: (e)=>setInput(e.target.value),
-                placeholder: "Type a message",
-                type: "text"
-            }, void 0, false, {
-                fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
-                lineNumber: 43,
-                columnNumber: 9
-            }, ("TURBOPACK compile-time value", void 0)),
-            !isRecording && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$ChatScreen$2e$styles$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["SendButton"], {
-                type: "submit",
-                disabled: !input?.trim(),
-                darkMode: darkMode,
-                children: "Send"
-            }, void 0, false, {
-                fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
-                lineNumber: 54,
-                columnNumber: 9
-            }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconButton$3e$__["IconButton"], {
-                onClick: isRecording ? onStopRecording : onStartRecording,
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Mic$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
-                    style: {
-                        color: isRecording ? '#f44336' : darkMode ? '#e0e0e0' : 'inherit'
-                    }
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Input, {
+                    ref: inputRef,
+                    value: input,
+                    onChange: (e)=>setInput(e.target.value),
+                    placeholder: "Type a message",
+                    disabled: isRecording,
+                    darkMode: darkMode
                 }, void 0, false, {
                     fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
-                    lineNumber: 64,
+                    lineNumber: 35,
                     columnNumber: 9
-                }, ("TURBOPACK compile-time value", void 0))
-            }, void 0, false, {
-                fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
-                lineNumber: 63,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0))
-        ]
-    }, void 0, true, {
+                }, this),
+                isRecording ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(RecordingContainer, {
+                    darkMode: darkMode,
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(RecordingIndicator, {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(RecordingDot, {}, void 0, false, {
+                                    fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
+                                    lineNumber: 47,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(RecordingTime, {
+                                    children: formatTime(recordingTime)
+                                }, void 0, false, {
+                                    fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
+                                    lineNumber: 48,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
+                            lineNumber: 46,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(StopButton, {
+                            onClick: onStopRecording,
+                            darkMode: darkMode,
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Stop$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                                fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
+                                lineNumber: 51,
+                                columnNumber: 15
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
+                            lineNumber: 50,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
+                    lineNumber: 45,
+                    columnNumber: 11
+                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(ButtonsContainer, {
+                    children: input.trim() ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(SendButton, {
+                        type: "submit",
+                        darkMode: darkMode,
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Send$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                            fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
+                            lineNumber: 58,
+                            columnNumber: 17
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
+                        lineNumber: 57,
+                        columnNumber: 15
+                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(MicButton, {
+                        onClick: onStartRecording,
+                        darkMode: darkMode,
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Mic$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                            fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
+                            lineNumber: 62,
+                            columnNumber: 17
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
+                        lineNumber: 61,
+                        columnNumber: 15
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
+                    lineNumber: 55,
+                    columnNumber: 11
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
+            lineNumber: 30,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
         fileName: "[project]/components/ChatScreen/components/ChatInput.jsx",
         lineNumber: 29,
         columnNumber: 5
-    }, ("TURBOPACK compile-time value", void 0));
-};
+    }, this);
+}
 const __TURBOPACK__default__export__ = ChatInput;
-__turbopack_async_result__();
-} catch(e) { __turbopack_async_result__(e); } }, false);}),
+// Styled Components
+const InputContainer = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  position: sticky;
+  bottom: 0;
+  background-color: ${(props)=>props.darkMode ? "#1e1e1e" : "white"};
+  border-top: 1px solid ${(props)=>props.darkMode ? "#333" : "whitesmoke"};
+  z-index: 100;
+
+  @media (max-width: 768px) {
+    padding: 8px;
+  }
+`;
+const Form = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].form`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    gap: 4px;
+  }
+`;
+const EmojiButton = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconButton$3e$__["IconButton"])`
+  && {
+    color: ${(props)=>props.darkMode ? "#b0b0b0" : "#919191"};
+    padding: 8px;
+    
+    @media (max-width: 768px) {
+      padding: 6px;
+    }
+
+    &:hover {
+      background-color: ${(props)=>props.darkMode ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)"};
+    }
+  }
+`;
+const Input = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].input`
+  flex: 1;
+  outline: 0;
+  border: none;
+  border-radius: 25px;
+  background-color: ${(props)=>props.darkMode ? "#2a2a2a" : "whitesmoke"};
+  color: ${(props)=>props.darkMode ? "#e0e0e0" : "black"};
+  padding: 12px 20px;
+  font-size: 15px;
+  min-width: 0; /* Allow input to shrink below content size */
+
+  &::placeholder {
+    color: ${(props)=>props.darkMode ? "#888" : "#999"};
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+`;
+const ButtonsContainer = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+`;
+const SendButton = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconButton$3e$__["IconButton"])`
+  && {
+    color: ${(props)=>props.darkMode ? "#25D366" : "#128C7E"};
+    padding: 8px;
+
+    @media (max-width: 768px) {
+      padding: 6px;
+    }
+
+    &:hover {
+      background-color: ${(props)=>props.darkMode ? "rgba(37, 211, 102, 0.1)" : "rgba(18, 140, 126, 0.1)"};
+    }
+  }
+`;
+const MicButton = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconButton$3e$__["IconButton"])`
+  && {
+    color: ${(props)=>props.darkMode ? "#b0b0b0" : "#919191"};
+    padding: 8px;
+
+    @media (max-width: 768px) {
+      padding: 6px;
+    }
+
+    &:hover {
+      background-color: ${(props)=>props.darkMode ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)"};
+    }
+  }
+`;
+const RecordingContainer = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: ${(props)=>props.darkMode ? "#2a2a2a" : "#f0f0f0"};
+  border-radius: 25px;
+  padding: 8px 12px;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    gap: 8px;
+    padding: 6px 10px;
+  }
+`;
+const RecordingIndicator = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  @media (max-width: 768px) {
+    gap: 6px;
+  }
+`;
+const RecordingDot = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #f44336;
+  animation: pulse 1.5s ease-in-out infinite;
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(0.8);
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 10px;
+    height: 10px;
+  }
+`;
+const RecordingTime = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].span`
+  color: ${(props)=>props.darkMode ? "#e0e0e0" : "#333"};
+  font-size: 14px;
+  font-weight: 500;
+  min-width: 40px;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+    min-width: 35px;
+  }
+`;
+const StopButton = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconButton$3e$__["IconButton"])`
+  && {
+    color: #f44336;
+    padding: 6px;
+
+    @media (max-width: 768px) {
+      padding: 4px;
+    }
+
+    &:hover {
+      background-color: rgba(244, 67, 54, 0.1);
+    }
+  }
+`;
+}),
 "[project]/components/ChatScreen/components/EmojiPicker.jsx [ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -5176,12 +5354,11 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
     __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useRecipientData$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__,
     __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useMessages$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__,
     __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$MessageList$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__,
-    __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ChatInput$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__,
     __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$FileUploadDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__,
     __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$VoiceRecordingDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__,
     __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$utils$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__
 ]);
-[__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useFileUpload$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useVoiceRecording$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useRecipientData$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useMessages$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$MessageList$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ChatInput$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$FileUploadDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$VoiceRecordingDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$utils$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__] = __turbopack_async_dependencies__.then ? (await __turbopack_async_dependencies__)() : __turbopack_async_dependencies__;
+[__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useFileUpload$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useVoiceRecording$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useRecipientData$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useMessages$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$MessageList$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$FileUploadDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$VoiceRecordingDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$utils$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__] = __turbopack_async_dependencies__.then ? (await __turbopack_async_dependencies__)() : __turbopack_async_dependencies__;
 ;
 ;
 ;
@@ -5205,7 +5382,6 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 ;
 ;
-// ✅ ADD DEFAULT PROPS HERE
 function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{} }) {
     const [user] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$firebase$2d$hooks$2f$auth__$5b$external$5d$__$28$react$2d$firebase$2d$hooks$2f$auth$2c$__cjs$29$__["useAuthState"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["auth"]);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
@@ -5230,67 +5406,295 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
     const emojiPicker = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useEmojiPicker$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["useEmojiPicker"])();
     const fileUpload = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useFileUpload$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["useFileUpload"])(chatId, user, recipientEmail);
     const voiceRecording = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useVoiceRecording$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["useVoiceRecording"])(chatId, user, recipientEmail);
-    // Mark recipient's messages as READ when viewing chat
+    // Helper function to check if recipient is online
+    const isRecipientOnline = (lastSeenTimestamp)=>{
+        if (!lastSeenTimestamp) return false;
+        const lastSeen = lastSeenTimestamp.toDate ? lastSeenTimestamp.toDate() : new Date(lastSeenTimestamp);
+        const now = new Date();
+        const diffInSeconds = (now - lastSeen) / 1000;
+        // Consider online if last seen within 30 seconds
+        return diffInSeconds < 30;
+    };
+    // ✅ MARK RECIPIENT'S MESSAGES AS READ when chat opens (NOT for regular chats)
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
-        if (!chatId || !user || !recipientEmail || isSelfChat) return;
-        const markMessagesAsRead = async ()=>{
+        if (!chatId || !user || !recipientEmail) return;
+        const markRecipientMessagesAsRead = async ()=>{
             try {
                 const messagesRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], 'chats', chatId, 'messages');
-                const unreadQuery = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["query"])(messagesRef, (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('user', '==', recipientEmail), (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('status', '!=', __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].READ));
-                const snapshot = await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["getDocs"])(unreadQuery);
-                if (snapshot.empty) {
-                    console.log('No unread messages to mark as read');
-                    return;
+                if (isSelfChat) {
+                    // Self-chat: mark your DELIVERED messages as READ
+                    const deliveredQuery = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["query"])(messagesRef, (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('user', '==', user.email), (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('status', '==', __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].DELIVERED));
+                    const snapshot = await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["getDocs"])(deliveredQuery);
+                    if (snapshot.empty) {
+                        console.log('✓ [Self-chat] No delivered messages to mark as read');
+                        return;
+                    }
+                    const updatePromises = snapshot.docs.map((messageDoc)=>(0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["updateDoc"])(messageDoc.ref, {
+                            status: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].READ,
+                            readAt: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
+                        }));
+                    await Promise.all(updatePromises);
+                    console.log(`✅ [Self-chat] Marked ${snapshot.docs.length} messages as READ`);
+                } else {
+                    // ✅ Regular chat: ONLY mark messages where user == recipientEmail
+                    const allMessagesQuery = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["query"])(messagesRef);
+                    const snapshot = await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["getDocs"])(allMessagesQuery);
+                    if (snapshot.empty) {
+                        console.log('✓ No messages in chat');
+                        return;
+                    }
+                    // Filter to get ONLY messages sent BY the recipient (not by you)
+                    const recipientMessages = snapshot.docs.filter((doc)=>{
+                        const data = doc.data();
+                        const isFromRecipient = data.user === recipientEmail;
+                        const isNotRead = data.status !== __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].READ;
+                        return isFromRecipient && isNotRead;
+                    });
+                    if (recipientMessages.length === 0) {
+                        console.log('✓ No unread messages from recipient');
+                        return;
+                    }
+                    console.log(`📖 Found ${recipientMessages.length} unread messages FROM ${recipientEmail}`);
+                    // Mark each message as READ (they will stay DELIVERED)
+                    const updatePromises = recipientMessages.map((messageDoc)=>{
+                        const msgData = messageDoc.data();
+                        console.log(`  → Marking message from ${msgData.user}: "${msgData.message?.substring(0, 30)}..." as READ`);
+                        return (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["updateDoc"])(messageDoc.ref, {
+                            status: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].READ,
+                            readAt: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
+                        });
+                    });
+                    await Promise.all(updatePromises);
+                    console.log(`✅ Marked ${recipientMessages.length} messages from ${recipientEmail} as READ`);
                 }
-                const updatePromises = snapshot.docs.map((messageDoc)=>(0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["updateDoc"])(messageDoc.ref, {
-                        status: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].READ,
-                        readAt: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
-                    }));
-                await Promise.all(updatePromises);
-                console.log(`Marked ${snapshot.docs.length} messages as read`);
             } catch (error) {
-                console.error('Error marking messages as read:', error);
+                console.error('❌ Error marking messages as read:', error);
             }
         };
-        markMessagesAsRead();
+        // Mark messages as read when chat opens
+        markRecipientMessagesAsRead();
+        // Also mark as read when window/tab gains focus
         const handleFocus = ()=>{
-            markMessagesAsRead();
+            console.log('🔍 Window focused - checking for unread messages');
+            markRecipientMessagesAsRead();
         };
         window.addEventListener('focus', handleFocus);
-        return ()=>window.removeEventListener('focus', handleFocus);
+        return ()=>{
+            window.removeEventListener('focus', handleFocus);
+        };
     }, [
         chatId,
         user,
         recipientEmail,
         isSelfChat
     ]);
-    // Update own messages to DELIVERED after a short delay
+    // ✅ For SELF-CHAT ONLY: Update SENT → DELIVERED immediately, then DELIVERED → READ after a delay
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
-        if (!chatId || !user || !recipientEmail || isSelfChat) return;
-        const updateToDelivered = async ()=>{
+        if (!chatId || !user || !isSelfChat) return;
+        const updateSelfChatMessages = async ()=>{
             try {
                 const messagesRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], 'chats', chatId, 'messages');
+                // Step 1: Update SENT to DELIVERED (immediately when chat opens)
                 const sentQuery = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["query"])(messagesRef, (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('user', '==', user.email), (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('status', '==', __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].SENT));
-                const snapshot = await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["getDocs"])(sentQuery);
+                const sentSnapshot = await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["getDocs"])(sentQuery);
+                if (sentSnapshot.docs.length > 0) {
+                    console.log(`📤 [Self-chat] Found ${sentSnapshot.docs.length} SENT messages, updating to DELIVERED...`);
+                    const updateToDeliveredPromises = sentSnapshot.docs.map((messageDoc)=>(0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["updateDoc"])(messageDoc.ref, {
+                            status: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].DELIVERED,
+                            deliveredAt: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
+                        }));
+                    await Promise.all(updateToDeliveredPromises);
+                    console.log(`✅ [Self-chat] Updated ${sentSnapshot.docs.length} messages to DELIVERED`);
+                }
+                // Step 2: Update DELIVERED to READ (after a short delay)
+                setTimeout(async ()=>{
+                    try {
+                        const deliveredQuery = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["query"])(messagesRef, (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('user', '==', user.email), (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('status', '==', __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].DELIVERED));
+                        const deliveredSnapshot = await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["getDocs"])(deliveredQuery);
+                        if (deliveredSnapshot.docs.length > 0) {
+                            console.log(`📖 [Self-chat] Found ${deliveredSnapshot.docs.length} DELIVERED messages, updating to READ...`);
+                            const updateToReadPromises = deliveredSnapshot.docs.map((messageDoc)=>(0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["updateDoc"])(messageDoc.ref, {
+                                    status: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].READ,
+                                    readAt: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
+                                }));
+                            await Promise.all(updateToReadPromises);
+                            console.log(`✅ [Self-chat] Updated ${deliveredSnapshot.docs.length} messages to READ`);
+                        }
+                    } catch (error) {
+                        console.error('❌ Error updating to READ:', error);
+                    }
+                }, 1500);
+            } catch (error) {
+                console.error('❌ Error updating self-chat messages:', error);
+            }
+        };
+        // Run on component mount
+        updateSelfChatMessages();
+        // Also run when window gains focus
+        const handleFocus = ()=>{
+            console.log('🔍 [Self-chat] Window focused - updating message statuses');
+            updateSelfChatMessages();
+        };
+        window.addEventListener('focus', handleFocus);
+        return ()=>{
+            window.removeEventListener('focus', handleFocus);
+        };
+    }, [
+        chatId,
+        user,
+        isSelfChat
+    ]);
+    // ✅ Real-time listener for recipient's online status - ONLY for regular chats
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        if (!chatId || !user || !recipientEmail) return;
+        const markMessagesToMeAsRead = async ()=>{
+            try {
+                const messagesRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], 'chats', chatId, 'messages');
+                if (isSelfChat) {
+                    // Self-chat: mark your own DELIVERED messages as READ
+                    const deliveredQuery = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["query"])(messagesRef, (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('user', '==', user.email), (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('status', '==', __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].DELIVERED));
+                    const snapshot = await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["getDocs"])(deliveredQuery);
+                    if (snapshot.empty) {
+                        console.log('✓ [Self-chat] No delivered messages to mark as read');
+                        return;
+                    }
+                    const updatePromises = snapshot.docs.map((messageDoc)=>(0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["updateDoc"])(messageDoc.ref, {
+                            status: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].READ,
+                            readAt: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
+                        }));
+                    await Promise.all(updatePromises);
+                    console.log(`✅ [Self-chat] Marked ${snapshot.docs.length} messages as read`);
+                } else {
+                    // ✅ Regular chat: ONLY mark messages sent TO me (from recipient)
+                    const messagesToMeQuery = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["query"])(messagesRef, (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('user', '==', recipientEmail), (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('status', '!=', __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].READ) // Not already read
+                    );
+                    const snapshot = await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["getDocs"])(messagesToMeQuery);
+                    if (snapshot.empty) {
+                        console.log('✓ No unread messages from recipient to mark as read');
+                        return;
+                    }
+                    console.log(`📖 Found ${snapshot.docs.length} unread messages FROM ${recipientEmail} to mark as read`);
+                    // Mark each message as read
+                    const updatePromises = snapshot.docs.map((messageDoc)=>{
+                        const msgData = messageDoc.data();
+                        console.log(`  → Marking message from ${msgData.user}: "${msgData.message?.substring(0, 30)}..." as read`);
+                        return (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["updateDoc"])(messageDoc.ref, {
+                            status: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].READ,
+                            readAt: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
+                        });
+                    });
+                    await Promise.all(updatePromises);
+                    console.log(`✅ Marked ${snapshot.docs.length} messages from ${recipientEmail} as read`);
+                }
+            } catch (error) {
+                console.error('❌ Error marking messages as read:', error);
+            }
+        };
+        // Mark messages as read when chat opens
+        markMessagesToMeAsRead();
+        // Also mark as read when window/tab gains focus
+        const handleFocus = ()=>{
+            console.log('🔍 Window focused - checking for unread messages TO me');
+            markMessagesToMeAsRead();
+        };
+        window.addEventListener('focus', handleFocus);
+        return ()=>{
+            window.removeEventListener('focus', handleFocus);
+        };
+    }, [
+        chatId,
+        user,
+        recipientEmail,
+        isSelfChat
+    ]);
+    // ✅ NEW: Mark YOUR messages as READ when RECIPIENT opens the chat
+    // This should be triggered by a real-time listener when recipient reads your messages
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        if (!chatId || !user || !recipientEmail || isSelfChat) return;
+        let unsubscribe = null;
+        const setupRecipientReadListener = async ()=>{
+            try {
+                const messagesRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], 'chats', chatId, 'messages');
+                // Listen to messages collection for changes
+                unsubscribe = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["onSnapshot"])((0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["query"])(messagesRef, (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('user', '==', user.email)), (snapshot)=>{
+                    snapshot.docChanges().forEach((change)=>{
+                        if (change.type === 'modified') {
+                            const messageData = change.doc.data();
+                            if (messageData.status === __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].READ && messageData.user === user.email) {
+                                console.log(`✅ Your message was marked as read by recipient: "${messageData.message?.substring(0, 30)}..."`);
+                            }
+                        }
+                    });
+                }, (error)=>{
+                    console.error('❌ Error in recipient read listener:', error);
+                });
+            } catch (error) {
+                console.error('❌ Error setting up recipient read listener:', error);
+            }
+        };
+        setupRecipientReadListener();
+        return ()=>{
+            if (unsubscribe) {
+                console.log('🔌 Cleaning up recipient read listener');
+                unsubscribe();
+            }
+        };
+    }, [
+        chatId,
+        user,
+        recipientEmail,
+        isSelfChat
+    ]);
+    // ✅ KEEP: Update YOUR messages to DELIVERED (when recipient is online)
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        if (!chatId || !user || !recipientEmail) return;
+        const updateYourMessagesToDelivered = async ()=>{
+            try {
+                const messagesRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], 'chats', chatId, 'messages');
+                if (isSelfChat) {
+                    // Self-chat: update SENT to DELIVERED immediately
+                    const sentQuery = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["query"])(messagesRef, (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('user', '==', user.email), (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('status', '==', __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].SENT));
+                    const snapshot = await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["getDocs"])(sentQuery);
+                    if (snapshot.empty) return;
+                    const updatePromises = snapshot.docs.map((messageDoc)=>(0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["updateDoc"])(messageDoc.ref, {
+                            status: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].DELIVERED,
+                            deliveredAt: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
+                        }));
+                    await Promise.all(updatePromises);
+                    console.log(`✅ [Self-chat] Updated ${snapshot.docs.length} messages to DELIVERED`);
+                    return;
+                }
+                // Regular chat: only update to DELIVERED if recipient is online
+                if (!recipientSnapshot?.docs?.[0]) return;
+                const recipientData = recipientSnapshot.docs[0].data();
+                const recipientOnline = isRecipientOnline(recipientData?.lastSeen);
+                if (!recipientOnline) {
+                    console.log('🔴 Recipient is OFFLINE - keeping messages as SENT');
+                    return;
+                }
+                console.log('🟢 Recipient is ONLINE - updating YOUR messages to DELIVERED');
+                const yourSentMessagesQuery = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["query"])(messagesRef, (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('user', '==', user.email), (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])('status', '==', __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].SENT));
+                const snapshot = await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["getDocs"])(yourSentMessagesQuery);
                 if (snapshot.empty) return;
                 const updatePromises = snapshot.docs.map((messageDoc)=>(0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["updateDoc"])(messageDoc.ref, {
                         status: __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].DELIVERED,
                         deliveredAt: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
                     }));
                 await Promise.all(updatePromises);
-                console.log(`Updated ${snapshot.docs.length} messages to delivered`);
+                console.log(`✅ Updated ${snapshot.docs.length} of YOUR messages to DELIVERED`);
             } catch (error) {
-                console.error('Error updating to delivered:', error);
+                console.error('❌ Error updating to delivered:', error);
             }
         };
-        const timer = setTimeout(updateToDelivered, 2000);
+        const delay = isSelfChat ? 500 : 2000;
+        const timer = setTimeout(updateYourMessagesToDelivered, delay);
         return ()=>clearTimeout(timer);
     }, [
         chatId,
         user,
         recipientEmail,
         isSelfChat,
-        messagesSnapshot
+        recipientSnapshot
     ]);
     // Monitor online status
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
@@ -5343,9 +5747,9 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
         if (!chatId || !messageId) return;
         try {
             await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["deleteDoc"])((0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "chats", chatId, "messages", messageId));
-            console.log("Message deleted successfully");
+            console.log("✅ Message deleted successfully");
         } catch (error) {
-            console.error("Error deleting message:", error);
+            console.error("❌ Error deleting message:", error);
             setSendingError("Failed to delete message. Please try again.");
         }
     };
@@ -5359,10 +5763,13 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
         setReplyingTo(null);
     };
     // Send text message
+    // In your sendMessage function, you can add:
     const sendMessage = async (e)=>{
         e.preventDefault();
         setSendingError(null);
         if (!input?.trim() || !chatId || !user || !recipientEmail) return;
+        // Create a temporary message with pending status for immediate UI feedback
+        const tempMessageId = Date.now().toString();
         try {
             if (!isSelfChat) {
                 const isBlocked = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$utils$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["checkIfBlocked"])(user.email, recipientEmail);
@@ -5371,9 +5778,11 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                     return;
                 }
             }
+            // Update user's last seen
             const userRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users", user.uid);
             await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["setDoc"])(userRef, {
-                lastSeen: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
+                lastSeen: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])(),
+                email: user.email
             }, {
                 merge: true
             });
@@ -5388,12 +5797,13 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
             if (replyData) {
                 messageData.replyTo = replyData;
             }
+            console.log(`📤 Sending message with status: ${__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["MESSAGE_STATUS"].SENT}`);
             await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["addDoc"])((0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "chats", chatId, "messages"), messageData);
             setInput("");
             setReplyingTo(null);
             scrollToBottom();
         } catch (error) {
-            console.error("Error sending message:", error);
+            console.error("❌ Error sending message:", error);
             setSendingError("Failed to send message. Please try again.");
         }
     };
@@ -5405,12 +5815,12 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 children: "You are currently offline. Please check your internet connection."
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 291,
+                lineNumber: 608,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/components/ChatScreen/index.jsx",
-            lineNumber: 290,
+            lineNumber: 607,
             columnNumber: 7
         }, this);
     }
@@ -5422,12 +5832,12 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 children: error
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 301,
+                lineNumber: 618,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/components/ChatScreen/index.jsx",
-            lineNumber: 300,
+            lineNumber: 617,
             columnNumber: 7
         }, this);
     }
@@ -5446,7 +5856,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 onToggleSidebar: onToggleSidebar
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 308,
+                lineNumber: 625,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -5457,7 +5867,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 accept: "*/*"
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 320,
+                lineNumber: 637,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$MessageList$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5470,7 +5880,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 328,
+                lineNumber: 645,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$EmojiPicker$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5486,7 +5896,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 338,
+                lineNumber: 655,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$FileUploadDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5502,7 +5912,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 351,
+                lineNumber: 668,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$VoiceRecordingDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5517,7 +5927,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 372,
+                lineNumber: 689,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ProfileDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5529,7 +5939,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 390,
+                lineNumber: 707,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ReplyPreview$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5539,7 +5949,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 399,
+                lineNumber: 716,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ChatInput$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5555,13 +5965,13 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 406,
+                lineNumber: 723,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/ChatScreen/index.jsx",
-        lineNumber: 307,
+        lineNumber: 624,
         columnNumber: 5
     }, this);
 }

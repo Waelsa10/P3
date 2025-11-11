@@ -906,49 +906,36 @@ var _s = __turbopack_context__.k.signature();
 ;
 const useOnlineStatus = ()=>{
     _s();
-    const [user, loading, error] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$auth$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useAuthState"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["auth"]);
+    const [user] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$auth$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useAuthState"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["auth"]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "useOnlineStatus.useEffect": ()=>{
-            // Don't run if loading or no user
-            if (loading || !user) return;
+            if (!user) return;
             const userRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users", user.uid);
             // Set user as online
             const setOnline = {
                 "useOnlineStatus.useEffect.setOnline": async ()=>{
-                    try {
-                        await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["setDoc"])(userRef, {
-                            isOnline: true,
-                            lastSeen: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["serverTimestamp"])()
-                        }, {
-                            merge: true
-                        });
-                    } catch (error) {
-                        console.error("Error setting online status:", error);
-                    }
+                    await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["setDoc"])(userRef, {
+                        isOnline: true,
+                        lastSeen: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["serverTimestamp"])()
+                    }, {
+                        merge: true
+                    });
                 }
             }["useOnlineStatus.useEffect.setOnline"];
             // Set user as offline
             const setOffline = {
                 "useOnlineStatus.useEffect.setOffline": async ()=>{
-                    try {
-                        await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["setDoc"])(userRef, {
-                            isOnline: false,
-                            lastSeen: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["serverTimestamp"])()
-                        }, {
-                            merge: true
-                        });
-                    } catch (error) {
-                        console.error("Error setting offline status:", error);
-                    }
+                    await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["setDoc"])(userRef, {
+                        isOnline: false,
+                        lastSeen: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["serverTimestamp"])()
+                    }, {
+                        merge: true
+                    });
                 }
             }["useOnlineStatus.useEffect.setOffline"];
             setOnline();
             // Set offline on window close
-            const handleBeforeUnload = {
-                "useOnlineStatus.useEffect.handleBeforeUnload": ()=>{
-                    setOffline();
-                }
-            }["useOnlineStatus.useEffect.handleBeforeUnload"];
+            window.addEventListener("beforeunload", setOffline);
             // Set offline on visibility change
             const handleVisibilityChange = {
                 "useOnlineStatus.useEffect.handleVisibilityChange": ()=>{
@@ -959,28 +946,20 @@ const useOnlineStatus = ()=>{
                     }
                 }
             }["useOnlineStatus.useEffect.handleVisibilityChange"];
-            window.addEventListener("beforeunload", handleBeforeUnload);
             document.addEventListener("visibilitychange", handleVisibilityChange);
-            // Cleanup
             return ({
                 "useOnlineStatus.useEffect": ()=>{
                     setOffline();
-                    window.removeEventListener("beforeunload", handleBeforeUnload);
+                    window.removeEventListener("beforeunload", setOffline);
                     document.removeEventListener("visibilitychange", handleVisibilityChange);
                 }
             })["useOnlineStatus.useEffect"];
         }
     }["useOnlineStatus.useEffect"], [
-        user,
-        loading
-    ]); // Dependencies array
-    return {
-        user,
-        loading,
-        error
-    };
+        user
+    ]);
 };
-_s(useOnlineStatus, "tz6gq9q3huyK2PrxoCu/kDQ+uk4=", false, function() {
+_s(useOnlineStatus, "KCTRmqVEdGa78vIMfK+tbQdXUCM=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$auth$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useAuthState"]
     ];

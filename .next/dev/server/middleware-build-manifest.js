@@ -16,9 +16,9 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/node_modules_@mui_system_d153eec2._.js",
       "static/chunks/node_modules_@mui_material_649d2d4d._.js",
       "static/chunks/node_modules_moment_0c55cd92._.js",
-      "static/chunks/node_modules_3eda045c._.js",
+      "static/chunks/node_modules_98bc3ce8._.js",
       "static/chunks/pages_index_2da965e7._.js",
-      "static/chunks/turbopack-pages_index_21c45a6b._.js"
+      "static/chunks/turbopack-pages_index_7d132154._.js"
     ],
     "/_app": [
       "static/chunks/node_modules_next_dist_compiled_c629999b._.js",
@@ -40,8 +40,23 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/pages__app_2da965e7._.js",
       "static/chunks/turbopack-pages__app_3f7121fe._.js"
     ],
+    "/_error": [
+      "static/chunks/node_modules_next_dist_compiled_c629999b._.js",
+      "static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js",
+      "static/chunks/node_modules_next_dist_client_d0aa886c._.js",
+      "static/chunks/node_modules_next_dist_19fd0646._.js",
+      "static/chunks/node_modules_next_error_1cfbb379.js",
+      "static/chunks/[next]_entry_page-loader_ts_43b523b5._.js",
+      "static/chunks/node_modules_react_b4bd21af._.js",
+      "static/chunks/node_modules_react-dom_cjs_react-dom_development_2b5e0eb3.js",
+      "static/chunks/node_modules_react-dom_8a8085df._.js",
+      "static/chunks/node_modules_416396d1._.js",
+      "static/chunks/[root-of-the-server]__092393de._.js",
+      "static/chunks/pages__error_2da965e7._.js",
+      "static/chunks/turbopack-pages__error_a5919942._.js"
+    ],
     "/chat/[id]": [
-      "static/chunks/components_d38caa2a._.js",
+      "static/chunks/components_f7675fe8._.js",
       "static/chunks/node_modules_next_dist_compiled_c629999b._.js",
       "static/chunks/node_modules_next_dist_shared_lib_9f660528._.js",
       "static/chunks/node_modules_next_dist_client_d0aa886c._.js",
@@ -56,7 +71,7 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/node_modules_adfa491b._.js",
       "static/chunks/[root-of-the-server]__c3920eca._.js",
       "static/chunks/pages_chat_[id]_2da965e7.js",
-      "static/chunks/turbopack-pages_chat_[id]_22f919c8.js"
+      "static/chunks/turbopack-pages_chat_[id]_99679bf7.js"
     ]
   },
   "devFiles": [],

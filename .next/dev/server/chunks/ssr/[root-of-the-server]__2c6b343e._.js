@@ -485,42 +485,31 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 ;
 const useOnlineStatus = ()=>{
-    const [user, loading, error] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$firebase$2d$hooks$2f$auth__$5b$external$5d$__$28$react$2d$firebase$2d$hooks$2f$auth$2c$__cjs$29$__["useAuthState"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["auth"]);
+    const [user] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$firebase$2d$hooks$2f$auth__$5b$external$5d$__$28$react$2d$firebase$2d$hooks$2f$auth$2c$__cjs$29$__["useAuthState"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["auth"]);
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
-        // Don't run if loading or no user
-        if (loading || !user) return;
+        if (!user) return;
         const userRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users", user.uid);
         // Set user as online
         const setOnline = async ()=>{
-            try {
-                await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["setDoc"])(userRef, {
-                    isOnline: true,
-                    lastSeen: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
-                }, {
-                    merge: true
-                });
-            } catch (error) {
-                console.error("Error setting online status:", error);
-            }
+            await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["setDoc"])(userRef, {
+                isOnline: true,
+                lastSeen: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
+            }, {
+                merge: true
+            });
         };
         // Set user as offline
         const setOffline = async ()=>{
-            try {
-                await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["setDoc"])(userRef, {
-                    isOnline: false,
-                    lastSeen: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
-                }, {
-                    merge: true
-                });
-            } catch (error) {
-                console.error("Error setting offline status:", error);
-            }
+            await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["setDoc"])(userRef, {
+                isOnline: false,
+                lastSeen: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
+            }, {
+                merge: true
+            });
         };
         setOnline();
         // Set offline on window close
-        const handleBeforeUnload = ()=>{
-            setOffline();
-        };
+        window.addEventListener("beforeunload", setOffline);
         // Set offline on visibility change
         const handleVisibilityChange = ()=>{
             if (document.hidden) {
@@ -529,23 +518,15 @@ const useOnlineStatus = ()=>{
                 setOnline();
             }
         };
-        window.addEventListener("beforeunload", handleBeforeUnload);
         document.addEventListener("visibilitychange", handleVisibilityChange);
-        // Cleanup
         return ()=>{
             setOffline();
-            window.removeEventListener("beforeunload", handleBeforeUnload);
+            window.removeEventListener("beforeunload", setOffline);
             document.removeEventListener("visibilitychange", handleVisibilityChange);
         };
     }, [
-        user,
-        loading
-    ]); // Dependencies array
-    return {
-        user,
-        loading,
-        error
-    };
+        user
+    ]);
 };
 __turbopack_async_result__();
 } catch(e) { __turbopack_async_result__(e); } }, false);}),

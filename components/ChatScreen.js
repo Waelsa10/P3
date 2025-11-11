@@ -485,16 +485,18 @@ function ChatScreen({ chat, messages }) {
         fileSize: selectedFile.size,
       };
 
-      // Add reply data if replying
-      if (replyingTo) {
-        messageData.replyTo = {
-          id: replyingTo.id,
-          user: replyingTo.user,
-          message: replyingTo.message,
-          fileName: replyingTo.fileName,
-          fileType: replyingTo.fileType,
-        };
-      }
+      // In sendMessage function
+    if (replyingTo) {
+      messageData.replyTo = {
+        id: replyingTo.id,
+        user: replyingTo.user,
+        message: replyingTo.message,
+        ...(replyingTo.fileName && { fileName: replyingTo.fileName }),
+        ...(replyingTo.fileType && { fileType: replyingTo.fileType }),
+        ...(replyingTo.voiceURL && { voiceURL: replyingTo.voiceURL }),
+        ...(replyingTo.voiceDuration && { voiceDuration: replyingTo.voiceDuration }),
+      };
+}
 
       await addDoc(collection(db, "chats", chatId, "messages"), messageData);
 

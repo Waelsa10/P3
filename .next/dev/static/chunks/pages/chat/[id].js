@@ -1,5 +1,5 @@
 __turbopack_load_page_chunks__("/chat/[id]", [
-  "static/chunks/components_c9616d3e._.js",
+  "static/chunks/components_5dad3286._.js",
   "static/chunks/node_modules_next_dist_compiled_c629999b._.js",
   "static/chunks/node_modules_next_dist_shared_lib_9f660528._.js",
   "static/chunks/node_modules_next_dist_client_d0aa886c._.js",
@@ -14,5 +14,5 @@ __turbopack_load_page_chunks__("/chat/[id]", [
   "static/chunks/node_modules_33807d33._.js",
   "static/chunks/[root-of-the-server]__8c02284d._.js",
   "static/chunks/pages_chat_[id]_2da965e7.js",
-  "static/chunks/turbopack-pages_chat_[id]_8708c371.js"
+  "static/chunks/turbopack-pages_chat_[id]_bf1ccbf4.js"
 ])

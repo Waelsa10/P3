@@ -14,7 +14,7 @@ __turbopack_load_page_chunks__("/", [
   "static/chunks/node_modules_@mui_system_7345897a._.js",
   "static/chunks/node_modules_@mui_material_9f65fa08._.js",
   "static/chunks/node_modules_moment_0c55cd92._.js",
-  "static/chunks/node_modules_795f6a1d._.js",
+  "static/chunks/node_modules_7073bae7._.js",
   "static/chunks/pages_index_2da965e7._.js",
-  "static/chunks/turbopack-pages_index_0a9c4d86._.js"
+  "static/chunks/turbopack-pages_index_012d9187._.js"
 ])

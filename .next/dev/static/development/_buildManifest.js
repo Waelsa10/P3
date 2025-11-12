@@ -5,15 +5,13 @@ self.__BUILD_MANIFEST = {
   "/_error": [
     "static/chunks/pages/_error.js"
   ],
-  "/chat/[id]": [
-    "static/chunks/pages/chat/[id].js"
-  ],
   "__rewrites": {
     "afterFiles": [],
     "beforeFiles": [],
     "fallback": []
   },
   "sortedPages": [
+    "/",
     "/_app",
     "/_error",
     "/api/hello",

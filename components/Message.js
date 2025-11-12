@@ -257,129 +257,123 @@ function Message({ user, message, messageId, onDelete, onReply }) {
           )}
 
           {/* Poll Message */}
-          {message.poll && (
-            <PollContainer darkMode={darkMode}>
-              <PollHeader darkMode={darkMode}>
-                <PollIcon style={{ fontSize: 20, marginRight: 8 }} />
-                <PollQuestion>{message.poll.question}</PollQuestion>
-              </PollHeader>
+{message.poll && (
+  <PollContainer darkMode={darkMode}>
+    <PollHeader darkMode={darkMode}>
+      <PollIcon style={{ fontSize: 20, marginRight: 8 }} />
+      <PollQuestion>{message.poll.question}</PollQuestion>
+    </PollHeader>
 
-              <PollOptions>
-                {(() => {
-                  // Convert poll.options to array if it's an object
-                  const pollOptions = getPollOptionsArray(message.poll);
+    <PollOptions>
+      {(() => {
+        // Convert poll.options to array if it's an object
+        const pollOptions = getPollOptionsArray(message.poll);
 
-                  return pollOptions.map((option, index) => {
-                    // Ensure option has required structure
-                    if (!option || typeof option !== 'object') {
-                      return null;
-                    }
+        return pollOptions.map((option, index) => {
+          // Ensure option has required structure
+          if (!option || typeof option !== 'object') {
+            return null;
+          }
 
-                    const optionText = option.text || '';
-                    const optionVotes = Array.isArray(option.votes) ? option.votes : [];
-                    
-                    // Calculate vote statistics
-                    const totalVotes = pollOptions.reduce((sum, opt) => {
-                      const votes = Array.isArray(opt?.votes) ? opt.votes : [];
-                      return sum + votes.length;
-                    }, 0);
-                    
-                    const optionVotesCount = optionVotes.length;
-                    const percentage = totalVotes > 0 ? (optionVotesCount / totalVotes) * 100 : 0;
-                    const hasVoted = optionVotes.includes(userLoggedIn?.email);
-                    const hasVotedAnywhere = pollOptions.some(opt => {
-                      const votes = Array.isArray(opt?.votes) ? opt.votes : [];
-                      return votes.includes(userLoggedIn?.email);
-                    });
+          const optionText = option.text || '';
+          const optionVotes = Array.isArray(option.votes) ? option.votes : [];
+          
+          // Calculate vote statistics
+          const totalVotes = pollOptions.reduce((sum, opt) => {
+            const votes = Array.isArray(opt?.votes) ? opt.votes : [];
+            return sum + votes.length;
+          }, 0);
+          
+          const optionVotesCount = optionVotes.length;
+          const percentage = totalVotes > 0 ? (optionVotesCount / totalVotes) * 100 : 0;
+          const hasVoted = optionVotes.includes(userLoggedIn?.email);
 
-                    return (
-                      <PollOption
-                        key={index}
-                        onClick={() => handlePollVote(index)}
-                        darkMode={darkMode}
-                        hasVoted={hasVoted}
-                        disabled={votingInProgress}
-                      >
-                        <PollOptionContent>
-                          <PollOptionIcon>
-                            {message.poll.allowMultipleAnswers ? (
-                              hasVoted ? (
-                                <CheckBoxIcon 
-                                  style={{ 
-                                    color: darkMode ? "#00a884" : "#25d366",
-                                    fontSize: 20 
-                                  }} 
-                                />
-                              ) : (
-                                <CheckBoxOutlineBlankIcon 
-                                  style={{ 
-                                    color: darkMode ? "#8696a0" : "#667781",
-                                    fontSize: 20 
-                                  }} 
-                                />
-                              )
-                            ) : (
-                              hasVoted ? (
-                                <CheckCircleIcon 
-                                  style={{ 
-                                    color: darkMode ? "#00a884" : "#25d366",
-                                    fontSize: 20 
-                                  }} 
-                                />
-                              ) : (
-                                <RadioButtonUncheckedIcon 
-                                  style={{ 
-                                    color: darkMode ? "#8696a0" : "#667781",
-                                    fontSize: 20 
-                                  }} 
-                                />
-                              )
-                            )}
-                          </PollOptionIcon>
-                          
-                          <PollOptionText darkMode={darkMode} hasVoted={hasVoted}>
-                            {optionText}
-                          </PollOptionText>
+          return (
+            <PollOption
+              key={index}
+              onClick={() => handlePollVote(index)}
+              darkMode={darkMode}
+              hasVoted={hasVoted}
+              disabled={votingInProgress}
+            >
+              <PollOptionContent>
+                <PollOptionIcon>
+                  {message.poll.allowMultipleAnswers ? (
+                    hasVoted ? (
+                      <CheckBoxIcon 
+                        style={{ 
+                          color: darkMode ? "#00a884" : "#25d366",
+                          fontSize: 20 
+                        }} 
+                      />
+                    ) : (
+                      <CheckBoxOutlineBlankIcon 
+                        style={{ 
+                          color: darkMode ? "#8696a0" : "#667781",
+                          fontSize: 20 
+                        }} 
+                      />
+                    )
+                  ) : (
+                    hasVoted ? (
+                      <CheckCircleIcon 
+                        style={{ 
+                          color: darkMode ? "#00a884" : "#25d366",
+                          fontSize: 20 
+                        }} 
+                      />
+                    ) : (
+                      <RadioButtonUncheckedIcon 
+                        style={{ 
+                          color: darkMode ? "#8696a0" : "#667781",
+                          fontSize: 20 
+                        }} 
+                      />
+                    )
+                  )}
+                </PollOptionIcon>
+                
+                <PollOptionText darkMode={darkMode} hasVoted={hasVoted}>
+                  {optionText}
+                </PollOptionText>
 
-                          {hasVotedAnywhere && (
-                            <PollOptionVotes darkMode={darkMode}>
-                              {optionVotesCount} {optionVotesCount === 1 ? 'vote' : 'votes'}
-                            </PollOptionVotes>
-                          )}
-                        </PollOptionContent>
+                {/* Always show vote count */}
+                <PollOptionVotes darkMode={darkMode}>
+                  {optionVotesCount}
+                </PollOptionVotes>
+              </PollOptionContent>
 
-                        {hasVotedAnywhere && (
-                          <PollProgressBar darkMode={darkMode}>
-                            <PollProgressFill 
-                              percentage={percentage} 
-                              darkMode={darkMode}
-                              hasVoted={hasVoted}
-                            />
-                          </PollProgressBar>
-                        )}
-                      </PollOption>
-                    );
-                  }).filter(Boolean); // Remove null entries
-                })()}
-              </PollOptions>
+              {/* Always show progress bar */}
+              <PollProgressBar darkMode={darkMode}>
+                <PollProgressFill 
+                  percentage={percentage} 
+                  darkMode={darkMode}
+                  hasVoted={hasVoted}
+                />
+              </PollProgressBar>
+            </PollOption>
+          );
+        }).filter(Boolean); // Remove null entries
+      })()}
+    </PollOptions>
 
-              <PollFooter darkMode={darkMode}>
-                {message.poll.allowMultipleAnswers && (
-                  <PollInfo>Multiple answers allowed</PollInfo>
-                )}
-                <PollTotalVotes darkMode={darkMode}>
-                  {(() => {
-                    const pollOptions = getPollOptionsArray(message.poll);
-                    const totalVotes = pollOptions.reduce((sum, opt) => {
-                      const votes = Array.isArray(opt?.votes) ? opt.votes : [];
-                      return sum + votes.length;
-                    }, 0);
-                    return `${totalVotes} ${totalVotes === 1 ? 'vote' : 'votes'}`;
-                  })()}
-                </PollTotalVotes>
-              </PollFooter>
-            </PollContainer>
-          )}
+    <PollFooter darkMode={darkMode}>
+      {message.poll.allowMultipleAnswers && (
+        <PollInfo>Multiple answers allowed</PollInfo>
+      )}
+      <PollTotalVotes darkMode={darkMode}>
+        {(() => {
+          const pollOptions = getPollOptionsArray(message.poll);
+          const totalVotes = pollOptions.reduce((sum, opt) => {
+            const votes = Array.isArray(opt?.votes) ? opt.votes : [];
+            return sum + votes.length;
+          }, 0);
+          return `${totalVotes} ${totalVotes === 1 ? 'vote' : 'votes'}`;
+        })()}
+      </PollTotalVotes>
+    </PollFooter>
+  </PollContainer>
+)}
 
           {/* Location Message */}
           {message.location && (

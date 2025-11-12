@@ -3744,3 +3744,324 @@ React will try to recreate this component tree from scratch using the error boun
 [01:51:48.991] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
 [01:51:48.991] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
 [01:51:49.992] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:51:59.000] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:51:59.000] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:51:59.000] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:51:59.000] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:51:59.000] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:51:59.000] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:51:59.000] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:51:59.000] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 2s ago)
+[01:52:00.999] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:52:07.995] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:52:07.995] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:52:07.995] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:52:07.995] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:52:08.990] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:52:08.990] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:52:08.990] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:52:09.997] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:52:19.006] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:52:19.006] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:52:19.006] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:52:19.006] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:52:19.006] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:52:19.006] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:52:19.006] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:52:19.006] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 2s ago)
+[01:52:20.732] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:52:21.255] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:52:28.003] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:52:28.003] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:52:28.003] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:52:28.003] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:52:28.992] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:52:28.992] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:52:28.992] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:52:29.990] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:52:38.003] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:52:39.995] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:52:39.995] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:52:39.995] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:52:39.995] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:52:39.995] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:52:39.995] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:52:39.995] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:52:40.991] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:52:47.995] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:52:47.995] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:52:47.995] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:52:47.995] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:52:48.998] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:52:48.998] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:52:48.998] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:52:50.003] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:52:58.991] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:52:58.991] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:52:58.991] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:52:58.991] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:52:58.991] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:52:58.991] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:52:58.991] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:52:58.991] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 2s ago)
+[01:52:59.996] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:53:07.998] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:53:07.998] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:53:07.998] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:53:07.998] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:53:09.004] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:53:09.004] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:53:09.004] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:53:10.000] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:53:17.998] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:53:27.989] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:53:27.989] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:53:27.989] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:53:27.989] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:53:28.989] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:53:28.989] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:53:28.989] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:53:29.993] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:53:39.996] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:53:39.996] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:53:39.996] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:53:39.996] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:53:39.996] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:53:39.996] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:53:39.996] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:53:42.003] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:53:50.992] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:53:50.992] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:53:50.992] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:53:50.992] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:53:50.992] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:53:50.992] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:53:50.992] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:53:51.998] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:54:07.995] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (4s ago)
+[01:54:07.995] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:54:07.995] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:54:07.995] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:54:08.997] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:54:08.997] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:54:08.997] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 5s ago)
+[01:54:09.989] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:54:14.001] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:54:24.989] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:54:24.989] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:54:24.989] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:54:24.989] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:54:25.990] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:54:25.990] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:54:25.990] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:54:27.999] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:54:39.994] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:54:39.994] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:54:39.994] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:54:39.994] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:54:39.994] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:54:39.994] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:54:39.994] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 2s ago)
+[01:54:41.997] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:54:44.681] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:54:44.681] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:54:44.681] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:54:44.681] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:54:44.872] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:54:45.334] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:54:45.507] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:54:45.507] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:54:45.507] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:54:46.334] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:54:58.001] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:55:05.001] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:55:05.001] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:55:05.001] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:55:05.001] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:55:05.999] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:55:05.999] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:55:05.999] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:55:07.001] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:55:18.001] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:55:25.001] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:55:25.001] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:55:25.001] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:55:25.001] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:55:26.003] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:55:26.003] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:55:26.003] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:55:27.001] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:55:37.990] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:55:40.003] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:55:40.003] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:55:40.003] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:55:40.003] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:55:40.003] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:55:40.003] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:55:40.003] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 2s ago)
+[01:55:40.993] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:55:44.999] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:55:44.999] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:55:44.999] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:55:44.999] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:55:46.000] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:55:46.000] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:55:46.000] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:55:47.001] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:56:05.994] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:56:05.994] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:56:05.994] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:56:05.994] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:56:05.994] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:56:05.994] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:56:05.994] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:56:06.990] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:56:12.001] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:56:24.995] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:56:24.995] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:56:24.995] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:56:24.995] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:56:25.990] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:56:25.991] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:56:25.991] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:56:27.000] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:56:34.446] Server  LOG      ✓ Compiled in 46ms
+[01:56:37.148] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:56:37.565] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:56:38.721] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-einZSS RXNFy img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[01:56:42.268] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:56:43.142] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[01:56:43.142] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":false,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[01:56:43.142] Browser LOG     ✅ useRecipientData: Found recipient {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
+[01:56:43.142] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at form
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatInput (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:4556:22)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:8099:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[01:56:43.142] Browser LOG     👀 Watching display name for: users/KywIewhlHEZHCHeN2Nwa5CoMiaz1/contacts/abduallh1424aa1@gmail.com
+[01:56:43.142] Browser LOG     👁️ [Chat: fM1OYZbvQyXkZ3sKXds4] Listening for abduallh1424aa1@gmail.com to come online...
+[01:56:43.142] Browser LOG        Your messages from: waelsa909@gmail.com
+[01:56:43.142] Browser LOG     🔍 Current authenticated user: {"email":"waelsa909@gmail.com","uid":"KywIewhlHEZHCHeN2Nwa5CoMiaz1"}
+[01:56:43.142] Browser LOG     📛 Custom display name: null
+[01:56:43.993] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (7s ago)
+[01:56:43.993] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:56:43.993] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:56:43.993] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:56:44.489] Browser LOG     ✅ Display name found: abdallah
+[01:56:44.489] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (1s ago)
+[01:56:44.489] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:56:44.490] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:56:44.490] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:56:44.490] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:2409:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:4463:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:8099:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[01:56:44.490] Browser LOG     📛 Custom display name: abdallah
+[01:56:44.930] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["deletedBy","createdAt","users"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:56:44.930] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:56:44.930] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["deletedBy","createdAt","users"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:56:44.930] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:56:44.930] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 2s ago)
+[01:56:44.930] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 2s ago)
+[01:56:45.759] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:56:45.759] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:56:46.725] Browser LOG     🗳️ Attempting to vote on poll: {"chatId":"fM1OYZbvQyXkZ3sKXds4","messageId":"BcZZlZF75A3RRHwZMHHg","optionIndex":0,"userEmail":"waelsa909@gmail.com"}
+[01:56:46.725] Browser LOG     Current vote status: {"currentVotes":["waelsa909@gmail.com"],"hasVoted":true}
+[01:56:46.725] Browser LOG     Applying vote update: {"poll.options.0.votes":{"_methodName":"arrayRemove","pa":["waelsa909@gmail.com"]}}
+[01:56:47.166] Browser LOG     ✅ Vote successful!
+[01:56:47.687] Browser LOG     🗳️ Attempting to vote on poll: {"chatId":"fM1OYZbvQyXkZ3sKXds4","messageId":"BcZZlZF75A3RRHwZMHHg","optionIndex":0,"userEmail":"waelsa909@gmail.com"}
+[01:56:47.687] Browser LOG     Current vote status: {"currentVotes":[],"hasVoted":false}
+[01:56:47.687] Browser LOG     Applying vote update: {"poll.options.0.votes":{"_methodName":"arrayUnion","pa":["waelsa909@gmail.com"]}}
+[01:56:48.120] Browser LOG     ✅ Vote successful!
+[01:56:49.633] Browser LOG     🗑️ [Chat: fM1OYZbvQyXkZ3sKXds4] Deleting message BcZZlZF75A3RRHwZMHHg
+[01:56:50.088] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Message deleted successfully
+[01:56:59.773] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:57:04.664] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:57:04.664] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:57:04.664] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:57:04.664] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:57:05.134] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["deletedBy","createdAt","users"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:57:05.134] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:57:05.134] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 2s ago)
+[01:57:06.383] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:57:19.752] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:57:20.058] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:57:20.058] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:57:20.058] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:57:20.058] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:57:20.879] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["deletedBy","createdAt","users"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:57:20.879] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:57:20.879] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:57:22.144] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED

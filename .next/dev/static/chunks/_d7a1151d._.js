@@ -2469,7 +2469,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
             });
         }
     };
-    // Handle poll vote
+    // Handle poll vote - FIXED VERSION
     const handlePollVote = async (optionIndex)=>{
         if (!messageId || votingInProgress || !router.query.id || !message.poll) return;
         setVotingInProgress(true);
@@ -2493,26 +2493,55 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                 currentVotes,
                 hasVoted
             });
-            // For single answer polls, remove votes from all options first
-            if (!message.poll.allowMultipleAnswers && !hasVoted) {
-                const updates = {};
-                pollOptions.forEach((option, idx)=>{
-                    const votes = Array.isArray(option.votes) ? option.votes : [];
-                    if (votes.includes(userLoggedIn.email)) {
-                        updates[`poll.options.${idx}.votes`] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["arrayRemove"])(userLoggedIn.email);
-                    }
-                });
-                if (Object.keys(updates).length > 0) {
-                    console.log('Removing previous votes:', updates);
-                    await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["updateDoc"])(messageRef, updates);
+            // Create updated options array - PRESERVE TEXT FIELD
+            const updatedOptions = pollOptions.map((option, idx)=>{
+                const votes = Array.isArray(option.votes) ? [
+                    ...option.votes
+                ] : [];
+                // Get the option text
+                let optionText = '';
+                if (typeof option === 'string') {
+                    optionText = option;
+                } else if (typeof option === 'object') {
+                    optionText = option.text || option.option || `Option ${idx + 1}`;
                 }
-            }
-            // Toggle vote for the selected option
-            const voteUpdate = {
-                [`poll.options.${optionIndex}.votes`]: hasVoted ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["arrayRemove"])(userLoggedIn.email) : (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["arrayUnion"])(userLoggedIn.email)
-            };
-            console.log('Applying vote update:', voteUpdate);
-            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["updateDoc"])(messageRef, voteUpdate);
+                // For single answer polls, remove user's vote from all options
+                if (!message.poll.allowMultipleAnswers && idx !== optionIndex) {
+                    return {
+                        text: optionText,
+                        votes: votes.filter((email)=>email !== userLoggedIn.email)
+                    };
+                }
+                // Toggle vote for the clicked option
+                if (idx === optionIndex) {
+                    if (hasVoted) {
+                        // Remove vote
+                        return {
+                            text: optionText,
+                            votes: votes.filter((email)=>email !== userLoggedIn.email)
+                        };
+                    } else {
+                        // Add vote
+                        return {
+                            text: optionText,
+                            votes: [
+                                ...votes,
+                                userLoggedIn.email
+                            ]
+                        };
+                    }
+                }
+                // Keep option unchanged but preserve structure
+                return {
+                    text: optionText,
+                    votes: votes
+                };
+            });
+            console.log('Updating poll with options:', updatedOptions);
+            // Update the entire poll.options array
+            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["updateDoc"])(messageRef, {
+                'poll.options': updatedOptions
+            });
             console.log('✅ Vote successful!');
         } catch (error) {
             console.error("❌ Error voting on poll:", error);
@@ -2621,7 +2650,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     isSender: isOwnMessage
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 243,
+                                    lineNumber: 269,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ReplyContent, {
@@ -2631,7 +2660,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             children: message.replyTo.user === userLoggedIn?.email ? 'You' : message.replyTo.user
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 245,
+                                            lineNumber: 271,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ReplyText, {
@@ -2639,19 +2668,19 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             children: message.replyTo.location ? '📍 Location' : message.replyTo.poll ? `📊 ${message.replyTo.poll.question || 'Poll'}` : message.replyTo.message || message.replyTo.fileName || '🎤 Voice message'
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 248,
+                                            lineNumber: 274,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 244,
+                                    lineNumber: 270,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 242,
+                            lineNumber: 268,
                             columnNumber: 13
                         }, this),
                         message.poll && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PollContainer, {
@@ -2667,33 +2696,61 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 263,
-                                            columnNumber: 7
+                                            lineNumber: 289,
+                                            columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PollQuestion, {
                                             children: message.poll.question
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 264,
-                                            columnNumber: 7
+                                            lineNumber: 290,
+                                            columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 262,
-                                    columnNumber: 5
+                                    lineNumber: 288,
+                                    columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PollOptions, {
                                     children: (()=>{
                                         // Convert poll.options to array if it's an object
                                         const pollOptions = getPollOptionsArray(message.poll);
+                                        // Debug log
+                                        console.log('📊 Poll data:', {
+                                            question: message.poll.question,
+                                            options: pollOptions,
+                                            allowMultiple: message.poll.allowMultipleAnswers
+                                        });
                                         return pollOptions.map((option, index)=>{
                                             // Ensure option has required structure
-                                            if (!option || typeof option !== 'object') {
+                                            if (!option) {
+                                                console.warn('Null option at index', index);
                                                 return null;
                                             }
-                                            const optionText = option.text || '';
-                                            const optionVotes = Array.isArray(option.votes) ? option.votes : [];
+                                            // Get option text - with comprehensive fallback handling
+                                            let optionText = '';
+                                            if (typeof option === 'string') {
+                                                optionText = option;
+                                            } else if (typeof option === 'object') {
+                                                if (option.text && typeof option.text === 'string') {
+                                                    optionText = option.text;
+                                                } else if (option.option && typeof option.option === 'string') {
+                                                    optionText = option.option;
+                                                } else {
+                                                    console.warn('Missing text for option at index', index, ':', option);
+                                                    optionText = `Option ${index + 1}`;
+                                                }
+                                            } else {
+                                                console.warn('Invalid option type at index', index, ':', typeof option);
+                                                optionText = `Option ${index + 1}`;
+                                            }
+                                            const optionVotes = Array.isArray(option.votes) ? option.votes : Array.isArray(option?.votes) ? option.votes : [];
+                                            console.log(`📊 Option ${index}:`, {
+                                                text: optionText,
+                                                votes: optionVotes,
+                                                raw: option
+                                            });
                                             // Calculate vote statistics
                                             const totalVotes = pollOptions.reduce((sum, opt)=>{
                                                 const votes = Array.isArray(opt?.votes) ? opt.votes : [];
@@ -2708,50 +2765,50 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                 hasVoted: hasVoted,
                                                 disabled: votingInProgress,
                                                 children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PollOptionContent, {
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PollOptionRow, {
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PollOptionIcon, {
                                                                 children: message.poll.allowMultipleAnswers ? hasVoted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$CheckBox$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                                                     style: {
                                                                         color: darkMode ? "#00a884" : "#25d366",
-                                                                        fontSize: 20
+                                                                        fontSize: 22
                                                                     }
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/Message.js",
-                                                                    lineNumber: 303,
-                                                                    columnNumber: 23
+                                                                    lineNumber: 361,
+                                                                    columnNumber: 33
                                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$CheckBoxOutlineBlank$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                                                     style: {
                                                                         color: darkMode ? "#8696a0" : "#667781",
-                                                                        fontSize: 20
+                                                                        fontSize: 22
                                                                     }
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/Message.js",
-                                                                    lineNumber: 310,
-                                                                    columnNumber: 23
+                                                                    lineNumber: 368,
+                                                                    columnNumber: 33
                                                                 }, this) : hasVoted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$CheckCircle$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                                                     style: {
                                                                         color: darkMode ? "#00a884" : "#25d366",
-                                                                        fontSize: 20
+                                                                        fontSize: 22
                                                                     }
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/Message.js",
-                                                                    lineNumber: 319,
-                                                                    columnNumber: 23
+                                                                    lineNumber: 377,
+                                                                    columnNumber: 33
                                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$RadioButtonUnchecked$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                                                     style: {
                                                                         color: darkMode ? "#8696a0" : "#667781",
-                                                                        fontSize: 20
+                                                                        fontSize: 22
                                                                     }
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/Message.js",
-                                                                    lineNumber: 326,
-                                                                    columnNumber: 23
+                                                                    lineNumber: 384,
+                                                                    columnNumber: 33
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/Message.js",
-                                                                lineNumber: 300,
-                                                                columnNumber: 17
+                                                                lineNumber: 358,
+                                                                columnNumber: 27
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PollOptionText, {
                                                                 darkMode: darkMode,
@@ -2759,22 +2816,22 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                                 children: optionText
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/Message.js",
-                                                                lineNumber: 336,
-                                                                columnNumber: 17
+                                                                lineNumber: 394,
+                                                                columnNumber: 27
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PollOptionVotes, {
                                                                 darkMode: darkMode,
                                                                 children: optionVotesCount
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/Message.js",
-                                                                lineNumber: 341,
-                                                                columnNumber: 17
+                                                                lineNumber: 398,
+                                                                columnNumber: 27
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/Message.js",
-                                                        lineNumber: 299,
-                                                        columnNumber: 15
+                                                        lineNumber: 357,
+                                                        columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PollProgressBar, {
                                                         darkMode: darkMode,
@@ -2784,26 +2841,26 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                             hasVoted: hasVoted
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/Message.js",
-                                                            lineNumber: 348,
-                                                            columnNumber: 17
+                                                            lineNumber: 404,
+                                                            columnNumber: 27
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/Message.js",
-                                                        lineNumber: 347,
-                                                        columnNumber: 15
+                                                        lineNumber: 403,
+                                                        columnNumber: 25
                                                     }, this)
                                                 ]
-                                            }, index, true, {
+                                            }, `poll-${messageId}-option-${index}`, true, {
                                                 fileName: "[project]/components/Message.js",
-                                                lineNumber: 292,
-                                                columnNumber: 13
+                                                lineNumber: 350,
+                                                columnNumber: 23
                                             }, this);
-                                        }).filter(Boolean); // Remove null entries
+                                        }).filter(Boolean);
                                     })()
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 267,
-                                    columnNumber: 5
+                                    lineNumber: 293,
+                                    columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PollFooter, {
                                     darkMode: darkMode,
@@ -2812,8 +2869,8 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             children: "Multiple answers allowed"
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 362,
-                                            columnNumber: 9
+                                            lineNumber: 418,
+                                            columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PollTotalVotes, {
                                             darkMode: darkMode,
@@ -2827,20 +2884,20 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             })()
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 364,
-                                            columnNumber: 7
+                                            lineNumber: 420,
+                                            columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 360,
-                                    columnNumber: 5
+                                    lineNumber: 416,
+                                    columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 261,
-                            columnNumber: 3
+                            lineNumber: 287,
+                            columnNumber: 13
                         }, this),
                         message.location && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(LocationContainer, {
                             darkMode: darkMode,
@@ -2852,12 +2909,12 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                         loading: "lazy"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Message.js",
-                                        lineNumber: 382,
+                                        lineNumber: 438,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 381,
+                                    lineNumber: 437,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(LocationInfo, {
@@ -2871,12 +2928,12 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Message.js",
-                                                lineNumber: 391,
+                                                lineNumber: 447,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 390,
+                                            lineNumber: 446,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Coordinates, {
@@ -2888,13 +2945,13 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 393,
+                                            lineNumber: 449,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 389,
+                                    lineNumber: 445,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ViewButton, {
@@ -2910,20 +2967,20 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 404,
+                                            lineNumber: 460,
                                             columnNumber: 17
                                         }, this),
                                         "View on Maps"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 398,
+                                    lineNumber: 454,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 380,
+                            lineNumber: 436,
                             columnNumber: 13
                         }, this),
                         message.fileURL && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FileAttachment, {
@@ -2939,12 +2996,12 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Message.js",
-                                                lineNumber: 418,
+                                                lineNumber: 474,
                                                 columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 417,
+                                            lineNumber: 473,
                                             columnNumber: 21
                                         }, this),
                                         imageError ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ImageError, {
@@ -2957,20 +3014,20 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 423,
+                                                    lineNumber: 479,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     children: "Failed to load image"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 424,
+                                                    lineNumber: 480,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 422,
+                                            lineNumber: 478,
                                             columnNumber: 21
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ImagePreview, {
                                             src: getOptimizedImageUrl(message.fileURL),
@@ -2984,7 +3041,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 427,
+                                            lineNumber: 483,
                                             columnNumber: 21
                                         }, this),
                                         message.fileName && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ImageFileName, {
@@ -2992,13 +3049,13 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             children: message.fileName
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 438,
+                                            lineNumber: 494,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 415,
+                                    lineNumber: 471,
                                     columnNumber: 17
                                 }, this) : message.fileType?.startsWith("video/") ? /* Video Preview */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(VideoContainer, {
                                     children: [
@@ -3012,14 +3069,14 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                     type: message.fileType
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 449,
+                                                    lineNumber: 505,
                                                     columnNumber: 21
                                                 }, this),
                                                 "Your browser does not support the video tag."
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 444,
+                                            lineNumber: 500,
                                             columnNumber: 19
                                         }, this),
                                         message.fileName && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(VideoFileName, {
@@ -3032,20 +3089,20 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 454,
+                                                    lineNumber: 510,
                                                     columnNumber: 23
                                                 }, this),
                                                 message.fileName
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 453,
+                                            lineNumber: 509,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 443,
+                                    lineNumber: 499,
                                     columnNumber: 17
                                 }, this) : message.fileType?.startsWith("audio/") && !message.voiceURL ? /* Audio File (not voice message) */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AudioFileContainer, {
                                     darkMode: darkMode,
@@ -3059,7 +3116,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 463,
+                                                    lineNumber: 519,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AudioFileInfo, {
@@ -3069,7 +3126,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                             children: message.fileName || "Audio File"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/Message.js",
-                                                            lineNumber: 465,
+                                                            lineNumber: 521,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AudioFileSize, {
@@ -3077,19 +3134,19 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                             children: formatFileSize(message.fileSize)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/Message.js",
-                                                            lineNumber: 468,
+                                                            lineNumber: 524,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 464,
+                                                    lineNumber: 520,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 462,
+                                            lineNumber: 518,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AudioPlayer, {
@@ -3099,13 +3156,13 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             children: "Your browser does not support the audio element."
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 473,
+                                            lineNumber: 529,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 461,
+                                    lineNumber: 517,
                                     columnNumber: 17
                                 }, this) : /* Other Files (PDF, Documents, etc.) */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FileInfo, {
                                     darkMode: darkMode,
@@ -3117,7 +3174,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 480,
+                                            lineNumber: 536,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FileDetails, {
@@ -3127,7 +3184,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                     children: message.fileName || "File"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 482,
+                                                    lineNumber: 538,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FileSize, {
@@ -3135,19 +3192,19 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                     children: formatFileSize(message.fileSize)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 483,
+                                                    lineNumber: 539,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 481,
+                                            lineNumber: 537,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 479,
+                                    lineNumber: 535,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DownloadButton, {
@@ -3159,7 +3216,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             fontSize: "small"
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 496,
+                                            lineNumber: 552,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3170,19 +3227,19 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             children: "Download"
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 497,
+                                            lineNumber: 553,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 491,
+                                    lineNumber: 547,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 412,
+                            lineNumber: 468,
                             columnNumber: 13
                         }, this),
                         message.voiceURL && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(VoiceMessageContainer, {
@@ -3193,7 +3250,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     children: "🎤 Voice Message"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 505,
+                                    lineNumber: 561,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AudioPlayer, {
@@ -3203,7 +3260,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     children: "Your browser does not support the audio element."
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 506,
+                                    lineNumber: 562,
                                     columnNumber: 15
                                 }, this),
                                 message.voiceDuration && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(VoiceDuration, {
@@ -3214,13 +3271,13 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 510,
+                                    lineNumber: 566,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 504,
+                            lineNumber: 560,
                             columnNumber: 13
                         }, this),
                         message.message && message.message.trim() && !message.location && !message.poll && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MessageText, {
@@ -3228,7 +3285,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                             children: message.message
                         }, void 0, false, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 519,
+                            lineNumber: 575,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MessageFooter, {
@@ -3238,7 +3295,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     children: message.timestamp ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$moment$2f$moment$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"])(message.timestamp).format("LT") : "..."
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 524,
+                                    lineNumber: 580,
                                     columnNumber: 13
                                 }, this),
                                 isOwnMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$MessageStatus$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3246,19 +3303,19 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     darkMode: darkMode
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 528,
+                                    lineNumber: 584,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 523,
+                            lineNumber: 579,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/Message.js",
-                    lineNumber: 239,
+                    lineNumber: 265,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MessageActions, {
@@ -3274,17 +3331,17 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                             fontSize: "small"
                         }, void 0, false, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 544,
+                            lineNumber: 600,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/Message.js",
-                        lineNumber: 538,
+                        lineNumber: 594,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/Message.js",
-                    lineNumber: 537,
+                    lineNumber: 593,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Menu$2f$Menu$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__["Menu"], {
@@ -3309,12 +3366,12 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/components/Message.js",
-                                        lineNumber: 562,
+                                        lineNumber: 618,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 561,
+                                    lineNumber: 617,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$ListItemText$2f$ListItemText$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ListItemText$3e$__["ListItemText"], {
@@ -3324,13 +3381,13 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     children: "Reply"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 564,
+                                    lineNumber: 620,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 560,
+                            lineNumber: 616,
                             columnNumber: 11
                         }, this),
                         showDelete && isOwnMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$MenuItem$2f$MenuItem$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MenuItem$3e$__["MenuItem"], {
@@ -3344,12 +3401,12 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/components/Message.js",
-                                        lineNumber: 572,
+                                        lineNumber: 628,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 571,
+                                    lineNumber: 627,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$ListItemText$2f$ListItemText$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ListItemText$3e$__["ListItemText"], {
@@ -3359,30 +3416,30 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     children: "Delete"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 574,
+                                    lineNumber: 630,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 570,
+                            lineNumber: 626,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/Message.js",
-                    lineNumber: 549,
+                    lineNumber: 605,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/Message.js",
-            lineNumber: 238,
+            lineNumber: 264,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/Message.js",
-        lineNumber: 237,
+        lineNumber: 263,
         columnNumber: 5
     }, this);
 }
@@ -3394,8 +3451,7 @@ _s(Message, "eoOonASvYaCh3bFB6XCQOYSkCkY=", false, function() {
 });
 _c = Message;
 const __TURBOPACK__default__export__ = Message;
-// Styled Components remain the same...
-// [All the styled components from your original code stay exactly the same]
+// Styled Components
 const Container = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   margin: 5px 0;
   
@@ -3532,7 +3588,7 @@ const FileAttachment = __TURBOPACK__imported__module__$5b$project$5d2f$node_modu
   gap: 8px;
 `;
 _c13 = FileAttachment;
-// Poll Message Styles
+// Poll Message Styles - COMPLETELY FIXED
 const PollContainer = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   background-color: ${(props)=>props.darkMode ? "#2a3942" : "#f0f0f0"};
   border-radius: 8px;
@@ -3576,7 +3632,6 @@ const PollOption = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$
   cursor: ${(props)=>props.disabled ? "not-allowed" : "pointer"};
   transition: all 0.2s;
   opacity: ${(props)=>props.disabled ? 0.6 : 1};
-  position: relative;
 
   &:hover {
     background-color: ${(props)=>props.disabled ? props.darkMode ? "#1f2c33" : "white" : props.darkMode ? "#2a3942" : "#f5f5f5"};
@@ -3588,39 +3643,52 @@ const PollOption = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$
   }
 `;
 _c18 = PollOption;
-const PollOptionContent = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
+const PollOptionRow = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 6px;
+  gap: 12px;
+  margin-bottom: 8px;
+  width: 100%;
 `;
-_c19 = PollOptionContent;
+_c19 = PollOptionRow;
 const PollOptionIcon = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  width: 28px;
+  height: 28px;
 `;
 _c20 = PollOptionIcon;
 const PollOptionText = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   flex: 1;
   font-size: 14px;
-  color: ${(props)=>props.darkMode ? "#e0e0e0" : "black"};
+  color: ${(props)=>props.darkMode ? "#e0e0e0" : "#000000"} !important;
   font-weight: ${(props)=>props.hasVoted ? "600" : "400"};
-  line-height: 1.4;
+  line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  min-width: 0;
 `;
 _c21 = PollOptionText;
 const PollOptionVotes = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
-  font-size: 12px;
-  color: ${(props)=>props.darkMode ? "#8696a0" : "#667781"};
-  font-weight: 500;
+  font-size: 14px;
+  color: ${(props)=>props.darkMode ? "#64b5f6" : "#1976d2"};
+  font-weight: 700;
   flex-shrink: 0;
+  min-width: 32px;
+  text-align: center;
+  padding: 2px 8px;
+  background-color: ${(props)=>props.darkMode ? "rgba(100, 181, 246, 0.1)" : "rgba(25, 118, 210, 0.1)"};
+  border-radius: 12px;
 `;
 _c22 = PollOptionVotes;
 const PollProgressBar = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   width: 100%;
-  height: 4px;
+  height: 6px;
   background-color: ${(props)=>props.darkMode ? "#1a1a1a" : "#e0e0e0"};
-  border-radius: 2px;
+  border-radius: 3px;
   overflow: hidden;
 `;
 _c23 = PollProgressBar;
@@ -3634,7 +3702,7 @@ const PollProgressFill = __TURBOPACK__imported__module__$5b$project$5d2f$node_mo
     return props.darkMode ? "#3a4952" : "#ccc";
 }};
   transition: width 0.3s ease;
-  border-radius: 2px;
+  border-radius: 3px;
 `;
 _c24 = PollProgressFill;
 const PollFooter = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
@@ -3964,7 +4032,7 @@ __turbopack_context__.k.register(_c15, "PollHeader");
 __turbopack_context__.k.register(_c16, "PollQuestion");
 __turbopack_context__.k.register(_c17, "PollOptions");
 __turbopack_context__.k.register(_c18, "PollOption");
-__turbopack_context__.k.register(_c19, "PollOptionContent");
+__turbopack_context__.k.register(_c19, "PollOptionRow");
 __turbopack_context__.k.register(_c20, "PollOptionIcon");
 __turbopack_context__.k.register(_c21, "PollOptionText");
 __turbopack_context__.k.register(_c22, "PollOptionVotes");

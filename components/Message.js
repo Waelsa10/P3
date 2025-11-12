@@ -21,7 +21,7 @@ import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import { useContext, useState } from "react";
 import { useRouter } from "next/router";
-import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { DarkModeContext } from "./DarkModeProvider";
 import MessageStatus from "./ChatScreen/components/MessageStatus";
 import { MESSAGE_STATUS } from "./ChatScreen/constants";
@@ -95,7 +95,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
     }
   };
 
-  // Handle poll vote
+  // Handle poll vote - FIXED VERSION
   const handlePollVote = async (optionIndex) => {
     if (!messageId || votingInProgress || !router.query.id || !message.poll) return;
     
@@ -124,31 +124,57 @@ function Message({ user, message, messageId, onDelete, onReply }) {
       
       console.log('Current vote status:', { currentVotes, hasVoted });
 
-      // For single answer polls, remove votes from all options first
-      if (!message.poll.allowMultipleAnswers && !hasVoted) {
-        const updates = {};
-        pollOptions.forEach((option, idx) => {
-          const votes = Array.isArray(option.votes) ? option.votes : [];
-          if (votes.includes(userLoggedIn.email)) {
-            updates[`poll.options.${idx}.votes`] = arrayRemove(userLoggedIn.email);
-          }
-        });
+      // Create updated options array - PRESERVE TEXT FIELD
+      const updatedOptions = pollOptions.map((option, idx) => {
+        const votes = Array.isArray(option.votes) ? [...option.votes] : [];
         
-        if (Object.keys(updates).length > 0) {
-          console.log('Removing previous votes:', updates);
-          await updateDoc(messageRef, updates);
+        // Get the option text
+        let optionText = '';
+        if (typeof option === 'string') {
+          optionText = option;
+        } else if (typeof option === 'object') {
+          optionText = option.text || option.option || `Option ${idx + 1}`;
         }
-      }
-      
-      // Toggle vote for the selected option
-      const voteUpdate = {
-        [`poll.options.${optionIndex}.votes`]: hasVoted 
-          ? arrayRemove(userLoggedIn.email)
-          : arrayUnion(userLoggedIn.email)
-      };
-      
-      console.log('Applying vote update:', voteUpdate);
-      await updateDoc(messageRef, voteUpdate);
+        
+        // For single answer polls, remove user's vote from all options
+        if (!message.poll.allowMultipleAnswers && idx !== optionIndex) {
+          return {
+            text: optionText,
+            votes: votes.filter(email => email !== userLoggedIn.email)
+          };
+        }
+        
+        // Toggle vote for the clicked option
+        if (idx === optionIndex) {
+          if (hasVoted) {
+            // Remove vote
+            return {
+              text: optionText,
+              votes: votes.filter(email => email !== userLoggedIn.email)
+            };
+          } else {
+            // Add vote
+            return {
+              text: optionText,
+              votes: [...votes, userLoggedIn.email]
+            };
+          }
+        }
+        
+        // Keep option unchanged but preserve structure
+        return {
+          text: optionText,
+          votes: votes
+        };
+      });
+
+      console.log('Updating poll with options:', updatedOptions);
+
+      // Update the entire poll.options array
+      await updateDoc(messageRef, {
+        'poll.options': updatedOptions
+      });
+
       console.log('✅ Vote successful!');
     } catch (error) {
       console.error("❌ Error voting on poll:", error);
@@ -256,124 +282,154 @@ function Message({ user, message, messageId, onDelete, onReply }) {
             </ReplyPreview>
           )}
 
-          {/* Poll Message */}
-{message.poll && (
-  <PollContainer darkMode={darkMode}>
-    <PollHeader darkMode={darkMode}>
-      <PollIcon style={{ fontSize: 20, marginRight: 8 }} />
-      <PollQuestion>{message.poll.question}</PollQuestion>
-    </PollHeader>
+          {/* Poll Message - FULLY FIXED */}
+          {message.poll && (
+            <PollContainer darkMode={darkMode}>
+              <PollHeader darkMode={darkMode}>
+                <PollIcon style={{ fontSize: 20, marginRight: 8 }} />
+                <PollQuestion>{message.poll.question}</PollQuestion>
+              </PollHeader>
 
-    <PollOptions>
-      {(() => {
-        // Convert poll.options to array if it's an object
-        const pollOptions = getPollOptionsArray(message.poll);
+              <PollOptions>
+                {(() => {
+                  // Convert poll.options to array if it's an object
+                  const pollOptions = getPollOptionsArray(message.poll);
 
-        return pollOptions.map((option, index) => {
-          // Ensure option has required structure
-          if (!option || typeof option !== 'object') {
-            return null;
-          }
+                  // Debug log
+                  console.log('📊 Poll data:', {
+                    question: message.poll.question,
+                    options: pollOptions,
+                    allowMultiple: message.poll.allowMultipleAnswers
+                  });
 
-          const optionText = option.text || '';
-          const optionVotes = Array.isArray(option.votes) ? option.votes : [];
-          
-          // Calculate vote statistics
-          const totalVotes = pollOptions.reduce((sum, opt) => {
-            const votes = Array.isArray(opt?.votes) ? opt.votes : [];
-            return sum + votes.length;
-          }, 0);
-          
-          const optionVotesCount = optionVotes.length;
-          const percentage = totalVotes > 0 ? (optionVotesCount / totalVotes) * 100 : 0;
-          const hasVoted = optionVotes.includes(userLoggedIn?.email);
+                  return pollOptions.map((option, index) => {
+                    // Ensure option has required structure
+                    if (!option) {
+                      console.warn('Null option at index', index);
+                      return null;
+                    }
 
-          return (
-            <PollOption
-              key={index}
-              onClick={() => handlePollVote(index)}
-              darkMode={darkMode}
-              hasVoted={hasVoted}
-              disabled={votingInProgress}
-            >
-              <PollOptionContent>
-                <PollOptionIcon>
-                  {message.poll.allowMultipleAnswers ? (
-                    hasVoted ? (
-                      <CheckBoxIcon 
-                        style={{ 
-                          color: darkMode ? "#00a884" : "#25d366",
-                          fontSize: 20 
-                        }} 
-                      />
-                    ) : (
-                      <CheckBoxOutlineBlankIcon 
-                        style={{ 
-                          color: darkMode ? "#8696a0" : "#667781",
-                          fontSize: 20 
-                        }} 
-                      />
-                    )
-                  ) : (
-                    hasVoted ? (
-                      <CheckCircleIcon 
-                        style={{ 
-                          color: darkMode ? "#00a884" : "#25d366",
-                          fontSize: 20 
-                        }} 
-                      />
-                    ) : (
-                      <RadioButtonUncheckedIcon 
-                        style={{ 
-                          color: darkMode ? "#8696a0" : "#667781",
-                          fontSize: 20 
-                        }} 
-                      />
-                    )
-                  )}
-                </PollOptionIcon>
-                
-                <PollOptionText darkMode={darkMode} hasVoted={hasVoted}>
-                  {optionText}
-                </PollOptionText>
+                    // Get option text - with comprehensive fallback handling
+                    let optionText = '';
+                    if (typeof option === 'string') {
+                      optionText = option;
+                    } else if (typeof option === 'object') {
+                      if (option.text && typeof option.text === 'string') {
+                        optionText = option.text;
+                      } else if (option.option && typeof option.option === 'string') {
+                        optionText = option.option;
+                      } else {
+                        console.warn('Missing text for option at index', index, ':', option);
+                        optionText = `Option ${index + 1}`;
+                      }
+                    } else {
+                      console.warn('Invalid option type at index', index, ':', typeof option);
+                      optionText = `Option ${index + 1}`;
+                    }
 
-                {/* Always show vote count */}
-                <PollOptionVotes darkMode={darkMode}>
-                  {optionVotesCount}
-                </PollOptionVotes>
-              </PollOptionContent>
+                    const optionVotes = Array.isArray(option.votes) ? option.votes : 
+                                        (Array.isArray(option?.votes) ? option.votes : []);
+                    
+                    console.log(`📊 Option ${index}:`, { 
+                      text: optionText, 
+                      votes: optionVotes,
+                      raw: option 
+                    });
+                    
+                    // Calculate vote statistics
+                    const totalVotes = pollOptions.reduce((sum, opt) => {
+                      const votes = Array.isArray(opt?.votes) ? opt.votes : [];
+                      return sum + votes.length;
+                    }, 0);
+                    
+                    const optionVotesCount = optionVotes.length;
+                    const percentage = totalVotes > 0 ? (optionVotesCount / totalVotes) * 100 : 0;
+                    const hasVoted = optionVotes.includes(userLoggedIn?.email);
 
-              {/* Always show progress bar */}
-              <PollProgressBar darkMode={darkMode}>
-                <PollProgressFill 
-                  percentage={percentage} 
-                  darkMode={darkMode}
-                  hasVoted={hasVoted}
-                />
-              </PollProgressBar>
-            </PollOption>
-          );
-        }).filter(Boolean); // Remove null entries
-      })()}
-    </PollOptions>
+                    return (
+                      <PollOption
+                        key={`poll-${messageId}-option-${index}`}
+                        onClick={() => handlePollVote(index)}
+                        darkMode={darkMode}
+                        hasVoted={hasVoted}
+                        disabled={votingInProgress}
+                      >
+                        <PollOptionRow>
+                          <PollOptionIcon>
+                            {message.poll.allowMultipleAnswers ? (
+                              hasVoted ? (
+                                <CheckBoxIcon 
+                                  style={{ 
+                                    color: darkMode ? "#00a884" : "#25d366",
+                                    fontSize: 22
+                                  }} 
+                                />
+                              ) : (
+                                <CheckBoxOutlineBlankIcon 
+                                  style={{ 
+                                    color: darkMode ? "#8696a0" : "#667781",
+                                    fontSize: 22
+                                  }} 
+                                />
+                              )
+                            ) : (
+                              hasVoted ? (
+                                <CheckCircleIcon 
+                                  style={{ 
+                                    color: darkMode ? "#00a884" : "#25d366",
+                                    fontSize: 22
+                                  }} 
+                                />
+                              ) : (
+                                <RadioButtonUncheckedIcon 
+                                  style={{ 
+                                    color: darkMode ? "#8696a0" : "#667781",
+                                    fontSize: 22
+                                  }} 
+                                />
+                              )
+                            )}
+                          </PollOptionIcon>
+                          
+                          <PollOptionText darkMode={darkMode} hasVoted={hasVoted}>
+                            {optionText}
+                          </PollOptionText>
 
-    <PollFooter darkMode={darkMode}>
-      {message.poll.allowMultipleAnswers && (
-        <PollInfo>Multiple answers allowed</PollInfo>
-      )}
-      <PollTotalVotes darkMode={darkMode}>
-        {(() => {
-          const pollOptions = getPollOptionsArray(message.poll);
-          const totalVotes = pollOptions.reduce((sum, opt) => {
-            const votes = Array.isArray(opt?.votes) ? opt.votes : [];
-            return sum + votes.length;
-          }, 0);
-          return `${totalVotes} ${totalVotes === 1 ? 'vote' : 'votes'}`;
-        })()}
-      </PollTotalVotes>
-    </PollFooter>
-  </PollContainer>
-)}
+                          <PollOptionVotes darkMode={darkMode}>
+                            {optionVotesCount}
+                          </PollOptionVotes>
+                        </PollOptionRow>
+
+                        <PollProgressBar darkMode={darkMode}>
+                          <PollProgressFill 
+                            percentage={percentage} 
+                            darkMode={darkMode}
+                            hasVoted={hasVoted}
+                          />
+                        </PollProgressBar>
+                      </PollOption>
+                    );
+                  }).filter(Boolean);
+                })()}
+              </PollOptions>
+
+              <PollFooter darkMode={darkMode}>
+                {message.poll.allowMultipleAnswers && (
+                  <PollInfo>Multiple answers allowed</PollInfo>
+                )}
+                <PollTotalVotes darkMode={darkMode}>
+                  {(() => {
+                    const pollOptions = getPollOptionsArray(message.poll);
+                    const totalVotes = pollOptions.reduce((sum, opt) => {
+                      const votes = Array.isArray(opt?.votes) ? opt.votes : [];
+                      return sum + votes.length;
+                    }, 0);
+                    return `${totalVotes} ${totalVotes === 1 ? 'vote' : 'votes'}`;
+                  })()}
+                </PollTotalVotes>
+              </PollFooter>
+            </PollContainer>
+          )}
 
           {/* Location Message */}
           {message.location && (
@@ -584,9 +640,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
 
 export default Message;
 
-// Styled Components remain the same...
-// [All the styled components from your original code stay exactly the same]
-
+// Styled Components
 const Container = styled.div`
   margin: 5px 0;
   
@@ -726,7 +780,7 @@ const FileAttachment = styled.div`
   gap: 8px;
 `;
 
-// Poll Message Styles
+// Poll Message Styles - COMPLETELY FIXED
 const PollContainer = styled.div`
   background-color: ${(props) => (props.darkMode ? "#2a3942" : "#f0f0f0")};
   border-radius: 8px;
@@ -770,7 +824,6 @@ const PollOption = styled.div`
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   transition: all 0.2s;
   opacity: ${(props) => (props.disabled ? 0.6 : 1)};
-  position: relative;
 
   &:hover {
     background-color: ${(props) => 
@@ -786,39 +839,52 @@ const PollOption = styled.div`
   }
 `;
 
-const PollOptionContent = styled.div`
+const PollOptionRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 6px;
+  gap: 12px;
+  margin-bottom: 8px;
+  width: 100%;
 `;
 
 const PollOptionIcon = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  width: 28px;
+  height: 28px;
 `;
 
 const PollOptionText = styled.div`
   flex: 1;
   font-size: 14px;
-  color: ${(props) => (props.darkMode ? "#e0e0e0" : "black")};
+  color: ${(props) => (props.darkMode ? "#e0e0e0" : "#000000")} !important;
   font-weight: ${(props) => (props.hasVoted ? "600" : "400")};
-  line-height: 1.4;
+  line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  min-width: 0;
 `;
 
 const PollOptionVotes = styled.div`
-  font-size: 12px;
-  color: ${(props) => (props.darkMode ? "#8696a0" : "#667781")};
-  font-weight: 500;
+  font-size: 14px;
+  color: ${(props) => (props.darkMode ? "#64b5f6" : "#1976d2")};
+  font-weight: 700;
   flex-shrink: 0;
+  min-width: 32px;
+  text-align: center;
+  padding: 2px 8px;
+  background-color: ${(props) => (props.darkMode ? "rgba(100, 181, 246, 0.1)" : "rgba(25, 118, 210, 0.1)")};
+  border-radius: 12px;
 `;
 
 const PollProgressBar = styled.div`
   width: 100%;
-  height: 4px;
+  height: 6px;
   background-color: ${(props) => (props.darkMode ? "#1a1a1a" : "#e0e0e0")};
-  border-radius: 2px;
+  border-radius: 3px;
   overflow: hidden;
 `;
 
@@ -832,7 +898,7 @@ const PollProgressFill = styled.div`
     return props.darkMode ? "#3a4952" : "#ccc";
   }};
   transition: width 0.3s ease;
-  border-radius: 2px;
+  border-radius: 3px;
 `;
 
 const PollFooter = styled.div`

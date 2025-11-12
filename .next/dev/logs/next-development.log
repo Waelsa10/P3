@@ -1,211 +1,21 @@
-[00:00:01.139] Server  LOG      ✓ Ready in 792ms
-[00:00:01.149] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
-[00:00:01.149] Browser LOG     🟢 [Chat: 4gVOsm9vtQGUfSaHQ4N1] RECIPIENT CAME ONLINE! (2s ago)
-[00:00:01.149] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
-[00:00:01.149] Browser LOG     🔍 [Chat: 4gVOsm9vtQGUfSaHQ4N1] Checking if YOUR messages should be marked DELIVERED
-[00:00:01.149] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
-[00:00:01.149] Browser LOG     🔍 [Chat: 4gVOsm9vtQGUfSaHQ4N1] Verifying participants: {"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
-[00:00:01.149] Browser LOG     ✅ [Chat: 4gVOsm9vtQGUfSaHQ4N1] Participants verified
-[00:00:01.149] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS ONLINE (isOnline: true)
-[00:00:01.149] Browser LOG     🔄 [Chat 4gVOsm9vtQGUfSaHQ4N1] Window focused - checking for new messages
-[00:00:01.149] Browser LOG     🔍 [Chat 4gVOsm9vtQGUfSaHQ4N1] Checking for messages to mark as read...
-[00:00:01.149] Browser LOG     🟢 [waelsa909@gmail.com] Tab visible - setting online
-[00:00:01.634] Browser LOG     ✓ [Chat: 4gVOsm9vtQGUfSaHQ4N1] No SENT messages from you
-[00:00:01.634] Browser LOG     🟢 [waelsa909@gmail.com] Status updated: ONLINE
-[00:00:02.096] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
-[00:00:02.096] Browser LOG     📩 [Message 61FLwzlHDHiQMb3Z7o10]: {"from":"abduallh1424aa1@gmail.com","isMyMessage":false,"status":"read"}
-[00:00:02.096] Browser LOG     📩 [Message rQ2dsdtew2qkn5ZDaiyN]: {"from":"waelsa909@gmail.com","isMyMessage":true,"status":"read"}
-[00:00:02.096] Browser LOG       ⏭️ Skipping my own message
-[00:00:02.096] Browser LOG     ℹ️ [Chat 4gVOsm9vtQGUfSaHQ4N1] No updates needed (skipped 1 own messages)
-[00:00:05.697] Browser LOG     🔍 [Chat 4gVOsm9vtQGUfSaHQ4N1] Checking for messages to mark as read...
-[00:00:07.185] Browser LOG     🟢 [waelsa909@gmail.com] Status updated: ONLINE
-[00:00:08.268] Browser LOG     📱 [Chat 4gVOsm9vtQGUfSaHQ4N1] Loaded: {"currentUser":"waelsa909@gmail.com","users":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
-[00:00:08.269] Browser LOG     📩 [Message 61FLwzlHDHiQMb3Z7o10]: {"from":"abduallh1424aa1@gmail.com","isMyMessage":false,"status":"read"}
-[00:00:08.269] Browser LOG     📩 [Message rQ2dsdtew2qkn5ZDaiyN]: {"from":"waelsa909@gmail.com","isMyMessage":true,"status":"read"}
-[00:00:08.269] Browser LOG       ⏭️ Skipping my own message
-[00:00:08.269] Browser LOG     ℹ️ [Chat 4gVOsm9vtQGUfSaHQ4N1] No updates needed (skipped 1 own messages)
-[00:00:09.345] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
-[00:00:09.345] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":false,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
-[00:00:09.345] Browser LOG     ✅ useRecipientData: Found recipient {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
-[00:00:09.345] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+[00:00:01.634] Server  LOG      ✓ Ready in 1156ms
+[00:00:05.133] Server  LOG      ○ Compiling /chat/[id] ...
+[00:00:06.357] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
     at button
     at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
     at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
     at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at form
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatInput (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:4627:22)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatScreen (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:8170:23)
-    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
-    at div
+    at Button (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:2519:162)
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__8c02284d._.js:2219:207)
-    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:664:29)
-    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1100:18)
+    at Login (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:739:160)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1106:18)
     at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
     at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
     at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
     at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
     at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
     at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:00:09.345] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":false,"hasLastSeen":false}
-[00:00:09.345] Browser LOG     👀 Watching display name for: users/KywIewhlHEZHCHeN2Nwa5CoMiaz1/contacts/abduallh1424aa1@gmail.com
-[00:00:09.345] Browser LOG     👁️ [Chat: 4gVOsm9vtQGUfSaHQ4N1] Listening for abduallh1424aa1@gmail.com to come online...
-[00:00:09.345] Browser LOG        Your messages from: waelsa909@gmail.com
-[00:00:09.345] Browser LOG     🔍 Current authenticated user: {"email":"waelsa909@gmail.com","uid":"KywIewhlHEZHCHeN2Nwa5CoMiaz1"}
-[00:00:09.345] Browser LOG     📛 Custom display name: null
-[00:00:09.345] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":false,"hasLastSeen":false}
-[00:00:11.321] Browser LOG     🟢 [Chat: 4gVOsm9vtQGUfSaHQ4N1] RECIPIENT CAME ONLINE! (14s ago)
-[00:00:11.321] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
-[00:00:11.321] Browser LOG     🔍 [Chat: 4gVOsm9vtQGUfSaHQ4N1] Checking if YOUR messages should be marked DELIVERED
-[00:00:11.321] Browser LOG     ℹ️ No custom display name set
-[00:00:11.321] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
-    at button
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at Message (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:2411:20)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at _c (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:4534:185)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatScreen (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:8170:23)
-    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__8c02284d._.js:2219:207)
-    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:664:29)
-    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1100:18)
-    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
-    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
-    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
-    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
-    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
-    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:00:11.321] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
-[00:00:12.480] Browser LOG     🔍 [Chat: 4gVOsm9vtQGUfSaHQ4N1] Verifying participants: {"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
-[00:00:12.480] Browser LOG     ✅ [Chat: 4gVOsm9vtQGUfSaHQ4N1] Participants verified
-[00:00:12.480] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS ONLINE (isOnline: true)
-[00:00:14.140] Browser LOG     🔍 [Chat 4gVOsm9vtQGUfSaHQ4N1] Checking for messages to mark as read...
-[00:00:19.388] Browser LOG     🔍 [Chat 4gVOsm9vtQGUfSaHQ4N1] Checking for messages to mark as read...
-[00:00:22.327] Browser LOG     🔍 [Chat 4gVOsm9vtQGUfSaHQ4N1] Checking for messages to mark as read...
-[00:00:23.184] Browser LOG     🔍 [Chat 4gVOsm9vtQGUfSaHQ4N1] Checking for messages to mark as read...
-[00:00:24.044] Browser LOG     🔍 [Chat 4gVOsm9vtQGUfSaHQ4N1] Checking for messages to mark as read...
-[00:00:25.894] Browser LOG     🟢 [waelsa909@gmail.com] Status updated: ONLINE
-[00:00:27.462] Browser LOG     📱 [Chat 4gVOsm9vtQGUfSaHQ4N1] Loaded: {"currentUser":"waelsa909@gmail.com","users":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
-[00:00:27.462] Browser LOG     📩 [Message 61FLwzlHDHiQMb3Z7o10]: {"from":"abduallh1424aa1@gmail.com","isMyMessage":false,"status":"read"}
-[00:00:27.462] Browser LOG     📩 [Message rQ2dsdtew2qkn5ZDaiyN]: {"from":"waelsa909@gmail.com","isMyMessage":true,"status":"read"}
-[00:00:27.462] Browser LOG       ⏭️ Skipping my own message
-[00:00:27.462] Browser LOG     ℹ️ [Chat 4gVOsm9vtQGUfSaHQ4N1] No updates needed (skipped 1 own messages)
-[00:00:29.426] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
-[00:00:29.426] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":false,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
-[00:00:29.426] Browser LOG     ✅ useRecipientData: Found recipient {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
-[00:00:29.426] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
-    at button
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at form
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatInput (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:4627:22)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatScreen (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:8170:23)
-    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__8c02284d._.js:2219:207)
-    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:664:29)
-    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1100:18)
-    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
-    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
-    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
-    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
-    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
-    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:00:29.426] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":false,"hasLastSeen":false}
-[00:00:29.426] Browser LOG     👀 Watching display name for: users/KywIewhlHEZHCHeN2Nwa5CoMiaz1/contacts/abduallh1424aa1@gmail.com
-[00:00:29.426] Browser LOG     👁️ [Chat: 4gVOsm9vtQGUfSaHQ4N1] Listening for abduallh1424aa1@gmail.com to come online...
-[00:00:29.426] Browser LOG        Your messages from: waelsa909@gmail.com
-[00:00:29.426] Browser LOG     🔍 Current authenticated user: {"email":"waelsa909@gmail.com","uid":"KywIewhlHEZHCHeN2Nwa5CoMiaz1"}
-[00:00:29.426] Browser LOG     📛 Custom display name: null
-[00:00:29.426] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":false,"hasLastSeen":false}
-[00:00:30.431] Browser LOG     🟢 [Chat: 4gVOsm9vtQGUfSaHQ4N1] RECIPIENT CAME ONLINE! (9s ago)
-[00:00:30.431] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
-[00:00:30.431] Browser LOG     🔍 [Chat: 4gVOsm9vtQGUfSaHQ4N1] Checking if YOUR messages should be marked DELIVERED
-[00:00:30.431] Browser LOG     ℹ️ No custom display name set
-[00:00:30.431] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
-    at button
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at Message (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:2411:20)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at _c (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:4534:185)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatScreen (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:8170:23)
-    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__8c02284d._.js:2219:207)
-    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:664:29)
-    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1100:18)
-    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
-    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
-    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
-    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
-    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
-    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:00:30.431] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
-[00:00:31.302] Browser LOG     🔍 [Chat: 4gVOsm9vtQGUfSaHQ4N1] Verifying participants: {"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
-[00:00:31.302] Browser LOG     ✅ [Chat: 4gVOsm9vtQGUfSaHQ4N1] Participants verified
-[00:00:31.302] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS ONLINE (isOnline: true)
-[00:00:32.166] Browser LOG     ✓ [Chat: 4gVOsm9vtQGUfSaHQ4N1] No SENT messages from you
-[00:00:35.083] Browser LOG     🔴 [waelsa909@gmail.com] Tab hidden - setting offline
-[00:00:35.083] Browser LOG     🔴 [waelsa909@gmail.com] Status updated: OFFLINE
-[00:00:35.083] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}

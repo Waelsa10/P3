@@ -445,47 +445,51 @@ function Login() {
     }, this);
 }
 const __TURBOPACK__default__export__ = Login;
-// Styled Components with Dark Mode
+// Styled Components with Dark Mode and Proportional Responsive Design
 const Container = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
   display: grid;
   place-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: clamp(1rem, 2vw, 2rem);
   background-color: ${(props)=>props.darkMode ? '#0d1117' : 'whitesmoke'};
   transition: background-color 0.3s ease;
 `;
 const LoginContainer = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
-  padding: 90px;
+  padding: clamp(2.5rem, 8vw, 5.625rem);
+  width: clamp(280px, 85vw, 600px);
   display: flex;
   flex-direction: column;
   align-items: center;
   background: ${(props)=>props.darkMode ? 'rgba(30, 30, 30, 0.7)' : 'rgba(255, 255, 255, 0.7)'};
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-radius: 24px;
+  border-radius: clamp(16px, 3vw, 24px);
   border: 1px solid ${(props)=>props.darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.5)'};
   box-shadow: ${(props)=>props.darkMode ? '0 8px 32px 0 rgba(0, 0, 0, 0.37)' : '0 8px 32px 0 rgba(31, 38, 135, 0.15)'};
   transition: all 0.3s ease;
 `;
 const Logo = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].img`
-  height: 400px;
-  width: 400px;
-  margin-bottom: 50px;
+  height: auto;
+  width: clamp(200px, 50vw, 400px);
+  max-width: 100%;
+  margin-bottom: clamp(2rem, 6vw, 3.125rem);
   filter: ${(props)=>props.darkMode ? 'brightness(0.9)' : 'none'};
+  transition: all 0.3s ease;
 `;
 const GoogleLogo = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].img`
-  width: 18px;
-  height: 18px;
+  width: clamp(16px, 2vw, 18px);
+  height: clamp(16px, 2vw, 18px);
 `;
 const StyledButton = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Button$2f$Button$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"])`
   && {
     width: 100%;
-    padding: 12px 24px;
+    padding: clamp(10px, 1.5vw, 12px) clamp(20px, 3vw, 24px);
     background-color: white;
     color: #3c4043;
     border: 1px solid #dadce0;
-    border-radius: 8px;
+    border-radius: clamp(6px, 1vw, 8px);
     font-weight: 500;
-    font-size: 14px;
+    font-size: clamp(13px, 1.8vw, 14px);
     text-transform: none;
     box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3);
     transition: all 0.15s ease-in-out;
@@ -510,14 +514,16 @@ const StyledButton = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$style
     }
 
     .MuiButton-startIcon {
-      margin-right: 12px;
+      margin-right: clamp(8px, 1.5vw, 12px);
     }
   }
 `;
 const ErrorText = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].p`
   color: ${(props)=>props.darkMode ? '#ff6b6b' : '#d32f2f'};
-  margin-top: 10px;
-  font-size: 14px;
+  margin-top: clamp(0.625rem, 1.5vw, 0.875rem);
+  font-size: clamp(12px, 1.8vw, 14px);
+  text-align: center;
+  padding: 0 1rem;
 `;
 __turbopack_async_result__();
 } catch(e) { __turbopack_async_result__(e); } }, false);}),

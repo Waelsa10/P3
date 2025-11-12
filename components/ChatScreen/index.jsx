@@ -24,6 +24,7 @@ import { useLocation } from "./hooks/useLocation";
 import { useRecipientData } from "./hooks/useRecipientData";
 import { useMessages } from "./hooks/useMessages";
 import { useMessageStatus } from "./hooks/useMessageStatus";
+import { useDisplayName } from "./hooks/useDisplayName";
 
 // Components
 import ChatHeader from "./components/ChatHeader";
@@ -74,6 +75,12 @@ function ChatScreen({
   const { recipientEmail, recipient, recipientSnapshot, isSelfChat, isLoading } = useRecipientData(user, chat);
   const { messagesSnapshot } = useMessages(chatId);
   
+  // Fetch custom display name
+  const { displayName: customDisplayName, loading: displayNameLoading } = useDisplayName(
+    user?.uid,
+    recipientEmail
+  );
+  
   useMessageStatus(
     chatId, 
     isLoading ? null : recipientEmail,
@@ -86,6 +93,20 @@ function ChatScreen({
   const voiceRecording = useVoiceRecording(chatId, user, recipientEmail);
   const camera = useCamera(chatId, user, recipientEmail);
   const location = useLocation(chatId, user, recipientEmail);
+
+  // Debug logging
+  useEffect(() => {
+    if (user) {
+      console.log("🔍 Current authenticated user:", {
+        uid: user.uid,
+        email: user.email,
+      });
+    }
+  }, [user]);
+
+  useEffect(() => {
+    console.log("📛 Custom display name:", customDisplayName);
+  }, [customDisplayName]);
 
   // Monitor online status
   useEffect(() => {
@@ -133,24 +154,34 @@ function ChatScreen({
 
   // Handle display name update
   const handleUpdateDisplayName = async (newDisplayName) => {
-    if (!recipientEmail || isSelfChat) return;
+    if (!recipientEmail || isSelfChat || !user) {
+      console.error("❌ Cannot update display name:", { recipientEmail, isSelfChat, hasUser: !!user });
+      return;
+    }
 
     try {
       console.log(`📝 Updating display name for ${recipientEmail} to "${newDisplayName}"`);
+      console.log(`👤 Current user:`, { uid: user.uid, email: user.email });
       
-      // Store display name in a separate collection
-      const displayNameRef = doc(db, "displayNames", `${user.email}_${recipientEmail}`);
-      await setDoc(displayNameRef, {
+      const contactRef = doc(db, "users", user.uid, "contacts", recipientEmail);
+      
+      console.log(`📍 Document path: users/${user.uid}/contacts/${recipientEmail}`);
+      
+      await setDoc(contactRef, {
         email: recipientEmail,
         displayName: newDisplayName,
-        updatedBy: user.email,
         updatedAt: serverTimestamp(),
-      });
+      }, { merge: true });
 
       console.log("✅ Display name updated successfully");
+      
+      // Show success message
+      setSendingError(null);
     } catch (error) {
       console.error("❌ Error updating display name:", error);
-      setSendingError("Failed to update display name");
+      console.error("Error code:", error.code);
+      console.error("Error message:", error.message);
+      setSendingError(`Failed to update display name: ${error.message}`);
     }
   };
 
@@ -277,6 +308,7 @@ function ChatScreen({
         recipientEmail={recipientEmail}
         recipientSnapshot={recipientSnapshot}
         isSelfChat={isSelfChat}
+        customDisplayName={customDisplayName}
         onMoreClick={() => setShowProfile(true)}
         darkMode={darkMode}
         isMobile={isMobile}
@@ -409,7 +441,7 @@ function ChatScreen({
       <ChatInfoDialog
         open={showProfile}
         onClose={() => setShowProfile(false)}
-        recipient={recipient}
+        recipient={{ ...recipient, displayName: customDisplayName }}
         recipientEmail={recipientEmail}
         isSelfChat={isSelfChat}
         messages={messagesSnapshot?.docs.map(doc => ({ 

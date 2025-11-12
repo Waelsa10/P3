@@ -10,6 +10,13 @@ import ChatIcon from "@mui/icons-material/Chat";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
+import ArchiveIcon from "@mui/icons-material/Archive";
+import UnarchiveIcon from "@mui/icons-material/Unarchive";
+import DeleteIcon from "@mui/icons-material/Delete";
+import BlockIcon from "@mui/icons-material/Block";
+import PersonOffIcon from "@mui/icons-material/PersonOff";
+import SettingsIcon from "@mui/icons-material/Settings";
+import InfoIcon from "@mui/icons-material/Info";
 import Chat from "./Chat";
 import { useCollection } from "react-firebase-hooks/firestore";
 import * as EmailValidator from "email-validator";
@@ -26,6 +33,7 @@ import {
   orderBy,
   limit,
   getDocs,
+  getDoc,
 } from "firebase/firestore";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -53,6 +61,8 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
   const [aboutOpen, setAboutOpen] = useState(false);
   const [blockedUsersOpen, setBlockedUsersOpen] = useState(false);
   const [chatsList, setChatsList] = useState([]);
+  const [displayNames, setDisplayNames] = useState({});
+  const [showArchived, setShowArchived] = useState(false);
   
   // Get dark mode context
   const darkModeContext = useContext(DarkModeContext);
@@ -73,6 +83,46 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
   const currentUserData = userDocSnapshot?.docs?.[0]?.data();
   const blockedUsers = currentUserData?.blockedUsers || [];
 
+  // ✅ Fetch display names for all contacts
+  useEffect(() => {
+    if (!user || !chatsSnapshot) return;
+
+    const fetchDisplayNames = async () => {
+      const names = {};
+      
+      // Get all unique recipient emails
+      const recipientEmails = new Set();
+      chatsSnapshot.docs.forEach((chat) => {
+        const chatUsers = chat.data().users || [];
+        chatUsers.forEach((email) => {
+          if (email !== user.email) {
+            recipientEmails.add(email);
+          }
+        });
+      });
+
+      // Fetch display names for each recipient
+      await Promise.all(
+        Array.from(recipientEmails).map(async (recipientEmail) => {
+          try {
+            const contactRef = doc(db, "users", user.uid, "contacts", recipientEmail);
+            const contactSnap = await getDoc(contactRef);
+            
+            if (contactSnap.exists()) {
+              names[recipientEmail] = contactSnap.data().displayName;
+            }
+          } catch (error) {
+            console.error(`Error fetching display name for ${recipientEmail}:`, error);
+          }
+        })
+      );
+
+      setDisplayNames(names);
+    };
+
+    fetchDisplayNames();
+  }, [user, chatsSnapshot]);
+
   // ✅ OPTIMIZED: Load and sort chats with cleaned users array
   useEffect(() => {
     if (!chatsSnapshot || !user) {
@@ -85,7 +135,16 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
         chatsSnapshot.docs
           .filter((chat) => {
             const deletedBy = chat.data().deletedBy || [];
-            return !deletedBy.includes(user.email);
+            const archivedBy = chat.data().archivedBy || [];
+            
+            // Don't show deleted chats
+            if (deletedBy.includes(user.email)) {
+              return false;
+            }
+            
+            // Filter based on archive view
+            const isArchived = archivedBy.includes(user.email);
+            return showArchived ? isArchived : !isArchived;
           })
           .map(async (chat) => {
             try {
@@ -144,7 +203,12 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
     };
 
     loadChatsWithLatestMessage();
-  }, [chatsSnapshot, user]);
+  }, [chatsSnapshot, user, showArchived]);
+
+  // ✅ Toggle archive view
+  const toggleArchiveView = useCallback(() => {
+    setShowArchived(prev => !prev);
+  }, []);
 
   // ✅ MEMOIZED: Check if chat already exists
   const chatAlreadyExist = useCallback((recipientEmail) => {
@@ -192,6 +256,7 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
       await addDoc(collection(db, "chats"), {
         users: [user.email, input],
         deletedBy: [],
+        archivedBy: [],
         createdAt: new Date(),
       });
     } catch (error) {
@@ -247,6 +312,36 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
   const handleBlockedUsersClose = useCallback(() => {
     setBlockedUsersOpen(false);
   }, []);
+
+  // ✅ MEMOIZED: Archive chat
+  const archiveChat = useCallback(async () => {
+    if (!selectedChatId || !user) return;
+    try {
+      const chatRef = doc(db, "chats", selectedChatId);
+      const chatDoc = await getDoc(chatRef);
+      const archivedBy = chatDoc.data()?.archivedBy || [];
+      const isArchived = archivedBy.includes(user.email);
+
+      if (isArchived) {
+        // Unarchive
+        await updateDoc(chatRef, {
+          archivedBy: arrayRemove(user.email),
+        });
+        alert("Chat unarchived");
+      } else {
+        // Archive
+        await updateDoc(chatRef, {
+          archivedBy: arrayUnion(user.email),
+        });
+        alert("Chat archived");
+      }
+      
+      handleMenuClose();
+    } catch (error) {
+      console.error("Error archiving/unarchiving chat:", error);
+      alert("Failed to archive/unarchive chat");
+    }
+  }, [selectedChatId, user, handleMenuClose]);
 
   // ✅ MEMOIZED: Delete chat
   const deleteChat = useCallback(async () => {
@@ -317,6 +412,20 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
     return blockedUsers.includes(recipientEmail);
   }, [selectedChatUsers, user, blockedUsers]);
 
+  // ✅ Check if selected chat is archived
+  const isSelectedChatArchived = useCallback(() => {
+    if (!selectedChatId || !chatsSnapshot) return false;
+    const chat = chatsSnapshot.docs.find(doc => doc.id === selectedChatId);
+    if (!chat) return false;
+    const archivedBy = chat.data()?.archivedBy || [];
+    return archivedBy.includes(user.email);
+  }, [selectedChatId, chatsSnapshot, user]);
+
+  // ✅ Get display name for a recipient
+  const getDisplayName = useCallback((recipientEmail) => {
+    return displayNames[recipientEmail] || null;
+  }, [displayNames]);
+
   // ✅ MEMOIZED: Filter chats by search term
   const filteredChats = useMemo(() => {
     if (!searchTerm.trim()) return chatsList;
@@ -330,9 +439,22 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
         return user.email?.toLowerCase().includes(searchLower);
       }
       
-      return otherUser?.toLowerCase().includes(searchLower);
+      // Search by both email and display name
+      const displayName = getDisplayName(otherUser);
+      return otherUser?.toLowerCase().includes(searchLower) ||
+             displayName?.toLowerCase().includes(searchLower);
     });
-  }, [chatsList, searchTerm, user]);
+  }, [chatsList, searchTerm, user, getDisplayName]);
+
+  // ✅ Count archived chats
+  const archivedCount = useMemo(() => {
+    if (!chatsSnapshot || !user) return 0;
+    return chatsSnapshot.docs.filter(chat => {
+      const archivedBy = chat.data()?.archivedBy || [];
+      const deletedBy = chat.data()?.deletedBy || [];
+      return archivedBy.includes(user.email) && !deletedBy.includes(user.email);
+    }).length;
+  }, [chatsSnapshot, user]);
 
   if (!user) return <Container darkMode={darkMode}>Loading...</Container>;
 
@@ -351,9 +473,16 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
         <Header darkMode={darkMode}>
           <UserAvatar onClick={() => auth.signOut()} src={user.photoURL} />
           <IconsContainer>
-            <IconButton>
-              <ChatIcon style={{ color: darkMode ? 'gray' : 'inherit' }}/>
+            <IconButton onClick={toggleArchiveView} title={showArchived ? "Show active chats" : "Show archived chats"}>
+              {showArchived ? (
+                <UnarchiveIcon style={{ color: darkMode ? '#25D366' : '#128C7E' }}/>
+              ) : (
+                <ChatIcon style={{ color: darkMode ? 'gray' : 'inherit' }}/>
+              )}
             </IconButton>
+            {!showArchived && archivedCount > 0 && (
+              <ArchiveBadge darkMode={darkMode}>{archivedCount}</ArchiveBadge>
+            )}
             <IconButton onClick={handleHeaderMenuOpen}>
               <MoreVertIcon style={{ color: darkMode ? 'gray' : 'inherit' }}/>
             </IconButton>
@@ -365,42 +494,65 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
           </IconsContainer>
         </Header>
 
+        {showArchived && (
+          <ArchiveHeader darkMode={darkMode}>
+            <ArchiveIcon style={{ fontSize: 20, marginRight: 8 }} />
+            <span>Archived Chats ({archivedCount})</span>
+          </ArchiveHeader>
+        )}
+
         <Search darkMode={darkMode}>
           <SearchIcon />
           <SearchInput 
             darkMode={darkMode}
-            placeholder="Search in chats" 
+            placeholder={showArchived ? "Search archived chats" : "Search in chats"}
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </Search>
 
-        <SidebarButton onClick={createChat} disabled={loading}>
-          Start a new chat
-        </SidebarButton>
+        {!showArchived && (
+          <SidebarButton onClick={createChat} disabled={loading}>
+            Start a new chat
+          </SidebarButton>
+        )}
 
         {loading ? (
           <LoadingContainer darkMode={darkMode}>
             <Typography>Loading chats...</Typography>
           </LoadingContainer>
+        ) : filteredChats.length === 0 ? (
+          <EmptyState darkMode={darkMode}>
+            <Typography variant="body2">
+              {showArchived ? "No archived chats" : "No chats yet"}
+            </Typography>
+          </EmptyState>
         ) : (
-          filteredChats.map((chat) => (
-            <ChatWrapper key={chat.id} darkMode={darkMode}>
-              <Chat 
-                id={chat.id} 
-                users={chat.data.users} 
-                latestMessage={chat.latestMessage}
-              />
-              <OptionsButton
-                onClick={(e) => handleMenuOpen(e, chat.id, chat.data.users)}
-              >
-                <MoreVertIcon fontSize="small" />
-              </OptionsButton>
-            </ChatWrapper>
-          ))
+          filteredChats.map((chat) => {
+            const chatUsers = chat.data.users || [];
+            const otherUser = chatUsers.find((email) => email !== user.email);
+            const customDisplayName = otherUser ? getDisplayName(otherUser) : null;
+            
+            return (
+              <ChatWrapper key={chat.id} darkMode={darkMode}>
+                <Chat 
+                  id={chat.id} 
+                  users={chat.data.users} 
+                  latestMessage={chat.latestMessage}
+                  customDisplayName={customDisplayName}
+                />
+                <OptionsButton
+                  onClick={(e) => handleMenuOpen(e, chat.id, chat.data.users)}
+                >
+                  <MoreVertIcon fontSize="small" />
+                </OptionsButton>
+              </ChatWrapper>
+            );
+          })
         )}
 
+        {/* Header Menu */}
         <Menu
           anchorEl={headerAnchorEl}
           open={Boolean(headerAnchorEl)}
@@ -412,11 +564,21 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
             },
           }}
         >
-          <MenuItem onClick={handleSettingsOpen}>Settings</MenuItem>
-          <MenuItem onClick={handleBlockedUsersOpen}>Blocked Users</MenuItem>
-          <MenuItem onClick={handleAboutOpen}>About</MenuItem>
+          <MenuItem onClick={handleSettingsOpen}>
+            <SettingsIcon fontSize="small" style={{ marginRight: 8, color: darkMode ? '#64b5f6' : '#1976d2' }} />
+            Settings
+          </MenuItem>
+          <MenuItem onClick={handleBlockedUsersOpen}>
+            <PersonOffIcon fontSize="small" style={{ marginRight: 8, color: darkMode ? '#ff9800' : '#f57c00' }} />
+            Blocked Users
+          </MenuItem>
+          <MenuItem onClick={handleAboutOpen}>
+            <InfoIcon fontSize="small" style={{ marginRight: 8, color: darkMode ? '#4caf50' : '#2e7d32' }} />
+            About
+          </MenuItem>
         </Menu>
 
+        {/* Chat Context Menu */}
         <Menu
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
@@ -428,6 +590,20 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
             },
           }}
         >
+          <MenuItem onClick={archiveChat}>
+            {isSelectedChatArchived() ? (
+              <>
+                <UnarchiveIcon fontSize="small" style={{ marginRight: 8, color: darkMode ? '#64b5f6' : '#1976d2' }} />
+                Unarchive Chat
+              </>
+            ) : (
+              <>
+                <ArchiveIcon fontSize="small" style={{ marginRight: 8, color: darkMode ? '#64b5f6' : '#1976d2' }} />
+                Archive Chat
+              </>
+            )}
+          </MenuItem>
+          
           {selectedChatUsers && selectedChatUsers.find((email) => email !== user.email) && (
             <>
               {isUserBlocked() ? (
@@ -436,14 +612,22 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
                   unblockUser(recipientEmail);
                   handleMenuClose();
                 }}>
+                  <PersonOffIcon fontSize="small" style={{ marginRight: 8, color: darkMode ? '#4caf50' : '#2e7d32' }} />
                   Unblock User
                 </MenuItem>
               ) : (
-                <MenuItem onClick={blockUser}>Block User</MenuItem>
+                <MenuItem onClick={blockUser}>
+                  <BlockIcon fontSize="small" style={{ marginRight: 8, color: darkMode ? '#ff9800' : '#f57c00' }} />
+                  Block User
+                </MenuItem>
               )}
             </>
           )}
-          <MenuItem onClick={deleteChat}>Delete Chat</MenuItem>
+          
+          <MenuItem onClick={deleteChat}>
+            <DeleteIcon fontSize="small" style={{ marginRight: 8, color: '#f44336' }} />
+            Delete Chat
+          </MenuItem>
         </Menu>
 
         <Dialog 
@@ -458,7 +642,12 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
             },
           }}
         >
-          <DialogTitle>Settings</DialogTitle>
+          <DialogTitle>
+            <DialogTitleContainer>
+              <SettingsIcon style={{ marginRight: 8, color: darkMode ? '#64b5f6' : '#1976d2' }} />
+              Settings
+            </DialogTitleContainer>
+          </DialogTitle>
           <DialogContent>
             <FormControlLabel
               control={
@@ -488,7 +677,12 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
             },
           }}
         >
-          <DialogTitle>Blocked Users</DialogTitle>
+          <DialogTitle>
+            <DialogTitleContainer>
+              <PersonOffIcon style={{ marginRight: 8, color: darkMode ? '#ff9800' : '#f57c00' }} />
+              Blocked Users
+            </DialogTitleContainer>
+          </DialogTitle>
           <DialogContent>
             {blockedUsers.length === 0 ? (
               <Typography variant="body2" color="textSecondary">
@@ -499,9 +693,13 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
                 {blockedUsers.map((blockedEmail) => (
                   <ListItem key={blockedEmail}>
                     <ListItemText 
-                      primary={blockedEmail}
+                      primary={getDisplayName(blockedEmail) || blockedEmail}
+                      secondary={getDisplayName(blockedEmail) ? blockedEmail : null}
                       primaryTypographyProps={{
                         style: { color: darkMode ? '#e0e0e0' : 'black' }
+                      }}
+                      secondaryTypographyProps={{
+                        style: { color: darkMode ? '#888' : '#666' }
                       }}
                     />
                     <ListItemSecondaryAction>
@@ -535,7 +733,12 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
             },
           }}
         >
-          <DialogTitle>About</DialogTitle>
+          <DialogTitle>
+            <DialogTitleContainer>
+              <InfoIcon style={{ marginRight: 8, color: darkMode ? '#4caf50' : '#2e7d32' }} />
+              About
+            </DialogTitleContainer>
+          </DialogTitle>
           <DialogContent>
             <Typography variant="h6" gutterBottom>
               Chat Application
@@ -556,12 +759,18 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
                 <li>User authentication</li>
                 <li>Search chats</li>
                 <li>Block/Unblock users</li>
+                <li>Archive/Unarchive chats</li>
                 <li>Delete conversations</li>
                 <li>Dark mode support</li>
                 <li>Chat with yourself (like WhatsApp)</li>
                 <li>Sorted by latest message</li>
                 <li>File sharing support</li>
                 <li>Voice messages</li>
+                <li>Custom display names</li>
+                <li>Location sharing</li>
+                <li>Camera photo capture</li>
+                <li>Message status indicators</li>
+                <li>Reply to messages</li>
               </ul>
             </Typography>
             <Typography variant="body2" color="textSecondary" style={{ marginTop: 20 }}>
@@ -694,6 +903,35 @@ const Header = styled.div`
 const IconsContainer = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
+`;
+
+const ArchiveBadge = styled.div`
+  position: absolute;
+  top: 8px;
+  left: 28px;
+  background-color: ${props => props.darkMode ? '#00a884' : '#25d366'};
+  color: white;
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 0 4px;
+`;
+
+const ArchiveHeader = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: ${props => props.darkMode ? '#2a2a2a' : '#f0f0f0'};
+  color: ${props => props.darkMode ? '#25D366' : '#128C7E'};
+  font-weight: 500;
+  font-size: 14px;
+  border-bottom: 1px solid ${props => props.darkMode ? '#333' : '#e0e0e0'};
 `;
 
 const ChatWrapper = styled.div`
@@ -721,4 +959,17 @@ const LoadingContainer = styled.div`
   align-items: center;
   padding: 20px;
   color: ${props => props.darkMode ? '#888' : '#666'};
+`;
+
+const EmptyState = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  color: ${props => props.darkMode ? '#888' : '#666'};
+`;
+
+const DialogTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;

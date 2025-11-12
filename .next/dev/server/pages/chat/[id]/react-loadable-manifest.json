@@ -2,7 +2,7 @@
   "[project]/components/ChatScreen/index.jsx [client] (ecmascript, next/dynamic entry)": {
     "id": "[project]/components/ChatScreen/index.jsx [client] (ecmascript, next/dynamic entry)",
     "files": [
-      "static/chunks/_e3b58e83._.js",
+      "static/chunks/_cd1f17d1._.js",
       "static/chunks/node_modules_@mui_material_185d8226._.js",
       "static/chunks/node_modules_@mui_system_68cb8513._.js",
       "static/chunks/node_modules_moment_0c55cd92._.js",
@@ -13,10 +13,10 @@
   "[project]/components/Sidebar.js [client] (ecmascript, next/dynamic entry)": {
     "id": "[project]/components/Sidebar.js [client] (ecmascript, next/dynamic entry)",
     "files": [
+      "static/chunks/_3bb1bd76._.js",
       "static/chunks/node_modules_@mui_system_d153eec2._.js",
       "static/chunks/node_modules_@mui_material_919490c9._.js",
-      "static/chunks/node_modules_7c6d79ca._.js",
-      "static/chunks/_3bb1bd76._.js",
+      "static/chunks/node_modules_c17d76cf._.js",
       "static/chunks/components_Sidebar_fae28c3f.js"
     ]
   }

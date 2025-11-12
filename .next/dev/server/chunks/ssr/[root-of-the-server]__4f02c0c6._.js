@@ -212,7 +212,7 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 ;
 ;
-const Chat = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["default"].memo(({ id, users, latestMessage: propLatestMessage })=>{
+const Chat = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["default"].memo(({ id, users, latestMessage: propLatestMessage, customDisplayName })=>{
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     const [user] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$firebase$2d$hooks$2f$auth__$5b$external$5d$__$28$react$2d$firebase$2d$hooks$2f$auth$2c$__cjs$29$__["useAuthState"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["auth"]);
     const [latestMessage, setLatestMessage] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(propLatestMessage || null);
@@ -240,6 +240,18 @@ const Chat = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$rea
     }, [
         users,
         user
+    ]);
+    // ✅ MEMOIZED: Get display name (custom name or email)
+    const displayName = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useMemo"])(()=>{
+        if (isSelfChat) {
+            return customDisplayName || recipientEmail || user?.email;
+        }
+        return customDisplayName || recipientEmail;
+    }, [
+        customDisplayName,
+        recipientEmail,
+        isSelfChat,
+        user?.email
     ]);
     // Get recipient info - only query if recipientEmail exists
     const recipientQuery = recipientEmail && !isSelfChat ? (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["query"])((0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users"), (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])("email", "==", recipientEmail)) : null;
@@ -340,6 +352,10 @@ const Chat = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$rea
     // ✅ MEMOIZED: Get message preview
     const messagePreview = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useMemo"])(()=>{
         if (!latestMessage) return "No messages yet";
+        // Location message
+        if (latestMessage.location) {
+            return "📍 Location";
+        }
         // Voice message
         if (latestMessage.voiceURL) {
             return "🎤 Voice message";
@@ -378,19 +394,19 @@ const Chat = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$rea
                 children: user?.email?.[0]?.toUpperCase()
             }, void 0, false, {
                 fileName: "[project]/components/Chat.js",
-                lineNumber: 193,
+                lineNumber: 206,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)) : recipient ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(UserAvatar, {
                 src: recipient?.photoURL
             }, void 0, false, {
                 fileName: "[project]/components/Chat.js",
-                lineNumber: 195,
+                lineNumber: 208,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(UserAvatar, {
                 children: recipientEmail?.[0]?.toUpperCase()
             }, void 0, false, {
                 fileName: "[project]/components/Chat.js",
-                lineNumber: 197,
+                lineNumber: 210,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(ChatContent, {
@@ -399,10 +415,10 @@ const Chat = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$rea
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(RecipientName, {
                                 darkMode: darkMode,
-                                children: isSelfChat ? `${recipientEmail} (You)` : recipientEmail
+                                children: isSelfChat ? `${displayName} (You)` : displayName
                             }, void 0, false, {
                                 fileName: "[project]/components/Chat.js",
-                                lineNumber: 201,
+                                lineNumber: 214,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             latestMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(MessageTime, {
@@ -410,13 +426,13 @@ const Chat = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$rea
                                 children: formatTimestamp(latestMessage.timestamp)
                             }, void 0, false, {
                                 fileName: "[project]/components/Chat.js",
-                                lineNumber: 205,
+                                lineNumber: 218,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Chat.js",
-                        lineNumber: 200,
+                        lineNumber: 213,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(LastMessageContainer, {
@@ -430,12 +446,12 @@ const Chat = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$rea
                                             darkMode: darkMode
                                         }, void 0, false, {
                                             fileName: "[project]/components/Chat.js",
-                                            lineNumber: 214,
+                                            lineNumber: 227,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/Chat.js",
-                                        lineNumber: 213,
+                                        lineNumber: 226,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(MessageText, {
@@ -444,13 +460,13 @@ const Chat = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$rea
                                         children: messagePreview
                                     }, void 0, false, {
                                         fileName: "[project]/components/Chat.js",
-                                        lineNumber: 220,
+                                        lineNumber: 233,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Chat.js",
-                                lineNumber: 211,
+                                lineNumber: 224,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             hasUnread && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(UnreadBadge, {
@@ -458,30 +474,30 @@ const Chat = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$rea
                                 children: unreadCount
                             }, void 0, false, {
                                 fileName: "[project]/components/Chat.js",
-                                lineNumber: 225,
+                                lineNumber: 238,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Chat.js",
-                        lineNumber: 210,
+                        lineNumber: 223,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Chat.js",
-                lineNumber: 199,
+                lineNumber: 212,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/components/Chat.js",
-        lineNumber: 191,
+        lineNumber: 204,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 }, (prevProps, nextProps)=>{
     // ✅ Custom comparison - only re-render if these change
-    return prevProps.id === nextProps.id && JSON.stringify(prevProps.users) === JSON.stringify(nextProps.users) && prevProps.latestMessage?.timestamp === nextProps.latestMessage?.timestamp && prevProps.latestMessage?.message === nextProps.latestMessage?.message;
+    return prevProps.id === nextProps.id && JSON.stringify(prevProps.users) === JSON.stringify(nextProps.users) && prevProps.latestMessage?.timestamp === nextProps.latestMessage?.timestamp && prevProps.latestMessage?.message === nextProps.latestMessage?.message && prevProps.customDisplayName === nextProps.customDisplayName;
 });
 Chat.displayName = 'Chat';
 const __TURBOPACK__default__export__ = Chat;
@@ -608,6 +624,13 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$ico
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$MoreVert$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/MoreVert.js [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Search$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Search.js [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Close$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Close.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Archive$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Archive.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Unarchive$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Unarchive.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Delete$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Delete.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Block$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Block.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$PersonOff$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/PersonOff.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Settings$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Settings.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Info$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Info.js [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Chat$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/Chat.js [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$firebase$2d$hooks$2f$firestore__$5b$external$5d$__$28$react$2d$firebase$2d$hooks$2f$firestore$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react-firebase-hooks/firestore [external] (react-firebase-hooks/firestore, cjs)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$email$2d$validator__$5b$external$5d$__$28$email$2d$validator$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/email-validator [external] (email-validator, cjs)");
@@ -662,6 +685,13 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 ;
 ;
+;
+;
+;
+;
+;
+;
+;
 const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["default"].memo(({ isMobile, sidebarOpen, setSidebarOpen })=>{
     const [user] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$firebase$2d$hooks$2f$auth__$5b$external$5d$__$28$react$2d$firebase$2d$hooks$2f$auth$2c$__cjs$29$__["useAuthState"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["auth"]);
     const [anchorEl, setAnchorEl] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(null);
@@ -673,6 +703,8 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
     const [aboutOpen, setAboutOpen] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(false);
     const [blockedUsersOpen, setBlockedUsersOpen] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(false);
     const [chatsList, setChatsList] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])([]);
+    const [displayNames, setDisplayNames] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])({});
+    const [showArchived, setShowArchived] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(false);
     // Get dark mode context
     const darkModeContext = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useContext"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$DarkModeProvider$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["DarkModeContext"]);
     const { darkMode, toggleDarkMode } = darkModeContext || {
@@ -686,6 +718,40 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
     const [userDocSnapshot] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$firebase$2d$hooks$2f$firestore__$5b$external$5d$__$28$react$2d$firebase$2d$hooks$2f$firestore$2c$__cjs$29$__["useCollection"])(userDocRef ? (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["query"])((0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["collection"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users"), (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["where"])("__name__", "==", user.uid)) : null);
     const currentUserData = userDocSnapshot?.docs?.[0]?.data();
     const blockedUsers = currentUserData?.blockedUsers || [];
+    // ✅ Fetch display names for all contacts
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        if (!user || !chatsSnapshot) return;
+        const fetchDisplayNames = async ()=>{
+            const names = {};
+            // Get all unique recipient emails
+            const recipientEmails = new Set();
+            chatsSnapshot.docs.forEach((chat)=>{
+                const chatUsers = chat.data().users || [];
+                chatUsers.forEach((email)=>{
+                    if (email !== user.email) {
+                        recipientEmails.add(email);
+                    }
+                });
+            });
+            // Fetch display names for each recipient
+            await Promise.all(Array.from(recipientEmails).map(async (recipientEmail)=>{
+                try {
+                    const contactRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users", user.uid, "contacts", recipientEmail);
+                    const contactSnap = await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["getDoc"])(contactRef);
+                    if (contactSnap.exists()) {
+                        names[recipientEmail] = contactSnap.data().displayName;
+                    }
+                } catch (error) {
+                    console.error(`Error fetching display name for ${recipientEmail}:`, error);
+                }
+            }));
+            setDisplayNames(names);
+        };
+        fetchDisplayNames();
+    }, [
+        user,
+        chatsSnapshot
+    ]);
     // ✅ OPTIMIZED: Load and sort chats with cleaned users array
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
         if (!chatsSnapshot || !user) {
@@ -695,7 +761,14 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
         const loadChatsWithLatestMessage = async ()=>{
             const chatsWithMessages = await Promise.all(chatsSnapshot.docs.filter((chat)=>{
                 const deletedBy = chat.data().deletedBy || [];
-                return !deletedBy.includes(user.email);
+                const archivedBy = chat.data().archivedBy || [];
+                // Don't show deleted chats
+                if (deletedBy.includes(user.email)) {
+                    return false;
+                }
+                // Filter based on archive view
+                const isArchived = archivedBy.includes(user.email);
+                return showArchived ? isArchived : !isArchived;
             }).map(async (chat)=>{
                 try {
                     const chatData = chat.data();
@@ -743,8 +816,13 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
         loadChatsWithLatestMessage();
     }, [
         chatsSnapshot,
-        user
+        user,
+        showArchived
     ]);
+    // ✅ Toggle archive view
+    const toggleArchiveView = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useCallback"])(()=>{
+        setShowArchived((prev)=>!prev);
+    }, []);
     // ✅ MEMOIZED: Check if chat already exists
     const chatAlreadyExist = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useCallback"])((recipientEmail)=>{
         if (!chatsSnapshot) return false;
@@ -787,6 +865,7 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                     input
                 ],
                 deletedBy: [],
+                archivedBy: [],
                 createdAt: new Date()
             });
         } catch (error) {
@@ -841,6 +920,37 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
     const handleBlockedUsersClose = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useCallback"])(()=>{
         setBlockedUsersOpen(false);
     }, []);
+    // ✅ MEMOIZED: Archive chat
+    const archiveChat = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useCallback"])(async ()=>{
+        if (!selectedChatId || !user) return;
+        try {
+            const chatRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "chats", selectedChatId);
+            const chatDoc = await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["getDoc"])(chatRef);
+            const archivedBy = chatDoc.data()?.archivedBy || [];
+            const isArchived = archivedBy.includes(user.email);
+            if (isArchived) {
+                // Unarchive
+                await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["updateDoc"])(chatRef, {
+                    archivedBy: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["arrayRemove"])(user.email)
+                });
+                alert("Chat unarchived");
+            } else {
+                // Archive
+                await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["updateDoc"])(chatRef, {
+                    archivedBy: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["arrayUnion"])(user.email)
+                });
+                alert("Chat archived");
+            }
+            handleMenuClose();
+        } catch (error) {
+            console.error("Error archiving/unarchiving chat:", error);
+            alert("Failed to archive/unarchive chat");
+        }
+    }, [
+        selectedChatId,
+        user,
+        handleMenuClose
+    ]);
     // ✅ MEMOIZED: Delete chat
     const deleteChat = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useCallback"])(async ()=>{
         if (!selectedChatId || !user) return;
@@ -914,6 +1024,24 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
         user,
         blockedUsers
     ]);
+    // ✅ Check if selected chat is archived
+    const isSelectedChatArchived = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useCallback"])(()=>{
+        if (!selectedChatId || !chatsSnapshot) return false;
+        const chat = chatsSnapshot.docs.find((doc)=>doc.id === selectedChatId);
+        if (!chat) return false;
+        const archivedBy = chat.data()?.archivedBy || [];
+        return archivedBy.includes(user.email);
+    }, [
+        selectedChatId,
+        chatsSnapshot,
+        user
+    ]);
+    // ✅ Get display name for a recipient
+    const getDisplayName = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useCallback"])((recipientEmail)=>{
+        return displayNames[recipientEmail] || null;
+    }, [
+        displayNames
+    ]);
     // ✅ MEMOIZED: Filter chats by search term
     const filteredChats = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useMemo"])(()=>{
         if (!searchTerm.trim()) return chatsList;
@@ -924,11 +1052,26 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
             if (!otherUser) {
                 return user.email?.toLowerCase().includes(searchLower);
             }
-            return otherUser?.toLowerCase().includes(searchLower);
+            // Search by both email and display name
+            const displayName = getDisplayName(otherUser);
+            return otherUser?.toLowerCase().includes(searchLower) || displayName?.toLowerCase().includes(searchLower);
         });
     }, [
         chatsList,
         searchTerm,
+        user,
+        getDisplayName
+    ]);
+    // ✅ Count archived chats
+    const archivedCount = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useMemo"])(()=>{
+        if (!chatsSnapshot || !user) return 0;
+        return chatsSnapshot.docs.filter((chat)=>{
+            const archivedBy = chat.data()?.archivedBy || [];
+            const deletedBy = chat.data()?.deletedBy || [];
+            return archivedBy.includes(user.email) && !deletedBy.includes(user.email);
+        }).length;
+    }, [
+        chatsSnapshot,
         user
     ]);
     if (!user) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Container, {
@@ -936,7 +1079,7 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
         children: "Loading..."
     }, void 0, false, {
         fileName: "[project]/components/Sidebar.js",
-        lineNumber: 337,
+        lineNumber: 459,
         columnNumber: 21
     }, ("TURBOPACK compile-time value", void 0));
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["Fragment"], {
@@ -945,7 +1088,7 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                 onClick: ()=>setSidebarOpen(false)
             }, void 0, false, {
                 fileName: "[project]/components/Sidebar.js",
-                lineNumber: 343,
+                lineNumber: 465,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Container, {
@@ -961,25 +1104,43 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                 src: user.photoURL
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 352,
+                                lineNumber: 474,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(IconsContainer, {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Chat$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        onClick: toggleArchiveView,
+                                        title: showArchived ? "Show active chats" : "Show archived chats",
+                                        children: showArchived ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Unarchive$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                            style: {
+                                                color: darkMode ? '#25D366' : '#128C7E'
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/Sidebar.js",
+                                            lineNumber: 478,
+                                            columnNumber: 17
+                                        }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Chat$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                                             style: {
                                                 color: darkMode ? 'gray' : 'inherit'
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/components/Sidebar.js",
-                                            lineNumber: 355,
-                                            columnNumber: 15
+                                            lineNumber: 480,
+                                            columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 354,
+                                        lineNumber: 476,
                                         columnNumber: 13
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    !showArchived && archivedCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(ArchiveBadge, {
+                                        darkMode: darkMode,
+                                        children: archivedCount
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/Sidebar.js",
+                                        lineNumber: 484,
+                                        columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         onClick: handleHeaderMenuOpen,
@@ -989,12 +1150,12 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/components/Sidebar.js",
-                                            lineNumber: 358,
+                                            lineNumber: 487,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 357,
+                                        lineNumber: 486,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     isMobile && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1005,59 +1166,89 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/components/Sidebar.js",
-                                            lineNumber: 362,
+                                            lineNumber: 491,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 361,
+                                        lineNumber: 490,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 353,
+                                lineNumber: 475,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 351,
+                        lineNumber: 473,
                         columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0)),
+                    showArchived && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(ArchiveHeader, {
+                        darkMode: darkMode,
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Archive$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                style: {
+                                    fontSize: 20,
+                                    marginRight: 8
+                                }
+                            }, void 0, false, {
+                                fileName: "[project]/components/Sidebar.js",
+                                lineNumber: 499,
+                                columnNumber: 13
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                children: [
+                                    "Archived Chats (",
+                                    archivedCount,
+                                    ")"
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/Sidebar.js",
+                                lineNumber: 500,
+                                columnNumber: 13
+                            }, ("TURBOPACK compile-time value", void 0))
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/Sidebar.js",
+                        lineNumber: 498,
+                        columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Search, {
                         darkMode: darkMode,
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Search$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 369,
+                                lineNumber: 505,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(SearchInput, {
                                 darkMode: darkMode,
-                                placeholder: "Search in chats",
+                                placeholder: showArchived ? "Search archived chats" : "Search in chats",
                                 type: "text",
                                 value: searchTerm,
                                 onChange: (e)=>setSearchTerm(e.target.value)
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 370,
+                                lineNumber: 506,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 368,
+                        lineNumber: 504,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(SidebarButton, {
+                    !showArchived && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(SidebarButton, {
                         onClick: createChat,
                         disabled: loading,
                         children: "Start a new chat"
                     }, void 0, false, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 379,
-                        columnNumber: 9
+                        lineNumber: 516,
+                        columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(LoadingContainer, {
                         darkMode: darkMode,
@@ -1065,24 +1256,43 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                             children: "Loading chats..."
                         }, void 0, false, {
                             fileName: "[project]/components/Sidebar.js",
-                            lineNumber: 385,
+                            lineNumber: 523,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 384,
+                        lineNumber: 522,
                         columnNumber: 11
-                    }, ("TURBOPACK compile-time value", void 0)) : filteredChats.map((chat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(ChatWrapper, {
+                    }, ("TURBOPACK compile-time value", void 0)) : filteredChats.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(EmptyState, {
+                        darkMode: darkMode,
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Typography$2f$Typography$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                            variant: "body2",
+                            children: showArchived ? "No archived chats" : "No chats yet"
+                        }, void 0, false, {
+                            fileName: "[project]/components/Sidebar.js",
+                            lineNumber: 527,
+                            columnNumber: 13
+                        }, ("TURBOPACK compile-time value", void 0))
+                    }, void 0, false, {
+                        fileName: "[project]/components/Sidebar.js",
+                        lineNumber: 526,
+                        columnNumber: 11
+                    }, ("TURBOPACK compile-time value", void 0)) : filteredChats.map((chat)=>{
+                        const chatUsers = chat.data.users || [];
+                        const otherUser = chatUsers.find((email)=>email !== user.email);
+                        const customDisplayName = otherUser ? getDisplayName(otherUser) : null;
+                        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(ChatWrapper, {
                             darkMode: darkMode,
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Chat$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                                     id: chat.id,
                                     users: chat.data.users,
-                                    latestMessage: chat.latestMessage
+                                    latestMessage: chat.latestMessage,
+                                    customDisplayName: customDisplayName
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 390,
-                                    columnNumber: 15
+                                    lineNumber: 539,
+                                    columnNumber: 17
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(OptionsButton, {
                                     onClick: (e)=>handleMenuOpen(e, chat.id, chat.data.users),
@@ -1090,20 +1300,21 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                         fontSize: "small"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 398,
-                                        columnNumber: 17
+                                        lineNumber: 548,
+                                        columnNumber: 19
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 395,
-                                    columnNumber: 15
+                                    lineNumber: 545,
+                                    columnNumber: 17
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, chat.id, true, {
                             fileName: "[project]/components/Sidebar.js",
-                            lineNumber: 389,
-                            columnNumber: 13
-                        }, ("TURBOPACK compile-time value", void 0))),
+                            lineNumber: 538,
+                            columnNumber: 15
+                        }, ("TURBOPACK compile-time value", void 0));
+                    }),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Menu$2f$Menu$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                         anchorEl: headerAnchorEl,
                         open: Boolean(headerAnchorEl),
@@ -1117,32 +1328,71 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$MenuItem$2f$MenuItem$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                                 onClick: handleSettingsOpen,
-                                children: "Settings"
-                            }, void 0, false, {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Settings$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        fontSize: "small",
+                                        style: {
+                                            marginRight: 8,
+                                            color: darkMode ? '#64b5f6' : '#1976d2'
+                                        }
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/Sidebar.js",
+                                        lineNumber: 568,
+                                        columnNumber: 13
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    "Settings"
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 415,
+                                lineNumber: 567,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$MenuItem$2f$MenuItem$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                                 onClick: handleBlockedUsersOpen,
-                                children: "Blocked Users"
-                            }, void 0, false, {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$PersonOff$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        fontSize: "small",
+                                        style: {
+                                            marginRight: 8,
+                                            color: darkMode ? '#ff9800' : '#f57c00'
+                                        }
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/Sidebar.js",
+                                        lineNumber: 572,
+                                        columnNumber: 13
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    "Blocked Users"
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 416,
+                                lineNumber: 571,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$MenuItem$2f$MenuItem$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                                 onClick: handleAboutOpen,
-                                children: "About"
-                            }, void 0, false, {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Info$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        fontSize: "small",
+                                        style: {
+                                            marginRight: 8,
+                                            color: darkMode ? '#4caf50' : '#2e7d32'
+                                        }
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/Sidebar.js",
+                                        lineNumber: 576,
+                                        columnNumber: 13
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    "About"
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 417,
+                                lineNumber: 575,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 404,
+                        lineNumber: 556,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Menu$2f$Menu$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1156,6 +1406,44 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                             }
                         },
                         children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$MenuItem$2f$MenuItem$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                onClick: archiveChat,
+                                children: isSelectedChatArchived() ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["Fragment"], {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Unarchive$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                            fontSize: "small",
+                                            style: {
+                                                marginRight: 8,
+                                                color: darkMode ? '#64b5f6' : '#1976d2'
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/Sidebar.js",
+                                            lineNumber: 596,
+                                            columnNumber: 17
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        "Unarchive Chat"
+                                    ]
+                                }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["Fragment"], {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Archive$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                            fontSize: "small",
+                                            style: {
+                                                marginRight: 8,
+                                                color: darkMode ? '#64b5f6' : '#1976d2'
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/Sidebar.js",
+                                            lineNumber: 601,
+                                            columnNumber: 17
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        "Archive Chat"
+                                    ]
+                                }, void 0, true)
+                            }, void 0, false, {
+                                fileName: "[project]/components/Sidebar.js",
+                                lineNumber: 593,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
                             selectedChatUsers && selectedChatUsers.find((email)=>email !== user.email) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["Fragment"], {
                                 children: isUserBlocked() ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$MenuItem$2f$MenuItem$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                                     onClick: ()=>{
@@ -1163,32 +1451,71 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                         unblockUser(recipientEmail);
                                         handleMenuClose();
                                     },
-                                    children: "Unblock User"
-                                }, void 0, false, {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$PersonOff$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                            fontSize: "small",
+                                            style: {
+                                                marginRight: 8,
+                                                color: darkMode ? '#4caf50' : '#2e7d32'
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/Sidebar.js",
+                                            lineNumber: 615,
+                                            columnNumber: 19
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        "Unblock User"
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 434,
+                                    lineNumber: 610,
                                     columnNumber: 17
                                 }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$MenuItem$2f$MenuItem$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                                     onClick: blockUser,
-                                    children: "Block User"
-                                }, void 0, false, {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Block$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                            fontSize: "small",
+                                            style: {
+                                                marginRight: 8,
+                                                color: darkMode ? '#ff9800' : '#f57c00'
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/Sidebar.js",
+                                            lineNumber: 620,
+                                            columnNumber: 19
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        "Block User"
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 442,
+                                    lineNumber: 619,
                                     columnNumber: 17
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$MenuItem$2f$MenuItem$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                                 onClick: deleteChat,
-                                children: "Delete Chat"
-                            }, void 0, false, {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Delete$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        fontSize: "small",
+                                        style: {
+                                            marginRight: 8,
+                                            color: '#f44336'
+                                        }
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/Sidebar.js",
+                                        lineNumber: 628,
+                                        columnNumber: 13
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    "Delete Chat"
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 446,
+                                lineNumber: 627,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 420,
+                        lineNumber: 582,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Dialog$2f$Dialog$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1204,10 +1531,28 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                         },
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogTitle$2f$DialogTitle$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                children: "Settings"
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(DialogTitleContainer, {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Settings$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                            style: {
+                                                marginRight: 8,
+                                                color: darkMode ? '#64b5f6' : '#1976d2'
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/Sidebar.js",
+                                            lineNumber: 647,
+                                            columnNumber: 15
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        "Settings"
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/components/Sidebar.js",
+                                    lineNumber: 646,
+                                    columnNumber: 13
+                                }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 461,
+                                lineNumber: 645,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogContent$2f$DialogContent$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1218,18 +1563,18 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                         color: "primary"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 465,
+                                        lineNumber: 654,
                                         columnNumber: 17
                                     }, void 0),
                                     label: "Dark Mode"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 463,
+                                    lineNumber: 652,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 462,
+                                lineNumber: 651,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogActions$2f$DialogActions$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1238,18 +1583,18 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                     children: "Close"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 475,
+                                    lineNumber: 664,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 474,
+                                lineNumber: 663,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 449,
+                        lineNumber: 633,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Dialog$2f$Dialog$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1265,10 +1610,28 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                         },
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogTitle$2f$DialogTitle$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                children: "Blocked Users"
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(DialogTitleContainer, {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$PersonOff$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                            style: {
+                                                marginRight: 8,
+                                                color: darkMode ? '#ff9800' : '#f57c00'
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/Sidebar.js",
+                                            lineNumber: 682,
+                                            columnNumber: 15
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        "Blocked Users"
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/components/Sidebar.js",
+                                    lineNumber: 681,
+                                    columnNumber: 13
+                                }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 491,
+                                lineNumber: 680,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogContent$2f$DialogContent$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1278,21 +1641,27 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                     children: "No blocked users"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 494,
+                                    lineNumber: 688,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$List$2f$List$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                                     children: blockedUsers.map((blockedEmail)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$ListItem$2f$ListItem$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$ListItemText$2f$ListItemText$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                                    primary: blockedEmail,
+                                                    primary: getDisplayName(blockedEmail) || blockedEmail,
+                                                    secondary: getDisplayName(blockedEmail) ? blockedEmail : null,
                                                     primaryTypographyProps: {
                                                         style: {
                                                             color: darkMode ? '#e0e0e0' : 'black'
                                                         }
+                                                    },
+                                                    secondaryTypographyProps: {
+                                                        style: {
+                                                            color: darkMode ? '#888' : '#666'
+                                                        }
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 501,
+                                                    lineNumber: 695,
                                                     columnNumber: 21
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$ListItemSecondaryAction$2f$ListItemSecondaryAction$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1303,28 +1672,28 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                                         children: "Unblock"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/Sidebar.js",
-                                                        lineNumber: 508,
+                                                        lineNumber: 706,
                                                         columnNumber: 23
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 507,
+                                                    lineNumber: 705,
                                                     columnNumber: 21
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, blockedEmail, true, {
                                             fileName: "[project]/components/Sidebar.js",
-                                            lineNumber: 500,
+                                            lineNumber: 694,
                                             columnNumber: 19
                                         }, ("TURBOPACK compile-time value", void 0)))
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 498,
+                                    lineNumber: 692,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 492,
+                                lineNumber: 686,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogActions$2f$DialogActions$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1333,18 +1702,18 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                     children: "Close"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 522,
+                                    lineNumber: 720,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 521,
+                                lineNumber: 719,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 479,
+                        lineNumber: 668,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Dialog$2f$Dialog$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1360,10 +1729,28 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                         },
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogTitle$2f$DialogTitle$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                children: "About"
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(DialogTitleContainer, {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Info$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                            style: {
+                                                marginRight: 8,
+                                                color: darkMode ? '#4caf50' : '#2e7d32'
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/Sidebar.js",
+                                            lineNumber: 738,
+                                            columnNumber: 15
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        "About"
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/components/Sidebar.js",
+                                    lineNumber: 737,
+                                    columnNumber: 13
+                                }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 538,
+                                lineNumber: 736,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogContent$2f$DialogContent$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1374,7 +1761,7 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                         children: "Chat Application"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 540,
+                                        lineNumber: 743,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Typography$2f$Typography$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1383,7 +1770,7 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                         children: "Version: 1.0.0"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 543,
+                                        lineNumber: 746,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Typography$2f$Typography$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1392,7 +1779,7 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                         children: "A real-time messaging application built with React and Firebase. Connect with friends and family through instant messaging."
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 546,
+                                        lineNumber: 749,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Typography$2f$Typography$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1402,12 +1789,12 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                             children: "Features:"
                                         }, void 0, false, {
                                             fileName: "[project]/components/Sidebar.js",
-                                            lineNumber: 551,
+                                            lineNumber: 754,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 550,
+                                        lineNumber: 753,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Typography$2f$Typography$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1419,81 +1806,123 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                                     children: "Real-time messaging"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 555,
+                                                    lineNumber: 758,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
                                                     children: "User authentication"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 556,
+                                                    lineNumber: 759,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
                                                     children: "Search chats"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 557,
+                                                    lineNumber: 760,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
                                                     children: "Block/Unblock users"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 558,
+                                                    lineNumber: 761,
+                                                    columnNumber: 17
+                                                }, ("TURBOPACK compile-time value", void 0)),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
+                                                    children: "Archive/Unarchive chats"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/Sidebar.js",
+                                                    lineNumber: 762,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
                                                     children: "Delete conversations"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 559,
+                                                    lineNumber: 763,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
                                                     children: "Dark mode support"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 560,
+                                                    lineNumber: 764,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
                                                     children: "Chat with yourself (like WhatsApp)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 561,
+                                                    lineNumber: 765,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
                                                     children: "Sorted by latest message"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 562,
+                                                    lineNumber: 766,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
                                                     children: "File sharing support"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 563,
+                                                    lineNumber: 767,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
                                                     children: "Voice messages"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Sidebar.js",
-                                                    lineNumber: 564,
+                                                    lineNumber: 768,
+                                                    columnNumber: 17
+                                                }, ("TURBOPACK compile-time value", void 0)),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
+                                                    children: "Custom display names"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/Sidebar.js",
+                                                    lineNumber: 769,
+                                                    columnNumber: 17
+                                                }, ("TURBOPACK compile-time value", void 0)),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
+                                                    children: "Location sharing"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/Sidebar.js",
+                                                    lineNumber: 770,
+                                                    columnNumber: 17
+                                                }, ("TURBOPACK compile-time value", void 0)),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
+                                                    children: "Camera photo capture"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/Sidebar.js",
+                                                    lineNumber: 771,
+                                                    columnNumber: 17
+                                                }, ("TURBOPACK compile-time value", void 0)),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
+                                                    children: "Message status indicators"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/Sidebar.js",
+                                                    lineNumber: 772,
+                                                    columnNumber: 17
+                                                }, ("TURBOPACK compile-time value", void 0)),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
+                                                    children: "Reply to messages"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/Sidebar.js",
+                                                    lineNumber: 773,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Sidebar.js",
-                                            lineNumber: 554,
+                                            lineNumber: 757,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 553,
+                                        lineNumber: 756,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Typography$2f$Typography$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1505,13 +1934,13 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                         children: "© 2024 Chat App. All rights reserved."
                                     }, void 0, false, {
                                         fileName: "[project]/components/Sidebar.js",
-                                        lineNumber: 567,
+                                        lineNumber: 776,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 539,
+                                lineNumber: 742,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogActions$2f$DialogActions$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1520,24 +1949,24 @@ const Sidebar = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$externals$5d2f$
                                     children: "Close"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Sidebar.js",
-                                    lineNumber: 572,
+                                    lineNumber: 781,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/components/Sidebar.js",
-                                lineNumber: 571,
+                                lineNumber: 780,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Sidebar.js",
-                        lineNumber: 526,
+                        lineNumber: 724,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Sidebar.js",
-                lineNumber: 346,
+                lineNumber: 468,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
@@ -1651,6 +2080,33 @@ const Header = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$compo
 const IconsContainer = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
   display: flex;
   align-items: center;
+  position: relative;
+`;
+const ArchiveBadge = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  position: absolute;
+  top: 8px;
+  left: 28px;
+  background-color: ${(props)=>props.darkMode ? '#00a884' : '#25d366'};
+  color: white;
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 0 4px;
+`;
+const ArchiveHeader = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: ${(props)=>props.darkMode ? '#2a2a2a' : '#f0f0f0'};
+  color: ${(props)=>props.darkMode ? '#25D366' : '#128C7E'};
+  font-weight: 500;
+  font-size: 14px;
+  border-bottom: 1px solid ${(props)=>props.darkMode ? '#333' : '#e0e0e0'};
 `;
 const ChatWrapper = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
   display: flex;
@@ -1675,6 +2131,17 @@ const LoadingContainer = __TURBOPACK__imported__module__$5b$externals$5d2f$style
   align-items: center;
   padding: 20px;
   color: ${(props)=>props.darkMode ? '#888' : '#666'};
+`;
+const EmptyState = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  color: ${(props)=>props.darkMode ? '#888' : '#666'};
+`;
+const DialogTitleContainer = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  display: flex;
+  align-items: center;
 `;
 __turbopack_async_result__();
 } catch(e) { __turbopack_async_result__(e); } }, false);}),

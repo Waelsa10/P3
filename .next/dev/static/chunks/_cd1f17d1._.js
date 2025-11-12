@@ -1766,6 +1766,74 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
 }),
+"[project]/components/ChatScreen/hooks/useDisplayName.js [client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+// components/ChatScreen/hooks/useDisplayName.js
+__turbopack_context__.s([
+    "useDisplayName",
+    ()=>useDisplayName
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/index.js [client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$firebase$2f$firestore$2f$dist$2f$esm$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/firebase/firestore/dist/esm/index.esm.js [client] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@firebase/firestore/dist/index.esm2017.js [client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/firebase.js [client] (ecmascript) <locals>");
+var _s = __turbopack_context__.k.signature();
+;
+;
+;
+const useDisplayName = (userId, recipientEmail)=>{
+    _s();
+    const [displayName, setDisplayName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "useDisplayName.useEffect": ()=>{
+            if (!userId || !recipientEmail) {
+                setLoading(false);
+                return;
+            }
+            console.log(`👀 Watching display name for: users/${userId}/contacts/${recipientEmail}`);
+            const contactRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users", userId, "contacts", recipientEmail);
+            const unsubscribe = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["onSnapshot"])(contactRef, {
+                "useDisplayName.useEffect.unsubscribe": (snapshot)=>{
+                    if (snapshot.exists()) {
+                        const customName = snapshot.data().displayName;
+                        console.log(`✅ Display name found:`, customName);
+                        setDisplayName(customName);
+                    } else {
+                        console.log(`ℹ️ No custom display name set`);
+                        setDisplayName(null);
+                    }
+                    setLoading(false);
+                }
+            }["useDisplayName.useEffect.unsubscribe"], {
+                "useDisplayName.useEffect.unsubscribe": (error)=>{
+                    console.error("❌ Error fetching display name:", error);
+                    setDisplayName(null);
+                    setLoading(false);
+                }
+            }["useDisplayName.useEffect.unsubscribe"]);
+            return ({
+                "useDisplayName.useEffect": ()=>{
+                    console.log(`🔌 Unsubscribing from display name listener`);
+                    unsubscribe();
+                }
+            })["useDisplayName.useEffect"];
+        }
+    }["useDisplayName.useEffect"], [
+        userId,
+        recipientEmail
+    ]);
+    return {
+        displayName,
+        loading
+    };
+};
+_s(useDisplayName, "NoJpQH2u2K8/9NcfzZ3jRz3tbGs=");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
 "[project]/components/ChatScreen/components/ChatHeader.jsx [client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -1789,10 +1857,14 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$timeago$2d$r
 ;
 ;
 ;
-function ChatHeader({ recipient, recipientEmail, recipientSnapshot, isSelfChat, onMoreClick, darkMode, isMobile, onToggleSidebar }) {
+function ChatHeader({ recipient, recipientEmail, recipientSnapshot, isSelfChat, customDisplayName, onMoreClick, darkMode, isMobile, onToggleSidebar }) {
     const getHeaderTitle = ()=>{
         if (isSelfChat) {
             return `${recipientEmail} (You)`;
+        }
+        // Use custom display name if available
+        if (customDisplayName) {
+            return customDisplayName;
         }
         return recipientEmail;
     };
@@ -1808,7 +1880,7 @@ function ChatHeader({ recipient, recipientEmail, recipientSnapshot, isSelfChat, 
                         datetime: recipient.lastSeen.toDate()
                     }, void 0, false, {
                         fileName: "[project]/components/ChatScreen/components/ChatHeader.jsx",
-                        lineNumber: 34,
+                        lineNumber: 39,
                         columnNumber: 24
                     }, this)
                 ]
@@ -1832,25 +1904,25 @@ function ChatHeader({ recipient, recipientEmail, recipientSnapshot, isSelfChat, 
                             }
                         }, void 0, false, {
                             fileName: "[project]/components/ChatScreen/components/ChatHeader.jsx",
-                            lineNumber: 47,
+                            lineNumber: 52,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/ChatScreen/components/ChatHeader.jsx",
-                        lineNumber: 46,
+                        lineNumber: 51,
                         columnNumber: 11
                     }, this),
                     recipient ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(UserAvatar, {
                         src: recipientSnapshot?.docs?.[0]?.data()?.photoURL
                     }, void 0, false, {
                         fileName: "[project]/components/ChatScreen/components/ChatHeader.jsx",
-                        lineNumber: 51,
+                        lineNumber: 56,
                         columnNumber: 11
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(UserAvatar, {
                         children: recipientEmail?.[0]?.toUpperCase()
                     }, void 0, false, {
                         fileName: "[project]/components/ChatScreen/components/ChatHeader.jsx",
-                        lineNumber: 53,
+                        lineNumber: 58,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(HeaderInformation, {
@@ -1860,26 +1932,26 @@ function ChatHeader({ recipient, recipientEmail, recipientSnapshot, isSelfChat, 
                                 children: getHeaderTitle()
                             }, void 0, false, {
                                 fileName: "[project]/components/ChatScreen/components/ChatHeader.jsx",
-                                lineNumber: 56,
+                                lineNumber: 61,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 children: getStatusText()
                             }, void 0, false, {
                                 fileName: "[project]/components/ChatScreen/components/ChatHeader.jsx",
-                                lineNumber: 57,
+                                lineNumber: 62,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/ChatScreen/components/ChatHeader.jsx",
-                        lineNumber: 55,
+                        lineNumber: 60,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/ChatScreen/components/ChatHeader.jsx",
-                lineNumber: 44,
+                lineNumber: 49,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(HeaderActions, {
@@ -1891,29 +1963,29 @@ function ChatHeader({ recipient, recipientEmail, recipientSnapshot, isSelfChat, 
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/ChatScreen/components/ChatHeader.jsx",
-                        lineNumber: 62,
+                        lineNumber: 67,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/ChatScreen/components/ChatHeader.jsx",
-                    lineNumber: 61,
+                    lineNumber: 66,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/components/ChatHeader.jsx",
-                lineNumber: 60,
+                lineNumber: 65,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/ChatScreen/components/ChatHeader.jsx",
-        lineNumber: 43,
+        lineNumber: 48,
         columnNumber: 5
     }, this);
 }
 _c = ChatHeader;
 const __TURBOPACK__default__export__ = ChatHeader;
-// Styled Components
+// Styled Components remain the same...
 const Header = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$components$2f$dist$2f$styled$2d$components$2e$browser$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"].div`
   position: sticky;
   background-color: ${(props)=>props.darkMode ? "#1e1e1e" : "white"};
@@ -6958,6 +7030,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useRecipientData$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/hooks/useRecipientData.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useMessages$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/hooks/useMessages.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useMessageStatus$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/hooks/useMessageStatus.js [client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useDisplayName$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/hooks/useDisplayName.js [client] (ecmascript)");
 // Components
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ChatHeader$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/components/ChatHeader.jsx [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$MessageList$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/components/MessageList.jsx [client] (ecmascript)");
@@ -6977,6 +7050,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$constants$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/constants.js [client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
+;
 ;
 ;
 ;
@@ -7027,12 +7101,34 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
     // Custom Hooks
     const { recipientEmail, recipient, recipientSnapshot, isSelfChat, isLoading } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useRecipientData$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRecipientData"])(user, chat);
     const { messagesSnapshot } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useMessages$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useMessages"])(chatId);
+    // Fetch custom display name
+    const { displayName: customDisplayName, loading: displayNameLoading } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useDisplayName$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useDisplayName"])(user?.uid, recipientEmail);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useMessageStatus$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useMessageStatus"])(chatId, isLoading ? null : recipientEmail, user?.email, isSelfChat);
     const emojiPicker = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useEmojiPicker$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEmojiPicker"])();
     const fileUpload = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useFileUpload$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useFileUpload"])(chatId, user, recipientEmail);
     const voiceRecording = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useVoiceRecording$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useVoiceRecording"])(chatId, user, recipientEmail);
     const camera = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useCamera$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useCamera"])(chatId, user, recipientEmail);
     const location = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useLocation$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useLocation"])(chatId, user, recipientEmail);
+    // Debug logging
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ChatScreen.useEffect": ()=>{
+            if (user) {
+                console.log("🔍 Current authenticated user:", {
+                    uid: user.uid,
+                    email: user.email
+                });
+            }
+        }
+    }["ChatScreen.useEffect"], [
+        user
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ChatScreen.useEffect": ()=>{
+            console.log("📛 Custom display name:", customDisplayName);
+        }
+    }["ChatScreen.useEffect"], [
+        customDisplayName
+    ]);
     // Monitor online status
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ChatScreen.useEffect": ()=>{
@@ -7082,8 +7178,6 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
         setAttachMenuAnchor(null);
     };
     // Handle display name update
-    // components/ChatScreen/index.jsx
-    // Update the handleUpdateDisplayName function with better logging:
     const handleUpdateDisplayName = async (newDisplayName)=>{
         if (!recipientEmail || isSelfChat || !user) {
             console.error("❌ Cannot update display name:", {
@@ -7099,7 +7193,6 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 uid: user.uid,
                 email: user.email
             });
-            // Store display names in the current user's document under a "contacts" subcollection
             const contactRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users", user.uid, "contacts", recipientEmail);
             console.log(`📍 Document path: users/${user.uid}/contacts/${recipientEmail}`);
             await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$esm2017$2e$js__$5b$client$5d$__$28$ecmascript$29$__["setDoc"])(contactRef, {
@@ -7207,12 +7300,12 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 children: "You are currently offline. Please check your internet connection."
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 272,
+                lineNumber: 289,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/components/ChatScreen/index.jsx",
-            lineNumber: 271,
+            lineNumber: 288,
             columnNumber: 7
         }, this);
     }
@@ -7224,12 +7317,12 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 children: error
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 282,
+                lineNumber: 299,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/components/ChatScreen/index.jsx",
-            lineNumber: 281,
+            lineNumber: 298,
             columnNumber: 7
         }, this);
     }
@@ -7241,13 +7334,14 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 recipientEmail: recipientEmail,
                 recipientSnapshot: recipientSnapshot,
                 isSelfChat: isSelfChat,
+                customDisplayName: customDisplayName,
                 onMoreClick: ()=>setShowProfile(true),
                 darkMode: darkMode,
                 isMobile: isMobile,
                 onToggleSidebar: onToggleSidebar
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 289,
+                lineNumber: 306,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -7258,7 +7352,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 accept: "*/*"
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 300,
+                lineNumber: 318,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$MessageList$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -7271,7 +7365,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 308,
+                lineNumber: 326,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$AttachMenu$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -7284,7 +7378,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 318,
+                lineNumber: 336,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$EmojiPicker$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -7300,7 +7394,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 328,
+                lineNumber: 346,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$FileUploadDialog$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -7316,7 +7410,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 341,
+                lineNumber: 359,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$CameraDialog$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -7335,7 +7429,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 362,
+                lineNumber: 380,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$LocationPreviewDialog$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -7349,7 +7443,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 386,
+                lineNumber: 404,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$VoiceRecordingDialog$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -7364,13 +7458,16 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 405,
+                lineNumber: 423,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ChatInfoDialog$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                 open: showProfile,
                 onClose: ()=>setShowProfile(false),
-                recipient: recipient,
+                recipient: {
+                    ...recipient,
+                    displayName: customDisplayName
+                },
                 recipientEmail: recipientEmail,
                 isSelfChat: isSelfChat,
                 messages: messagesSnapshot?.docs.map((doc)=>({
@@ -7382,7 +7479,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 423,
+                lineNumber: 441,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ReplyPreview$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -7392,7 +7489,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 438,
+                lineNumber: 456,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ChatInput$2e$jsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -7409,22 +7506,23 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 445,
+                lineNumber: 463,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/ChatScreen/index.jsx",
-        lineNumber: 288,
+        lineNumber: 305,
         columnNumber: 5
     }, this);
 }
-_s(ChatScreen, "4yA117mpBQL+VrcWaPgBkfiVSGE=", false, function() {
+_s(ChatScreen, "+RJVNwaL2pyat86co3m3Gzd+xV8=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$firebase$2d$hooks$2f$auth$2f$dist$2f$index$2e$esm$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useAuthState"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useRecipientData$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRecipientData"],
         __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useMessages$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useMessages"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useDisplayName$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useDisplayName"],
         __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useMessageStatus$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useMessageStatus"],
         __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useEmojiPicker$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEmojiPicker"],
         __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useFileUpload$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useFileUpload"],
@@ -7447,4 +7545,4 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/components/ChatScreen
 }),
 ]);
 
-//# sourceMappingURL=_e3b58e83._.js.map
+//# sourceMappingURL=_cd1f17d1._.js.map

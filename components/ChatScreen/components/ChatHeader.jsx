@@ -11,6 +11,7 @@ function ChatHeader({
   recipientEmail,
   recipientSnapshot,
   isSelfChat,
+  customDisplayName,
   onMoreClick,
   darkMode,
   isMobile,
@@ -19,6 +20,10 @@ function ChatHeader({
   const getHeaderTitle = () => {
     if (isSelfChat) {
       return `${recipientEmail} (You)`;
+    }
+    // Use custom display name if available
+    if (customDisplayName) {
+      return customDisplayName;
     }
     return recipientEmail;
   };
@@ -68,7 +73,7 @@ function ChatHeader({
 
 export default ChatHeader;
 
-// Styled Components
+// Styled Components remain the same...
 const Header = styled.div`
   position: sticky;
   background-color: ${(props) => (props.darkMode ? "#1e1e1e" : "white")};

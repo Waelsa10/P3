@@ -19,7 +19,7 @@ import MessageStatus from "./ChatScreen/components/MessageStatus";
 import { MESSAGE_STATUS } from "./ChatScreen/constants";
 import { DarkModeContext } from "./DarkModeProvider";
 
-const Chat = React.memo(({ id, users, latestMessage: propLatestMessage }) => {
+const Chat = React.memo(({ id, users, latestMessage: propLatestMessage, customDisplayName }) => {
   const router = useRouter();
   const [user] = useAuthState(auth);
   const [latestMessage, setLatestMessage] = useState(propLatestMessage || null);
@@ -41,6 +41,14 @@ const Chat = React.memo(({ id, users, latestMessage: propLatestMessage }) => {
     const cleanUsers = [...new Set(users.filter(Boolean).map(e => e.toLowerCase()))];
     return cleanUsers.length === 1 && cleanUsers[0] === user.email.toLowerCase();
   }, [users, user]);
+
+  // ✅ MEMOIZED: Get display name (custom name or email)
+  const displayName = useMemo(() => {
+    if (isSelfChat) {
+      return customDisplayName || recipientEmail || user?.email;
+    }
+    return customDisplayName || recipientEmail;
+  }, [customDisplayName, recipientEmail, isSelfChat, user?.email]);
 
   // Get recipient info - only query if recipientEmail exists
   const recipientQuery = recipientEmail && !isSelfChat
@@ -156,6 +164,11 @@ const Chat = React.memo(({ id, users, latestMessage: propLatestMessage }) => {
   const messagePreview = useMemo(() => {
     if (!latestMessage) return "No messages yet";
 
+    // Location message
+    if (latestMessage.location) {
+      return "📍 Location";
+    }
+
     // Voice message
     if (latestMessage.voiceURL) {
       return "🎤 Voice message";
@@ -199,7 +212,7 @@ const Chat = React.memo(({ id, users, latestMessage: propLatestMessage }) => {
       <ChatContent>
         <ChatHeader>
           <RecipientName darkMode={darkMode}>
-            {isSelfChat ? `${recipientEmail} (You)` : recipientEmail}
+            {isSelfChat ? `${displayName} (You)` : displayName}
           </RecipientName>
           {latestMessage && (
             <MessageTime darkMode={darkMode}>
@@ -234,7 +247,8 @@ const Chat = React.memo(({ id, users, latestMessage: propLatestMessage }) => {
     prevProps.id === nextProps.id &&
     JSON.stringify(prevProps.users) === JSON.stringify(nextProps.users) &&
     prevProps.latestMessage?.timestamp === nextProps.latestMessage?.timestamp &&
-    prevProps.latestMessage?.message === nextProps.latestMessage?.message
+    prevProps.latestMessage?.message === nextProps.latestMessage?.message &&
+    prevProps.customDisplayName === nextProps.customDisplayName
   );
 });
 

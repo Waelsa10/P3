@@ -16,6 +16,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import EditIcon from "@mui/icons-material/Edit";
 import CheckIcon from "@mui/icons-material/Check";
+import CancelIcon from "@mui/icons-material/Cancel";
 import LinkIcon from "@mui/icons-material/Link";
 import ImageIcon from "@mui/icons-material/Image";
 import DescriptionIcon from "@mui/icons-material/Description";
@@ -66,6 +67,16 @@ function ChatInfoDialog({
   const handleSaveDisplayName = () => {
     if (displayName.trim() && onUpdateDisplayName) {
       onUpdateDisplayName(displayName.trim());
+    }
+    setIsEditingName(false);
+  };
+
+  const handleCancelEdit = () => {
+    // Reset to original name
+    if (recipient?.displayName) {
+      setDisplayName(recipient.displayName);
+    } else {
+      setDisplayName(recipientEmail?.split("@")[0] || "");
     }
     setIsEditingName(false);
   };
@@ -200,45 +211,66 @@ function ChatInfoDialog({
             {recipientEmail?.[0]?.toUpperCase()}
           </LargeAvatar>
 
-          {/* Display Name Editor */}
+          {/* Display Name Section */}
           <NameSection>
             {isEditingName ? (
-              <NameEditContainer>
-                <TextField
-                  fullWidth
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  variant="outlined"
-                  size="small"
-                  autoFocus
-                  disabled={isSelfChat}
-                  InputProps={{
-                    style: {
-                      color: darkMode ? "#e0e0e0" : "#000",
-                      backgroundColor: darkMode ? "#2a2a2a" : "#fff",
-                    },
-                  }}
-                />
-                <IconButton
-                  onClick={handleSaveDisplayName}
-                  size="small"
-                  color="primary"
-                  disabled={!displayName.trim()}
-                >
-                  <CheckIcon />
-                </IconButton>
-              </NameEditContainer>
+              <>
+                <NameEditContainer>
+                  <TextField
+                    fullWidth
+                    value={displayName}
+                    onChange={(e) => setDisplayName(e.target.value)}
+                    variant="outlined"
+                    size="medium"
+                    autoFocus
+                    placeholder="Enter display name"
+                    InputProps={{
+                      style: {
+                        color: darkMode ? "#e0e0e0" : "#000",
+                        backgroundColor: darkMode ? "#2a2a2a" : "#fff",
+                      },
+                    }}
+                  />
+                </NameEditContainer>
+                <EditButtonsContainer>
+                  <Button
+                    onClick={handleCancelEdit}
+                    startIcon={<CancelIcon />}
+                    variant="outlined"
+                    color="secondary"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={handleSaveDisplayName}
+                    startIcon={<CheckIcon />}
+                    variant="contained"
+                    color="primary"
+                    disabled={!displayName.trim()}
+                  >
+                    Save
+                  </Button>
+                </EditButtonsContainer>
+              </>
             ) : (
-              <NameDisplay>
-                <h2>{displayName || recipientEmail}</h2>
+              <>
+                <DisplayNameText darkMode={darkMode}>
+                  {displayName || recipientEmail}
+                </DisplayNameText>
+                <EmailText darkMode={darkMode}>{recipientEmail}</EmailText>
+                
                 {!isSelfChat && (
-                  <IconButton onClick={() => setIsEditingName(true)} size="small">
-                    <EditIcon fontSize="small" style={{ color: darkMode ? "#888" : "#666" }} />
-                  </IconButton>
+                  <ChangeNameButton
+                    onClick={() => setIsEditingName(true)}
+                    startIcon={<EditIcon />}
+                    variant="outlined"
+                    darkMode={darkMode}
+                  >
+                    Change Display Name
+                  </ChangeNameButton>
                 )}
-              </NameDisplay>
+              </>
             )}
-            <EmailText darkMode={darkMode}>{recipientEmail}</EmailText>
           </NameSection>
         </ProfileSection>
 
@@ -423,33 +455,46 @@ const NameSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 `;
 
 const NameEditContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
   width: 100%;
   max-width: 400px;
 `;
 
-const NameDisplay = styled.div`
+const EditButtonsContainer = styled.div`
   display: flex;
-  align-items: center;
-  gap: 8px;
+  gap: 12px;
+  margin-top: 8px;
+`;
 
-  h2 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: 500;
-  }
+const DisplayNameText = styled.h2`
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+  color: ${(props) => (props.darkMode ? "#e0e0e0" : "#000")};
+  text-align: center;
 `;
 
 const EmailText = styled.p`
   margin: 0;
   color: ${(props) => (props.darkMode ? "#888" : "#666")};
   font-size: 14px;
+`;
+
+const ChangeNameButton = styled(Button)`
+  && {
+    margin-top: 12px;
+    color: ${(props) => (props.darkMode ? "#25D366" : "#128C7E")};
+    border-color: ${(props) => (props.darkMode ? "#25D366" : "#128C7E")};
+    text-transform: none;
+    
+    &:hover {
+      border-color: ${(props) => (props.darkMode ? "#1fa855" : "#0d6b5f")};
+      background-color: ${(props) => (props.darkMode ? "rgba(37, 211, 102, 0.1)" : "rgba(18, 140, 126, 0.1)")};
+    }
+  }
 `;
 
 const StyledTabs = styled(Tabs)`

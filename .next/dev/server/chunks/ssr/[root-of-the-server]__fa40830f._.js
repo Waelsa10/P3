@@ -3510,6 +3510,7 @@ const PollOption = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$c
   cursor: ${(props)=>props.disabled ? "not-allowed" : "pointer"};
   transition: all 0.2s;
   opacity: ${(props)=>props.disabled ? 0.6 : 1};
+  position: relative;
 
   &:hover {
     background-color: ${(props)=>props.disabled ? props.darkMode ? "#1f2c33" : "white" : props.darkMode ? "#2a3942" : "#f5f5f5"};

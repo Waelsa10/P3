@@ -770,6 +770,7 @@ const PollOption = styled.div`
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   transition: all 0.2s;
   opacity: ${(props) => (props.disabled ? 0.6 : 1)};
+  position: relative;
 
   &:hover {
     background-color: ${(props) => 

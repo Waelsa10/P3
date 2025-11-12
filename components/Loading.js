@@ -6,13 +6,12 @@ function Loading() {
   return (
     <Container className="d-flex justify-content-center align-items-center min-vh-100">
       <div className="text-center">
-        <div className="mb-4">
+        <LogoWrapper className="mb-4">
           <Logo
-            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+            src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Gemini-2.5-flash-image-preview_%28nano-banana%29_a_make_it_with_white_b.png"
             alt="Logo"
-            className="img-fluid"
           />
-        </div>
+        </LogoWrapper>
         
         <DotsContainer className="d-flex justify-content-center gap-2 mb-3">
           <Dot className="bg-primary" delay="0s" />
@@ -40,14 +39,22 @@ const bounce = keyframes`
 `;
 
 const Container = styled.div`
-  background-color: #f8f9fa;
+  background-color: #ffffff;
+`;
+
+const LogoWrapper = styled.div`
+  width: 450px;
+  height: 450px;
+  margin: 0 auto;
+  overflow: hidden;
 `;
 
 const Logo = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
+  display: block;
 `;
 
 const DotsContainer = styled.div``;

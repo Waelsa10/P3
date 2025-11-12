@@ -124,12 +124,11 @@ function Loading() {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
             className: "text-center",
             children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(LogoWrapper, {
                     className: "mb-4",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Logo, {
-                        src: "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg",
-                        alt: "Logo",
-                        className: "img-fluid"
+                        src: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Gemini-2.5-flash-image-preview_%28nano-banana%29_a_make_it_with_white_b.png",
+                        alt: "Logo"
                     }, void 0, false, {
                         fileName: "[project]/components/Loading.js",
                         lineNumber: 10,
@@ -148,7 +147,7 @@ function Loading() {
                             delay: "0s"
                         }, void 0, false, {
                             fileName: "[project]/components/Loading.js",
-                            lineNumber: 18,
+                            lineNumber: 17,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Dot, {
@@ -156,7 +155,7 @@ function Loading() {
                             delay: "0.15s"
                         }, void 0, false, {
                             fileName: "[project]/components/Loading.js",
-                            lineNumber: 19,
+                            lineNumber: 18,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Dot, {
@@ -164,13 +163,13 @@ function Loading() {
                             delay: "0.3s"
                         }, void 0, false, {
                             fileName: "[project]/components/Loading.js",
-                            lineNumber: 20,
+                            lineNumber: 19,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/Loading.js",
-                    lineNumber: 17,
+                    lineNumber: 16,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
@@ -178,7 +177,7 @@ function Loading() {
                     children: "Connecting..."
                 }, void 0, false, {
                     fileName: "[project]/components/Loading.js",
-                    lineNumber: 23,
+                    lineNumber: 22,
                     columnNumber: 9
                 }, this)
             ]
@@ -205,13 +204,20 @@ const bounce = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$compo
   }
 `;
 const Container = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
-  background-color: #f8f9fa;
+  background-color: #ffffff;
+`;
+const LogoWrapper = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  width: 450px;
+  height: 450px;
+  margin: 0 auto;
+  overflow: hidden;
 `;
 const Logo = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].img`
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
+  display: block;
 `;
 const DotsContainer = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div``;
 const Dot = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
@@ -373,8 +379,8 @@ function Login() {
                 darkMode: darkMode,
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Logo, {
-                        src: "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg",
-                        alt: "WhatsApp Logo"
+                        src: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Gemini-2.5-flash-image-preview_%28nano-banana%29_a_make_it_with_white_b.png",
+                        alt: "swifttalk Logo"
                     }, void 0, false, {
                         fileName: "[project]/pages/login.js",
                         lineNumber: 50,
@@ -385,6 +391,14 @@ function Login() {
                         onClick: signIn,
                         disabled: loading,
                         darkMode: darkMode,
+                        startIcon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(GoogleLogo, {
+                            src: "https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg",
+                            alt: "Google logo"
+                        }, void 0, false, {
+                            fileName: "[project]/pages/login.js",
+                            lineNumber: 60,
+                            columnNumber: 13
+                        }, void 0),
                         children: loading ? "Signing in..." : "Sign in with Google"
                     }, void 0, false, {
                         fileName: "[project]/pages/login.js",
@@ -396,7 +410,7 @@ function Login() {
                         children: error
                     }, void 0, false, {
                         fileName: "[project]/pages/login.js",
-                        lineNumber: 62,
+                        lineNumber: 68,
                         columnNumber: 19
                     }, this)
                 ]
@@ -422,34 +436,63 @@ const Container = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$co
   transition: background-color 0.3s ease;
 `;
 const LoginContainer = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
-  padding: 100px;
+  padding: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${(props)=>props.darkMode ? '#1e1e1e' : 'white'};
-  border-radius: 5px;
-  box-shadow: ${(props)=>props.darkMode ? '0px 4px 14px -3px rgba(0, 0, 0, 0.9)' : '0px 4px 14px -3px rgba(0, 0, 0, 0.75)'};
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background: ${(props)=>props.darkMode ? 'rgba(30, 30, 30, 0.7)' : 'rgba(255, 255, 255, 0.7)'};
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 24px;
+  border: 1px solid ${(props)=>props.darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.5)'};
+  box-shadow: ${(props)=>props.darkMode ? '0 8px 32px 0 rgba(0, 0, 0, 0.37)' : '0 8px 32px 0 rgba(31, 38, 135, 0.15)'};
+  transition: all 0.3s ease;
 `;
 const Logo = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].img`
-  height: 200px;
-  width: 200px;
+  height: 400px;
+  width: 400px;
   margin-bottom: 50px;
   filter: ${(props)=>props.darkMode ? 'brightness(0.9)' : 'none'};
 `;
+const GoogleLogo = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].img`
+  width: 18px;
+  height: 18px;
+`;
 const StyledButton = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Button$2f$Button$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"])`
   && {
-    color: ${(props)=>props.darkMode ? '#90caf9' : '#1976d2'};
-    border-color: ${(props)=>props.darkMode ? '#90caf9' : '#1976d2'};
+    width: 100%;
+    padding: 12px 24px;
+    background-color: white;
+    color: #3c4043;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: none;
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3);
+    transition: all 0.15s ease-in-out;
     
     &:hover {
-      background-color: ${(props)=>props.darkMode ? 'rgba(144, 202, 249, 0.08)' : 'rgba(25, 118, 210, 0.04)'};
-      border-color: ${(props)=>props.darkMode ? '#64b5f6' : '#1565c0'};
+      background-color: #f8f9fa;
+      border-color: #d2e3fc;
+      box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.3);
+    }
+
+    &:active {
+      background-color: #f1f3f4;
+      box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3);
     }
 
     &:disabled {
-      color: ${(props)=>props.darkMode ? '#666' : '#bdbdbd'};
-      border-color: ${(props)=>props.darkMode ? '#666' : '#bdbdbd'};
+      background-color: #f1f3f4;
+      color: #9aa0a6;
+      border-color: #dadce0;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    .MuiButton-startIcon {
+      margin-right: 12px;
     }
   }
 `;

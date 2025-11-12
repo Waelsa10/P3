@@ -48,14 +48,20 @@ function Login() {
       </Head>
       <LoginContainer darkMode={darkMode}>
         <Logo
-          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-          alt="WhatsApp Logo"
+          src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Gemini-2.5-flash-image-preview_%28nano-banana%29_a_make_it_with_white_b.png"
+          alt="swifttalk Logo"
         />
         <StyledButton 
           variant="outlined" 
           onClick={signIn}
           disabled={loading}
           darkMode={darkMode}
+          startIcon={
+            <GoogleLogo 
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
+              alt="Google logo"
+            />
+          }
         >
           {loading ? "Signing in..." : "Sign in with Google"}
         </StyledButton>
@@ -77,38 +83,72 @@ const Container = styled.div`
 `;
 
 const LoginContainer = styled.div`
-  padding: 100px;
+  padding: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${props => props.darkMode ? '#1e1e1e' : 'white'};
-  border-radius: 5px;
+  background: ${props => props.darkMode 
+    ? 'rgba(30, 30, 30, 0.7)' 
+    : 'rgba(255, 255, 255, 0.7)'};
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 24px;
+  border: 1px solid ${props => props.darkMode 
+    ? 'rgba(255, 255, 255, 0.1)' 
+    : 'rgba(255, 255, 255, 0.5)'};
   box-shadow: ${props => props.darkMode 
-    ? '0px 4px 14px -3px rgba(0, 0, 0, 0.9)' 
-    : '0px 4px 14px -3px rgba(0, 0, 0, 0.75)'};
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    ? '0 8px 32px 0 rgba(0, 0, 0, 0.37)' 
+    : '0 8px 32px 0 rgba(31, 38, 135, 0.15)'};
+  transition: all 0.3s ease;
 `;
 
 const Logo = styled.img`
-  height: 200px;
-  width: 200px;
+  height: 400px;
+  width: 400px;
   margin-bottom: 50px;
   filter: ${props => props.darkMode ? 'brightness(0.9)' : 'none'};
 `;
 
+const GoogleLogo = styled.img`
+  width: 18px;
+  height: 18px;
+`;
+
 const StyledButton = styled(Button)`
   && {
-    color: ${props => props.darkMode ? '#90caf9' : '#1976d2'};
-    border-color: ${props => props.darkMode ? '#90caf9' : '#1976d2'};
+    width: 100%;
+    padding: 12px 24px;
+    background-color: white;
+    color: #3c4043;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: none;
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3);
+    transition: all 0.15s ease-in-out;
     
     &:hover {
-      background-color: ${props => props.darkMode ? 'rgba(144, 202, 249, 0.08)' : 'rgba(25, 118, 210, 0.04)'};
-      border-color: ${props => props.darkMode ? '#64b5f6' : '#1565c0'};
+      background-color: #f8f9fa;
+      border-color: #d2e3fc;
+      box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.3);
+    }
+
+    &:active {
+      background-color: #f1f3f4;
+      box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3);
     }
 
     &:disabled {
-      color: ${props => props.darkMode ? '#666' : '#bdbdbd'};
-      border-color: ${props => props.darkMode ? '#666' : '#bdbdbd'};
+      background-color: #f1f3f4;
+      color: #9aa0a6;
+      border-color: #dadce0;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    .MuiButton-startIcon {
+      margin-right: 12px;
     }
   }
 `;

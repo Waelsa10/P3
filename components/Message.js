@@ -12,6 +12,8 @@ import AudiotrackIcon from "@mui/icons-material/Audiotrack";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ReplyIcon from "@mui/icons-material/Reply";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { useContext, useState } from "react";
 import { DarkModeContext } from "./DarkModeProvider";
 import MessageStatus from "./ChatScreen/components/MessageStatus";
@@ -72,6 +74,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
         fileType: message.fileType,
         voiceURL: message.voiceURL,
         voiceDuration: message.voiceDuration,
+        location: message.location,
       });
     }
   };
@@ -162,10 +165,43 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                   {message.replyTo.user === userLoggedIn?.email ? 'You' : message.replyTo.user}
                 </ReplyUser>
                 <ReplyText darkMode={darkMode}>
-                  {message.replyTo.message || message.replyTo.fileName || '🎤 Voice message'}
+                  {message.replyTo.location ? '📍 Location' : 
+                   message.replyTo.message || message.replyTo.fileName || '🎤 Voice message'}
                 </ReplyText>
               </ReplyContent>
             </ReplyPreview>
+          )}
+
+          {/* Location Message */}
+          {message.location && (
+            <LocationContainer darkMode={darkMode}>
+              <MapPreview>
+                <MapFrame
+                  src={`https://www.openstreetmap.org/export/embed.html?bbox=${message.location.longitude - 0.005},${message.location.latitude - 0.005},${message.location.longitude + 0.005},${message.location.latitude + 0.005}&layer=mapnik&marker=${message.location.latitude},${message.location.longitude}`}
+                  title="Location"
+                  loading="lazy"
+                />
+              </MapPreview>
+              
+              <LocationInfo darkMode={darkMode}>
+                <LocationIcon>
+                  <LocationOnIcon style={{ fontSize: 20, color: "#f44336" }} />
+                </LocationIcon>
+                <Coordinates darkMode={darkMode}>
+                  {message.location.latitude.toFixed(6)}, {message.location.longitude.toFixed(6)}
+                </Coordinates>
+              </LocationInfo>
+
+              <ViewButton 
+                href={message.location.url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                darkMode={darkMode}
+              >
+                <OpenInNewIcon style={{ fontSize: 16, marginRight: 4 }} />
+                View on Maps
+              </ViewButton>
+            </LocationContainer>
           )}
 
           {/* File Attachment */}
@@ -276,7 +312,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
           )}
 
           {/* Text Message */}
-          {message.message && message.message.trim() && (
+          {message.message && message.message.trim() && !message.location && (
             <MessageText darkMode={darkMode}>{message.message}</MessageText>
           )}
 
@@ -483,6 +519,64 @@ const FileAttachment = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+`;
+
+// Location Message Styles
+const LocationContainer = styled.div`
+  max-width: 280px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: ${(props) => (props.darkMode ? "#2a2a2a" : "#f5f5f5")};
+  margin-bottom: 8px;
+`;
+
+const MapPreview = styled.div`
+  width: 100%;
+  height: 200px;
+  background: #f0f0f0;
+  position: relative;
+`;
+
+const MapFrame = styled.iframe`
+  width: 100%;
+  height: 100%;
+  border: none;
+  pointer-events: none;
+`;
+
+const LocationInfo = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  gap: 8px;
+`;
+
+const LocationIcon = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Coordinates = styled.span`
+  font-size: 13px;
+  color: ${(props) => (props.darkMode ? "#b0b0b0" : "#666")};
+  font-family: monospace;
+`;
+
+const ViewButton = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: ${(props) => (props.darkMode ? "#128C7E" : "#25D366")};
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: ${(props) => (props.darkMode ? "#0d6b5f" : "#1fa855")};
+  }
 `;
 
 // Image Styles

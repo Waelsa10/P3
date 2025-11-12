@@ -19,6 +19,8 @@ import { DarkModeContext } from "../DarkModeProvider";
 import { useEmojiPicker } from "./hooks/useEmojiPicker";
 import { useFileUpload } from "./hooks/useFileUpload";
 import { useVoiceRecording } from "./hooks/useVoiceRecording";
+import { useCamera } from "./hooks/useCamera";
+import { useLocation } from "./hooks/useLocation";
 import { useRecipientData } from "./hooks/useRecipientData";
 import { useMessages } from "./hooks/useMessages";
 import { useMessageStatus } from "./hooks/useMessageStatus";
@@ -28,7 +30,10 @@ import ChatHeader from "./components/ChatHeader";
 import MessageList from "./components/MessageList";
 import ChatInput from "./components/ChatInput";
 import EmojiPicker from "./components/EmojiPicker";
+import AttachMenu from "./components/AttachMenu";
 import FileUploadDialog from "./components/FileUploadDialog";
+import CameraDialog from "./components/CameraDialog";
+import LocationPreviewDialog from "./components/LocationPreviewDialog";
 import VoiceRecordingDialog from "./components/VoiceRecordingDialog";
 import ProfileDialog from "./components/ProfileDialog";
 import ReplyPreview from "./components/ReplyPreview";
@@ -49,7 +54,6 @@ function ChatScreen({
   const [user] = useAuthState(auth);
   const router = useRouter();
   const endOfMessagesRef = useRef(null);
-  const fileInputRef = useRef(null);
   const inputRef = useRef(null);
   
   const [input, setInput] = useState("");
@@ -58,6 +62,7 @@ function ChatScreen({
   const [sendingError, setSendingError] = useState(null);
   const [showProfile, setShowProfile] = useState(false);
   const [replyingTo, setReplyingTo] = useState(null);
+  const [attachMenuAnchor, setAttachMenuAnchor] = useState(null);
 
   // Get dark mode context
   const darkModeContext = useContext(DarkModeContext);
@@ -66,21 +71,21 @@ function ChatScreen({
   const chatId = router?.query?.id || null;
 
   // Custom Hooks
-  const { recipientEmail, recipient, recipientSnapshot, isSelfChat,isLoading  } = useRecipientData(user, chat);
+  const { recipientEmail, recipient, recipientSnapshot, isSelfChat, isLoading } = useRecipientData(user, chat);
   const { messagesSnapshot } = useMessages(chatId);
   
-  // ✅ Use message status hook to manage SENT → DELIVERED → READ transitions
-  // 🔥 FIX: Pass user.email as currentUserEmail for proper validation
   useMessageStatus(
-  chatId, 
-  isLoading ? null : recipientEmail,
-  user?.email,     // ← Current user email
-  isSelfChat
-);
+    chatId, 
+    isLoading ? null : recipientEmail,
+    user?.email,
+    isSelfChat
+  );
   
   const emojiPicker = useEmojiPicker();
   const fileUpload = useFileUpload(chatId, user, recipientEmail);
   const voiceRecording = useVoiceRecording(chatId, user, recipientEmail);
+  const camera = useCamera(chatId, user, recipientEmail);
+  const location = useLocation(chatId, user, recipientEmail);
 
   // Monitor online status
   useEffect(() => {
@@ -116,6 +121,15 @@ function ChatScreen({
   useEffect(() => {
     scrollToBottom();
   }, [messagesSnapshot]);
+
+  // Handle attach menu
+  const handlePlusClick = (event) => {
+    setAttachMenuAnchor(event.currentTarget);
+  };
+
+  const handleAttachMenuClose = () => {
+    setAttachMenuAnchor(null);
+  };
 
   // Handle emoji selection
   const handleEmojiClick = (emoji) => {
@@ -166,12 +180,7 @@ function ChatScreen({
     setSendingError(null);
 
     if (!input?.trim() || !chatId || !user || !recipientEmail) {
-      console.warn("⚠️ Cannot send message - missing required data", {
-        hasInput: !!input?.trim(),
-        chatId,
-        hasUser: !!user,
-        recipientEmail,
-      });
+      console.warn("⚠️ Cannot send message - missing required data");
       return;
     }
     
@@ -182,12 +191,10 @@ function ChatScreen({
         const isBlocked = await checkIfBlocked(user.email, recipientEmail);
         if (isBlocked) {
           setSendingError("You cannot send messages to this user. You have been blocked.");
-          console.log(`🚫 [Chat: ${chatId}] Message blocked - user is blocked`);
           return;
         }
       }
 
-      // Update user's last seen
       const userRef = doc(db, "users", user.uid);
       await setDoc(
         userRef,
@@ -203,7 +210,7 @@ function ChatScreen({
         message: input,
         user: user.email,
         photoURL: user.photoURL,
-        status: MESSAGE_STATUS.SENT, // Will start as SENT
+        status: MESSAGE_STATUS.SENT,
       };
 
       const replyData = buildReplyData(replyingTo);
@@ -211,9 +218,7 @@ function ChatScreen({
         messageData.replyTo = replyData;
       }
 
-      console.log(`📤 [Chat: ${chatId}] Sending message with status: ${MESSAGE_STATUS.SENT}`);
       await addDoc(collection(db, "chats", chatId, "messages"), messageData);
-      console.log(`✅ [Chat: ${chatId}] Message sent successfully`);
 
       setInput("");
       setReplyingTo(null);
@@ -223,17 +228,6 @@ function ChatScreen({
       setSendingError("Failed to send message. Please try again.");
     }
   };
-
-  // ✅ Add validation logging
-  useEffect(() => {
-    if (chatId && user?.email && recipientEmail) {
-      console.log(`🔍 [Chat: ${chatId}] Chat initialized:`, {
-        currentUser: user.email,
-        recipient: recipientEmail,
-        isSelfChat,
-      });
-    }
-  }, [chatId, user?.email, recipientEmail, isSelfChat]);
 
   if (!isOnline) {
     return (
@@ -260,7 +254,6 @@ function ChatScreen({
         recipientEmail={recipientEmail}
         recipientSnapshot={recipientSnapshot}
         isSelfChat={isSelfChat}
-        onAttachFile={() => fileInputRef.current?.click()}
         onMoreClick={() => setShowProfile(true)}
         darkMode={darkMode}
         isMobile={isMobile}
@@ -268,7 +261,7 @@ function ChatScreen({
       />
 
       <input
-        ref={fileInputRef}
+        ref={fileUpload.fileInputRef}
         type="file"
         hidden
         onChange={fileUpload.handleFileSelect}
@@ -282,6 +275,16 @@ function ChatScreen({
         sendingError={sendingError}
         onDelete={deleteMessage}
         onReply={handleReply}
+        darkMode={darkMode}
+      />
+
+      <AttachMenu
+        anchorEl={attachMenuAnchor}
+        open={Boolean(attachMenuAnchor)}
+        onClose={handleAttachMenuClose}
+        onAttachFile={fileUpload.handleAttachClick}
+        onTakePhoto={camera.startCamera}
+        onShareLocation={location.getLocation}
         darkMode={darkMode}
       />
 
@@ -316,6 +319,49 @@ function ChatScreen({
           scrollToBottom,
           isSelfChat,
         )}
+        darkMode={darkMode}
+      />
+
+      <CameraDialog
+        open={camera.showCamera || camera.capturedImage !== null}
+        showCamera={camera.showCamera}
+        capturedImage={camera.capturedImage}
+        videoRef={camera.videoRef}
+        input={input}
+        onInputChange={setInput}
+        uploadProgress={camera.uploadProgress}
+        isUploading={camera.isUploading}
+        onCapture={camera.capturePhoto}
+        onRetake={camera.retakePhoto}
+        onCancel={camera.cancelPhoto}
+        onSend={() => camera.sendPhoto(
+          input,
+          replyingTo,
+          setSendingError,
+          setInput,
+          setReplyingTo,
+          scrollToBottom,
+          isSelfChat,
+        )}
+        darkMode={darkMode}
+      />
+
+      <LocationPreviewDialog
+        open={location.showLocationPreview}
+        locationData={location.locationData}
+        input={input}
+        onInputChange={setInput}
+        onCancel={location.cancelLocation}
+        onSend={() => location.sendLocation(
+          input,
+          replyingTo,
+          setSendingError,
+          setInput,
+          setReplyingTo,
+          scrollToBottom,
+          isSelfChat,
+        )}
+        isGettingLocation={location.isGettingLocation}
         darkMode={darkMode}
       />
 
@@ -361,6 +407,7 @@ function ChatScreen({
         recordingTime={voiceRecording.recordingTime}
         onSubmit={sendMessage}
         onEmojiClick={emojiPicker.handleEmojiPickerOpen}
+        onPlusClick={handlePlusClick}
         onStartRecording={() => voiceRecording.startRecording(setSendingError)}
         onStopRecording={voiceRecording.stopRecording}
         darkMode={darkMode}

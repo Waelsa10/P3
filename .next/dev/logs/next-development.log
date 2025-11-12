@@ -1,12 +1,15 @@
-[00:00:00.949] Server  LOG      ✓ Ready in 638ms
-[00:00:04.356] Browser ERROR   Warning: Did not expect server HTML to contain a <%s> in <%s>.%s img div 
+[00:00:01.725] Server  LOG      ✓ Ready in 1211ms
+[00:00:08.999] Browser ERROR   Warning: Expected server HTML to contain a matching <%s> in <%s>.%s div div 
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__071f0ebb._.js:2831:184
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Home (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__071f0ebb._.js:8929:160)
     at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
     at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
     at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
@@ -15,29 +18,32 @@
     at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
     at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
     at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:00:04.356] Browser ERROR   Warning: An error occurred during hydration. The server HTML was replaced with client content in <%s>. div
-[00:00:04.356] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
-[00:00:04.356] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
-[00:00:04.356] Browser ERROR   uncaughtError: Error: There was an error while hydrating. Because the error happened outside of a Suspense boundary, the entire root will switch to client rendering.
-[00:00:07.638] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:00:13.318] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
-[00:00:13.318] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":false,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
-[00:00:13.318] Browser LOG     ✅ useRecipientData: Found recipient {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
-[00:00:13.318] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+[00:00:08.999] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:00:08.999] Browser ERROR   Warning: An error occurred during hydration. The server HTML was replaced with client content in <%s>. div
+[00:00:08.999] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:00:08.999] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:00:08.999] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:00:08.999] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:00:08.999] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:00:08.999] Browser ERROR   uncaughtError: Error: There was an error while hydrating. Because the error happened outside of a Suspense boundary, the entire root will switch to client rendering.
+[00:00:11.595] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:00:11.595] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:00:11.595] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:00:11.595] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
     at button
     at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
     at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
     at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_649d2d4d._.js:3597:216)
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
     at form
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatInput (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__071f0ebb._.js:7227:22)
+    at ChatInput (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:3404:22)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatScreen (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__071f0ebb._.js:8522:23)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:4728:23)
     at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
@@ -54,16 +60,15 @@
     at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
     at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
     at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:00:13.318] Browser LOG     👁️ [Chat: fM1OYZbvQyXkZ3sKXds4] Listening for abduallh1424aa1@gmail.com to come online...
-[00:00:13.318] Browser LOG        Your messages from: waelsa909@gmail.com
-[00:00:13.318] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Chat initialized: {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
-[00:00:14.485] Browser LOG     🔴 [Chat: fM1OYZbvQyXkZ3sKXds4] Recipient offline (36763s ago)
-[00:00:14.485] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+[00:00:11.595] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:00:11.595] Browser LOG     🔍 [Chat: B0AlFrbLaYojvLeRjys5] Chat initialized: {"currentUser":"waelsa909@gmail.com","isSelfChat":true,"recipient":"waelsa909@gmail.com"}
+[00:00:12.038] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:00:12.848] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
     at button
     at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
     at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
     at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_649d2d4d._.js:3597:216)
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
@@ -71,13 +76,13 @@
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at Message (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__071f0ebb._.js:5626:20)
+    at Message (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:1801:20)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at _c (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__071f0ebb._.js:7136:185)
+    at _c (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:3311:185)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatScreen (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__071f0ebb._.js:8522:23)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:4728:23)
     at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
@@ -94,23 +99,19 @@
     at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
     at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
     at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:00:18.445] Browser LOG     📤 [Chat: fM1OYZbvQyXkZ3sKXds4] Preparing to send message to abduallh1424aa1@gmail.com
-[00:00:18.876] Browser LOG     📤 [Chat: fM1OYZbvQyXkZ3sKXds4] Sending message with status: sent
-[00:00:18.876] Browser ERROR   ❌ [Chat: fM1OYZbvQyXkZ3sKXds4] Error sending message: {}
-[00:00:25.467] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:00:45.473] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:01:05.468] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:01:17.387] Server  LOG      ✓ Compiled in 62ms
-[00:01:18.462] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
-[00:01:18.462] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":false,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
-[00:01:18.462] Browser LOG     ✅ useRecipientData: Found recipient {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
-[00:01:18.462] Browser LOG     🔌 [Chat: fM1OYZbvQyXkZ3sKXds4] Stopping recipient status listener for abduallh1424aa1@gmail.com
-[00:01:18.462] Browser LOG     👁️ [Chat: fM1OYZbvQyXkZ3sKXds4] Listening for abduallh1424aa1@gmail.com to come online...
-[00:01:18.462] Browser LOG        Your messages from: waelsa909@gmail.com
-[00:01:18.462] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Chat initialized: {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
-[00:01:18.462] Browser LOG     🔴 [Chat: fM1OYZbvQyXkZ3sKXds4] Recipient offline (36827s ago)
-[00:01:19.647] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:01:20.917] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-fulCBj dIsuNm img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+[00:00:29.249] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:00:41.026] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:00:49.538] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:00:49.989] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:01:10.020] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:01:20.938] Server  LOG      ✓ Compiled in 65ms
+[00:01:21.995] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:01:21.995] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:01:21.996] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:01:21.996] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:01:21.996] Browser LOG     🔍 [Chat: B0AlFrbLaYojvLeRjys5] Chat initialized: {"currentUser":"waelsa909@gmail.com","isSelfChat":true,"recipient":"waelsa909@gmail.com"}
+[00:01:23.268] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:01:25.004] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-kMribo iurydG img-fluid" "sc-gEvEer joyAiQ img-fluid" 
     at img
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
     at div
@@ -125,10 +126,11 @@
     at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
     at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
     at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:01:24.165] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
-[00:01:24.165] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":false,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
-[00:01:24.165] Browser LOG     ✅ useRecipientData: Found recipient {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
-[00:01:24.165] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+[00:01:28.534] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:01:28.973] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:01:28.973] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:01:28.973] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:01:28.973] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
     at button
     at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
     at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
@@ -139,10 +141,10 @@
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatInput (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:3418:22)
+    at ChatInput (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:3414:22)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatScreen (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:4713:23)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:4738:23)
     at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
@@ -159,12 +161,9 @@
     at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
     at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
     at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:01:24.165] Browser LOG     👁️ [Chat: fM1OYZbvQyXkZ3sKXds4] Listening for abduallh1424aa1@gmail.com to come online...
-[00:01:24.165] Browser LOG        Your messages from: waelsa909@gmail.com
-[00:01:24.165] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Chat initialized: {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
-[00:01:24.499] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:01:25.339] Browser LOG     🔴 [Chat: fM1OYZbvQyXkZ3sKXds4] Recipient offline (36834s ago)
-[00:01:25.339] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+[00:01:28.973] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:01:28.973] Browser LOG     🔍 [Chat: B0AlFrbLaYojvLeRjys5] Chat initialized: {"currentUser":"waelsa909@gmail.com","isSelfChat":true,"recipient":"waelsa909@gmail.com"}
+[00:01:29.884] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
     at button
     at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
     at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
@@ -177,13 +176,13 @@
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at Message (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:1817:20)
+    at Message (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:1811:20)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at _c (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:3327:185)
+    at _c (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:3321:185)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at ChatScreen (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:4713:23)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:4738:23)
     at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
@@ -200,75 +199,1771 @@
     at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
     at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
     at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:01:27.395] Browser LOG     📤 [Chat: fM1OYZbvQyXkZ3sKXds4] Preparing to send message to abduallh1424aa1@gmail.com
-[00:01:27.833] Browser LOG     📤 [Chat: fM1OYZbvQyXkZ3sKXds4] Sending message with status: sent
-[00:01:28.271] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Message sent successfully
-[00:01:40.372] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:01:41.810] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:01:46.871] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:01:51.627] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:01:59.120] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:02:01.582] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:02:02.015] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:02:02.755] Browser LOG     🔌 [Chat: fM1OYZbvQyXkZ3sKXds4] Stopping recipient status listener for abduallh1424aa1@gmail.com
-[00:02:02.755] Browser LOG     👁️ [Chat: B0AlFrbLaYojvLeRjys5] Listening for abduallh1424aa1@gmail.com to come online...
-[00:02:02.755] Browser LOG        Your messages from: waelsa909@gmail.com
-[00:02:02.755] Browser LOG     🔍 [Chat: B0AlFrbLaYojvLeRjys5] Chat initialized: {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
-[00:02:02.755] Browser LOG     🔴 [Chat: B0AlFrbLaYojvLeRjys5] Recipient offline (36872s ago)
-[00:02:03.586] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
-[00:02:03.586] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
-[00:02:03.586] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
-[00:02:03.586] Browser LOG     🔌 [Chat: B0AlFrbLaYojvLeRjys5] Stopping recipient status listener for abduallh1424aa1@gmail.com
-[00:02:03.586] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
-[00:02:03.586] Browser LOG     🔍 [Chat: B0AlFrbLaYojvLeRjys5] Chat initialized: {"currentUser":"waelsa909@gmail.com","isSelfChat":true,"recipient":"waelsa909@gmail.com"}
-[00:02:21.831] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:02:28.675] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:02:30.224] Browser LOG     🔄 Starting Cloudinary upload...
-[00:02:30.224] Browser LOG     📦 File size: 5612296 bytes
-[00:02:30.224] Browser LOG     📦 File type: application/x-msdownload
-[00:02:30.224] Browser LOG     ☁️ Cloud name: dlmdxpf0j
-[00:02:30.224] Browser LOG     🔑 Upload preset: chat_uploads
-[00:02:30.224] Browser LOG     🚀 Sending request to: https://api.cloudinary.com/v1_1/dlmdxpf0j/auto/upload
-[00:02:31.063] Browser LOG     📤 Upload progress: 2%
-[00:02:31.371] Browser LOG     📤 Upload progress: 4%
-[00:02:31.476] Browser LOG     📤 Upload progress: 8%
-[00:02:31.680] Browser LOG     📤 Upload progress: 14%
-[00:02:31.780] Browser LOG     📤 Upload progress: 27%
-[00:02:31.992] Browser LOG     📤 Upload progress: 34%
-[00:02:32.093] Browser LOG     📤 Upload progress: 60%
-[00:02:32.197] Browser LOG     📤 Upload progress: 65%
-[00:02:32.300] Browser LOG     📤 Upload progress: 79%
-[00:02:32.409] Browser LOG     📤 Upload progress: 100%
-[00:02:32.888] Browser ERROR   ❌ Upload failed with status: 400
-[00:02:32.888] Browser ERROR   📄 Response: {"error":{"message":"resources with extension exe are not allowed"}}
-[00:02:32.888] Browser ERROR   Error sending file: {}
-[00:02:41.822] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:03:02.463] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:03:22.569] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:03:42.555] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:04:33.471] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:05:04.850] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:05:05.257] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:05:13.031] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:05:21.826] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:05:42.464] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:06:02.469] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:06:22.476] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:06:31.693] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:06:39.566] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:06:40.241] Browser LOG     🔄 Starting Cloudinary upload...
-[00:06:40.241] Browser LOG     📦 File size: 4339750 bytes
-[00:06:40.241] Browser LOG     📦 File type: audio/mpeg
-[00:06:40.241] Browser LOG     ☁️ Cloud name: dlmdxpf0j
-[00:06:40.241] Browser LOG     🔑 Upload preset: chat_uploads
-[00:06:40.241] Browser LOG     🚀 Sending request to: https://api.cloudinary.com/v1_1/dlmdxpf0j/auto/upload
-[00:06:40.345] Browser LOG     📤 Upload progress: 97%
-[00:06:40.448] Browser LOG     📤 Upload progress: 100%
-[00:06:41.548] Browser LOG     ✅ Upload successful!
-[00:06:41.548] Browser LOG     🔗 URL: https://res.cloudinary.com/dlmdxpf0j/video/upload/v1762899740/chat-app/ft2xorethrwta2impjme.mp3
-[00:06:41.813] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
-[00:06:45.846] Browser LOG     🗑️ [Chat: B0AlFrbLaYojvLeRjys5] Deleting message nMdE5sru2FZBM9RiV5Tb
-[00:06:46.282] Browser LOG     ✅ [Chat: B0AlFrbLaYojvLeRjys5] Message deleted successfully
-[00:06:47.969] Browser LOG     🗑️ [Chat: B0AlFrbLaYojvLeRjys5] Deleting message xbhYMqoRHFUJetKZBvWJ
-[00:06:48.407] Browser LOG     ✅ [Chat: B0AlFrbLaYojvLeRjys5] Message deleted successfully
-[00:07:02.567] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:01:38.428] Browser LOG     Using MIME type: audio/webm
+[00:01:38.560] Browser LOG     Data available: 1128 bytes
+[00:01:38.677] Browser LOG     Data available: 1947 bytes
+[00:01:38.797] Browser LOG     Data available: 1947 bytes
+[00:01:38.918] Browser LOG     Data available: 1948 bytes
+[00:01:39.047] Browser LOG     Data available: 1947 bytes
+[00:01:39.047] Browser LOG     Recording stopped, chunks: 5
+[00:01:39.047] Browser LOG     Blob size: 8917
+[00:01:46.047] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:01:52.273] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:01:57.840] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:01:58.327] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-kMribo iurydG img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:02:01.242] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:02:01.242] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:02:01.242] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:02:01.242] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at form
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatInput (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:3414:22)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:4738:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:02:01.242] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:02:01.242] Browser LOG     🔍 [Chat: B0AlFrbLaYojvLeRjys5] Chat initialized: {"currentUser":"waelsa909@gmail.com","isSelfChat":true,"recipient":"waelsa909@gmail.com"}
+[00:02:01.636] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:02:02.430] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:1811:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:3321:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_76e13ddc._.js:4738:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:02:06.165] Browser LOG     ⏭️ [Chat: fM1OYZbvQyXkZ3sKXds4] Skipping YOUR DELIVERED update - self-chat
+[00:02:06.165] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Chat initialized: {"currentUser":"waelsa909@gmail.com","isSelfChat":true,"recipient":"waelsa909@gmail.com"}
+[00:02:07.046] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:02:07.046] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":false,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:02:07.046] Browser LOG     ✅ useRecipientData: Found recipient {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
+[00:02:07.046] Browser LOG     👁️ [Chat: fM1OYZbvQyXkZ3sKXds4] Listening for abduallh1424aa1@gmail.com to come online...
+[00:02:07.046] Browser LOG        Your messages from: waelsa909@gmail.com
+[00:02:07.046] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Chat initialized: {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
+[00:02:07.046] Browser LOG     🔴 [Chat: fM1OYZbvQyXkZ3sKXds4] Recipient offline (64855s ago)
+[00:02:19.990] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:02:39.993] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:03:00.005] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:03:19.997] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:03:40.000] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:04:00.001] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:04:01.117] Server  LOG      ✓ Compiled in 33ms
+[00:04:01.990] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:04:01.990] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":false,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:04:01.990] Browser LOG     ✅ useRecipientData: Found recipient {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
+[00:04:01.990] Browser LOG     🔌 [Chat: fM1OYZbvQyXkZ3sKXds4] Stopping recipient status listener for abduallh1424aa1@gmail.com
+[00:04:01.990] Browser LOG     👁️ [Chat: fM1OYZbvQyXkZ3sKXds4] Listening for abduallh1424aa1@gmail.com to come online...
+[00:04:01.990] Browser LOG        Your messages from: waelsa909@gmail.com
+[00:04:01.990] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Chat initialized: {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
+[00:04:01.990] Browser LOG     🔴 [Chat: fM1OYZbvQyXkZ3sKXds4] Recipient offline (64970s ago)
+[00:04:02.642] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:04:08.194] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:04:10.172] Browser LOG     🔌 [Chat: fM1OYZbvQyXkZ3sKXds4] Stopping recipient status listener for abduallh1424aa1@gmail.com
+[00:04:10.172] Browser LOG     👁️ [Chat: B0AlFrbLaYojvLeRjys5] Listening for abduallh1424aa1@gmail.com to come online...
+[00:04:10.172] Browser LOG        Your messages from: waelsa909@gmail.com
+[00:04:10.172] Browser LOG     🔍 [Chat: B0AlFrbLaYojvLeRjys5] Chat initialized: {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
+[00:04:10.172] Browser LOG     🔴 [Chat: B0AlFrbLaYojvLeRjys5] Recipient offline (64979s ago)
+[00:04:11.055] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:04:11.055] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:04:11.055] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:04:11.055] Browser LOG     🔌 [Chat: B0AlFrbLaYojvLeRjys5] Stopping recipient status listener for abduallh1424aa1@gmail.com
+[00:04:11.055] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:04:11.055] Browser LOG     🔍 [Chat: B0AlFrbLaYojvLeRjys5] Chat initialized: {"currentUser":"waelsa909@gmail.com","isSelfChat":true,"recipient":"waelsa909@gmail.com"}
+[00:04:16.045] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:04:17.136] Browser LOG     🔄 Starting Cloudinary upload...
+[00:04:17.136] Browser LOG     📦 File size: 4339750 bytes
+[00:04:17.136] Browser LOG     📦 File type: audio/mpeg
+[00:04:17.136] Browser LOG     ☁️ Cloud name: dlmdxpf0j
+[00:04:17.136] Browser LOG     🔑 Upload preset: chat_uploads
+[00:04:17.136] Browser LOG     🚀 Sending request to: https://api.cloudinary.com/v1_1/dlmdxpf0j/auto/upload
+[00:04:18.033] Browser LOG     📤 Upload progress: 2%
+[00:04:18.342] Browser LOG     📤 Upload progress: 5%
+[00:04:18.974] Browser LOG     📤 Upload progress: 7%
+[00:04:18.974] Browser LOG     📤 Upload progress: 8%
+[00:04:19.282] Browser LOG     📤 Upload progress: 9%
+[00:04:19.282] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:04:19.282] Browser LOG     📤 Upload progress: 10%
+[00:04:19.590] Browser LOG     📤 Upload progress: 11%
+[00:04:19.590] Browser LOG     📤 Upload progress: 12%
+[00:04:19.795] Browser LOG     📤 Upload progress: 14%
+[00:04:20.003] Browser LOG     📤 Upload progress: 15%
+[00:04:20.307] Browser LOG     📤 Upload progress: 16%
+[00:04:20.307] Browser LOG     📤 Upload progress: 17%
+[00:04:20.511] Browser LOG     📤 Upload progress: 18%
+[00:04:20.720] Browser LOG     📤 Upload progress: 20%
+[00:04:20.924] Browser LOG     📤 Upload progress: 21%
+[00:04:21.128] Browser LOG     📤 Upload progress: 23%
+[00:04:21.232] Browser LOG     📤 Upload progress: 24%
+[00:04:21.437] Browser LOG     📤 Upload progress: 26%
+[00:04:21.540] Browser LOG     📤 Upload progress: 27%
+[00:04:21.748] Browser LOG     📤 Upload progress: 28%
+[00:04:21.953] Browser LOG     📤 Upload progress: 30%
+[00:04:22.161] Browser LOG     📤 Upload progress: 32%
+[00:04:22.267] Browser LOG     📤 Upload progress: 33%
+[00:04:22.470] Browser LOG     📤 Upload progress: 34%
+[00:04:22.578] Browser LOG     📤 Upload progress: 36%
+[00:04:22.778] Browser LOG     📤 Upload progress: 37%
+[00:04:22.887] Browser LOG     📤 Upload progress: 39%
+[00:04:23.187] Browser LOG     📤 Upload progress: 40%
+[00:04:23.187] Browser LOG     📤 Upload progress: 42%
+[00:04:23.491] Browser LOG     📤 Upload progress: 43%
+[00:04:23.491] Browser LOG     📤 Upload progress: 44%
+[00:04:23.595] Browser LOG     📤 Upload progress: 45%
+[00:04:23.695] Browser LOG     📤 Upload progress: 46%
+[00:04:23.903] Browser LOG     📤 Upload progress: 48%
+[00:04:24.003] Browser LOG     📤 Upload progress: 49%
+[00:04:24.311] Browser LOG     📤 Upload progress: 51%
+[00:04:24.311] Browser LOG     📤 Upload progress: 52%
+[00:04:24.515] Browser LOG     📤 Upload progress: 54%
+[00:04:24.820] Browser LOG     📤 Upload progress: 55%
+[00:04:24.820] Browser LOG     📤 Upload progress: 56%
+[00:04:24.930] Browser LOG     📤 Upload progress: 58%
+[00:04:25.024] Browser LOG     📤 Upload progress: 59%
+[00:04:25.228] Browser LOG     📤 Upload progress: 62%
+[00:04:25.428] Browser LOG     📤 Upload progress: 63%
+[00:04:25.537] Browser LOG     📤 Upload progress: 65%
+[00:04:25.733] Browser LOG     📤 Upload progress: 67%
+[00:04:25.836] Browser LOG     📤 Upload progress: 69%
+[00:04:26.041] Browser LOG     📤 Upload progress: 71%
+[00:04:26.150] Browser LOG     📤 Upload progress: 72%
+[00:04:26.345] Browser LOG     📤 Upload progress: 75%
+[00:04:26.452] Browser LOG     📤 Upload progress: 77%
+[00:04:26.653] Browser LOG     📤 Upload progress: 79%
+[00:04:26.763] Browser LOG     📤 Upload progress: 81%
+[00:04:27.161] Browser LOG     📤 Upload progress: 82%
+[00:04:27.161] Browser LOG     📤 Upload progress: 84%
+[00:04:27.161] Browser LOG     📤 Upload progress: 86%
+[00:04:27.161] Browser LOG     📤 Upload progress: 87%
+[00:04:27.273] Browser LOG     📤 Upload progress: 90%
+[00:04:27.366] Browser LOG     📤 Upload progress: 91%
+[00:04:27.473] Browser LOG     📤 Upload progress: 92%
+[00:04:27.570] Browser LOG     📤 Upload progress: 96%
+[00:04:27.675] Browser LOG     📤 Upload progress: 97%
+[00:04:27.874] Browser LOG     📤 Upload progress: 99%
+[00:04:27.874] Browser LOG     📤 Upload progress: 100%
+[00:04:30.107] Browser LOG     ✅ Upload successful!
+[00:04:30.108] Browser LOG     🔗 URL: https://res.cloudinary.com/dlmdxpf0j/video/upload/v1762927587/chat-app/iwwizwhcojau8sqsaar3.mp3
+[00:04:37.584] Browser LOG     🗑️ [Chat: B0AlFrbLaYojvLeRjys5] Deleting message G8IyjJpVwadQvLaqZMla
+[00:04:38.054] Browser LOG     ✅ [Chat: B0AlFrbLaYojvLeRjys5] Message deleted successfully
+[00:04:39.141] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:04:41.531] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:05:00.115] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:05:20.041] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:05:40.071] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:06:11.990] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:07:11.991] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:08:11.994] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:09:11.997] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:09:56.812] Server  LOG      ✓ Compiled in 89ms
+[00:09:56.991] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:09:56.991] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:09:56.991] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:09:56.991] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:09:56.991] Browser LOG     🔍 [Chat: B0AlFrbLaYojvLeRjys5] Chat initialized: {"currentUser":"waelsa909@gmail.com","isSelfChat":true,"recipient":"waelsa909@gmail.com"}
+[00:09:58.991] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:09:58.991] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:09:58.991] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:10:12.005] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:10:15.266] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.267] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.268] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.269] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.271] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.274] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.276] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.277] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.281] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.281] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.285] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.285] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.287] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.289] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.291] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.292] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.293] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.294] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.296] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.298] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:15.299] Server  LOG      ✓ Compiled in 542ms
+[00:10:15.748] Browser ERROR   ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+[00:10:16.493] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:10:17.535] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:17.537] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:17.538] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:17.540] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:17.543] Server  ERROR    ⨯ ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:17.715] Browser ERROR   ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+[00:10:17.715] Browser ERROR   ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+[00:10:18.312] Browser ERROR   uncaughtError: Error: ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:10:18.538] Browser ERROR   ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+[00:10:18.538] Browser ERROR   ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+[00:10:58.713] Server  LOG      ✓ Compiled in 111ms
+[00:10:58.992] Browser ERROR   ./components/ChatScreen/components/CameraDialog.jsx:8:1
+Module not found: Can't resolve '@mui/icons-material/FlipCamera'
+   6 | import SendIcon from "@mui/icons-material/Send";
+   7 | import CancelIcon from "@mui/icons-material/Cancel";
+>  8 | import FlipCameraIcon from "@mui/icons-material/FlipCamera";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function CameraDialog({
+  11 |   open,
+
+Import traces:
+  Browser:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/ChatScreen/components/CameraDialog.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+[00:11:00.241] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:11:00.512] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-bkEOxz hRKLDz img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:11:01.954] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:11:01.955] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:11:01.955] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:11:01.955] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at form
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatInput (http://localhost:3000/_next/static/chunks/_923d028b._.js:3690:22)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_923d028b._.js:5707:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:11:01.955] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:11:03.039] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_923d028b._.js:2087:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_923d028b._.js:3597:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_923d028b._.js:5707:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:11:03.892] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:11:12.995] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:11:17.861] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:11:21.373] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:11:30.949] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:11:41.807] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:12:02.003] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:12:21.997] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:12:41.995] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:12:43.352] Server  LOG      ✓ Compiled in 80ms
+[00:12:43.992] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:12:43.992] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:12:43.992] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:12:43.992] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:12:44.991] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:12:44.992] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:12:44.992] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:12:56.296] Server  LOG      ✓ Compiled in 31ms
+[00:12:56.992] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:12:56.993] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:12:56.993] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:12:56.993] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:13:01.997] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:14:45.516] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:14:45.924] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:14:45.924] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:14:48.011] Browser LOG     🔄 Starting Cloudinary upload...
+[00:14:48.011] Browser LOG     📦 File size: 31041 bytes
+[00:14:48.012] Browser LOG     📦 File type: image/jpeg
+[00:14:48.012] Browser LOG     ☁️ Cloud name: dlmdxpf0j
+[00:14:48.012] Browser LOG     🔑 Upload preset: chat_uploads
+[00:14:48.012] Browser LOG     🚀 Sending request to: https://api.cloudinary.com/v1_1/dlmdxpf0j/auto/upload
+[00:14:48.845] Browser LOG     📤 Upload progress: 100%
+[00:14:49.445] Browser LOG     ✅ Upload successful!
+[00:14:49.445] Browser LOG     🔗 URL: https://res.cloudinary.com/dlmdxpf0j/image/upload/v1762928207/chat-app/jeyzmrm4mxpuz3t97quf.jpg
+[00:15:01.390] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:15:07.835] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:15:11.736] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:15:17.584] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:15:19.572] Browser LOG     🗑️ [Chat: B0AlFrbLaYojvLeRjys5] Deleting message enmUlmnOaDbJ3sf2RfPU
+[00:15:20.000] Browser LOG     ✅ [Chat: B0AlFrbLaYojvLeRjys5] Message deleted successfully
+[00:15:21.367] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:15:26.974] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:15:41.989] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:15:59.300] Server  ERROR    ⨯ ./components/Message.js:19:1
+Module not found: Can't resolve './LocationMessage'
+  17 | import MessageStatus from "./ChatScreen/components/MessageStatus";
+  18 | import { MESSAGE_STATUS } from "./ChatScreen/constants";
+> 19 | import LocationMessage from "./LocationMessage";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  20 |
+  21 | function Message({ user, message, messageId, onDelete, onReply }) {
+  22 |   const [userLoggedIn] = useAuthState(auth);
+
+
+
+Import traces:
+  Browser:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:15:59.302] Server  ERROR    ⨯ ./components/Message.js:19:1
+Module not found: Can't resolve './LocationMessage'
+  17 | import MessageStatus from "./ChatScreen/components/MessageStatus";
+  18 | import { MESSAGE_STATUS } from "./ChatScreen/constants";
+> 19 | import LocationMessage from "./LocationMessage";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  20 |
+  21 | function Message({ user, message, messageId, onDelete, onReply }) {
+  22 |   const [userLoggedIn] = useAuthState(auth);
+
+
+
+Import traces:
+  Browser:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:15:59.305] Server  ERROR    ⨯ ./components/Message.js:19:1
+Module not found: Can't resolve './LocationMessage'
+  17 | import MessageStatus from "./ChatScreen/components/MessageStatus";
+  18 | import { MESSAGE_STATUS } from "./ChatScreen/constants";
+> 19 | import LocationMessage from "./LocationMessage";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  20 |
+  21 | function Message({ user, message, messageId, onDelete, onReply }) {
+  22 |   const [userLoggedIn] = useAuthState(auth);
+
+
+
+Import traces:
+  Browser:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:15:59.307] Server  ERROR    ⨯ ./components/Message.js:19:1
+Module not found: Can't resolve './LocationMessage'
+  17 | import MessageStatus from "./ChatScreen/components/MessageStatus";
+  18 | import { MESSAGE_STATUS } from "./ChatScreen/constants";
+> 19 | import LocationMessage from "./LocationMessage";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  20 |
+  21 | function Message({ user, message, messageId, onDelete, onReply }) {
+  22 |   const [userLoggedIn] = useAuthState(auth);
+
+
+
+Import traces:
+  Browser:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:15:59.309] Server  ERROR    ⨯ ./components/Message.js:19:1
+Module not found: Can't resolve './LocationMessage'
+  17 | import MessageStatus from "./ChatScreen/components/MessageStatus";
+  18 | import { MESSAGE_STATUS } from "./ChatScreen/constants";
+> 19 | import LocationMessage from "./LocationMessage";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  20 |
+  21 | function Message({ user, message, messageId, onDelete, onReply }) {
+  22 |   const [userLoggedIn] = useAuthState(auth);
+
+
+
+Import traces:
+  Browser:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:15:59.310] Server  ERROR    ⨯ ./components/Message.js:19:1
+Module not found: Can't resolve './LocationMessage'
+  17 | import MessageStatus from "./ChatScreen/components/MessageStatus";
+  18 | import { MESSAGE_STATUS } from "./ChatScreen/constants";
+> 19 | import LocationMessage from "./LocationMessage";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  20 |
+  21 | function Message({ user, message, messageId, onDelete, onReply }) {
+  22 |   const [userLoggedIn] = useAuthState(auth);
+
+
+
+Import traces:
+  Browser:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:15:59.313] Server  ERROR    ⨯ ./components/Message.js:19:1
+Module not found: Can't resolve './LocationMessage'
+  17 | import MessageStatus from "./ChatScreen/components/MessageStatus";
+  18 | import { MESSAGE_STATUS } from "./ChatScreen/constants";
+> 19 | import LocationMessage from "./LocationMessage";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  20 |
+  21 | function Message({ user, message, messageId, onDelete, onReply }) {
+  22 |   const [userLoggedIn] = useAuthState(auth);
+
+
+
+Import traces:
+  Browser:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:15:59.315] Server  ERROR    ⨯ ./components/Message.js:19:1
+Module not found: Can't resolve './LocationMessage'
+  17 | import MessageStatus from "./ChatScreen/components/MessageStatus";
+  18 | import { MESSAGE_STATUS } from "./ChatScreen/constants";
+> 19 | import LocationMessage from "./LocationMessage";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  20 |
+  21 | function Message({ user, message, messageId, onDelete, onReply }) {
+  22 |   const [userLoggedIn] = useAuthState(auth);
+
+
+
+Import traces:
+  Browser:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:15:59.332] Server  LOG      ✓ Compiled in 50ms
+[00:15:59.995] Browser ERROR   ./components/Message.js:19:1
+Module not found: Can't resolve './LocationMessage'
+  17 | import MessageStatus from "./ChatScreen/components/MessageStatus";
+  18 | import { MESSAGE_STATUS } from "./ChatScreen/constants";
+> 19 | import LocationMessage from "./LocationMessage";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  20 |
+  21 | function Message({ user, message, messageId, onDelete, onReply }) {
+  22 |   const [userLoggedIn] = useAuthState(auth);
+
+Import traces:
+  Browser:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+  SSR:
+    ./components/Message.js
+    ./components/ChatScreen/components/MessageList.jsx
+    ./components/ChatScreen/index.jsx
+    ./pages/chat/[id].js
+
+https://nextjs.org/docs/messages/module-not-found
+[00:16:02.003] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:16:21.990] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:16:24.107] Server  LOG      ✓ Compiled in 38ms
+[00:16:53.474] Server  LOG      ✓ Compiled in 31ms
+[00:16:53.989] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:16:53.989] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:16:53.989] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:16:53.989] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:17:11.990] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:18:11.991] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:18:56.410] Server  LOG      ✓ Compiled in 77ms
+[00:18:57.005] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:18:57.005] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:18:57.005] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:18:57.005] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:18:57.669] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:18:57.669] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:18:57.669] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:18:57.669] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:18:58.339] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-fKWMtX kyNUCh img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:19:01.916] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:19:01.916] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:19:01.916] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:19:01.916] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at form
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatInput (http://localhost:3000/_next/static/chunks/_923d028b._.js:3866:22)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_923d028b._.js:6011:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:19:01.916] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:19:02.350] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:19:03.061] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_923d028b._.js:2113:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_923d028b._.js:3773:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_923d028b._.js:6011:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:19:10.322] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:19:20.996] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:19:21.673] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:19:40.990] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:19:47.252] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:19:49.464] Browser LOG     🗑️ [Chat: B0AlFrbLaYojvLeRjys5] Deleting message ifohFHSzxDbRI5xmAWyJ
+[00:19:50.176] Browser LOG     ✅ [Chat: B0AlFrbLaYojvLeRjys5] Message deleted successfully
+[00:19:59.844] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:20:01.498] Browser LOG     🔄 Starting Cloudinary upload...
+[00:20:01.498] Browser LOG     📦 File size: 35740 bytes
+[00:20:01.498] Browser LOG     📦 File type: image/jpeg
+[00:20:01.498] Browser LOG     ☁️ Cloud name: dlmdxpf0j
+[00:20:01.498] Browser LOG     🔑 Upload preset: chat_uploads
+[00:20:01.498] Browser LOG     🚀 Sending request to: https://api.cloudinary.com/v1_1/dlmdxpf0j/auto/upload
+[00:20:02.235] Browser LOG     📤 Upload progress: 100%
+[00:20:02.870] Browser LOG     ✅ Upload successful!
+[00:20:02.870] Browser LOG     🔗 URL: https://res.cloudinary.com/dlmdxpf0j/image/upload/v1762928520/chat-app/h9hagq8oa3ddn3c5f0br.jpg
+[00:20:09.646] Browser LOG     🗑️ [Chat: B0AlFrbLaYojvLeRjys5] Deleting message S06BmkRlz34bDELYzqRO
+[00:20:10.083] Browser LOG     ✅ [Chat: B0AlFrbLaYojvLeRjys5] Message deleted successfully
+[00:20:14.019] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:20:21.005] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:20:40.989] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:21:01.087] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:21:49.162] Server  LOG      ✓ Compiled in 27ms
+[00:21:49.991] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:21:49.991] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:21:49.991] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:21:49.991] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:22:02.949] Server  LOG      ✓ Compiled in 22ms
+[00:22:06.796] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:22:07.145] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:22:07.558] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-jdUcAg dsAXpw img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:22:09.366] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:22:11.899] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:22:11.899] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:22:11.899] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:22:11.899] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at form
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatInput (http://localhost:3000/_next/static/chunks/_923d028b._.js:3919:22)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_923d028b._.js:6071:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:22:11.899] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:22:13.083] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_923d028b._.js:2166:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_923d028b._.js:3826:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_923d028b._.js:6071:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:22:18.385] Browser LOG     📸 Photo captured: {"height":720,"size":183314,"type":"image/jpeg","width":1280}
+[00:22:19.802] Browser LOG     📤 Starting photo upload...
+[00:22:19.802] Browser LOG     📸 Photo file created: {"name":"camera_photo_1762928658892.jpg","size":183314,"type":"image/jpeg"}
+[00:22:19.802] Browser LOG     🔄 Starting Cloudinary upload...
+[00:22:19.802] Browser LOG     📦 File size: 183314 bytes
+[00:22:19.802] Browser LOG     📦 File type: image/jpeg
+[00:22:19.802] Browser LOG     ☁️ Cloud name: dlmdxpf0j
+[00:22:19.802] Browser LOG     🔑 Upload preset: chat_uploads
+[00:22:19.802] Browser LOG     🚀 Sending request to: https://api.cloudinary.com/v1_1/dlmdxpf0j/auto/upload
+[00:22:19.912] Browser LOG     📤 Upload progress: 54%
+[00:22:19.912] Browser LOG     ⬆️ Upload progress: 53.504307928438855%
+[00:22:20.010] Browser LOG     📤 Upload progress: 100%
+[00:22:20.010] Browser LOG     ⬆️ Upload progress: 100%
+[00:22:21.376] Browser LOG     ✅ Upload successful!
+[00:22:21.376] Browser LOG     🔗 URL: https://res.cloudinary.com/dlmdxpf0j/image/upload/v1762928658/chat-app/tnbqazltjimbk6rfofc8.jpg
+[00:22:21.376] Browser LOG     ✅ Upload complete, URL: https://res.cloudinary.com/dlmdxpf0j/image/upload/v1762928658/chat-app/tnbqazltjimbk6rfofc8.jpg
+[00:22:21.805] Browser LOG     💾 Saving message to Firestore: {"fileName":"camera_photo_1762928658892.jpg","fileSize":183314,"fileType":"image/jpeg","fileURL":"https://res.cloudinary.com/dlmdxpf0j/image/upload/v1762928658/chat-app/tnbqazltjimbk6rfofc8.jpg","message":"","photoURL":"https://lh3.googleusercontent.com/a/ACg8ocKFKu7stOQZNTDndCpaCKwuuhGcMp0HVWLqJ2i36rAvSt4S7j2g=s96-c","status":"sent","timestamp":{"_methodName":"serverTimestamp"},"user":"waelsa909@gmail.com"}
+[00:22:22.219] Browser LOG     ✅ Message saved successfully
+[00:22:28.569] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:22:29.847] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-jdUcAg dsAXpw img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:22:31.418] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:22:32.657] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:22:32.657] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:22:32.657] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:22:32.657] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at form
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatInput (http://localhost:3000/_next/static/chunks/_923d028b._.js:3919:22)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_923d028b._.js:6071:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:22:32.657] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:22:33.097] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_923d028b._.js:2166:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_923d028b._.js:3826:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_923d028b._.js:6071:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:22:43.098] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:22:46.555] Browser LOG     🗑️ [Chat: B0AlFrbLaYojvLeRjys5] Deleting message qYVel8urkardgLR1W4fD
+[00:22:46.994] Browser LOG     ✅ [Chat: B0AlFrbLaYojvLeRjys5] Message deleted successfully
+[00:22:52.004] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:22:56.964] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:23:09.623] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:23:10.620] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:23:31.995] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:23:51.998] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:24:13.996] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:24:31.997] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:25:11.990] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:26:10.099] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:26:10.519] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:26:32.008] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:26:51.998] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com

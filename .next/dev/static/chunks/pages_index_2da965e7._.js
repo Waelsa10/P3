@@ -16,7 +16,7 @@
   "static/chunks/node_modules_@mui_system_d153eec2._.js",
   "static/chunks/node_modules_@mui_material_649d2d4d._.js",
   "static/chunks/node_modules_moment_0c55cd92._.js",
-  "static/chunks/node_modules_b21237ea._.js"
+  "static/chunks/node_modules_6b053f24._.js"
 ],
     source: "entry"
 });

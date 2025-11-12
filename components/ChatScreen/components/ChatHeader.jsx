@@ -2,7 +2,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Avatar, IconButton } from "@mui/material";
-import AttachFileIcon from "@mui/icons-material/AttachFile";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MenuIcon from "@mui/icons-material/Menu";
 import TimeAgo from "timeago-react";
@@ -12,7 +11,6 @@ function ChatHeader({
   recipientEmail,
   recipientSnapshot,
   isSelfChat,
-  onAttachFile,
   onMoreClick,
   darkMode,
   isMobile,
@@ -60,9 +58,6 @@ function ChatHeader({
         </HeaderInformation>
       </HeaderLeft>
       <HeaderActions>
-        <IconButton onClick={onAttachFile}>
-          <AttachFileIcon />
-        </IconButton>
         <IconButton onClick={onMoreClick}>
           <MoreVertIcon />
         </IconButton>

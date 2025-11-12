@@ -1,11 +1,12 @@
 // components/ChatScreen/components/ChatInput.jsx
 import React from "react";
 import styled from "styled-components";
-import { IconButton, CircularProgress } from "@mui/material";
+import { IconButton } from "@mui/material";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import MicIcon from "@mui/icons-material/Mic";
 import SendIcon from "@mui/icons-material/Send";
 import StopIcon from "@mui/icons-material/Stop";
+import AddIcon from "@mui/icons-material/Add";
 
 function ChatInput({
   input,
@@ -15,6 +16,7 @@ function ChatInput({
   recordingTime,
   onSubmit,
   onEmojiClick,
+  onPlusClick,
   onStartRecording,
   onStopRecording,
   darkMode,
@@ -28,6 +30,10 @@ function ChatInput({
   return (
     <InputContainer darkMode={darkMode}>
       <Form onSubmit={onSubmit}>
+        <PlusButton onClick={onPlusClick} darkMode={darkMode}>
+          <AddIcon />
+        </PlusButton>
+
         <EmojiButton onClick={onEmojiClick} darkMode={darkMode}>
           <InsertEmoticonIcon />
         </EmojiButton>
@@ -99,6 +105,22 @@ const Form = styled.form`
   }
 `;
 
+const PlusButton = styled(IconButton)`
+  && {
+    color: ${(props) => (props.darkMode ? "#b0b0b0" : "#919191")};
+    padding: 8px;
+    
+    @media (max-width: 768px) {
+      padding: 6px;
+    }
+
+    &:hover {
+      background-color: ${(props) =>
+        props.darkMode ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)"};
+    }
+  }
+`;
+
 const EmojiButton = styled(IconButton)`
   && {
     color: ${(props) => (props.darkMode ? "#b0b0b0" : "#919191")};
@@ -124,7 +146,7 @@ const Input = styled.input`
   color: ${(props) => (props.darkMode ? "#e0e0e0" : "black")};
   padding: 12px 20px;
   font-size: 15px;
-  min-width: 0; /* Allow input to shrink below content size */
+  min-width: 0;
 
   &::placeholder {
     color: ${(props) => (props.darkMode ? "#888" : "#999")};

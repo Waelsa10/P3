@@ -1,5 +1,5 @@
 // components/ChatScreen/hooks/useFileUpload.js
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { addDoc, collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { uploadToCloudinary } from "../../../lib/cloudinary";
@@ -12,6 +12,13 @@ export const useFileUpload = (chatId, user, recipientEmail) => {
   const [showFileConfirmation, setShowFileConfirmation] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef(null);
+
+  const handleAttachClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
 
   const handleFileSelect = (e) => {
     const file = e.target.files[0];
@@ -31,6 +38,9 @@ export const useFileUpload = (chatId, user, recipientEmail) => {
       
       setShowFileConfirmation(true);
     }
+    
+    // Reset the input value so the same file can be selected again
+    e.target.value = '';
   };
 
   const cancelFileSelection = () => {
@@ -116,6 +126,8 @@ export const useFileUpload = (chatId, user, recipientEmail) => {
     showFileConfirmation,
     uploadProgress,
     isUploading,
+    fileInputRef,
+    handleAttachClick,
     handleFileSelect,
     cancelFileSelection,
     sendFileMessage,

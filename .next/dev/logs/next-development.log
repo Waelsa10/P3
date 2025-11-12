@@ -3199,3 +3199,548 @@ Make sure the element is present in the document or that it's not display none.
 [01:20:58.928] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
 [01:21:14.513] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
 [01:21:34.996] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:21:41.654] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:21:54.500] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:22:14.528] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:22:26.932] Browser LOG     🔌 Unsubscribing from display name listener
+[01:22:26.932] Browser LOG     🔌 [Chat: fM1OYZbvQyXkZ3sKXds4] Stopping recipient status listener for abduallh1424aa1@gmail.com
+[01:23:00.474] Browser LOG     Sign in successful: {"apiKey":"AIzaSyCK7AV4BHrj0o_sPhstug4ph59adWv1eb0","appName":"[DEFAULT]","createdAt":"1762769979790","displayName":"theperfectworld","email":"waelsa909@gmail.com","emailVerified":true,"isAnonymous":false,"lastLoginAt":"1762932298173","photoURL":"https://lh3.googleusercontent.com/a/ACg8ocKFKu7stOQZNTDndCpaCKwuuhGcMp0HVWLqJ2i36rAvSt4S7j2g=s96-c","providerData":[{"displayName":"theperfectworld","email":"waelsa909@gmail.com","phoneNumber":null,"photoURL":"https://lh3.googleusercontent.com/a/ACg8ocKFKu7stOQZNTDndCpaCKwuuhGcMp0HVWLqJ2i36rAvSt4S7j2g=s96-c","providerId":"google.com","uid":"109708386094318964579"}],"stsTokenManager":{"accessToken":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjM4MDI5MzRmZTBlZWM0NmE1ZWQwMDA2ZDE0YTFiYWIwMWUzNDUwODMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoidGhlcGVyZmVjdHdvcmxkIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0tGS3U3c3RPUVpOVERuZENwYUNLd3V1aEdjTXAwSFZXTHFKMmkzNnJBdlN0NFM3ajJnPXM5Ni1jIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2ZpbGUtdHJhbnNmZXItYXBwLTlmN2JkIiwiYXVkIjoiZmlsZS10cmFuc2Zlci1hcHAtOWY3YmQiLCJhdXRoX3RpbWUiOjE3NjI5MzIyOTgsInVzZXJfaWQiOiJLeXdJZXdobEhFWkhDSGVOMk53YTVDb01pYXoxIiwic3ViIjoiS3l3SWV3aGxIRVpIQ0hlTjJOd2E1Q29NaWF6MSIsImlhdCI6MTc2MjkzMjI5OCwiZXhwIjoxNzYyOTM1ODk4LCJlbWFpbCI6IndhZWxzYTkwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjEwOTcwODM4NjA5NDMxODk2NDU3OSJdLCJlbWFpbCI6WyJ3YWVsc2E5MDlAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.Cg3rG-0x0WXwvCK8kbDfKa0BByWksmy-nTT98mxjYUvfIJZFobrHTxflmWDxwRI27R17nyCpP2TZb56_CfqOozk5qCzWe_GtEQDIKbb5Hdedxjlb9JFMextDdSlwBpCEwSkODW7La3STl0lvaS-QxtBLfdWy6xzav8OegW6btwf-23d2BZCCsp-pGnpVkVbH51tjK489B8qz3-z-LaIjD35MjsB1ZucgKbB1yb7C0QuayprRmpQKdm0dGLT-Z7gl1Oy_UN3JdyuZHcTDg2cM54kjTKvWJFM92Q5YSJWo_H6orZkPI5aJziXYfgO7VCc9JzOa_QoCU9jGw5lBZuFcaw","expirationTime":1762935899333,"refreshToken":"AMf-vBydKe_hV1d9E_QiekMCzywre026in6zKlCMXnV4S78Gl4SP0pI-rDUfUo2LjEatfu5tLtGg40CZlCOKIs6Isx42egltveKd3hRkEcxP2uNynUmuwcqmIzn1qWNbbAS67gye94tsIb8tKaPr3jGHug7Lp8EBLny6dJSWV6j7VNVKSL_84TEo4GjP-N3hKqRw4b9jtgOS-QckgqLsUKf4mco-ZMpXNTauuR3f-X3T1sj4-bOnPQGOus00xNHx7H323uUaB2g_dfzQz8ir8c0SIoWgVyFDhltzkio_HFR8OJAZoXBzVFPRuFA2gUH-a1pQKXTqOqwajaCLi67uPdrQinFMZ-4SX85uZbjdqJPPmXe7kWS4MDj4vuvetaREeR5f9G7n8eAdJjIKPBX59Zxa_0gHM7BfDmAVjGcdlRWK0PIPGnN8ZlgA1wzag__02KBjXXE9Y-THZdJ-FrcayibufdtYU7V01w"},"uid":"KywIewhlHEZHCHeN2Nwa5CoMiaz1"}
+[01:23:03.581] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:23:04.011] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:23:14.592] Browser WARN    MUI: The `anchorEl` prop provided to the component is invalid.
+The anchor element should be part of the document layout.
+Make sure the element is present in the document or that it's not display none.
+[01:23:16.512] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:23:20.943] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:23:25.997] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[01:23:25.997] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[01:23:25.997] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[01:23:25.997] Browser LOG     👀 Watching display name for: users/KywIewhlHEZHCHeN2Nwa5CoMiaz1/contacts/waelsa909@gmail.com
+[01:23:25.997] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[01:23:25.997] Browser LOG     🔍 Current authenticated user: {"email":"waelsa909@gmail.com","uid":"KywIewhlHEZHCHeN2Nwa5CoMiaz1"}
+[01:23:25.997] Browser LOG     📛 Custom display name: null
+[01:23:27.301] Browser LOG     ℹ️ No custom display name set
+[01:23:40.987] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:24:00.944] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:24:20.933] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:24:40.970] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:25:00.948] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:25:20.969] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:25:40.950] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:26:02.210] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:26:22.140] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:26:42.098] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:26:46.302] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:27:00.943] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:27:02.256] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:27:22.128] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:27:40.951] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:27:52.498] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:27:57.003] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:28:02.137] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:28:22.130] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:28:42.110] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:29:12.019] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:30:11.997] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:31:12.080] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:32:12.090] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:33:12.059] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:34:12.093] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:35:12.090] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:36:12.039] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:36:22.324] Server  LOG      ✓ Compiled in 209ms
+[01:36:22.995] Browser LOG     🔌 Unsubscribing from display name listener
+[01:36:22.995] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[01:36:22.995] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[01:36:22.995] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[01:36:22.995] Browser LOG     👀 Watching display name for: users/KywIewhlHEZHCHeN2Nwa5CoMiaz1/contacts/waelsa909@gmail.com
+[01:36:22.995] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[01:36:22.995] Browser LOG     🔍 Current authenticated user: {"email":"waelsa909@gmail.com","uid":"KywIewhlHEZHCHeN2Nwa5CoMiaz1"}
+[01:36:22.995] Browser LOG     📛 Custom display name: null
+[01:36:24.991] Browser LOG     ℹ️ No custom display name set
+[01:36:24.991] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[01:36:24.991] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[01:36:24.991] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[01:37:12.036] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:37:17.728] Server  LOG      ✓ Compiled in 293ms
+[01:37:18.069] Browser LOG     🔌 Unsubscribing from display name listener
+[01:37:18.069] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[01:37:18.069] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[01:37:18.069] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[01:37:18.069] Browser LOG     👀 Watching display name for: users/KywIewhlHEZHCHeN2Nwa5CoMiaz1/contacts/waelsa909@gmail.com
+[01:37:18.069] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[01:37:18.069] Browser LOG     🔍 Current authenticated user: {"email":"waelsa909@gmail.com","uid":"KywIewhlHEZHCHeN2Nwa5CoMiaz1"}
+[01:37:18.069] Browser LOG     📛 Custom display name: null
+[01:37:20.006] Browser LOG     ℹ️ No custom display name set
+[01:37:20.006] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[01:37:20.006] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[01:37:20.006] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[01:38:12.021] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:39:12.038] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:39:28.366] Server  LOG      ✓ Compiled in 130ms
+[01:39:29.001] Browser LOG     🔌 Unsubscribing from display name listener
+[01:39:29.001] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[01:39:29.001] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[01:39:29.001] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[01:39:29.001] Browser LOG     👀 Watching display name for: users/KywIewhlHEZHCHeN2Nwa5CoMiaz1/contacts/waelsa909@gmail.com
+[01:39:29.001] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[01:39:29.001] Browser LOG     🔍 Current authenticated user: {"email":"waelsa909@gmail.com","uid":"KywIewhlHEZHCHeN2Nwa5CoMiaz1"}
+[01:39:29.001] Browser LOG     📛 Custom display name: null
+[01:39:30.991] Browser LOG     ℹ️ No custom display name set
+[01:39:30.991] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[01:39:30.992] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[01:39:30.992] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[01:39:33.405] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:39:33.824] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:39:36.345] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-jwWbkn hqtUjn img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[01:39:39.785] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:39:40.292] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[01:39:40.293] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[01:39:40.293] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[01:39:40.293] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at form
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatInput (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:4513:22)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:8056:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[01:39:40.293] Browser LOG     👀 Watching display name for: users/KywIewhlHEZHCHeN2Nwa5CoMiaz1/contacts/waelsa909@gmail.com
+[01:39:40.293] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[01:39:40.293] Browser LOG     🔍 Current authenticated user: {"email":"waelsa909@gmail.com","uid":"KywIewhlHEZHCHeN2Nwa5CoMiaz1"}
+[01:39:40.293] Browser LOG     📛 Custom display name: null
+[01:39:41.539] Browser LOG     ℹ️ No custom display name set
+[01:39:41.539] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:2409:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:4420:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:8056:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[01:39:57.425] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:40:17.416] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:40:26.568] Browser ERROR   Error sending poll: {"code":"permission-denied","name":"FirebaseError"}
+[01:40:35.996] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:40:37.990] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:40:58.019] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:41:18.017] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:41:37.994] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:42:12.993] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:43:12.055] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:43:15.613] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:43:16.526] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-jwWbkn hqtUjn img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[01:43:20.053] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:43:20.937] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[01:43:20.938] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[01:43:20.938] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[01:43:20.938] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at form
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatInput (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:4513:22)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:8056:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[01:43:20.938] Browser LOG     👀 Watching display name for: users/KywIewhlHEZHCHeN2Nwa5CoMiaz1/contacts/waelsa909@gmail.com
+[01:43:20.938] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[01:43:20.938] Browser LOG     🔍 Current authenticated user: {"email":"waelsa909@gmail.com","uid":"KywIewhlHEZHCHeN2Nwa5CoMiaz1"}
+[01:43:20.938] Browser LOG     📛 Custom display name: null
+[01:43:22.213] Browser LOG     ℹ️ No custom display name set
+[01:43:22.213] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:2409:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:4420:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:8056:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[01:43:37.637] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:43:53.118] Browser ERROR   uncaughtError: TypeError: message.poll.options.map is not a function
+[01:43:53.118] Browser ERROR   uncaughtError: TypeError: message.poll.options.map is not a function
+[01:43:53.118] Browser ERROR   The above error occurred in the <Message> component:
+
+    at Message (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:2409:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:4420:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:8056:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[01:43:53.118] Browser LOG     🔌 Unsubscribing from display name listener
+[01:43:53.535] Browser ERROR   Error voting on poll: {"code":"permission-denied","name":"FirebaseError"}
+[01:47:53.427] Server  LOG      ✓ Compiled in 51ms
+[01:47:56.108] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-fHCFno lkITHI img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[01:47:59.329] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[01:47:59.329] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[01:47:59.329] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[01:47:59.329] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at form
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatInput (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:4564:22)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:8107:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[01:47:59.329] Browser LOG     👀 Watching display name for: users/KywIewhlHEZHCHeN2Nwa5CoMiaz1/contacts/waelsa909@gmail.com
+[01:47:59.329] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[01:47:59.329] Browser LOG     🔍 Current authenticated user: {"email":"waelsa909@gmail.com","uid":"KywIewhlHEZHCHeN2Nwa5CoMiaz1"}
+[01:47:59.329] Browser LOG     📛 Custom display name: null
+[01:47:59.703] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:48:00.518] Browser LOG     ℹ️ No custom display name set
+[01:48:00.518] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:2409:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:4471:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_d7a1151d._.js:8107:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[01:48:03.024] Browser LOG     🗳️ Attempting to vote on poll: {"chatId":"B0AlFrbLaYojvLeRjys5","messageId":"54Rkw897Abl3qjoZlFaf","optionIndex":0,"userEmail":"waelsa909@gmail.com"}
+[01:48:03.025] Browser LOG     Current vote status: {"currentVotes":[],"hasVoted":false}
+[01:48:03.025] Browser LOG     Applying vote update: {"poll.options.0.votes":{"_methodName":"arrayUnion","pa":["waelsa909@gmail.com"]}}
+[01:48:11.891] Browser ERROR   ❌ Error voting on poll: {"code":"permission-denied","name":"FirebaseError"}
+[01:48:11.891] Browser ERROR   Error code: permission-denied
+[01:48:11.891] Browser ERROR   Error message: Missing or insufficient permissions.
+[01:48:14.163] Browser LOG     ⏭️ [Chat: fM1OYZbvQyXkZ3sKXds4] Skipping YOUR DELIVERED update - self-chat
+[01:48:14.416] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:48:14.838] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[01:48:14.838] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":false,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[01:48:14.838] Browser LOG     ✅ useRecipientData: Found recipient {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
+[01:48:14.838] Browser LOG     🔌 Unsubscribing from display name listener
+[01:48:14.838] Browser LOG     👀 Watching display name for: users/KywIewhlHEZHCHeN2Nwa5CoMiaz1/contacts/abduallh1424aa1@gmail.com
+[01:48:14.838] Browser LOG     👁️ [Chat: fM1OYZbvQyXkZ3sKXds4] Listening for abduallh1424aa1@gmail.com to come online...
+[01:48:14.838] Browser LOG        Your messages from: waelsa909@gmail.com
+[01:48:14.838] Browser LOG     🔴 [Chat: fM1OYZbvQyXkZ3sKXds4] Recipient offline (3122s ago)
+[01:48:15.718] Browser LOG     ✅ Display name found: abdallah
+[01:48:15.719] Browser LOG     📛 Custom display name: abdallah
+[01:48:17.111] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:48:34.340] Browser LOG     🗳️ Attempting to vote on poll: {"chatId":"fM1OYZbvQyXkZ3sKXds4","messageId":"BcZZlZF75A3RRHwZMHHg","optionIndex":0,"userEmail":"waelsa909@gmail.com"}
+[01:48:34.340] Browser LOG     Current vote status: {"currentVotes":[],"hasVoted":false}
+[01:48:34.340] Browser LOG     Applying vote update: {"poll.options.0.votes":{"_methodName":"arrayUnion","pa":["waelsa909@gmail.com"]}}
+[01:48:43.998] Browser ERROR   ❌ Error voting on poll: {"code":"permission-denied","name":"FirebaseError"}
+[01:48:43.998] Browser ERROR   Error code: permission-denied
+[01:48:43.998] Browser ERROR   Error message: Missing or insufficient permissions.
+[01:48:46.005] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:48:57.995] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:49:17.991] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:49:37.995] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:49:57.993] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:50:04.630] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:50:06.756] Browser LOG     🗳️ Attempting to vote on poll: {"chatId":"fM1OYZbvQyXkZ3sKXds4","messageId":"BcZZlZF75A3RRHwZMHHg","optionIndex":0,"userEmail":"waelsa909@gmail.com"}
+[01:50:06.756] Browser LOG     Current vote status: {"currentVotes":[],"hasVoted":false}
+[01:50:06.756] Browser LOG     Applying vote update: {"poll.options.0.votes":{"_methodName":"arrayUnion","pa":["waelsa909@gmail.com"]}}
+[01:50:08.467] Browser ERROR   ❌ Error voting on poll: {"code":"permission-denied","name":"FirebaseError"}
+[01:50:08.467] Browser ERROR   Error code: permission-denied
+[01:50:08.467] Browser ERROR   Error message: Missing or insufficient permissions.
+[01:50:10.130] Browser LOG     🗳️ Attempting to vote on poll: {"chatId":"fM1OYZbvQyXkZ3sKXds4","messageId":"BcZZlZF75A3RRHwZMHHg","optionIndex":0,"userEmail":"waelsa909@gmail.com"}
+[01:50:10.130] Browser LOG     Current vote status: {"currentVotes":[],"hasVoted":false}
+[01:50:10.130] Browser LOG     Applying vote update: {"poll.options.0.votes":{"_methodName":"arrayUnion","pa":["waelsa909@gmail.com"]}}
+[01:50:11.461] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:50:11.876] Browser LOG     ✅ Vote successful!
+[01:50:14.754] Browser LOG     🔌 [Chat: fM1OYZbvQyXkZ3sKXds4] Stopping recipient status listener for abduallh1424aa1@gmail.com
+[01:50:14.754] Browser LOG     👁️ [Chat: B0AlFrbLaYojvLeRjys5] Listening for abduallh1424aa1@gmail.com to come online...
+[01:50:14.754] Browser LOG        Your messages from: waelsa909@gmail.com
+[01:50:14.754] Browser LOG     🔴 [Chat: B0AlFrbLaYojvLeRjys5] Recipient offline (3242s ago)
+[01:50:15.595] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[01:50:15.595] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[01:50:15.595] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[01:50:15.595] Browser LOG     🔌 Unsubscribing from display name listener
+[01:50:15.595] Browser LOG     🔌 [Chat: B0AlFrbLaYojvLeRjys5] Stopping recipient status listener for abduallh1424aa1@gmail.com
+[01:50:15.595] Browser LOG     👀 Watching display name for: users/KywIewhlHEZHCHeN2Nwa5CoMiaz1/contacts/waelsa909@gmail.com
+[01:50:15.595] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[01:50:16.911] Browser LOG     ℹ️ No custom display name set
+[01:50:16.911] Browser LOG     📛 Custom display name: null
+[01:50:16.911] Browser LOG     🗳️ Attempting to vote on poll: {"chatId":"B0AlFrbLaYojvLeRjys5","messageId":"54Rkw897Abl3qjoZlFaf","optionIndex":0,"userEmail":"waelsa909@gmail.com"}
+[01:50:16.911] Browser LOG     Current vote status: {"currentVotes":[],"hasVoted":false}
+[01:50:16.912] Browser LOG     Applying vote update: {"poll.options.0.votes":{"_methodName":"arrayUnion","pa":["waelsa909@gmail.com"]}}
+[01:50:17.094] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:50:17.512] Browser LOG     ✅ Vote successful!
+[01:50:19.868] Browser LOG     🗳️ Attempting to vote on poll: {"chatId":"B0AlFrbLaYojvLeRjys5","messageId":"54Rkw897Abl3qjoZlFaf","optionIndex":0,"userEmail":"waelsa909@gmail.com"}
+[01:50:19.868] Browser LOG     Current vote status: {"currentVotes":["waelsa909@gmail.com"],"hasVoted":true}
+[01:50:19.868] Browser LOG     Applying vote update: {"poll.options.0.votes":{"_methodName":"arrayRemove","pa":["waelsa909@gmail.com"]}}
+[01:50:20.341] Browser LOG     ✅ Vote successful!
+[01:50:20.700] Browser LOG     🗳️ Attempting to vote on poll: {"chatId":"B0AlFrbLaYojvLeRjys5","messageId":"54Rkw897Abl3qjoZlFaf","optionIndex":0,"userEmail":"waelsa909@gmail.com"}
+[01:50:20.701] Browser LOG     Current vote status: {"currentVotes":[],"hasVoted":false}
+[01:50:20.701] Browser LOG     Applying vote update: {"poll.options.0.votes":{"_methodName":"arrayUnion","pa":["waelsa909@gmail.com"]}}
+[01:50:21.160] Browser LOG     ✅ Vote successful!
+[01:50:23.902] Browser LOG     ⏭️ [Chat: fM1OYZbvQyXkZ3sKXds4] Skipping YOUR DELIVERED update - self-chat
+[01:50:24.746] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[01:50:24.746] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":false,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[01:50:24.746] Browser LOG     ✅ useRecipientData: Found recipient {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
+[01:50:24.746] Browser LOG     🔌 Unsubscribing from display name listener
+[01:50:24.746] Browser LOG     👀 Watching display name for: users/KywIewhlHEZHCHeN2Nwa5CoMiaz1/contacts/abduallh1424aa1@gmail.com
+[01:50:24.746] Browser LOG     👁️ [Chat: fM1OYZbvQyXkZ3sKXds4] Listening for abduallh1424aa1@gmail.com to come online...
+[01:50:24.746] Browser LOG        Your messages from: waelsa909@gmail.com
+[01:50:24.747] Browser LOG     🔴 [Chat: fM1OYZbvQyXkZ3sKXds4] Recipient offline (3252s ago)
+[01:50:25.925] Browser LOG     ✅ Display name found: abdallah
+[01:50:25.925] Browser LOG     📛 Custom display name: abdallah
+[01:50:37.111] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:50:57.100] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:51:01.539] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:51:01.539] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:51:01.539] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:51:01.539] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:51:01.539] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:51:01.539] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:51:01.539] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:51:01.539] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:51:02.382] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:51:02.382] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:51:02.382] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:51:02.382] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:51:02.382] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:51:02.382] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:51:03.613] Browser LOG     📋 [Chat: fM1OYZbvQyXkZ3sKXds4] Found 1 messages to update
+[01:51:03.613] Browser LOG       📝 [Chat: fM1OYZbvQyXkZ3sKXds4] Updating message BcZZlZF75A3RRHwZMHHg from waelsa909@gmail.com
+[01:51:03.613] Browser LOG     📋 [Chat: fM1OYZbvQyXkZ3sKXds4] Found 1 messages to update
+[01:51:03.613] Browser LOG       📝 [Chat: fM1OYZbvQyXkZ3sKXds4] Updating message BcZZlZF75A3RRHwZMHHg from waelsa909@gmail.com
+[01:51:04.045] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Marked 1 of YOUR messages as DELIVERED
+[01:51:04.491] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Marked 1 of YOUR messages as DELIVERED
+[01:51:17.080] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:51:17.536] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:51:17.536] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:51:17.536] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:51:17.536] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:51:18.397] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:51:18.397] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:51:18.397] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:51:19.832] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:51:30.065] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:51:30.065] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:51:30.065] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:51:30.065] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:51:30.926] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:51:30.926] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:51:30.926] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:51:32.209] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:51:37.098] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[01:51:38.620] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (1s ago)
+[01:51:38.620] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:51:38.620] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:51:38.620] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:51:39.451] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:51:39.451] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:51:39.451] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 2s ago)
+[01:51:40.710] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED
+[01:51:48.002] Browser LOG     🟢 [Chat: fM1OYZbvQyXkZ3sKXds4] RECIPIENT CAME ONLINE! (2s ago)
+[01:51:48.002] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[01:51:48.002] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Attempting to mark YOUR messages as DELIVERED
+[01:51:48.002] Browser LOG        Current User: waelsa909@gmail.com, Recipient: abduallh1424aa1@gmail.com
+[01:51:48.991] Browser LOG     🔍 [Chat: fM1OYZbvQyXkZ3sKXds4] Verifying participants: {"chatDataFields":["users","createdAt","deletedBy"],"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[01:51:48.991] Browser LOG     ✅ [Chat: fM1OYZbvQyXkZ3sKXds4] Participants verified: Both waelsa909@gmail.com and abduallh1424aa1@gmail.com are in chat
+[01:51:48.991] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS online (last seen 3s ago)
+[01:51:49.992] Browser LOG     ✓ [Chat: fM1OYZbvQyXkZ3sKXds4] No SENT messages from you to mark as DELIVERED

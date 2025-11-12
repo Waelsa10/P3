@@ -5,8 +5,18 @@ import { Menu, MenuItem, ListItemIcon, ListItemText } from "@mui/material";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import PollIcon from "@mui/icons-material/Poll";
 
-function AttachMenu({ anchorEl, open, onClose, onAttachFile, onTakePhoto, onShareLocation, darkMode }) {
+function AttachMenu({ 
+  anchorEl, 
+  open, 
+  onClose, 
+  onAttachFile, 
+  onTakePhoto, 
+  onShareLocation, 
+  onCreatePoll,
+  darkMode 
+}) {
   const handleMenuItemClick = (action) => {
     action();
     onClose();
@@ -29,23 +39,30 @@ function AttachMenu({ anchorEl, open, onClose, onAttachFile, onTakePhoto, onShar
     >
       <StyledMenuItem onClick={() => handleMenuItemClick(onAttachFile)} darkMode={darkMode}>
         <ListItemIcon>
-          <AttachFileIcon fontSize="small" style={{ color: darkMode ? '#b0b0b0' : '#666' }} />
+          <AttachFileIcon fontSize="small" style={{ color: darkMode ? '#64b5f6' : '#1976d2' }} />
         </ListItemIcon>
         <ListItemText primary="Attach File" />
       </StyledMenuItem>
 
       <StyledMenuItem onClick={() => handleMenuItemClick(onTakePhoto)} darkMode={darkMode}>
         <ListItemIcon>
-          <CameraAltIcon fontSize="small" style={{ color: darkMode ? '#b0b0b0' : '#666' }} />
+          <CameraAltIcon fontSize="small" style={{ color: darkMode ? '#ec407a' : '#e91e63' }} />
         </ListItemIcon>
         <ListItemText primary="Take Photo" />
       </StyledMenuItem>
 
       <StyledMenuItem onClick={() => handleMenuItemClick(onShareLocation)} darkMode={darkMode}>
         <ListItemIcon>
-          <LocationOnIcon fontSize="small" style={{ color: darkMode ? '#b0b0b0' : '#666' }} />
+          <LocationOnIcon fontSize="small" style={{ color: darkMode ? '#66bb6a' : '#4caf50' }} />
         </ListItemIcon>
         <ListItemText primary="Share Location" />
+      </StyledMenuItem>
+
+      <StyledMenuItem onClick={() => handleMenuItemClick(onCreatePoll)} darkMode={darkMode}>
+        <ListItemIcon>
+          <PollIcon fontSize="small" style={{ color: darkMode ? '#ffa726' : '#ff9800' }} />
+        </ListItemIcon>
+        <ListItemText primary="Create Poll" />
       </StyledMenuItem>
     </StyledMenu>
   );

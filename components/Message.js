@@ -1,6 +1,6 @@
 // components/Message.jsx
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import styled from "styled-components";
 import moment from "moment";
 import { IconButton, Menu, MenuItem, ListItemIcon, ListItemText } from "@mui/material";
@@ -14,16 +14,25 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ReplyIcon from "@mui/icons-material/Reply";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import PollIcon from "@mui/icons-material/Poll";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import { useContext, useState } from "react";
+import { useRouter } from "next/router";
+import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { DarkModeContext } from "./DarkModeProvider";
 import MessageStatus from "./ChatScreen/components/MessageStatus";
 import { MESSAGE_STATUS } from "./ChatScreen/constants";
 
 function Message({ user, message, messageId, onDelete, onReply }) {
   const [userLoggedIn] = useAuthState(auth);
+  const router = useRouter();
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [votingInProgress, setVotingInProgress] = useState(false);
 
   // Get dark mode context
   const darkModeContext = useContext(DarkModeContext);
@@ -31,6 +40,12 @@ function Message({ user, message, messageId, onDelete, onReply }) {
 
   const TypeOfMessage = user === userLoggedIn?.email ? Sender : Receiver;
   const isOwnMessage = user === userLoggedIn?.email;
+
+  // Helper function to convert poll options to array
+  const getPollOptionsArray = (poll) => {
+    if (!poll || !poll.options) return [];
+    return Array.isArray(poll.options) ? poll.options : Object.values(poll.options);
+  };
 
   // Check if message is less than 1 hour old
   const isRecentMessage = () => {
@@ -67,7 +82,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
       onReply({
         id: messageId,
         user: user,
-        message: message.message,
+        message: message.message || (message.poll ? `📊 ${message.poll.question}` : ''),
         timestamp: message.timestamp,
         fileURL: message.fileURL,
         fileName: message.fileName,
@@ -75,7 +90,73 @@ function Message({ user, message, messageId, onDelete, onReply }) {
         voiceURL: message.voiceURL,
         voiceDuration: message.voiceDuration,
         location: message.location,
+        poll: message.poll,
       });
+    }
+  };
+
+  // Handle poll vote
+  const handlePollVote = async (optionIndex) => {
+    if (!messageId || votingInProgress || !router.query.id || !message.poll) return;
+    
+    setVotingInProgress(true);
+    try {
+      console.log('🗳️ Attempting to vote on poll:', {
+        chatId: router.query.id,
+        messageId,
+        optionIndex,
+        userEmail: userLoggedIn.email
+      });
+
+      // Convert poll options to array
+      const pollOptions = getPollOptionsArray(message.poll);
+      
+      if (!pollOptions[optionIndex]) {
+        console.error('Invalid option index');
+        return;
+      }
+
+      const messageRef = doc(db, "chats", router.query.id, "messages", messageId);
+      const currentVotes = Array.isArray(pollOptions[optionIndex].votes) 
+        ? pollOptions[optionIndex].votes 
+        : [];
+      const hasVoted = currentVotes.includes(userLoggedIn.email);
+      
+      console.log('Current vote status:', { currentVotes, hasVoted });
+
+      // For single answer polls, remove votes from all options first
+      if (!message.poll.allowMultipleAnswers && !hasVoted) {
+        const updates = {};
+        pollOptions.forEach((option, idx) => {
+          const votes = Array.isArray(option.votes) ? option.votes : [];
+          if (votes.includes(userLoggedIn.email)) {
+            updates[`poll.options.${idx}.votes`] = arrayRemove(userLoggedIn.email);
+          }
+        });
+        
+        if (Object.keys(updates).length > 0) {
+          console.log('Removing previous votes:', updates);
+          await updateDoc(messageRef, updates);
+        }
+      }
+      
+      // Toggle vote for the selected option
+      const voteUpdate = {
+        [`poll.options.${optionIndex}.votes`]: hasVoted 
+          ? arrayRemove(userLoggedIn.email)
+          : arrayUnion(userLoggedIn.email)
+      };
+      
+      console.log('Applying vote update:', voteUpdate);
+      await updateDoc(messageRef, voteUpdate);
+      console.log('✅ Vote successful!');
+    } catch (error) {
+      console.error("❌ Error voting on poll:", error);
+      console.error("Error code:", error.code);
+      console.error("Error message:", error.message);
+      alert(`Failed to vote: ${error.message}`);
+    } finally {
+      setVotingInProgress(false);
     }
   };
 
@@ -165,11 +246,139 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                   {message.replyTo.user === userLoggedIn?.email ? 'You' : message.replyTo.user}
                 </ReplyUser>
                 <ReplyText darkMode={darkMode}>
-                  {message.replyTo.location ? '📍 Location' : 
-                   message.replyTo.message || message.replyTo.fileName || '🎤 Voice message'}
+                  {message.replyTo.location 
+                    ? '📍 Location' 
+                    : message.replyTo.poll 
+                      ? `📊 ${message.replyTo.poll.question || 'Poll'}` 
+                      : message.replyTo.message || message.replyTo.fileName || '🎤 Voice message'}
                 </ReplyText>
               </ReplyContent>
             </ReplyPreview>
+          )}
+
+          {/* Poll Message */}
+          {message.poll && (
+            <PollContainer darkMode={darkMode}>
+              <PollHeader darkMode={darkMode}>
+                <PollIcon style={{ fontSize: 20, marginRight: 8 }} />
+                <PollQuestion>{message.poll.question}</PollQuestion>
+              </PollHeader>
+
+              <PollOptions>
+                {(() => {
+                  // Convert poll.options to array if it's an object
+                  const pollOptions = getPollOptionsArray(message.poll);
+
+                  return pollOptions.map((option, index) => {
+                    // Ensure option has required structure
+                    if (!option || typeof option !== 'object') {
+                      return null;
+                    }
+
+                    const optionText = option.text || '';
+                    const optionVotes = Array.isArray(option.votes) ? option.votes : [];
+                    
+                    // Calculate vote statistics
+                    const totalVotes = pollOptions.reduce((sum, opt) => {
+                      const votes = Array.isArray(opt?.votes) ? opt.votes : [];
+                      return sum + votes.length;
+                    }, 0);
+                    
+                    const optionVotesCount = optionVotes.length;
+                    const percentage = totalVotes > 0 ? (optionVotesCount / totalVotes) * 100 : 0;
+                    const hasVoted = optionVotes.includes(userLoggedIn?.email);
+                    const hasVotedAnywhere = pollOptions.some(opt => {
+                      const votes = Array.isArray(opt?.votes) ? opt.votes : [];
+                      return votes.includes(userLoggedIn?.email);
+                    });
+
+                    return (
+                      <PollOption
+                        key={index}
+                        onClick={() => handlePollVote(index)}
+                        darkMode={darkMode}
+                        hasVoted={hasVoted}
+                        disabled={votingInProgress}
+                      >
+                        <PollOptionContent>
+                          <PollOptionIcon>
+                            {message.poll.allowMultipleAnswers ? (
+                              hasVoted ? (
+                                <CheckBoxIcon 
+                                  style={{ 
+                                    color: darkMode ? "#00a884" : "#25d366",
+                                    fontSize: 20 
+                                  }} 
+                                />
+                              ) : (
+                                <CheckBoxOutlineBlankIcon 
+                                  style={{ 
+                                    color: darkMode ? "#8696a0" : "#667781",
+                                    fontSize: 20 
+                                  }} 
+                                />
+                              )
+                            ) : (
+                              hasVoted ? (
+                                <CheckCircleIcon 
+                                  style={{ 
+                                    color: darkMode ? "#00a884" : "#25d366",
+                                    fontSize: 20 
+                                  }} 
+                                />
+                              ) : (
+                                <RadioButtonUncheckedIcon 
+                                  style={{ 
+                                    color: darkMode ? "#8696a0" : "#667781",
+                                    fontSize: 20 
+                                  }} 
+                                />
+                              )
+                            )}
+                          </PollOptionIcon>
+                          
+                          <PollOptionText darkMode={darkMode} hasVoted={hasVoted}>
+                            {optionText}
+                          </PollOptionText>
+
+                          {hasVotedAnywhere && (
+                            <PollOptionVotes darkMode={darkMode}>
+                              {optionVotesCount} {optionVotesCount === 1 ? 'vote' : 'votes'}
+                            </PollOptionVotes>
+                          )}
+                        </PollOptionContent>
+
+                        {hasVotedAnywhere && (
+                          <PollProgressBar darkMode={darkMode}>
+                            <PollProgressFill 
+                              percentage={percentage} 
+                              darkMode={darkMode}
+                              hasVoted={hasVoted}
+                            />
+                          </PollProgressBar>
+                        )}
+                      </PollOption>
+                    );
+                  }).filter(Boolean); // Remove null entries
+                })()}
+              </PollOptions>
+
+              <PollFooter darkMode={darkMode}>
+                {message.poll.allowMultipleAnswers && (
+                  <PollInfo>Multiple answers allowed</PollInfo>
+                )}
+                <PollTotalVotes darkMode={darkMode}>
+                  {(() => {
+                    const pollOptions = getPollOptionsArray(message.poll);
+                    const totalVotes = pollOptions.reduce((sum, opt) => {
+                      const votes = Array.isArray(opt?.votes) ? opt.votes : [];
+                      return sum + votes.length;
+                    }, 0);
+                    return `${totalVotes} ${totalVotes === 1 ? 'vote' : 'votes'}`;
+                  })()}
+                </PollTotalVotes>
+              </PollFooter>
+            </PollContainer>
           )}
 
           {/* Location Message */}
@@ -312,7 +521,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
           )}
 
           {/* Text Message */}
-          {message.message && message.message.trim() && !message.location && (
+          {message.message && message.message.trim() && !message.location && !message.poll && (
             <MessageText darkMode={darkMode}>{message.message}</MessageText>
           )}
 
@@ -381,7 +590,9 @@ function Message({ user, message, messageId, onDelete, onReply }) {
 
 export default Message;
 
-// Styled Components
+// Styled Components remain the same...
+// [All the styled components from your original code stay exactly the same]
+
 const Container = styled.div`
   margin: 5px 0;
   
@@ -519,6 +730,135 @@ const FileAttachment = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+`;
+
+// Poll Message Styles
+const PollContainer = styled.div`
+  background-color: ${(props) => (props.darkMode ? "#2a3942" : "#f0f0f0")};
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 8px;
+  min-width: 300px;
+  max-width: 400px;
+`;
+
+const PollHeader = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  color: ${(props) => (props.darkMode ? "#64b5f6" : "#1976d2")};
+`;
+
+const PollQuestion = styled.div`
+  font-size: 16px;
+  font-weight: 600;
+  color: ${(props) => (props.darkMode ? "#e0e0e0" : "black")};
+  line-height: 1.4;
+`;
+
+const PollOptions = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+`;
+
+const PollOption = styled.div`
+  background-color: ${(props) => (props.darkMode ? "#1f2c33" : "white")};
+  border: 2px solid ${(props) => {
+    if (props.hasVoted) {
+      return props.darkMode ? "#00a884" : "#25d366";
+    }
+    return props.darkMode ? "#3a4952" : "#e0e0e0";
+  }};
+  border-radius: 8px;
+  padding: 12px;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  transition: all 0.2s;
+  opacity: ${(props) => (props.disabled ? 0.6 : 1)};
+
+  &:hover {
+    background-color: ${(props) => 
+      props.disabled 
+        ? (props.darkMode ? "#1f2c33" : "white")
+        : (props.darkMode ? "#2a3942" : "#f5f5f5")
+    };
+    transform: ${(props) => (props.disabled ? "none" : "translateX(2px)")};
+  }
+
+  &:active {
+    transform: ${(props) => (props.disabled ? "none" : "scale(0.98)")};
+  }
+`;
+
+const PollOptionContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+`;
+
+const PollOptionIcon = styled.div`
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+`;
+
+const PollOptionText = styled.div`
+  flex: 1;
+  font-size: 14px;
+  color: ${(props) => (props.darkMode ? "#e0e0e0" : "black")};
+  font-weight: ${(props) => (props.hasVoted ? "600" : "400")};
+  line-height: 1.4;
+`;
+
+const PollOptionVotes = styled.div`
+  font-size: 12px;
+  color: ${(props) => (props.darkMode ? "#8696a0" : "#667781")};
+  font-weight: 500;
+  flex-shrink: 0;
+`;
+
+const PollProgressBar = styled.div`
+  width: 100%;
+  height: 4px;
+  background-color: ${(props) => (props.darkMode ? "#1a1a1a" : "#e0e0e0")};
+  border-radius: 2px;
+  overflow: hidden;
+`;
+
+const PollProgressFill = styled.div`
+  height: 100%;
+  width: ${(props) => props.percentage}%;
+  background-color: ${(props) => {
+    if (props.hasVoted) {
+      return props.darkMode ? "#00a884" : "#25d366";
+    }
+    return props.darkMode ? "#3a4952" : "#ccc";
+  }};
+  transition: width 0.3s ease;
+  border-radius: 2px;
+`;
+
+const PollFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid ${(props) => (props.darkMode ? "#3a4952" : "#e0e0e0")};
+`;
+
+const PollInfo = styled.div`
+  font-size: 11px;
+  color: ${(props) => (props.darkMode ? "#8696a0" : "#667781")};
+  font-style: italic;
+`;
+
+const PollTotalVotes = styled.div`
+  font-size: 12px;
+  color: ${(props) => (props.darkMode ? "#8696a0" : "#667781")};
+  font-weight: 500;
 `;
 
 // Location Message Styles

@@ -4548,6 +4548,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$mat
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$AttachFile$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/AttachFile.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$CameraAlt$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/CameraAlt.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$LocationOn$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/LocationOn.js [client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Poll$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Poll.js [client] (ecmascript)");
 ;
 ;
 ;
@@ -4555,7 +4556,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$ico
 ;
 ;
 ;
-function AttachMenu({ anchorEl, open, onClose, onAttachFile, onTakePhoto, onShareLocation, darkMode }) {
+;
+function AttachMenu({ anchorEl, open, onClose, onAttachFile, onTakePhoto, onShareLocation, onCreatePoll, darkMode }) {
     const handleMenuItemClick = (action)=>{
         action();
         onClose();
@@ -4582,29 +4584,29 @@ function AttachMenu({ anchorEl, open, onClose, onAttachFile, onTakePhoto, onShar
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$AttachFile$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                             fontSize: "small",
                             style: {
-                                color: darkMode ? '#b0b0b0' : '#666'
+                                color: darkMode ? '#64b5f6' : '#1976d2'
                             }
                         }, void 0, false, {
                             fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
-                            lineNumber: 32,
+                            lineNumber: 42,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
-                        lineNumber: 31,
+                        lineNumber: 41,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$ListItemText$2f$ListItemText$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ListItemText$3e$__["ListItemText"], {
                         primary: "Attach File"
                     }, void 0, false, {
                         fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
-                        lineNumber: 34,
+                        lineNumber: 44,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
-                lineNumber: 30,
+                lineNumber: 40,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(StyledMenuItem, {
@@ -4615,29 +4617,29 @@ function AttachMenu({ anchorEl, open, onClose, onAttachFile, onTakePhoto, onShar
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$CameraAlt$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                             fontSize: "small",
                             style: {
-                                color: darkMode ? '#b0b0b0' : '#666'
+                                color: darkMode ? '#ec407a' : '#e91e63'
                             }
                         }, void 0, false, {
                             fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
-                            lineNumber: 39,
+                            lineNumber: 49,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
-                        lineNumber: 38,
+                        lineNumber: 48,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$ListItemText$2f$ListItemText$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ListItemText$3e$__["ListItemText"], {
                         primary: "Take Photo"
                     }, void 0, false, {
                         fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
-                        lineNumber: 41,
+                        lineNumber: 51,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
-                lineNumber: 37,
+                lineNumber: 47,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(StyledMenuItem, {
@@ -4648,35 +4650,68 @@ function AttachMenu({ anchorEl, open, onClose, onAttachFile, onTakePhoto, onShar
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$LocationOn$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                             fontSize: "small",
                             style: {
-                                color: darkMode ? '#b0b0b0' : '#666'
+                                color: darkMode ? '#66bb6a' : '#4caf50'
                             }
                         }, void 0, false, {
                             fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
-                            lineNumber: 46,
+                            lineNumber: 56,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
-                        lineNumber: 45,
+                        lineNumber: 55,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$ListItemText$2f$ListItemText$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ListItemText$3e$__["ListItemText"], {
                         primary: "Share Location"
                     }, void 0, false, {
                         fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
-                        lineNumber: 48,
+                        lineNumber: 58,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
-                lineNumber: 44,
+                lineNumber: 54,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(StyledMenuItem, {
+                onClick: ()=>handleMenuItemClick(onCreatePoll),
+                darkMode: darkMode,
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$ListItemIcon$2f$ListItemIcon$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ListItemIcon$3e$__["ListItemIcon"], {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Poll$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
+                            fontSize: "small",
+                            style: {
+                                color: darkMode ? '#ffa726' : '#ff9800'
+                            }
+                        }, void 0, false, {
+                            fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
+                            lineNumber: 63,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
+                        lineNumber: 62,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$ListItemText$2f$ListItemText$2e$js__$5b$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ListItemText$3e$__["ListItemText"], {
+                        primary: "Create Poll"
+                    }, void 0, false, {
+                        fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
+                        lineNumber: 65,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
+                lineNumber: 61,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/ChatScreen/components/AttachMenu.jsx",
-        lineNumber: 16,
+        lineNumber: 26,
         columnNumber: 5
     }, this);
 }

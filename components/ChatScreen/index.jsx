@@ -21,6 +21,7 @@ import { useFileUpload } from "./hooks/useFileUpload";
 import { useVoiceRecording } from "./hooks/useVoiceRecording";
 import { useCamera } from "./hooks/useCamera";
 import { useLocation } from "./hooks/useLocation";
+import { usePolls } from "./hooks/usePolls";
 import { useRecipientData } from "./hooks/useRecipientData";
 import { useMessages } from "./hooks/useMessages";
 import { useMessageStatus } from "./hooks/useMessageStatus";
@@ -38,6 +39,7 @@ import LocationPreviewDialog from "./components/LocationPreviewDialog";
 import VoiceRecordingDialog from "./components/VoiceRecordingDialog";
 import ChatInfoDialog from "./components/ChatInfoDialog";
 import ReplyPreview from "./components/ReplyPreview";
+import PollCreationDialog from "./components/PollCreationDialog";
 
 // Styled Components
 import { Container, OfflineMessage, ErrorMessage } from "./ChatScreen.styles";
@@ -93,6 +95,7 @@ function ChatScreen({
   const voiceRecording = useVoiceRecording(chatId, user, recipientEmail);
   const camera = useCamera(chatId, user, recipientEmail);
   const location = useLocation(chatId, user, recipientEmail);
+  const polls = usePolls(chatId, user, recipientEmail);
 
   // Debug logging
   useEffect(() => {
@@ -340,6 +343,7 @@ function ChatScreen({
         onAttachFile={fileUpload.handleAttachClick}
         onTakePhoto={camera.startCamera}
         onShareLocation={location.getLocation}
+        onCreatePoll={polls.openPollDialog}
         darkMode={darkMode}
       />
 
@@ -435,6 +439,27 @@ function ChatScreen({
           isSelfChat,
         )}
         onError={setSendingError}
+        darkMode={darkMode}
+      />
+
+      <PollCreationDialog
+        open={polls.showPollDialog}
+        onClose={polls.closePollDialog}
+        question={polls.pollQuestion}
+        onQuestionChange={polls.setPollQuestion}
+        options={polls.pollOptions}
+        onOptionChange={polls.handleOptionChange}
+        onRemoveOption={polls.removeOption}
+        allowMultipleAnswers={polls.allowMultipleAnswers}
+        onAllowMultipleChange={polls.setAllowMultipleAnswers}
+        onSend={() => polls.sendPoll(
+          replyingTo,
+          setSendingError,
+          setReplyingTo,
+          scrollToBottom,
+          isSelfChat,
+        )}
+        isSending={polls.isSendingPoll}
         darkMode={darkMode}
       />
 

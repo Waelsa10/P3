@@ -16,6 +16,7 @@ import {
 } from "firebase/firestore";
 import { DarkModeContext } from "../../components/DarkModeProvider";
 import { MESSAGE_STATUS } from "../../components/ChatScreen/constants";
+import getRecipientEmail from "../../utils/getRecipientEmail";
 
 const Sidebar = dynamic(() => import("../../components/Sidebar"), { ssr: false });
 const ChatScreen = dynamic(() => import("../../components/ChatScreen"), { ssr: false });
@@ -34,6 +35,10 @@ function ChatPage() {
 
   const darkModeContext = useContext(DarkModeContext);
   const { darkMode } = darkModeContext || { darkMode: false };
+
+  // Calculate if this is a self-chat
+  const recipientEmail = chat?.users ? getRecipientEmail(chat.users, user) : null;
+  const isSelfChat = recipientEmail === user?.email;
 
   // Detect mobile/tablet screen size
   useEffect(() => {
@@ -85,7 +90,13 @@ function ChatPage() {
         }
 
         if (mounted) {
-          setChat({ id: chatSnap.id, ...chatSnap.data() });
+          const chatData = { id: chatSnap.id, ...chatSnap.data() };
+          setChat(chatData);
+          
+          console.log(`📱 [Chat ${chatId}] Loaded:`, {
+            users: chatData.users,
+            currentUser: user?.email,
+          });
         }
       } catch (err) {
         console.error("Error fetching chat:", err);
@@ -104,34 +115,52 @@ function ChatPage() {
     return () => {
       mounted = false;
     };
-  }, [chatId, router, isOnline]);
+  }, [chatId, router, isOnline, user]);
 
-  // ✅ FIXED: Only update messages RECEIVED by current user, not sent by them
+  // ✅ UPDATED: Mark received messages as read (NOT self-chat messages, NOT own sent messages)
   useEffect(() => {
-    if (!chatId || !user?.email || !isOnline) return;
+    if (!chatId || !user?.email || !isOnline || isSelfChat) {
+      console.log(`⏭️ [Chat ${chatId}] Skipping auto-read update:`, {
+        hasChat: !!chatId,
+        hasUser: !!user?.email,
+        isOnline,
+        isSelfChat,
+      });
+      return;
+    }
 
     let isActive = true;
 
-    const updateReceivedMessagesToRead = async () => {
+    const markReceivedMessagesAsRead = async () => {
       try {
+        console.log(`🔍 [Chat ${chatId}] Checking for messages to mark as read...`);
+        
         const messagesRef = collection(db, "chats", chatId, "messages");
         const snapshot = await getDocs(messagesRef);
         
-        if (snapshot.empty || !isActive) return;
+        if (snapshot.empty || !isActive) {
+          console.log(`⏭️ [Chat ${chatId}] No messages to process`);
+          return;
+        }
 
         const batch = writeBatch(db);
         let deliveredCount = 0;
         let readCount = 0;
+        let skippedOwnMessages = 0;
         
         snapshot.docs.forEach((messageDoc) => {
           const data = messageDoc.data();
           
-          // ✅ CRITICAL FIX: Only update messages FROM OTHER USERS (that I received)
-          // Do NOT touch messages I sent (data.user === user.email)
-          const isReceivedMessage = data.user !== user.email;
+          console.log(`📩 [Message ${messageDoc.id}]:`, {
+            from: data.user,
+            status: data.status,
+            isMyMessage: data.user === user.email,
+          });
           
-          if (!isReceivedMessage) {
-            // Skip messages I sent - let the RECIPIENT update their status
+          // ✅ CRITICAL: Only process messages FROM OTHER USERS
+          if (data.user === user.email) {
+            skippedOwnMessages++;
+            console.log(`  ⏭️ Skipping my own message`);
             return;
           }
           
@@ -142,48 +171,50 @@ function ChatPage() {
               deliveredAt: serverTimestamp()
             });
             deliveredCount++;
+            console.log(`  ✅ Will mark as DELIVERED`);
           }
-          // Update received "delivered" messages to "read" (I'm viewing the chat)
+          // Update received "delivered" messages to "read"
           else if (data.status === MESSAGE_STATUS.DELIVERED) {
             batch.update(messageDoc.ref, {
               status: MESSAGE_STATUS.READ,
               readAt: serverTimestamp()
             });
             readCount++;
+            console.log(`  ✅ Will mark as READ`);
           }
         });
 
         if ((deliveredCount > 0 || readCount > 0) && isActive) {
           await batch.commit();
-          console.log(`✅ [Chat ${chatId}] Received messages updated: ${deliveredCount} delivered, ${readCount} read`);
+          console.log(`✅ [Chat ${chatId}] Updated: ${deliveredCount} delivered, ${readCount} read (skipped ${skippedOwnMessages} own messages)`);
+        } else {
+          console.log(`ℹ️ [Chat ${chatId}] No updates needed (skipped ${skippedOwnMessages} own messages)`);
         }
       } catch (error) {
         if (error.code !== 'failed-precondition') {
-          console.error(`❌ [Chat ${chatId}] Error updating received messages:`, error);
+          console.error(`❌ [Chat ${chatId}] Error updating messages:`, error);
         }
       }
     };
 
     // Initial update
-    updateReceivedMessagesToRead();
+    markReceivedMessagesAsRead();
 
     // Update on window focus
     const handleFocus = () => {
       if (isOnline && isActive) {
-        updateReceivedMessagesToRead();
+        console.log(`🔄 [Chat ${chatId}] Window focused - checking for new messages`);
+        markReceivedMessagesAsRead();
       }
     };
 
     window.addEventListener('focus', handleFocus);
 
-    // ✅ REMOVED: No periodic updates - only on focus
-    // This prevents constant updates of your own sent messages
-
     return () => {
       isActive = false;
       window.removeEventListener('focus', handleFocus);
     };
-  }, [chatId, user, isOnline]);
+  }, [chatId, user, isOnline, isSelfChat]);
 
   if (!isOnline) {
     return (
@@ -260,7 +291,7 @@ function ChatPage() {
 
 export default ChatPage;
 
-// Styled Components (unchanged)
+// Styled Components
 const Container = styled.div`
   background-color: ${props => props.darkMode ? '#1e1e1e' : 'white'};
   min-height: 100vh;

@@ -485,6 +485,8 @@ return __turbopack_context__.a(async (__turbopack_handle_async_dependencies__, _
 
 // components/ChatScreen/hooks/useOnlineStatus.js
 __turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__,
     "useOnlineStatus",
     ()=>useOnlineStatus
 ]);
@@ -501,14 +503,14 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 ;
 ;
+// ✅ FIXED: Add default export
 const useOnlineStatus = ()=>{
     const [user] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$firebase$2d$hooks$2f$auth__$5b$external$5d$__$28$react$2d$firebase$2d$hooks$2f$auth$2c$__cjs$29$__["useAuthState"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["auth"]);
-    const isUpdating = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useRef"])(false); // Prevent overlapping writes
+    const isUpdating = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useRef"])(false);
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
         if (!user) return;
         const userRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users", user.uid);
         const updateStatus = async (isOnline)=>{
-            // Prevent spamming Firestore on rapid events
             if (isUpdating.current) return;
             isUpdating.current = true;
             try {
@@ -518,10 +520,10 @@ const useOnlineStatus = ()=>{
                 }, {
                     merge: true
                 });
+                console.log(`${isOnline ? '🟢' : '🔴'} [${user.email}] Status updated: ${isOnline ? 'ONLINE' : 'OFFLINE'}`);
             } catch (err) {
                 console.error("❌ Error updating online status:", err);
             } finally{
-                // Allow next update after 1 second
                 setTimeout(()=>{
                     isUpdating.current = false;
                 }, 1000);
@@ -531,19 +533,34 @@ const useOnlineStatus = ()=>{
         const setOffline = ()=>updateStatus(false);
         // Mark online immediately
         setOnline();
-        // Handle visibility changes (switching tabs or minimizing window)
+        // Handle visibility changes
         const handleVisibilityChange = ()=>{
-            if (document.hidden) setOffline();
-            else setOnline();
+            if (document.hidden) {
+                console.log(`🔴 [${user.email}] Tab hidden - setting offline`);
+                setOffline();
+            } else {
+                console.log(`🟢 [${user.email}] Tab visible - setting online`);
+                setOnline();
+            }
         };
-        // Handle browser connection (Wi-Fi) changes
-        const handleOnline = ()=>setOnline();
-        const handleOffline = ()=>setOffline();
+        // Handle browser connection changes
+        const handleOnline = ()=>{
+            console.log(`🟢 [${user.email}] Internet connected - setting online`);
+            setOnline();
+        };
+        const handleOffline = ()=>{
+            console.log(`🔴 [${user.email}] Internet disconnected - setting offline`);
+            setOffline();
+        };
         // Handle window/tab closing
         const handleBeforeUnload = ()=>{
-            navigator.sendBeacon(`/api/setOffline?uid=${user.uid}`, JSON.stringify({
-                uid: user.uid
-            }));
+            // Use sendBeacon for reliable offline status on page unload
+            const data = JSON.stringify({
+                isOnline: false,
+                lastSeen: new Date().toISOString()
+            });
+            // This will work even if page is closing
+            navigator.sendBeacon(`https://firestore.googleapis.com/v1/projects/${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}/databases/(default)/documents/users/${user.uid}`, data);
             setOffline();
         };
         // Add event listeners
@@ -551,7 +568,7 @@ const useOnlineStatus = ()=>{
         window.addEventListener("online", handleOnline);
         window.addEventListener("offline", handleOffline);
         window.addEventListener("beforeunload", handleBeforeUnload);
-        // Update every 25 seconds while active (like WhatsApp)
+        // Update every 25 seconds while active
         const interval = setInterval(()=>{
             if (!document.hidden && navigator.onLine) {
                 setOnline();
@@ -570,6 +587,8 @@ const useOnlineStatus = ()=>{
         user
     ]);
 };
+;
+const __TURBOPACK__default__export__ = useOnlineStatus;
 __turbopack_async_result__();
 } catch(e) { __turbopack_async_result__(e); } }, false);}),
 "[project]/pages/_app.js [ssr] (ecmascript)", ((__turbopack_context__) => {
@@ -577,7 +596,7 @@ __turbopack_async_result__();
 
 return __turbopack_context__.a(async (__turbopack_handle_async_dependencies__, __turbopack_async_result__) => { try {
 
-// pages/_app.jsx (or _app.js)
+// pages/_app.jsx
 __turbopack_context__.s([
     "default",
     ()=>__TURBOPACK__default__export__
@@ -609,48 +628,42 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 function MyApp({ Component, pageProps }) {
     const [user, loading] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2d$firebase$2d$hooks$2f$auth__$5b$external$5d$__$28$react$2d$firebase$2d$hooks$2f$auth$2c$__cjs$29$__["useAuthState"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["auth"]);
-    // Track online/offline status
+    // ✅ Use the online status hook (handles isOnline field)
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$hooks$2f$useOnlineStatus$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["useOnlineStatus"])();
+    // ✅ ALSO update email and photoURL periodically
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
         if (!user) return;
         const userRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "users", user.uid);
-        // Function to update lastSeen
-        const updateLastSeen = async ()=>{
+        const updateUserData = async ()=>{
             try {
                 await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["setDoc"])(userRef, {
                     email: user.email,
-                    lastSeen: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])(),
                     photoURL: user.photoURL || null
                 }, {
                     merge: true
                 });
-            // console.log(`✅ Updated lastSeen for ${user.email}`);
             } catch (error) {
-                console.error("❌ Error updating lastSeen:", error);
+                console.error("❌ Error updating user data:", error);
             }
         };
-        // Initial update when user logs in
-        updateLastSeen();
-        // Update every 20 seconds while app is open
-        const interval = setInterval(updateLastSeen, 20000);
-        // Update when window/tab regains focus
-        window.addEventListener("focus", updateLastSeen);
-        // Cleanup on unmount
+        // Initial update
+        updateUserData();
+        // Update email/photo every 5 minutes (in case they change)
+        const interval = setInterval(updateUserData, 300000);
         return ()=>{
             clearInterval(interval);
-            window.removeEventListener("focus", updateLastSeen);
         };
     }, [
         user
     ]);
     if (loading) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Loading$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
         fileName: "[project]/pages/_app.js",
-        lineNumber: 56,
+        lineNumber: 50,
         columnNumber: 23
     }, this);
     if (!user) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$pages$2f$login$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
         fileName: "[project]/pages/_app.js",
-        lineNumber: 57,
+        lineNumber: 51,
         columnNumber: 21
     }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$DarkModeProvider$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["DarkModeProvider"], {
@@ -658,12 +671,12 @@ function MyApp({ Component, pageProps }) {
             ...pageProps
         }, void 0, false, {
             fileName: "[project]/pages/_app.js",
-            lineNumber: 61,
+            lineNumber: 55,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/pages/_app.js",
-        lineNumber: 60,
+        lineNumber: 54,
         columnNumber: 5
     }, this);
 }

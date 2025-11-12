@@ -71,7 +71,7 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
   const userChatsRef = user
     ? query(
         collection(db, "chats"),
-        where("users", "array-contains", user.email)
+        where("owner", "==", user.email) // ✅ KEY CHANGE
       )
     : null;
 
@@ -227,8 +227,7 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
     });
   }, [chatsSnapshot, user]);
 
-  // ✅ MEMOIZED: Create chat function
-  const createChat = useCallback(async () => {
+   const createChat = useCallback(async () => {
     if (!user) {
       console.error("No user logged in");
       return;
@@ -238,32 +237,31 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
       "Please enter an email address for the user you wish to chat with"
     );
     
-    if (!input) {
-      return;
-    }
+    if (!input) return;
 
     if (!EmailValidator.validate(input)) {
       alert("Please enter a valid email address");
       return;
     }
 
-    if (chatAlreadyExist(input)) {
-      alert("Chat already exists with this user");
-      return;
-    }
-
     try {
-      await addDoc(collection(db, "chats"), {
-        users: [user.email, input],
-        deletedBy: [],
-        archivedBy: [],
-        createdAt: new Date(),
-      });
+      // ✅ Use dual-chat creation
+      const { createDualChat } = await import('../utils/createDualChat');
+      const { dualChatExists } = await import('../utils/createDualChat');
+      
+      const exists = await dualChatExists(user.email, input);
+      if (exists) {
+        alert("Chat already exists with this user");
+        return;
+      }
+
+      await createDualChat(user.email, input);
+      console.log("✅ Dual chat created successfully");
     } catch (error) {
       console.error("Error creating chat:", error);
       alert(`Failed to create chat: ${error.message}`);
     }
-  }, [user, chatAlreadyExist]);
+  }, [user]);
 
   // ✅ MEMOIZED: Menu handlers
   const handleMenuOpen = useCallback((event, chatId, chatUsers) => {

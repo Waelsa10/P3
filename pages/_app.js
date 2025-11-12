@@ -1,63 +1,49 @@
 // pages/_app.jsx
-
 import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
-import { 
-  doc, 
-  setDoc, 
-  serverTimestamp,
-  collection,
-  query,
-  where,
-  getDocs,
-  updateDoc,
-  writeBatch
-} from "firebase/firestore";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import Loading from "../components/Loading";
 import Login from "./login";
 import { DarkModeProvider } from "../components/DarkModeProvider";
-import { MESSAGE_STATUS } from "../components/ChatScreen/constants";
+import { useOnlineStatus } from "../components/ChatScreen/hooks/useOnlineStatus";
 
 function MyApp({ Component, pageProps }) {
   const [user, loading] = useAuthState(auth);
 
+  // ✅ Use the online status hook (handles isOnline field)
+  useOnlineStatus();
+
+  // ✅ ALSO update email and photoURL periodically
   useEffect(() => {
     if (!user) return;
 
     const userRef = doc(db, "users", user.uid);
 
-    const updateUserStatus = async () => {
+    const updateUserData = async () => {
       try {
-        // ✅ ONLY update lastSeen - NO message status updates
         await setDoc(
           userRef,
           {
             email: user.email,
-            lastSeen: serverTimestamp(),
             photoURL: user.photoURL || null,
+            // Don't update lastSeen or isOnline here - useOnlineStatus handles it
           },
           { merge: true }
         );
-        
-        console.log(`✅ Updated lastSeen for ${user.email}`);
       } catch (error) {
-        console.error("❌ Error updating lastSeen:", error);
+        console.error("❌ Error updating user data:", error);
       }
     };
 
     // Initial update
-    updateUserStatus();
+    updateUserData();
 
-    // Update every 20 seconds
-    const interval = setInterval(updateUserStatus, 20000);
-
-    // Update on window focus
-    window.addEventListener("focus", updateUserStatus);
+    // Update email/photo every 5 minutes (in case they change)
+    const interval = setInterval(updateUserData, 300000);
 
     return () => {
       clearInterval(interval);
-      window.removeEventListener("focus", updateUserStatus);
     };
   }, [user]);
 

@@ -4404,6 +4404,11 @@ function Message({ user, message, messageId, onDelete, onReply }) {
     };
     const TypeOfMessage = user === userLoggedIn?.email ? Sender : Receiver;
     const isOwnMessage = user === userLoggedIn?.email;
+    // Helper function to convert poll options to array
+    const getPollOptionsArray = (poll)=>{
+        if (!poll || !poll.options) return [];
+        return Array.isArray(poll.options) ? poll.options : Object.values(poll.options);
+    };
     // Check if message is less than 1 hour old
     const isRecentMessage = ()=>{
         if (!message.timestamp) return false;
@@ -4447,32 +4452,85 @@ function Message({ user, message, messageId, onDelete, onReply }) {
             });
         }
     };
-    // Handle poll vote
+    // Handle poll vote - FIXED VERSION
     const handlePollVote = async (optionIndex)=>{
-        if (!messageId || votingInProgress || !router.query.id) return;
+        if (!messageId || votingInProgress || !router.query.id || !message.poll) return;
         setVotingInProgress(true);
         try {
-            const messageRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "chats", router.query.id, "messages", messageId);
-            const currentVotes = message.poll.options[optionIndex].votes || [];
-            const hasVoted = currentVotes.includes(userLoggedIn.email);
-            // For single answer polls, remove votes from all options first
-            if (!message.poll.allowMultipleAnswers && !hasVoted) {
-                const updates = {};
-                message.poll.options.forEach((option, idx)=>{
-                    if (option.votes?.includes(userLoggedIn.email)) {
-                        updates[`poll.options.${idx}.votes`] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["arrayRemove"])(userLoggedIn.email);
-                    }
-                });
-                if (Object.keys(updates).length > 0) {
-                    await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["updateDoc"])(messageRef, updates);
-                }
-            }
-            // Toggle vote for the selected option
-            await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["updateDoc"])(messageRef, {
-                [`poll.options.${optionIndex}.votes`]: hasVoted ? (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["arrayRemove"])(userLoggedIn.email) : (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["arrayUnion"])(userLoggedIn.email)
+            console.log('🗳️ Attempting to vote on poll:', {
+                chatId: router.query.id,
+                messageId,
+                optionIndex,
+                userEmail: userLoggedIn.email
             });
+            // Convert poll options to array
+            const pollOptions = getPollOptionsArray(message.poll);
+            if (!pollOptions[optionIndex]) {
+                console.error('Invalid option index');
+                return;
+            }
+            const messageRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "chats", router.query.id, "messages", messageId);
+            const currentVotes = Array.isArray(pollOptions[optionIndex].votes) ? pollOptions[optionIndex].votes : [];
+            const hasVoted = currentVotes.includes(userLoggedIn.email);
+            console.log('Current vote status:', {
+                currentVotes,
+                hasVoted
+            });
+            // Create updated options array - PRESERVE TEXT FIELD
+            const updatedOptions = pollOptions.map((option, idx)=>{
+                const votes = Array.isArray(option.votes) ? [
+                    ...option.votes
+                ] : [];
+                // Get the option text
+                let optionText = '';
+                if (typeof option === 'string') {
+                    optionText = option;
+                } else if (typeof option === 'object') {
+                    optionText = option.text || option.option || `Option ${idx + 1}`;
+                }
+                // For single answer polls, remove user's vote from all options
+                if (!message.poll.allowMultipleAnswers && idx !== optionIndex) {
+                    return {
+                        text: optionText,
+                        votes: votes.filter((email)=>email !== userLoggedIn.email)
+                    };
+                }
+                // Toggle vote for the clicked option
+                if (idx === optionIndex) {
+                    if (hasVoted) {
+                        // Remove vote
+                        return {
+                            text: optionText,
+                            votes: votes.filter((email)=>email !== userLoggedIn.email)
+                        };
+                    } else {
+                        // Add vote
+                        return {
+                            text: optionText,
+                            votes: [
+                                ...votes,
+                                userLoggedIn.email
+                            ]
+                        };
+                    }
+                }
+                // Keep option unchanged but preserve structure
+                return {
+                    text: optionText,
+                    votes: votes
+                };
+            });
+            console.log('Updating poll with options:', updatedOptions);
+            // Update the entire poll.options array
+            await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["updateDoc"])(messageRef, {
+                'poll.options': updatedOptions
+            });
+            console.log('✅ Vote successful!');
         } catch (error) {
-            console.error("Error voting on poll:", error);
+            console.error("❌ Error voting on poll:", error);
+            console.error("Error code:", error.code);
+            console.error("Error message:", error.message);
+            alert(`Failed to vote: ${error.message}`);
         } finally{
             setVotingInProgress(false);
         }
@@ -4575,7 +4633,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     isSender: isOwnMessage
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 209,
+                                    lineNumber: 269,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(ReplyContent, {
@@ -4585,27 +4643,27 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             children: message.replyTo.user === userLoggedIn?.email ? 'You' : message.replyTo.user
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 211,
+                                            lineNumber: 271,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(ReplyText, {
                                             darkMode: darkMode,
-                                            children: message.replyTo.location ? '📍 Location' : message.replyTo.poll ? `📊 ${message.replyTo.poll.question}` : message.replyTo.message || message.replyTo.fileName || '🎤 Voice message'
+                                            children: message.replyTo.location ? '📍 Location' : message.replyTo.poll ? `📊 ${message.replyTo.poll.question || 'Poll'}` : message.replyTo.message || message.replyTo.fileName || '🎤 Voice message'
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 214,
+                                            lineNumber: 274,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 210,
+                                    lineNumber: 270,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 208,
+                            lineNumber: 268,
                             columnNumber: 13
                         }, this),
                         message.poll && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollContainer, {
@@ -4621,133 +4679,170 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 227,
+                                            lineNumber: 289,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollQuestion, {
                                             children: message.poll.question
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 228,
+                                            lineNumber: 290,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 226,
+                                    lineNumber: 288,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollOptions, {
-                                    children: message.poll.options.map((option, index)=>{
-                                        const totalVotes = message.poll.options.reduce((sum, opt)=>sum + (opt.votes?.length || 0), 0);
-                                        const optionVotes = option.votes?.length || 0;
-                                        const percentage = totalVotes > 0 ? optionVotes / totalVotes * 100 : 0;
-                                        const hasVoted = option.votes?.includes(userLoggedIn?.email);
-                                        const hasVotedAnywhere = message.poll.options.some((opt)=>opt.votes?.includes(userLoggedIn?.email));
-                                        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollOption, {
-                                            onClick: ()=>handlePollVote(index),
-                                            darkMode: darkMode,
-                                            hasVoted: hasVoted,
-                                            disabled: votingInProgress,
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollOptionContent, {
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollOptionIcon, {
-                                                            children: message.poll.allowMultipleAnswers ? hasVoted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$CheckBox$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                                                style: {
-                                                                    color: darkMode ? "#00a884" : "#25d366",
-                                                                    fontSize: 20
-                                                                }
+                                    children: (()=>{
+                                        // Convert poll.options to array if it's an object
+                                        const pollOptions = getPollOptionsArray(message.poll);
+                                        // Debug log
+                                        console.log('📊 Poll data:', {
+                                            question: message.poll.question,
+                                            options: pollOptions,
+                                            allowMultiple: message.poll.allowMultipleAnswers
+                                        });
+                                        return pollOptions.map((option, index)=>{
+                                            // Ensure option has required structure
+                                            if (!option) {
+                                                console.warn('Null option at index', index);
+                                                return null;
+                                            }
+                                            // Get option text - with comprehensive fallback handling
+                                            let optionText = '';
+                                            if (typeof option === 'string') {
+                                                optionText = option;
+                                            } else if (typeof option === 'object') {
+                                                if (option.text && typeof option.text === 'string') {
+                                                    optionText = option.text;
+                                                } else if (option.option && typeof option.option === 'string') {
+                                                    optionText = option.option;
+                                                } else {
+                                                    console.warn('Missing text for option at index', index, ':', option);
+                                                    optionText = `Option ${index + 1}`;
+                                                }
+                                            } else {
+                                                console.warn('Invalid option type at index', index, ':', typeof option);
+                                                optionText = `Option ${index + 1}`;
+                                            }
+                                            const optionVotes = Array.isArray(option.votes) ? option.votes : Array.isArray(option?.votes) ? option.votes : [];
+                                            console.log(`📊 Option ${index}:`, {
+                                                text: optionText,
+                                                votes: optionVotes,
+                                                raw: option
+                                            });
+                                            // Calculate vote statistics
+                                            const totalVotes = pollOptions.reduce((sum, opt)=>{
+                                                const votes = Array.isArray(opt?.votes) ? opt.votes : [];
+                                                return sum + votes.length;
+                                            }, 0);
+                                            const optionVotesCount = optionVotes.length;
+                                            const percentage = totalVotes > 0 ? optionVotesCount / totalVotes * 100 : 0;
+                                            const hasVoted = optionVotes.includes(userLoggedIn?.email);
+                                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollOption, {
+                                                onClick: ()=>handlePollVote(index),
+                                                darkMode: darkMode,
+                                                hasVoted: hasVoted,
+                                                disabled: votingInProgress,
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollOptionRow, {
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollOptionIcon, {
+                                                                children: message.poll.allowMultipleAnswers ? hasVoted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$CheckBox$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                                    style: {
+                                                                        color: darkMode ? "#00a884" : "#25d366",
+                                                                        fontSize: 22
+                                                                    }
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/Message.js",
+                                                                    lineNumber: 361,
+                                                                    columnNumber: 33
+                                                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$CheckBoxOutlineBlank$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                                    style: {
+                                                                        color: darkMode ? "#8696a0" : "#667781",
+                                                                        fontSize: 22
+                                                                    }
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/Message.js",
+                                                                    lineNumber: 368,
+                                                                    columnNumber: 33
+                                                                }, this) : hasVoted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$CheckCircle$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                                    style: {
+                                                                        color: darkMode ? "#00a884" : "#25d366",
+                                                                        fontSize: 22
+                                                                    }
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/Message.js",
+                                                                    lineNumber: 377,
+                                                                    columnNumber: 33
+                                                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$RadioButtonUnchecked$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                                    style: {
+                                                                        color: darkMode ? "#8696a0" : "#667781",
+                                                                        fontSize: 22
+                                                                    }
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/Message.js",
+                                                                    lineNumber: 384,
+                                                                    columnNumber: 33
+                                                                }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/Message.js",
-                                                                lineNumber: 256,
-                                                                columnNumber: 31
-                                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$CheckBoxOutlineBlank$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                                                style: {
-                                                                    color: darkMode ? "#8696a0" : "#667781",
-                                                                    fontSize: 20
-                                                                }
+                                                                lineNumber: 358,
+                                                                columnNumber: 27
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollOptionText, {
+                                                                darkMode: darkMode,
+                                                                hasVoted: hasVoted,
+                                                                children: optionText
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/Message.js",
-                                                                lineNumber: 263,
-                                                                columnNumber: 31
-                                                            }, this) : hasVoted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$CheckCircle$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                                                style: {
-                                                                    color: darkMode ? "#00a884" : "#25d366",
-                                                                    fontSize: 20
-                                                                }
+                                                                lineNumber: 394,
+                                                                columnNumber: 27
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollOptionVotes, {
+                                                                darkMode: darkMode,
+                                                                children: optionVotesCount
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/Message.js",
-                                                                lineNumber: 272,
-                                                                columnNumber: 31
-                                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$RadioButtonUnchecked$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                                                style: {
-                                                                    color: darkMode ? "#8696a0" : "#667781",
-                                                                    fontSize: 20
-                                                                }
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/Message.js",
-                                                                lineNumber: 279,
-                                                                columnNumber: 31
+                                                                lineNumber: 398,
+                                                                columnNumber: 27
                                                             }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/components/Message.js",
+                                                        lineNumber: 357,
+                                                        columnNumber: 25
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollProgressBar, {
+                                                        darkMode: darkMode,
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollProgressFill, {
+                                                            percentage: percentage,
+                                                            darkMode: darkMode,
+                                                            hasVoted: hasVoted
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/Message.js",
-                                                            lineNumber: 253,
-                                                            columnNumber: 25
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollOptionText, {
-                                                            darkMode: darkMode,
-                                                            hasVoted: hasVoted,
-                                                            children: option.text
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/Message.js",
-                                                            lineNumber: 289,
-                                                            columnNumber: 25
-                                                        }, this),
-                                                        hasVotedAnywhere && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollOptionVotes, {
-                                                            darkMode: darkMode,
-                                                            children: [
-                                                                optionVotes,
-                                                                " ",
-                                                                optionVotes === 1 ? 'vote' : 'votes'
-                                                            ]
-                                                        }, void 0, true, {
-                                                            fileName: "[project]/components/Message.js",
-                                                            lineNumber: 294,
+                                                            lineNumber: 404,
                                                             columnNumber: 27
                                                         }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/components/Message.js",
-                                                    lineNumber: 252,
-                                                    columnNumber: 23
-                                                }, this),
-                                                hasVotedAnywhere && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollProgressBar, {
-                                                    darkMode: darkMode,
-                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollProgressFill, {
-                                                        percentage: percentage,
-                                                        darkMode: darkMode,
-                                                        hasVoted: hasVoted
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/Message.js",
-                                                        lineNumber: 302,
-                                                        columnNumber: 27
+                                                        lineNumber: 403,
+                                                        columnNumber: 25
                                                     }, this)
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/Message.js",
-                                                    lineNumber: 301,
-                                                    columnNumber: 25
-                                                }, this)
-                                            ]
-                                        }, index, true, {
-                                            fileName: "[project]/components/Message.js",
-                                            lineNumber: 245,
-                                            columnNumber: 21
-                                        }, this);
-                                    })
+                                                ]
+                                            }, `poll-${messageId}-option-${index}`, true, {
+                                                fileName: "[project]/components/Message.js",
+                                                lineNumber: 350,
+                                                columnNumber: 23
+                                            }, this);
+                                        }).filter(Boolean);
+                                    })()
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 231,
+                                    lineNumber: 293,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollFooter, {
@@ -4757,30 +4852,34 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             children: "Multiple answers allowed"
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 316,
+                                            lineNumber: 418,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(PollTotalVotes, {
                                             darkMode: darkMode,
                                             children: (()=>{
-                                                const totalVotes = message.poll.options.reduce((sum, opt)=>sum + (opt.votes?.length || 0), 0);
+                                                const pollOptions = getPollOptionsArray(message.poll);
+                                                const totalVotes = pollOptions.reduce((sum, opt)=>{
+                                                    const votes = Array.isArray(opt?.votes) ? opt.votes : [];
+                                                    return sum + votes.length;
+                                                }, 0);
                                                 return `${totalVotes} ${totalVotes === 1 ? 'vote' : 'votes'}`;
                                             })()
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 318,
+                                            lineNumber: 420,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 314,
+                                    lineNumber: 416,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 225,
+                            lineNumber: 287,
                             columnNumber: 13
                         }, this),
                         message.location && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(LocationContainer, {
@@ -4793,12 +4892,12 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                         loading: "lazy"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Message.js",
-                                        lineNumber: 335,
+                                        lineNumber: 438,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 334,
+                                    lineNumber: 437,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(LocationInfo, {
@@ -4812,12 +4911,12 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Message.js",
-                                                lineNumber: 344,
+                                                lineNumber: 447,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 343,
+                                            lineNumber: 446,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Coordinates, {
@@ -4829,13 +4928,13 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 346,
+                                            lineNumber: 449,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 342,
+                                    lineNumber: 445,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(ViewButton, {
@@ -4851,20 +4950,20 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 357,
+                                            lineNumber: 460,
                                             columnNumber: 17
                                         }, this),
                                         "View on Maps"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 351,
+                                    lineNumber: 454,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 333,
+                            lineNumber: 436,
                             columnNumber: 13
                         }, this),
                         message.fileURL && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(FileAttachment, {
@@ -4880,12 +4979,12 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/components/Message.js",
-                                                lineNumber: 371,
+                                                lineNumber: 474,
                                                 columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 370,
+                                            lineNumber: 473,
                                             columnNumber: 21
                                         }, this),
                                         imageError ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(ImageError, {
@@ -4898,20 +4997,20 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 376,
+                                                    lineNumber: 479,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
                                                     children: "Failed to load image"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 377,
+                                                    lineNumber: 480,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 375,
+                                            lineNumber: 478,
                                             columnNumber: 21
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(ImagePreview, {
                                             src: getOptimizedImageUrl(message.fileURL),
@@ -4925,7 +5024,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 380,
+                                            lineNumber: 483,
                                             columnNumber: 21
                                         }, this),
                                         message.fileName && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(ImageFileName, {
@@ -4933,13 +5032,13 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             children: message.fileName
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 391,
+                                            lineNumber: 494,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 368,
+                                    lineNumber: 471,
                                     columnNumber: 17
                                 }, this) : message.fileType?.startsWith("video/") ? /* Video Preview */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(VideoContainer, {
                                     children: [
@@ -4953,14 +5052,14 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                     type: message.fileType
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 402,
+                                                    lineNumber: 505,
                                                     columnNumber: 21
                                                 }, this),
                                                 "Your browser does not support the video tag."
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 397,
+                                            lineNumber: 500,
                                             columnNumber: 19
                                         }, this),
                                         message.fileName && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(VideoFileName, {
@@ -4973,20 +5072,20 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 407,
+                                                    lineNumber: 510,
                                                     columnNumber: 23
                                                 }, this),
                                                 message.fileName
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 406,
+                                            lineNumber: 509,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 396,
+                                    lineNumber: 499,
                                     columnNumber: 17
                                 }, this) : message.fileType?.startsWith("audio/") && !message.voiceURL ? /* Audio File (not voice message) */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(AudioFileContainer, {
                                     darkMode: darkMode,
@@ -5000,7 +5099,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 416,
+                                                    lineNumber: 519,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(AudioFileInfo, {
@@ -5010,7 +5109,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                             children: message.fileName || "Audio File"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/Message.js",
-                                                            lineNumber: 418,
+                                                            lineNumber: 521,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(AudioFileSize, {
@@ -5018,19 +5117,19 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                             children: formatFileSize(message.fileSize)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/Message.js",
-                                                            lineNumber: 421,
+                                                            lineNumber: 524,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 417,
+                                                    lineNumber: 520,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 415,
+                                            lineNumber: 518,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(AudioPlayer, {
@@ -5040,13 +5139,13 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             children: "Your browser does not support the audio element."
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 426,
+                                            lineNumber: 529,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 414,
+                                    lineNumber: 517,
                                     columnNumber: 17
                                 }, this) : /* Other Files (PDF, Documents, etc.) */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(FileInfo, {
                                     darkMode: darkMode,
@@ -5058,7 +5157,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 433,
+                                            lineNumber: 536,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(FileDetails, {
@@ -5068,7 +5167,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                     children: message.fileName || "File"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 435,
+                                                    lineNumber: 538,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(FileSize, {
@@ -5076,19 +5175,19 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                                     children: formatFileSize(message.fileSize)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Message.js",
-                                                    lineNumber: 436,
+                                                    lineNumber: 539,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 434,
+                                            lineNumber: 537,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 432,
+                                    lineNumber: 535,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(DownloadButton, {
@@ -5100,7 +5199,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             fontSize: "small"
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 449,
+                                            lineNumber: 552,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
@@ -5111,19 +5210,19 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                             children: "Download"
                                         }, void 0, false, {
                                             fileName: "[project]/components/Message.js",
-                                            lineNumber: 450,
+                                            lineNumber: 553,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 444,
+                                    lineNumber: 547,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 365,
+                            lineNumber: 468,
                             columnNumber: 13
                         }, this),
                         message.voiceURL && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(VoiceMessageContainer, {
@@ -5134,7 +5233,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     children: "🎤 Voice Message"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 458,
+                                    lineNumber: 561,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(AudioPlayer, {
@@ -5144,7 +5243,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     children: "Your browser does not support the audio element."
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 459,
+                                    lineNumber: 562,
                                     columnNumber: 15
                                 }, this),
                                 message.voiceDuration && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(VoiceDuration, {
@@ -5155,13 +5254,13 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 463,
+                                    lineNumber: 566,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 457,
+                            lineNumber: 560,
                             columnNumber: 13
                         }, this),
                         message.message && message.message.trim() && !message.location && !message.poll && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(MessageText, {
@@ -5169,7 +5268,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                             children: message.message
                         }, void 0, false, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 472,
+                            lineNumber: 575,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(MessageFooter, {
@@ -5179,7 +5278,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     children: message.timestamp ? (0, __TURBOPACK__imported__module__$5b$externals$5d2f$moment__$5b$external$5d$__$28$moment$2c$__cjs$29$__["default"])(message.timestamp).format("LT") : "..."
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 477,
+                                    lineNumber: 580,
                                     columnNumber: 13
                                 }, this),
                                 isOwnMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$MessageStatus$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -5187,19 +5286,19 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     darkMode: darkMode
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 481,
+                                    lineNumber: 584,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 476,
+                            lineNumber: 579,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/Message.js",
-                    lineNumber: 205,
+                    lineNumber: 265,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(MessageActions, {
@@ -5215,17 +5314,17 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                             fontSize: "small"
                         }, void 0, false, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 497,
+                            lineNumber: 600,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/Message.js",
-                        lineNumber: 491,
+                        lineNumber: 594,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/Message.js",
-                    lineNumber: 490,
+                    lineNumber: 593,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Menu$2f$Menu$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__["Menu"], {
@@ -5250,12 +5349,12 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/components/Message.js",
-                                        lineNumber: 515,
+                                        lineNumber: 618,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 514,
+                                    lineNumber: 617,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$ListItemText$2f$ListItemText$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ListItemText$3e$__["ListItemText"], {
@@ -5265,13 +5364,13 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     children: "Reply"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 517,
+                                    lineNumber: 620,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 513,
+                            lineNumber: 616,
                             columnNumber: 11
                         }, this),
                         showDelete && isOwnMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$MenuItem$2f$MenuItem$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__MenuItem$3e$__["MenuItem"], {
@@ -5285,12 +5384,12 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/components/Message.js",
-                                        lineNumber: 525,
+                                        lineNumber: 628,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 524,
+                                    lineNumber: 627,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$ListItemText$2f$ListItemText$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ListItemText$3e$__["ListItemText"], {
@@ -5300,30 +5399,30 @@ function Message({ user, message, messageId, onDelete, onReply }) {
                                     children: "Delete"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Message.js",
-                                    lineNumber: 527,
+                                    lineNumber: 630,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Message.js",
-                            lineNumber: 523,
+                            lineNumber: 626,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/Message.js",
-                    lineNumber: 502,
+                    lineNumber: 605,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/Message.js",
-            lineNumber: 204,
+            lineNumber: 264,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/Message.js",
-        lineNumber: 203,
+        lineNumber: 263,
         columnNumber: 5
     }, this);
 }
@@ -5452,7 +5551,7 @@ const FileAttachment = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$
   flex-direction: column;
   gap: 8px;
 `;
-// Poll Message Styles
+// Poll Message Styles - COMPLETELY FIXED
 const PollContainer = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
   background-color: ${(props)=>props.darkMode ? "#2a3942" : "#f0f0f0"};
   border-radius: 8px;
@@ -5502,35 +5601,48 @@ const PollOption = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$c
     transform: ${(props)=>props.disabled ? "none" : "scale(0.98)"};
   }
 `;
-const PollOptionContent = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+const PollOptionRow = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 6px;
+  gap: 12px;
+  margin-bottom: 8px;
+  width: 100%;
 `;
 const PollOptionIcon = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  width: 28px;
+  height: 28px;
 `;
 const PollOptionText = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
   flex: 1;
   font-size: 14px;
-  color: ${(props)=>props.darkMode ? "#e0e0e0" : "black"};
+  color: ${(props)=>props.darkMode ? "#e0e0e0" : "#000000"} !important;
   font-weight: ${(props)=>props.hasVoted ? "600" : "400"};
-  line-height: 1.4;
+  line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  min-width: 0;
 `;
 const PollOptionVotes = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
-  font-size: 12px;
-  color: ${(props)=>props.darkMode ? "#8696a0" : "#667781"};
-  font-weight: 500;
+  font-size: 14px;
+  color: ${(props)=>props.darkMode ? "#64b5f6" : "#1976d2"};
+  font-weight: 700;
   flex-shrink: 0;
+  min-width: 32px;
+  text-align: center;
+  padding: 2px 8px;
+  background-color: ${(props)=>props.darkMode ? "rgba(100, 181, 246, 0.1)" : "rgba(25, 118, 210, 0.1)"};
+  border-radius: 12px;
 `;
 const PollProgressBar = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
   width: 100%;
-  height: 4px;
+  height: 6px;
   background-color: ${(props)=>props.darkMode ? "#1a1a1a" : "#e0e0e0"};
-  border-radius: 2px;
+  border-radius: 3px;
   overflow: hidden;
 `;
 const PollProgressFill = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
@@ -5543,7 +5655,7 @@ const PollProgressFill = __TURBOPACK__imported__module__$5b$externals$5d2f$style
     return props.darkMode ? "#3a4952" : "#ccc";
 }};
   transition: width 0.3s ease;
-  border-radius: 2px;
+  border-radius: 3px;
 `;
 const PollFooter = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
   display: flex;

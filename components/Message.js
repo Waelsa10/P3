@@ -338,7 +338,7 @@ function Message({ user, message, messageId, onDelete, onReply }) {
             darkMode={darkMode}
             isSender={isOwnMessage}
           >
-            <MoreVertIcon fontSize="small" />
+            <MoreVertIcon style={{ color: darkMode ? 'gray' : 'inherit' }} fontSize="small" />
           </MessageMenuButton>
         </MessageActions>
 

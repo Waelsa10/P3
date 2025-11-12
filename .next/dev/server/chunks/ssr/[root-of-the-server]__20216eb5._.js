@@ -5504,183 +5504,999 @@ const VoiceRecordingDialog = ({ open, audioBlob, recordingTime, uploadProgress, 
 const __TURBOPACK__default__export__ = VoiceRecordingDialog;
 __turbopack_async_result__();
 } catch(e) { __turbopack_async_result__(e); } }, false);}),
-"[project]/components/ChatScreen/components/ProfileDialog.jsx [ssr] (ecmascript)", ((__turbopack_context__) => {
+"[project]/components/ChatScreen/components/ChatInfoDialog.jsx [ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
-// components/ChatScreen/components/ProfileDialog.jsx
+// components/ChatScreen/components/ChatInfoDialog.jsx
 __turbopack_context__.s([
     "default",
     ()=>__TURBOPACK__default__export__
 ]);
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/styled-components [external] (styled-components, cjs)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Dialog$2f$Dialog$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Dialog$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/Dialog/Dialog.js [ssr] (ecmascript) <export default as Dialog>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogTitle$2f$DialogTitle$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__DialogTitle$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/DialogTitle/DialogTitle.js [ssr] (ecmascript) <export default as DialogTitle>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogContent$2f$DialogContent$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__DialogContent$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/DialogContent/DialogContent.js [ssr] (ecmascript) <export default as DialogContent>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogActions$2f$DialogActions$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__DialogActions$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/DialogActions/DialogActions.js [ssr] (ecmascript) <export default as DialogActions>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Button$2f$Button$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Button$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/Button/Button.js [ssr] (ecmascript) <export default as Button>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconButton$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/IconButton/IconButton.js [ssr] (ecmascript) <export default as IconButton>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Avatar$2f$Avatar$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Avatar$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/Avatar/Avatar.js [ssr] (ecmascript) <export default as Avatar>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$TextField$2f$TextField$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TextField$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/TextField/TextField.js [ssr] (ecmascript) <export default as TextField>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Tabs$2f$Tabs$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Tabs$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/Tabs/Tabs.js [ssr] (ecmascript) <export default as Tabs>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Tab$2f$Tab$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Tab$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/Tab/Tab.js [ssr] (ecmascript) <export default as Tab>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Box$2f$Box$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/Box/Box.js [ssr] (ecmascript) <export default as Box>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Close$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Close.js [ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$externals$5d2f$timeago$2d$react__$5b$external$5d$__$28$timeago$2d$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/timeago-react [external] (timeago-react, cjs)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$ChatScreen$2e$styles$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/ChatScreen.styles.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Edit$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Edit.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Check$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Check.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Link.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Image$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Image.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Description$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Description.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Download$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/Download.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$OpenInNew$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@mui/icons-material/OpenInNew.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$moment__$5b$external$5d$__$28$moment$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/moment [external] (moment, cjs)");
 ;
 ;
 ;
 ;
 ;
 ;
-const ProfileDialog = ({ open, onClose, recipient, recipientEmail, darkMode })=>{
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Dialog$2f$Dialog$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Dialog$3e$__["Dialog"], {
+;
+;
+;
+;
+;
+;
+;
+function TabPanel({ children, value, index, ...other }) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+        role: "tabpanel",
+        hidden: value !== index,
+        id: `tabpanel-${index}`,
+        "aria-labelledby": `tab-${index}`,
+        ...other,
+        children: value === index && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Box$2f$Box$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__["Box"], {
+            sx: {
+                p: 2
+            },
+            children: children
+        }, void 0, false, {
+            fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+            lineNumber: 35,
+            columnNumber: 27
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+        lineNumber: 28,
+        columnNumber: 5
+    }, this);
+}
+function ChatInfoDialog({ open, onClose, recipient, recipientEmail, isSelfChat, messages, onUpdateDisplayName, darkMode }) {
+    const [isEditingName, setIsEditingName] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(false);
+    const [displayName, setDisplayName] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])("");
+    const [tabValue, setTabValue] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(0);
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        if (recipient?.displayName) {
+            setDisplayName(recipient.displayName);
+        } else {
+            setDisplayName(recipientEmail?.split("@")[0] || "");
+        }
+    }, [
+        recipient,
+        recipientEmail
+    ]);
+    const handleTabChange = (event, newValue)=>{
+        setTabValue(newValue);
+    };
+    const handleSaveDisplayName = ()=>{
+        if (displayName.trim() && onUpdateDisplayName) {
+            onUpdateDisplayName(displayName.trim());
+        }
+        setIsEditingName(false);
+    };
+    // Extract links from messages
+    const extractLinks = ()=>{
+        if (!messages) return [];
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+        const links = [];
+        messages.forEach((msg)=>{
+            if (msg.message) {
+                const urls = msg.message.match(urlRegex);
+                if (urls) {
+                    urls.forEach((url)=>{
+                        links.push({
+                            id: msg.id,
+                            url,
+                            message: msg.message,
+                            timestamp: msg.timestamp,
+                            user: msg.user
+                        });
+                    });
+                }
+            }
+        });
+        return links.reverse();
+    };
+    // Extract media (images, videos, audio)
+    const extractMedia = ()=>{
+        if (!messages) return [];
+        const media = [];
+        messages.forEach((msg)=>{
+            if (msg.fileURL && msg.fileType) {
+                if (msg.fileType.startsWith("image/") || msg.fileType.startsWith("video/") || msg.fileType.startsWith("audio/")) {
+                    media.push({
+                        id: msg.id,
+                        url: msg.fileURL,
+                        fileName: msg.fileName,
+                        fileType: msg.fileType,
+                        fileSize: msg.fileSize,
+                        timestamp: msg.timestamp,
+                        user: msg.user
+                    });
+                }
+            }
+        });
+        return media.reverse();
+    };
+    // Extract documents
+    const extractDocuments = ()=>{
+        if (!messages) return [];
+        const docs = [];
+        messages.forEach((msg)=>{
+            if (msg.fileURL && msg.fileType) {
+                if (!msg.fileType.startsWith("image/") && !msg.fileType.startsWith("video/") && !msg.fileType.startsWith("audio/")) {
+                    docs.push({
+                        id: msg.id,
+                        url: msg.fileURL,
+                        fileName: msg.fileName,
+                        fileType: msg.fileType,
+                        fileSize: msg.fileSize,
+                        timestamp: msg.timestamp,
+                        user: msg.user
+                    });
+                }
+            }
+        });
+        return docs.reverse();
+    };
+    const links = extractLinks();
+    const media = extractMedia();
+    const documents = extractDocuments();
+    const formatFileSize = (bytes)=>{
+        if (!bytes) return "Unknown size";
+        const k = 1024;
+        const sizes = [
+            "Bytes",
+            "KB",
+            "MB",
+            "GB"
+        ];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return Math.round(bytes / Math.pow(k, i) * 100) / 100 + " " + sizes[i];
+    };
+    const downloadFile = async (url, fileName)=>{
+        try {
+            const response = await fetch(url);
+            const blob = await response.blob();
+            const blobUrl = window.URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = blobUrl;
+            link.download = fileName || "download";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setTimeout(()=>window.URL.revokeObjectURL(blobUrl), 100);
+        } catch (error) {
+            console.error("Download failed:", error);
+            window.open(url, "_blank");
+        }
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(StyledDialog, {
         open: open,
         onClose: onClose,
         maxWidth: "sm",
         fullWidth: true,
-        PaperProps: {
-            style: {
-                backgroundColor: darkMode ? '#2a2a2a' : 'white',
-                color: darkMode ? '#e0e0e0' : 'black'
-            }
-        },
+        darkMode: darkMode,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogTitle$2f$DialogTitle$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__DialogTitle$3e$__["DialogTitle"], {
-                style: {
-                    color: darkMode ? '#e0e0e0' : 'black'
-                },
-                children: [
-                    "User Profile",
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconButton$3e$__["IconButton"], {
-                        onClick: onClose,
-                        style: {
-                            position: 'absolute',
-                            right: 8,
-                            top: 8,
-                            color: darkMode ? '#e0e0e0' : 'inherit'
-                        },
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Close$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
-                            fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-                            lineNumber: 34,
-                            columnNumber: 11
-                        }, ("TURBOPACK compile-time value", void 0))
-                    }, void 0, false, {
-                        fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-                        lineNumber: 30,
-                        columnNumber: 9
-                    }, ("TURBOPACK compile-time value", void 0))
-                ]
-            }, void 0, true, {
-                fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-                lineNumber: 28,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogContent$2f$DialogContent$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__DialogContent$3e$__["DialogContent"], {
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$ChatScreen$2e$styles$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["ProfileContainer"], {
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(HeaderContainer, {
                     children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Avatar$2f$Avatar$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Avatar$3e$__["Avatar"], {
-                            src: recipient?.photoURL,
-                            style: {
-                                width: 100,
-                                height: 100,
-                                margin: '0 auto 20px'
-                            },
-                            children: recipientEmail?.[0]?.toUpperCase()
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                            children: "Chat Info"
                         }, void 0, false, {
-                            fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-                            lineNumber: 39,
+                            fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                            lineNumber: 189,
                             columnNumber: 11
-                        }, ("TURBOPACK compile-time value", void 0)),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$ChatScreen$2e$styles$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["ProfileInfo"], {
-                            darkMode: darkMode,
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h2", {
-                                    children: recipientEmail
-                                }, void 0, false, {
-                                    fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-                                    lineNumber: 46,
-                                    columnNumber: 13
-                                }, ("TURBOPACK compile-time value", void 0)),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("strong", {
-                                            children: "Last Seen:"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-                                            lineNumber: 48,
-                                            columnNumber: 15
-                                        }, ("TURBOPACK compile-time value", void 0)),
-                                        " ",
-                                        recipient?.lastSeen?.toDate ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$timeago$2d$react__$5b$external$5d$__$28$timeago$2d$react$2c$__cjs$29$__["default"], {
-                                            datetime: recipient.lastSeen.toDate()
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-                                            lineNumber: 50,
-                                            columnNumber: 17
-                                        }, ("TURBOPACK compile-time value", void 0)) : "Not available"
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-                                    lineNumber: 47,
-                                    columnNumber: 13
-                                }, ("TURBOPACK compile-time value", void 0)),
-                                recipient?.displayName && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("strong", {
-                                            children: "Name:"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-                                            lineNumber: 56,
-                                            columnNumber: 18
-                                        }, ("TURBOPACK compile-time value", void 0)),
-                                        " ",
-                                        recipient.displayName
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-                                    lineNumber: 56,
-                                    columnNumber: 15
-                                }, ("TURBOPACK compile-time value", void 0))
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-                            lineNumber: 45,
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconButton$3e$__["IconButton"], {
+                            onClick: onClose,
+                            size: "small",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Close$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                style: {
+                                    color: darkMode ? "#e0e0e0" : "#000"
+                                }
+                            }, void 0, false, {
+                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                lineNumber: 191,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                            lineNumber: 190,
                             columnNumber: 11
-                        }, ("TURBOPACK compile-time value", void 0))
+                        }, this)
                     ]
                 }, void 0, true, {
-                    fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-                    lineNumber: 38,
+                    fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                    lineNumber: 188,
                     columnNumber: 9
-                }, ("TURBOPACK compile-time value", void 0))
+                }, this)
             }, void 0, false, {
-                fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-                lineNumber: 37,
+                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                lineNumber: 187,
                 columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogActions$2f$DialogActions$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__DialogActions$3e$__["DialogActions"], {
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Button$2f$Button$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Button$3e$__["Button"], {
-                    onClick: onClose,
-                    style: {
-                        color: darkMode ? '#e0e0e0' : 'inherit'
-                    },
-                    children: "Close"
-                }, void 0, false, {
-                    fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-                    lineNumber: 62,
-                    columnNumber: 9
-                }, ("TURBOPACK compile-time value", void 0))
-            }, void 0, false, {
-                fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-                lineNumber: 61,
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$DialogContent$2f$DialogContent$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__DialogContent$3e$__["DialogContent"], {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(ProfileSection, {
+                        darkMode: darkMode,
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(LargeAvatar, {
+                                src: recipient?.photoURL,
+                                children: recipientEmail?.[0]?.toUpperCase()
+                            }, void 0, false, {
+                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                lineNumber: 199,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(NameSection, {
+                                children: [
+                                    isEditingName ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(NameEditContainer, {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$TextField$2f$TextField$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TextField$3e$__["TextField"], {
+                                                fullWidth: true,
+                                                value: displayName,
+                                                onChange: (e)=>setDisplayName(e.target.value),
+                                                variant: "outlined",
+                                                size: "small",
+                                                autoFocus: true,
+                                                disabled: isSelfChat,
+                                                InputProps: {
+                                                    style: {
+                                                        color: darkMode ? "#e0e0e0" : "#000",
+                                                        backgroundColor: darkMode ? "#2a2a2a" : "#fff"
+                                                    }
+                                                }
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                lineNumber: 207,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconButton$3e$__["IconButton"], {
+                                                onClick: handleSaveDisplayName,
+                                                size: "small",
+                                                color: "primary",
+                                                disabled: !displayName.trim(),
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Check$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                                                    fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                    lineNumber: 228,
+                                                    columnNumber: 19
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                lineNumber: 222,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                        lineNumber: 206,
+                                        columnNumber: 15
+                                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(NameDisplay, {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h2", {
+                                                children: displayName || recipientEmail
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                lineNumber: 233,
+                                                columnNumber: 17
+                                            }, this),
+                                            !isSelfChat && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconButton$3e$__["IconButton"], {
+                                                onClick: ()=>setIsEditingName(true),
+                                                size: "small",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Edit$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                    fontSize: "small",
+                                                    style: {
+                                                        color: darkMode ? "#888" : "#666"
+                                                    }
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                    lineNumber: 236,
+                                                    columnNumber: 21
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                lineNumber: 235,
+                                                columnNumber: 19
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                        lineNumber: 232,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(EmailText, {
+                                        darkMode: darkMode,
+                                        children: recipientEmail
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                        lineNumber: 241,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                lineNumber: 204,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                        lineNumber: 198,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(StyledTabs, {
+                        value: tabValue,
+                        onChange: handleTabChange,
+                        darkMode: darkMode,
+                        variant: "fullWidth",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(StyledTab, {
+                                icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                                    fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                    lineNumber: 253,
+                                    columnNumber: 19
+                                }, void 0),
+                                label: `Links (${links.length})`,
+                                darkMode: darkMode
+                            }, void 0, false, {
+                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                lineNumber: 252,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(StyledTab, {
+                                icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Image$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                                    fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                    lineNumber: 258,
+                                    columnNumber: 19
+                                }, void 0),
+                                label: `Media (${media.length})`,
+                                darkMode: darkMode
+                            }, void 0, false, {
+                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                lineNumber: 257,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(StyledTab, {
+                                icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Description$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                                    fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                    lineNumber: 263,
+                                    columnNumber: 19
+                                }, void 0),
+                                label: `Docs (${documents.length})`,
+                                darkMode: darkMode
+                            }, void 0, false, {
+                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                lineNumber: 262,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                        lineNumber: 246,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(TabPanel, {
+                        value: tabValue,
+                        index: 0,
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(TabContent, {
+                            darkMode: darkMode,
+                            children: links.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(EmptyState, {
+                                darkMode: darkMode,
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        style: {
+                                            fontSize: 48,
+                                            opacity: 0.3
+                                        }
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                        lineNumber: 274,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
+                                        children: "No links shared yet"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                        lineNumber: 275,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                lineNumber: 273,
+                                columnNumber: 15
+                            }, this) : links.map((link, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(LinkItem, {
+                                    darkMode: darkMode,
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                            style: {
+                                                color: darkMode ? "#64b5f6" : "#1976d2",
+                                                fontSize: 20
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                            lineNumber: 280,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(LinkContent, {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(LinkUrl, {
+                                                    href: link.url,
+                                                    target: "_blank",
+                                                    rel: "noopener noreferrer",
+                                                    darkMode: darkMode,
+                                                    children: [
+                                                        link.url,
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$OpenInNew$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                            style: {
+                                                                fontSize: 14,
+                                                                marginLeft: 4
+                                                            }
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                            lineNumber: 289,
+                                                            columnNumber: 23
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                    lineNumber: 282,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(LinkMeta, {
+                                                    darkMode: darkMode,
+                                                    children: [
+                                                        link.user,
+                                                        " • ",
+                                                        (0, __TURBOPACK__imported__module__$5b$externals$5d2f$moment__$5b$external$5d$__$28$moment$2c$__cjs$29$__["default"])(link.timestamp).format("MMM D, YYYY")
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                    lineNumber: 291,
+                                                    columnNumber: 21
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                            lineNumber: 281,
+                                            columnNumber: 19
+                                        }, this)
+                                    ]
+                                }, `${link.id}-${index}`, true, {
+                                    fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                    lineNumber: 279,
+                                    columnNumber: 17
+                                }, this))
+                        }, void 0, false, {
+                            fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                            lineNumber: 271,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                        lineNumber: 270,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(TabPanel, {
+                        value: tabValue,
+                        index: 1,
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(TabContent, {
+                            darkMode: darkMode,
+                            children: media.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(EmptyState, {
+                                darkMode: darkMode,
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Image$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        style: {
+                                            fontSize: 48,
+                                            opacity: 0.3
+                                        }
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                        lineNumber: 306,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
+                                        children: "No media shared yet"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                        lineNumber: 307,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                lineNumber: 305,
+                                columnNumber: 15
+                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(MediaGrid, {
+                                children: media.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(MediaItem, {
+                                        darkMode: darkMode,
+                                        children: [
+                                            item.fileType.startsWith("image/") ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(MediaImage, {
+                                                src: item.url,
+                                                alt: item.fileName,
+                                                onClick: ()=>window.open(item.url, "_blank")
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                lineNumber: 314,
+                                                columnNumber: 23
+                                            }, this) : item.fileType.startsWith("video/") ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(MediaVideo, {
+                                                controls: true,
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("source", {
+                                                    src: item.url,
+                                                    type: item.fileType
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                    lineNumber: 321,
+                                                    columnNumber: 25
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                lineNumber: 320,
+                                                columnNumber: 23
+                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(AudioContainer, {
+                                                darkMode: darkMode,
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("audio", {
+                                                    controls: true,
+                                                    style: {
+                                                        width: "100%"
+                                                    },
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("source", {
+                                                        src: item.url,
+                                                        type: item.fileType
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                        lineNumber: 326,
+                                                        columnNumber: 27
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                    lineNumber: 325,
+                                                    columnNumber: 25
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                lineNumber: 324,
+                                                columnNumber: 23
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(MediaInfo, {
+                                                darkMode: darkMode,
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(MediaName, {
+                                                        children: item.fileName
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                        lineNumber: 331,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(MediaMeta, {
+                                                        darkMode: darkMode,
+                                                        children: [
+                                                            formatFileSize(item.fileSize),
+                                                            " •",
+                                                            " ",
+                                                            (0, __TURBOPACK__imported__module__$5b$externals$5d2f$moment__$5b$external$5d$__$28$moment$2c$__cjs$29$__["default"])(item.timestamp).format("MMM D")
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                        lineNumber: 332,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                lineNumber: 330,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(DownloadIconButton, {
+                                                onClick: ()=>downloadFile(item.url, item.fileName),
+                                                size: "small",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Download$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                    fontSize: "small"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                    lineNumber: 341,
+                                                    columnNumber: 23
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                lineNumber: 337,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, item.id, true, {
+                                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                        lineNumber: 312,
+                                        columnNumber: 19
+                                    }, this))
+                            }, void 0, false, {
+                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                lineNumber: 310,
+                                columnNumber: 15
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                            lineNumber: 303,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                        lineNumber: 302,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(TabPanel, {
+                        value: tabValue,
+                        index: 2,
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(TabContent, {
+                            darkMode: darkMode,
+                            children: documents.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(EmptyState, {
+                                darkMode: darkMode,
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Description$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        style: {
+                                            fontSize: 48,
+                                            opacity: 0.3
+                                        }
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                        lineNumber: 355,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
+                                        children: "No documents shared yet"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                        lineNumber: 356,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                lineNumber: 354,
+                                columnNumber: 15
+                            }, this) : documents.map((doc)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(DocumentItem, {
+                                    darkMode: darkMode,
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Description$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                            style: {
+                                                color: darkMode ? "#64b5f6" : "#1976d2",
+                                                fontSize: 32
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                            lineNumber: 361,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(DocumentContent, {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(DocumentName, {
+                                                    darkMode: darkMode,
+                                                    children: doc.fileName
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                    lineNumber: 365,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(DocumentMeta, {
+                                                    darkMode: darkMode,
+                                                    children: [
+                                                        formatFileSize(doc.fileSize),
+                                                        " • ",
+                                                        doc.user,
+                                                        " •",
+                                                        " ",
+                                                        (0, __TURBOPACK__imported__module__$5b$externals$5d2f$moment__$5b$external$5d$__$28$moment$2c$__cjs$29$__["default"])(doc.timestamp).format("MMM D, YYYY")
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                    lineNumber: 366,
+                                                    columnNumber: 21
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                            lineNumber: 364,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(DownloadIconButton, {
+                                            onClick: ()=>downloadFile(doc.url, doc.fileName),
+                                            size: "small",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$icons$2d$material$2f$Download$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                fontSize: "small"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                                lineNumber: 375,
+                                                columnNumber: 21
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                            lineNumber: 371,
+                                            columnNumber: 19
+                                        }, this)
+                                    ]
+                                }, doc.id, true, {
+                                    fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                                    lineNumber: 360,
+                                    columnNumber: 17
+                                }, this))
+                        }, void 0, false, {
+                            fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                            lineNumber: 352,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                        lineNumber: 351,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+                lineNumber: 196,
                 columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0))
+            }, this)
         ]
     }, void 0, true, {
-        fileName: "[project]/components/ChatScreen/components/ProfileDialog.jsx",
-        lineNumber: 16,
+        fileName: "[project]/components/ChatScreen/components/ChatInfoDialog.jsx",
+        lineNumber: 186,
         columnNumber: 5
-    }, ("TURBOPACK compile-time value", void 0));
-};
-const __TURBOPACK__default__export__ = ProfileDialog;
+    }, this);
+}
+const __TURBOPACK__default__export__ = ChatInfoDialog;
+// Styled Components
+const StyledDialog = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Dialog$2f$Dialog$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Dialog$3e$__["Dialog"])`
+  .MuiDialog-paper {
+    background-color: ${(props)=>props.darkMode ? "#1e1e1e" : "#fff"};
+    color: ${(props)=>props.darkMode ? "#e0e0e0" : "#000"};
+    min-height: 600px;
+  }
+`;
+const HeaderContainer = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const ProfileSection = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid ${(props)=>props.darkMode ? "#333" : "#e0e0e0"};
+`;
+const LargeAvatar = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Avatar$2f$Avatar$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Avatar$3e$__["Avatar"])`
+  && {
+    width: 100px;
+    height: 100px;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+`;
+const NameSection = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+`;
+const NameEditContainer = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 400px;
+`;
+const NameDisplay = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+  }
+`;
+const EmailText = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].p`
+  margin: 0;
+  color: ${(props)=>props.darkMode ? "#888" : "#666"};
+  font-size: 14px;
+`;
+const StyledTabs = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Tabs$2f$Tabs$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Tabs$3e$__["Tabs"])`
+  && {
+    margin-top: 16px;
+    border-bottom: 1px solid ${(props)=>props.darkMode ? "#333" : "#e0e0e0"};
+
+    .MuiTabs-indicator {
+      background-color: ${(props)=>props.darkMode ? "#25D366" : "#128C7E"};
+    }
+  }
+`;
+const StyledTab = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$Tab$2f$Tab$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Tab$3e$__["Tab"])`
+  && {
+    color: ${(props)=>props.darkMode ? "#888" : "#666"};
+    text-transform: none;
+    font-size: 13px;
+
+    &.Mui-selected {
+      color: ${(props)=>props.darkMode ? "#25D366" : "#128C7E"};
+    }
+  }
+`;
+const TabContent = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  max-height: 400px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${(props)=>props.darkMode ? "#2a2a2a" : "#f1f1f1"};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${(props)=>props.darkMode ? "#555" : "#888"};
+    border-radius: 4px;
+  }
+`;
+const EmptyState = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: ${(props)=>props.darkMode ? "#666" : "#999"};
+
+  p {
+    margin-top: 16px;
+    font-size: 16px;
+  }
+`;
+const LinkItem = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background-color: ${(props)=>props.darkMode ? "#2a2a2a" : "#f5f5f5"};
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: ${(props)=>props.darkMode ? "#333" : "#e8e8e8"};
+  }
+`;
+const LinkContent = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  flex: 1;
+  min-width: 0;
+`;
+const LinkUrl = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].a`
+  display: flex;
+  align-items: center;
+  color: ${(props)=>props.darkMode ? "#64b5f6" : "#1976d2"};
+  text-decoration: none;
+  font-size: 14px;
+  word-break: break-all;
+  margin-bottom: 4px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+const LinkMeta = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  font-size: 12px;
+  color: ${(props)=>props.darkMode ? "#888" : "#666"};
+`;
+const MediaGrid = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+`;
+const MediaItem = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: ${(props)=>props.darkMode ? "#2a2a2a" : "#f5f5f5"};
+
+  &:hover {
+    .download-btn {
+      opacity: 1;
+    }
+  }
+`;
+const MediaImage = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].img`
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+const MediaVideo = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].video`
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+`;
+const AudioContainer = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  padding: 12px;
+  background-color: ${(props)=>props.darkMode ? "#2a2a2a" : "#f0f0f0"};
+`;
+const MediaInfo = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  padding: 8px;
+`;
+const MediaName = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+const MediaMeta = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  font-size: 11px;
+  color: ${(props)=>props.darkMode ? "#888" : "#666"};
+  margin-top: 4px;
+`;
+const DocumentItem = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background-color: ${(props)=>props.darkMode ? "#2a2a2a" : "#f5f5f5"};
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: ${(props)=>props.darkMode ? "#333" : "#e8e8e8"};
+  }
+`;
+const DocumentContent = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  flex: 1;
+  min-width: 0;
+`;
+const DocumentName = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  font-size: 14px;
+  font-weight: 500;
+  color: ${(props)=>props.darkMode ? "#e0e0e0" : "#000"};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+`;
+const DocumentMeta = __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"].div`
+  font-size: 12px;
+  color: ${(props)=>props.darkMode ? "#888" : "#666"};
+`;
+const DownloadIconButton = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$components__$5b$external$5d$__$28$styled$2d$components$2c$__cjs$29$__["default"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$IconButton$2f$IconButton$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconButton$3e$__["IconButton"])`
+  && {
+    opacity: 0.7;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+`;
 }),
 "[project]/components/ChatScreen/components/ReplyPreview.jsx [ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
@@ -5807,7 +6623,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$CameraDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/components/CameraDialog.jsx [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$LocationPreviewDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/components/LocationPreviewDialog.jsx [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$VoiceRecordingDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/components/VoiceRecordingDialog.jsx [ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ProfileDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/components/ProfileDialog.jsx [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ChatInfoDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/components/ChatInfoDialog.jsx [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ReplyPreview$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/components/ReplyPreview.jsx [ssr] (ecmascript)");
 // Styled Components
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$ChatScreen$2e$styles$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ChatScreen/ChatScreen.styles.js [ssr] (ecmascript)");
@@ -5924,6 +6740,25 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
     const handleAttachMenuClose = ()=>{
         setAttachMenuAnchor(null);
     };
+    // Handle display name update
+    const handleUpdateDisplayName = async (newDisplayName)=>{
+        if (!recipientEmail || isSelfChat) return;
+        try {
+            console.log(`📝 Updating display name for ${recipientEmail} to "${newDisplayName}"`);
+            // Store display name in a separate collection
+            const displayNameRef = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$firebase$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"], "displayNames", `${user.email}_${recipientEmail}`);
+            await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["setDoc"])(displayNameRef, {
+                email: recipientEmail,
+                displayName: newDisplayName,
+                updatedBy: user.email,
+                updatedAt: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2f$firestore__$5b$external$5d$__$28$firebase$2f$firestore$2c$__esm_import$29$__["serverTimestamp"])()
+            });
+            console.log("✅ Display name updated successfully");
+        } catch (error) {
+            console.error("❌ Error updating display name:", error);
+            setSendingError("Failed to update display name");
+        }
+    };
     // Handle emoji selection
     const handleEmojiClick = (emoji)=>{
         const cursorPosition = inputRef.current?.selectionStart || input.length;
@@ -6012,12 +6847,12 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 children: "You are currently offline. Please check your internet connection."
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 235,
+                lineNumber: 258,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/components/ChatScreen/index.jsx",
-            lineNumber: 234,
+            lineNumber: 257,
             columnNumber: 7
         }, this);
     }
@@ -6029,12 +6864,12 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 children: error
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 245,
+                lineNumber: 268,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/components/ChatScreen/index.jsx",
-            lineNumber: 244,
+            lineNumber: 267,
             columnNumber: 7
         }, this);
     }
@@ -6052,7 +6887,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 onToggleSidebar: onToggleSidebar
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 252,
+                lineNumber: 275,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -6063,7 +6898,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 accept: "*/*"
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 263,
+                lineNumber: 286,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$MessageList$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -6076,7 +6911,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 271,
+                lineNumber: 294,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$AttachMenu$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -6089,7 +6924,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 281,
+                lineNumber: 304,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$EmojiPicker$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -6105,7 +6940,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 291,
+                lineNumber: 314,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$FileUploadDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -6121,7 +6956,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 304,
+                lineNumber: 327,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$CameraDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -6140,7 +6975,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 325,
+                lineNumber: 348,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$LocationPreviewDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -6154,7 +6989,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 349,
+                lineNumber: 372,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$VoiceRecordingDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -6169,19 +7004,25 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 368,
+                lineNumber: 391,
                 columnNumber: 7
             }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ProfileDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ChatInfoDialog$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                 open: showProfile,
                 onClose: ()=>setShowProfile(false),
                 recipient: recipient,
                 recipientEmail: recipientEmail,
                 isSelfChat: isSelfChat,
+                messages: messagesSnapshot?.docs.map((doc)=>({
+                        id: doc.id,
+                        ...doc.data(),
+                        timestamp: doc.data().timestamp?.toDate?.() || doc.data().timestamp
+                    })) || [],
+                onUpdateDisplayName: handleUpdateDisplayName,
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 386,
+                lineNumber: 409,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ReplyPreview$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -6191,7 +7032,7 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 395,
+                lineNumber: 424,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ChatScreen$2f$components$2f$ChatInput$2e$jsx__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -6208,13 +7049,13 @@ function ChatScreen({ chat, messages, isMobile = false, onToggleSidebar = ()=>{}
                 darkMode: darkMode
             }, void 0, false, {
                 fileName: "[project]/components/ChatScreen/index.jsx",
-                lineNumber: 402,
+                lineNumber: 431,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/ChatScreen/index.jsx",
-        lineNumber: 251,
+        lineNumber: 274,
         columnNumber: 5
     }, this);
 }
@@ -6227,4 +7068,4 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/components/ChatScreen
 }),
 ];
 
-//# sourceMappingURL=%5Broot-of-the-server%5D__d3203d9b._.js.map
+//# sourceMappingURL=%5Broot-of-the-server%5D__20216eb5._.js.map

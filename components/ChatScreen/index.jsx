@@ -35,7 +35,7 @@ import FileUploadDialog from "./components/FileUploadDialog";
 import CameraDialog from "./components/CameraDialog";
 import LocationPreviewDialog from "./components/LocationPreviewDialog";
 import VoiceRecordingDialog from "./components/VoiceRecordingDialog";
-import ProfileDialog from "./components/ProfileDialog";
+import ChatInfoDialog from "./components/ChatInfoDialog";
 import ReplyPreview from "./components/ReplyPreview";
 
 // Styled Components
@@ -129,6 +129,29 @@ function ChatScreen({
 
   const handleAttachMenuClose = () => {
     setAttachMenuAnchor(null);
+  };
+
+  // Handle display name update
+  const handleUpdateDisplayName = async (newDisplayName) => {
+    if (!recipientEmail || isSelfChat) return;
+
+    try {
+      console.log(`📝 Updating display name for ${recipientEmail} to "${newDisplayName}"`);
+      
+      // Store display name in a separate collection
+      const displayNameRef = doc(db, "displayNames", `${user.email}_${recipientEmail}`);
+      await setDoc(displayNameRef, {
+        email: recipientEmail,
+        displayName: newDisplayName,
+        updatedBy: user.email,
+        updatedAt: serverTimestamp(),
+      });
+
+      console.log("✅ Display name updated successfully");
+    } catch (error) {
+      console.error("❌ Error updating display name:", error);
+      setSendingError("Failed to update display name");
+    }
   };
 
   // Handle emoji selection
@@ -383,12 +406,18 @@ function ChatScreen({
         darkMode={darkMode}
       />
 
-      <ProfileDialog
+      <ChatInfoDialog
         open={showProfile}
         onClose={() => setShowProfile(false)}
         recipient={recipient}
         recipientEmail={recipientEmail}
         isSelfChat={isSelfChat}
+        messages={messagesSnapshot?.docs.map(doc => ({ 
+          id: doc.id, 
+          ...doc.data(),
+          timestamp: doc.data().timestamp?.toDate?.() || doc.data().timestamp
+        })) || []}
+        onUpdateDisplayName={handleUpdateDisplayName}
         darkMode={darkMode}
       />
 

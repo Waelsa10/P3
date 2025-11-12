@@ -44,7 +44,7 @@ function ChatHeader({
       <HeaderLeft>
         {isMobile && (
           <IconButton onClick={onToggleSidebar} style={{ marginRight: '10px' }}>
-            <MenuIcon />
+            <MenuIcon style={{ color: darkMode ? 'gray' : 'inherit' }}/>
           </IconButton>
         )}
         {recipient ? (
@@ -59,7 +59,7 @@ function ChatHeader({
       </HeaderLeft>
       <HeaderActions>
         <IconButton onClick={onMoreClick}>
-          <MoreVertIcon />
+          <MoreVertIcon style={{ color: darkMode ? 'gray' : 'inherit' }} />
         </IconButton>
       </HeaderActions>
     </Header>

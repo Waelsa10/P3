@@ -56,7 +56,7 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/turbopack-pages__error_a5919942._.js"
     ],
     "/chat/[id]": [
-      "static/chunks/components_6e44d439._.js",
+      "static/chunks/components_c746307e._.js",
       "static/chunks/node_modules_next_dist_compiled_c629999b._.js",
       "static/chunks/node_modules_next_dist_shared_lib_9f660528._.js",
       "static/chunks/node_modules_next_dist_client_d0aa886c._.js",
@@ -71,7 +71,7 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/node_modules_33807d33._.js",
       "static/chunks/[root-of-the-server]__664cf601._.js",
       "static/chunks/pages_chat_[id]_2da965e7.js",
-      "static/chunks/turbopack-pages_chat_[id]_6316d1ec.js"
+      "static/chunks/turbopack-pages_chat_[id]_6314054e.js"
     ]
   },
   "devFiles": [],

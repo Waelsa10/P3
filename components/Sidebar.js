@@ -352,14 +352,14 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
           <UserAvatar onClick={() => auth.signOut()} src={user.photoURL} />
           <IconsContainer>
             <IconButton>
-              <ChatIcon />
+              <ChatIcon style={{ color: darkMode ? 'gray' : 'inherit' }}/>
             </IconButton>
             <IconButton onClick={handleHeaderMenuOpen}>
-              <MoreVertIcon />
+              <MoreVertIcon style={{ color: darkMode ? 'gray' : 'inherit' }}/>
             </IconButton>
             {isMobile && (
               <IconButton onClick={() => setSidebarOpen(false)}>
-                <CloseIcon />
+                <CloseIcon style={{ color: darkMode ? 'gray' : 'inherit' }}/>
               </IconButton>
             )}
           </IconsContainer>

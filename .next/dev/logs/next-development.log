@@ -1967,3 +1967,504 @@ https://nextjs.org/docs/messages/module-not-found
 [00:26:10.519] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
 [00:26:32.008] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
 [00:26:51.998] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:27:09.506] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:27:10.668] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:27:32.054] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:27:52.000] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:28:11.995] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:29:11.993] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:30:12.000] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:31:12.003] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:32:12.002] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:33:11.993] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:33:44.995] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:33:51.994] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:34:12.068] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:34:32.032] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:35:11.992] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:36:11.990] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:37:12.003] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:37:18.259] Server  LOG      ✓ Compiled in 21ms
+[00:37:20.850] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:37:23.200] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-faUjhM HThkz img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:37:26.714] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:37:27.177] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:37:27.177] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:37:27.177] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:37:27.177] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at form
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatInput (http://localhost:3000/_next/static/chunks/_923d028b._.js:3923:22)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_923d028b._.js:6075:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:37:27.177] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:37:28.495] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_923d028b._.js:2170:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_923d028b._.js:3830:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_923d028b._.js:6075:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:37:44.203] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:37:54.783] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:37:55.697] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:38:00.265] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:38:04.244] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:38:24.993] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:38:34.090] Server  LOG      ✓ Compiled in 30ms
+[00:38:44.990] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:38:50.592] Server  LOG      ✓ Compiled in 25ms
+[00:38:53.625] Server  LOG      ✓ Compiled in 24ms
+[00:38:57.770] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-gtJxfw gFTcSS img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:39:01.210] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:39:02.185] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:39:02.185] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:39:02.185] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:39:02.185] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at form
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatInput (http://localhost:3000/_next/static/chunks/_923d028b._.js:3923:22)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_923d028b._.js:6075:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:39:02.185] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:39:02.185] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_923d028b._.js:2170:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_923d028b._.js:3830:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_923d028b._.js:6075:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:39:18.776] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:39:30.034] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:39:38.793] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:39:59.999] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:40:05.252] Server  LOG      ✓ Compiled in 28ms
+[00:40:05.995] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s MoreVertIconfontSize moreverticonfontsize 
+    at svg
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at SvgIcon (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:1204:216)
+    at MoreVertIcon
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_923d028b._.js?id=%255Bproject%255D%252Fcomponents%252FMessage.js+%255Bclient%255D+%2528ecmascript%2529:54:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_923d028b._.js:3830:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_923d028b._.js:6075:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:40:06.831] Server  LOG      ✓ Compiled in 23ms
+[00:40:09.566] Server  LOG      ✓ Compiled in 28ms
+[00:40:19.997] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:40:39.991] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:40:40.344] Server  LOG      ✓ Compiled in 24ms
+[00:40:44.245] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:41:00.000] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:41:04.015] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:41:15.076] Browser LOG     🗑️ [Chat: B0AlFrbLaYojvLeRjys5] Deleting message 2DKuNubCWHZmOetH39Nd
+[00:41:15.559] Browser LOG     ✅ [Chat: B0AlFrbLaYojvLeRjys5] Message deleted successfully
+[00:41:18.742] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:41:22.385] Browser LOG     🗑️ [Chat: B0AlFrbLaYojvLeRjys5] Deleting message R5kpN0S0bWNck32S0czs
+[00:41:22.850] Browser LOG     ✅ [Chat: B0AlFrbLaYojvLeRjys5] Message deleted successfully
+[00:41:38.253] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:41:38.753] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:42:00.004] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:42:20.006] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:42:39.995] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:43:11.994] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:44:12.004] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:45:11.991] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:46:11.989] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:47:11.992] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:47:52.800] Server  LOG      ✓ Compiled in 186ms
+[00:47:53.409] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:47:53.409] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:47:53.409] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:47:53.409] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:47:53.594] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:47:54.046] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:47:54.153] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:47:54.153] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:47:54.153] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:47:55.197] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-djTQaJ OPyRW img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:47:58.272] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:47:58.272] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:47:58.272] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:47:58.272] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at form
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatInput (http://localhost:3000/_next/static/chunks/_e3b58e83._.js:3930:22)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_e3b58e83._.js:6963:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:47:58.272] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:47:58.625] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:47:59.518] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_e3b58e83._.js:2174:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_e3b58e83._.js:3837:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_e3b58e83._.js:6963:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:48:16.989] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:48:22.889] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:48:25.105] Browser LOG     📤 [Chat: B0AlFrbLaYojvLeRjys5] Preparing to send message to waelsa909@gmail.com
+[00:48:36.187] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:48:40.293] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:48:41.286] Browser LOG     🔄 Starting Cloudinary upload...
+[00:48:41.286] Browser LOG     📦 File size: 1253913 bytes
+[00:48:41.286] Browser LOG     📦 File type: image/png
+[00:48:41.286] Browser LOG     ☁️ Cloud name: dlmdxpf0j
+[00:48:41.286] Browser LOG     🔑 Upload preset: chat_uploads
+[00:48:41.286] Browser LOG     🚀 Sending request to: https://api.cloudinary.com/v1_1/dlmdxpf0j/auto/upload
+[00:48:41.916] Browser LOG     📤 Upload progress: 8%
+[00:48:42.120] Browser LOG     📤 Upload progress: 9%
+[00:48:42.230] Browser LOG     📤 Upload progress: 16%
+[00:48:42.432] Browser LOG     📤 Upload progress: 33%
+[00:48:42.537] Browser LOG     📤 Upload progress: 34%
+[00:48:42.648] Browser LOG     📤 Upload progress: 40%
+[00:48:42.745] Browser LOG     📤 Upload progress: 77%
+[00:48:42.849] Browser LOG     📤 Upload progress: 100%
+[00:48:43.707] Browser LOG     ✅ Upload successful!
+[00:48:43.707] Browser LOG     🔗 URL: https://res.cloudinary.com/dlmdxpf0j/image/upload/v1762930241/chat-app/sxlij83rhykuy0qcknsy.png
+[00:48:52.118] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-djTQaJ OPyRW img-fluid" "sc-gEvEer joyAiQ img-fluid" 
+    at img
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:48:55.446] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:48:56.855] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","waelsa909@gmail.com"]}
+[00:48:56.855] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":true,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com"]}
+[00:48:56.855] Browser LOG     💬 useRecipientData: Self-chat detected - recipient is yourself
+[00:48:56.855] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at form
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatInput (http://localhost:3000/_next/static/chunks/_e3b58e83._.js:3930:22)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_e3b58e83._.js:6963:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:48:56.855] Browser LOG     ⏭️ [Chat: B0AlFrbLaYojvLeRjys5] Skipping YOUR DELIVERED update - self-chat
+[00:48:58.128] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
+    at button
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
+    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_919490c9._.js:3597:216)
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/_e3b58e83._.js:2174:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/_e3b58e83._.js:3837:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/_e3b58e83._.js:6963:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__664cf601._.js:2163:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:656:29)
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__6005b393._.js:2455:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:49:13.002] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:49:33.000] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:49:35.222] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:49:35.845] Browser LOG     🔄 Starting Cloudinary upload...
+[00:49:35.845] Browser LOG     📦 File size: 177 bytes
+[00:49:35.845] Browser LOG     📦 File type: 
+[00:49:35.845] Browser LOG     ☁️ Cloud name: dlmdxpf0j
+[00:49:35.845] Browser LOG     🔑 Upload preset: chat_uploads
+[00:49:35.845] Browser LOG     🚀 Sending request to: https://api.cloudinary.com/v1_1/dlmdxpf0j/auto/upload
+[00:49:35.951] Browser LOG     📤 Upload progress: 100%
+[00:49:36.290] Browser LOG     ✅ Upload successful!
+[00:49:36.290] Browser LOG     🔗 URL: https://res.cloudinary.com/dlmdxpf0j/raw/upload/v1762930293/chat-app/acgoyu41ohuwahxljxfx.url
+[00:49:52.989] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:50:05.974] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:50:06.654] Browser LOG     🔄 Starting Cloudinary upload...
+[00:50:06.654] Browser LOG     📦 File size: 129942 bytes
+[00:50:06.654] Browser LOG     📦 File type: application/pdf
+[00:50:06.654] Browser LOG     ☁️ Cloud name: dlmdxpf0j
+[00:50:06.654] Browser LOG     🔑 Upload preset: chat_uploads
+[00:50:06.654] Browser LOG     🚀 Sending request to: https://api.cloudinary.com/v1_1/dlmdxpf0j/auto/upload
+[00:50:06.756] Browser LOG     📤 Upload progress: 100%
+[00:50:07.192] Browser LOG     ✅ Upload successful!
+[00:50:07.192] Browser LOG     🔗 URL: https://res.cloudinary.com/dlmdxpf0j/image/upload/v1762930324/chat-app/nnyrzj3wxch6ly4gvqip.pdf
+[00:50:12.982] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com
+[00:50:34.047] Browser LOG     ✅ Updated lastSeen for waelsa909@gmail.com

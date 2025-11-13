@@ -48,7 +48,7 @@ function Login() {
       </Head>
       <LoginContainer darkMode={darkMode}>
         <Logo
-          src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Gemini-2.5-flash-image-preview_%28nano-banana%29_a_make_it_with_white_b.png"
+          src="/swifttalk-logo.png"
           alt="swifttalk Logo"
         />
         <StyledButton 

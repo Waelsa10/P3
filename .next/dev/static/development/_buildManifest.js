@@ -1,6 +1,6 @@
 self.__BUILD_MANIFEST = {
-  "/chat/[id]": [
-    "static/chunks/pages/chat/[id].js"
+  "/": [
+    "static/chunks/pages/index.js"
   ],
   "__rewrites": {
     "afterFiles": [],

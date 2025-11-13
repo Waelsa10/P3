@@ -8,7 +8,7 @@ function Loading() {
       <div className="text-center">
         <LogoWrapper className="mb-4">
           <Logo
-            src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Gemini-2.5-flash-image-preview_%28nano-banana%29_a_make_it_with_white_b.png"
+            src="https://drive.google.com/uc?id=1Knv7N0CuMbMy_ejH9f_BB76iQL6nAR6E"
             alt="Logo"
           />
         </LogoWrapper>

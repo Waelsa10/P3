@@ -529,7 +529,7 @@ function Loading() {
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(LogoWrapper, {
                     className: "mb-4",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Logo, {
-                        src: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Gemini-2.5-flash-image-preview_%28nano-banana%29_a_make_it_with_white_b.png",
+                        src: "https://drive.google.com/uc?id=1Knv7N0CuMbMy_ejH9f_BB76iQL6nAR6E",
                         alt: "Logo"
                     }, void 0, false, {
                         fileName: "[project]/components/Loading.js",
@@ -786,7 +786,7 @@ function Login() {
                 darkMode: darkMode,
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Logo, {
-                        src: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Gemini-2.5-flash-image-preview_%28nano-banana%29_a_make_it_with_white_b.png",
+                        src: "/swifttalk-logo.png",
                         alt: "swifttalk Logo"
                     }, void 0, false, {
                         fileName: "[project]/pages/login.js",

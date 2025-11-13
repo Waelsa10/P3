@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
   // ✅ ALSO update email and photoURL periodically
   useEffect(() => {
     if (!user) return;
-
+    
     const userRef = doc(db, "users", user.uid);
 
     const updateUserData = async () => {
@@ -41,15 +41,25 @@ function MyApp({ Component, pageProps }) {
 
     // Update email/photo every 5 minutes (in case they change)
     const interval = setInterval(updateUserData, 300000);
-
+    
     return () => {
       clearInterval(interval);
     };
   }, [user]);
-
+  if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((registration) => {
+          console.log('Service Worker registered:', registration);
+        })
+        .catch((error) => {
+          console.log('Service Worker registration failed:', error);
+        });
+    }
+  
   if (loading) return <Loading />;
   if (!user) return <Login />;
-
+  
   return (
     <DarkModeProvider>
       <Component {...pageProps} />

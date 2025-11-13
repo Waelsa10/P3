@@ -1,5 +1,25 @@
-[00:00:00.970] Server  LOG      ✓ Ready in 607ms
-[00:00:04.167] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+[00:00:01.144] Server  LOG      ✓ Ready in 832ms
+[00:00:04.189] Server  LOG      ○ Compiling / ...
+[00:00:04.880] Server  ERROR    ⨯ ReferenceError: Head is not defined
+[00:00:05.032] Server  ERROR    ⨯ ReferenceError: Head is not defined
+[00:00:05.312] Browser ERROR   uncaughtError: ReferenceError: Head is not defined
+[00:00:57.308] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s className "sc-kpDqfm cvoYUI bg-primary" "sc-eqUAAy hlDEll bg-primary" 
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Loading
+    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1074:18)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
+    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:00:57.308] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
     at button
     at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
     at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
@@ -18,18 +38,66 @@
     at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
     at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
     at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:00:05.514] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
+[00:00:57.308] Browser LOG     Service Worker registration failed: {}
+[00:00:57.308] Browser LOG     Service Worker registration failed: {}
+[00:01:03.679] Browser LOG     Sign in successful: {"apiKey":"AIzaSyCK7AV4BHrj0o_sPhstug4ph59adWv1eb0","appName":"[DEFAULT]","createdAt":"1762769979790","displayName":"theperfectworld","email":"waelsa909@gmail.com","emailVerified":true,"isAnonymous":false,"lastLoginAt":"1763021957361","photoURL":"https://lh3.googleusercontent.com/a/ACg8ocKFKu7stOQZNTDndCpaCKwuuhGcMp0HVWLqJ2i36rAvSt4S7j2g=s96-c","providerData":[{"displayName":"theperfectworld","email":"waelsa909@gmail.com","phoneNumber":null,"photoURL":"https://lh3.googleusercontent.com/a/ACg8ocKFKu7stOQZNTDndCpaCKwuuhGcMp0HVWLqJ2i36rAvSt4S7j2g=s96-c","providerId":"google.com","uid":"109708386094318964579"}],"stsTokenManager":{"accessToken":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjM4MDI5MzRmZTBlZWM0NmE1ZWQwMDA2ZDE0YTFiYWIwMWUzNDUwODMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoidGhlcGVyZmVjdHdvcmxkIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0tGS3U3c3RPUVpOVERuZENwYUNLd3V1aEdjTXAwSFZXTHFKMmkzNnJBdlN0NFM3ajJnPXM5Ni1jIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2ZpbGUtdHJhbnNmZXItYXBwLTlmN2JkIiwiYXVkIjoiZmlsZS10cmFuc2Zlci1hcHAtOWY3YmQiLCJhdXRoX3RpbWUiOjE3NjMwMjE5NTcsInVzZXJfaWQiOiJLeXdJZXdobEhFWkhDSGVOMk53YTVDb01pYXoxIiwic3ViIjoiS3l3SWV3aGxIRVpIQ0hlTjJOd2E1Q29NaWF6MSIsImlhdCI6MTc2MzAyMTk1NywiZXhwIjoxNzYzMDI1NTU3LCJlbWFpbCI6IndhZWxzYTkwOUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjEwOTcwODM4NjA5NDMxODk2NDU3OSJdLCJlbWFpbCI6WyJ3YWVsc2E5MDlAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.ACijoW8AhYm-xUsnRmmU6b_W8Mjn66IsAnC6NW7boSoNslByTfHq-Gr97jBkD9wCbedPoSVvqIhxRTKt0sITt9XEd_JJd9rrAo04phd7d2T997ydyXFIvssJUvzNN4xOZLxK8BvVR47BCzdJs6OwVU41vkfHzOIL9c5Fk4PeRdKuYbhFCi6pk3zwNSt5PZjRR17T9l0MrOB-0ObDDPjOCDT1rQE_KVyPDc_ISoCNT7FCnNlm0FHS3ANGfN8rLN1NfIgap0cw6qe10nA_bQV1FSswQWbDmkl961VRzJG6R4b-kI8BOv6wWPhc1sAjF7NngEfrDcNEGrVD3V_AbQlKBg","expirationTime":1763025558175,"refreshToken":"AMf-vBw2rpffOboQGkSbGgyJI1iP51Pa8Q6TRGn514yvicCN6NzWEBBW8UZF8n8cY1wsksPHct9lQDgS_hn7aNJ6-RwtCbcyuf1BrYsqsrDeu0lLd6Y1Up4ba7QjEZkz2O1abmICUM-kwv4T6sUD4_Ry9yg2_XFGjn1fkpoRUZldWdOdQCgQrhZbz_FeRc1mEs47CcantDyHxH2W2jS0C7Rc-sVJUHuppHfA8DR3M_Cctl1TTAfM7aq9ea4tnX6wNyR2c2zzhINIjS5IcajlGzI5vLOKJdq5zK3DbeIBgFvH4Zp8BIscIjigKqiaKjsQl7JTPtdvFglpmWCLs-1wk9yEFVxHpwqsHvixMxjw811S2t1vITGW-X2RiDM-_yu6uFL1qNvGYiA2vKva_YrYq94l7u5Cn3CzW7d692crKV8ulRpqgHC9UCawm2bi87V-70BTcLy092hUTKLybHglg7RpkDUuX9JnWg"},"uid":"KywIewhlHEZHCHeN2Nwa5CoMiaz1"}
+[00:01:03.679] Browser LOG     Service Worker registration failed: {}
+[00:01:03.679] Browser LOG     Service Worker registration failed: {}
+[00:01:06.892] Browser LOG     🟢 [waelsa909@gmail.com] Status updated: ONLINE
+[00:01:26.210] Browser LOG     🔍 [Chat 4gVOsm9vtQGUfSaHQ4N1] Checking for messages to mark as read...
+[00:01:26.210] Browser LOG     Service Worker registration failed: {}
+[00:01:27.455] Browser LOG     📱 [Chat 4gVOsm9vtQGUfSaHQ4N1] Loaded: {"currentUser":"waelsa909@gmail.com","users":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:01:27.455] Browser LOG     📩 [Message 61FLwzlHDHiQMb3Z7o10]: {"from":"abduallh1424aa1@gmail.com","isMyMessage":false,"status":"read"}
+[00:01:27.455] Browser LOG     📩 [Message ZGOe79NSRRos5G5uJfLe]: {"from":"waelsa909@gmail.com","isMyMessage":true,"status":"read"}
+[00:01:27.455] Browser LOG       ⏭️ Skipping my own message
+[00:01:27.455] Browser LOG     📩 [Message natpK4SLu0M5bH8Cd3AG]: {"from":"waelsa909@gmail.com","isMyMessage":true,"status":"sent"}
+[00:01:27.455] Browser LOG       ⏭️ Skipping my own message
+[00:01:27.455] Browser LOG     📩 [Message rQ2dsdtew2qkn5ZDaiyN]: {"from":"waelsa909@gmail.com","isMyMessage":true,"status":"read"}
+[00:01:27.455] Browser LOG       ⏭️ Skipping my own message
+[00:01:27.455] Browser LOG     ℹ️ [Chat 4gVOsm9vtQGUfSaHQ4N1] No updates needed (skipped 3 own messages)
+[00:01:28.739] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:01:28.739] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":false,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:01:28.739] Browser LOG     ✅ useRecipientData: Found recipient {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
+[00:01:28.739] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":false,"hasLastSeen":false}
+[00:01:28.739] Browser LOG     👀 Watching display name for: users/KywIewhlHEZHCHeN2Nwa5CoMiaz1/contacts/abduallh1424aa1@gmail.com
+[00:01:28.739] Browser LOG     👁️ [Chat: 4gVOsm9vtQGUfSaHQ4N1] Listening for abduallh1424aa1@gmail.com to come online...
+[00:01:28.739] Browser LOG        Your messages from: waelsa909@gmail.com
+[00:01:28.739] Browser LOG     🔍 Current authenticated user: {"email":"waelsa909@gmail.com","uid":"KywIewhlHEZHCHeN2Nwa5CoMiaz1"}
+[00:01:28.739] Browser LOG     📛 Custom display name: null
+[00:01:28.739] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":false,"hasLastSeen":false}
+[00:01:29.064] Browser LOG     🟢 [waelsa909@gmail.com] Status updated: ONLINE
+[00:01:29.546] Browser LOG     🔴 [Chat: 4gVOsm9vtQGUfSaHQ4N1] Recipient offline (6915s ago)
+[00:01:29.546] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":false,"hasLastSeen":true,"isOnlineField":false}
+[00:01:29.992] Browser LOG     ℹ️ No custom display name set
+[00:01:29.992] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s isSender issender 
     at button
     at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
     at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
     at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at Button (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:2519:162)
+    at IconButton (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_950bb1ad._.js:4369:216)
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
     at div
     at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at Login (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:707:160)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at Message (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__068c236a._.js:7201:20)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at _c (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__068c236a._.js:9324:185)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatScreen (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__068c236a._.js:12960:23)
+    at LoadableComponent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_9f660528._.js:5489:9)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at div
+    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
+    at ChatPage (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__8c02284d._.js:2219:207)
+    at DarkModeProvider (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:632:29)
     at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1074:18)
     at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
     at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
@@ -37,136 +105,86 @@
     at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
     at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
     at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:00:05.779] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
-    at button
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at Button (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:2519:162)
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at Login (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:707:160)
-    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1074:18)
-    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
-    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
-    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
-    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
-    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
-    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:00:06.074] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
-    at button
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at Button (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:2519:162)
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at Login (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:707:160)
-    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1074:18)
-    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
-    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
-    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
-    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
-    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
-    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:00:06.345] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
-    at button
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at Button (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:2519:162)
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at Login (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:707:160)
-    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1074:18)
-    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
-    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
-    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
-    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
-    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
-    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:00:06.915] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
-    at button
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at Button (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:2519:162)
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at Login (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:707:160)
-    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1074:18)
-    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
-    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
-    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
-    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
-    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
-    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:00:07.392] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
-    at button
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at Button (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:2519:162)
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at Login (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:707:160)
-    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1074:18)
-    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
-    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
-    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
-    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
-    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
-    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:00:07.639] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
-    at button
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at Button (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:2519:162)
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at Login (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:707:160)
-    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1074:18)
-    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
-    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
-    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
-    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
-    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
-    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
-[00:00:07.971] Browser ERROR   Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s darkMode darkmode 
-    at button
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at ButtonBase (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:1745:216)
-    at http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:14509:162
-    at Button (http://localhost:3000/_next/static/chunks/node_modules_%40mui_material_6dc36002._.js:2519:162)
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at div
-    at P (http://localhost:3000/_next/static/chunks/node_modules_24c8904d._.js:10991:10)
-    at Login (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:707:160)
-    at MyApp (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__ba479e8b._.js:1074:18)
-    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js:5040:43)
-    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1136:9)
-    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/node_modules_next_dist_7fdbac9b._.js:1913:34)
-    at Container (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3041:1)
-    at AppContainer (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3140:25)
-    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_d0aa886c._.js:3348:17)
+[00:01:29.992] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":false,"hasLastSeen":true,"isOnlineField":false}
+[00:01:33.018] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":false,"hasLastSeen":true,"isOnlineField":false}
+[00:01:36.002] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":false,"hasLastSeen":true,"isOnlineField":false}
+[00:01:38.995] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":false,"hasLastSeen":true,"isOnlineField":false}
+[00:01:40.995] Browser LOG     🔴 [waelsa909@gmail.com] Tab hidden - setting offline
+[00:01:40.995] Browser LOG     🟢 [Chat: 4gVOsm9vtQGUfSaHQ4N1] RECIPIENT CAME ONLINE! (1s ago)
+[00:01:40.995] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[00:01:40.995] Browser LOG     🔍 [Chat: 4gVOsm9vtQGUfSaHQ4N1] Checking if YOUR messages should be marked DELIVERED
+[00:01:40.995] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:01:40.995] Browser LOG     🔴 [waelsa909@gmail.com] Status updated: OFFLINE
+[00:01:40.995] Browser LOG     🔍 [Chat: 4gVOsm9vtQGUfSaHQ4N1] Verifying participants: {"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[00:01:40.995] Browser LOG     ✅ [Chat: 4gVOsm9vtQGUfSaHQ4N1] Participants verified
+[00:01:40.995] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS ONLINE (isOnline: true)
+[00:01:41.987] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:01:42.982] Browser LOG     ✅ [Chat: 4gVOsm9vtQGUfSaHQ4N1] Marked 1 of YOUR messages as DELIVERED
+[00:01:42.982] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:01:43.987] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:01:44.991] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:01:47.983] Browser LOG     🟢 [Chat: 4gVOsm9vtQGUfSaHQ4N1] RECIPIENT CAME ONLINE! (1s ago)
+[00:01:47.984] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[00:01:47.984] Browser LOG     🔍 [Chat: 4gVOsm9vtQGUfSaHQ4N1] Checking if YOUR messages should be marked DELIVERED
+[00:01:47.984] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:01:48.982] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:01:48.982] Browser LOG     🔍 [Chat: 4gVOsm9vtQGUfSaHQ4N1] Verifying participants: {"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[00:01:48.982] Browser LOG     ✅ [Chat: 4gVOsm9vtQGUfSaHQ4N1] Participants verified
+[00:01:48.982] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS ONLINE (isOnline: true)
+[00:01:50.983] Browser LOG     ✓ [Chat: 4gVOsm9vtQGUfSaHQ4N1] No SENT messages from you
+[00:01:52.990] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:01:55.983] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:01:58.981] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:02.980] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:02.980] Browser LOG     🟢 [Chat: 4gVOsm9vtQGUfSaHQ4N1] RECIPIENT CAME ONLINE! (1s ago)
+[00:02:02.980] Browser LOG        Updating YOUR messages from waelsa909@gmail.com to DELIVERED
+[00:02:02.980] Browser LOG     🔍 [Chat: 4gVOsm9vtQGUfSaHQ4N1] Checking if YOUR messages should be marked DELIVERED
+[00:02:02.980] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:02.980] Browser LOG     🔍 [Chat: 4gVOsm9vtQGUfSaHQ4N1] Verifying participants: {"chatUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"checkingUser1":"waelsa909@gmail.com","checkingUser2":"abduallh1424aa1@gmail.com"}
+[00:02:02.980] Browser LOG     ✅ [Chat: 4gVOsm9vtQGUfSaHQ4N1] Participants verified
+[00:02:02.980] Browser LOG     🟢 Recipient abduallh1424aa1@gmail.com IS ONLINE (isOnline: true)
+[00:02:03.259] Browser LOG     ✓ [Chat: 4gVOsm9vtQGUfSaHQ4N1] No SENT messages from you
+[00:02:03.259] Browser LOG     🟢 [waelsa909@gmail.com] Tab visible - setting online
+[00:02:03.259] Browser LOG     🔄 [Chat 4gVOsm9vtQGUfSaHQ4N1] Window focused - checking for new messages
+[00:02:03.259] Browser LOG     🔍 [Chat 4gVOsm9vtQGUfSaHQ4N1] Checking for messages to mark as read...
+[00:02:03.705] Browser LOG     🟢 [waelsa909@gmail.com] Status updated: ONLINE
+[00:02:04.079] Browser LOG     📩 [Message 61FLwzlHDHiQMb3Z7o10]: {"from":"abduallh1424aa1@gmail.com","isMyMessage":false,"status":"read"}
+[00:02:04.079] Browser LOG     📩 [Message VuSMsq4VjTWTrGFteZZE]: {"from":"abduallh1424aa1@gmail.com","isMyMessage":false,"status":"sent"}
+[00:02:04.079] Browser LOG       ✅ Will mark as DELIVERED
+[00:02:04.079] Browser LOG     📩 [Message ZGOe79NSRRos5G5uJfLe]: {"from":"waelsa909@gmail.com","isMyMessage":true,"status":"read"}
+[00:02:04.079] Browser LOG       ⏭️ Skipping my own message
+[00:02:04.079] Browser LOG     📩 [Message natpK4SLu0M5bH8Cd3AG]: {"from":"waelsa909@gmail.com","isMyMessage":true,"status":"delivered"}
+[00:02:04.079] Browser LOG       ⏭️ Skipping my own message
+[00:02:04.079] Browser LOG     📩 [Message rQ2dsdtew2qkn5ZDaiyN]: {"from":"waelsa909@gmail.com","isMyMessage":true,"status":"read"}
+[00:02:04.079] Browser LOG       ⏭️ Skipping my own message
+[00:02:04.079] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:04.664] Browser LOG     ✅ [Chat 4gVOsm9vtQGUfSaHQ4N1] Updated: 1 delivered, 0 read (skipped 3 own messages)
+[00:02:04.664] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:05.880] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:05.880] Browser LOG     Service Worker registration failed: {}
+[00:02:07.127] Browser LOG     📱 [Chat 4gVOsm9vtQGUfSaHQ4N1] Loaded: {"currentUser":"waelsa909@gmail.com","users":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:02:07.127] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:02:07.127] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":false,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:02:07.127] Browser LOG     ✅ useRecipientData: Found recipient {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
+[00:02:07.127] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:08.963] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:08.963] Browser LOG     Service Worker registration failed: {}
+[00:02:10.275] Browser LOG     📱 [Chat 4gVOsm9vtQGUfSaHQ4N1] Loaded: {"currentUser":"waelsa909@gmail.com","users":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:02:10.275] Browser LOG     🔍 useRecipientData: Processing chat {"cleanUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"],"currentUser":"waelsa909@gmail.com","originalUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:02:10.275] Browser LOG     🔍 useRecipientData: Self-chat check {"isSelfChat":false,"normalizedUserEmail":"waelsa909@gmail.com","normalizedUsers":["waelsa909@gmail.com","abduallh1424aa1@gmail.com"]}
+[00:02:10.275] Browser LOG     ✅ useRecipientData: Found recipient {"currentUser":"waelsa909@gmail.com","isSelfChat":false,"recipient":"abduallh1424aa1@gmail.com"}
+[00:02:10.275] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:13.279] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:16.286] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:18.703] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:19.052] Browser LOG     🟢 [waelsa909@gmail.com] Status updated: ONLINE
+[00:02:20.753] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:22.739] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:25.270] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:28.282] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:31.287] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:34.980] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:34.980] Browser LOG     🔴 [waelsa909@gmail.com] Tab hidden - setting offline
+[00:02:34.980] Browser LOG     🔴 [waelsa909@gmail.com] Status updated: OFFLINE
+[00:02:38.982] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}
+[00:02:41.981] Browser LOG     🟢 [abduallh1424aa1@gmail.com] Status check: {"calculatedStatus":true,"hasLastSeen":true,"isOnlineField":true}

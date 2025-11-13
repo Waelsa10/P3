@@ -1,7 +1,7 @@
 (globalThis.TURBOPACK_CHUNK_LISTS || (globalThis.TURBOPACK_CHUNK_LISTS = [])).push({
     script: typeof document === "object" ? document.currentScript : undefined,
     chunks: [
-  "static/chunks/[root-of-the-server]__647e83ac._.js",
+  "static/chunks/[root-of-the-server]__068c236a._.js",
   "static/chunks/node_modules_next_dist_compiled_c629999b._.js",
   "static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js",
   "static/chunks/node_modules_next_dist_client_d0aa886c._.js",
@@ -14,9 +14,9 @@
   "static/chunks/node_modules_@firebase_firestore_dist_index_esm2017_39b5671e.js",
   "static/chunks/node_modules_@firebase_storage_dist_index_esm2017_965eeb4b.js",
   "static/chunks/node_modules_@mui_system_7345897a._.js",
-  "static/chunks/node_modules_@mui_material_9f65fa08._.js",
+  "static/chunks/node_modules_@mui_material_950bb1ad._.js",
   "static/chunks/node_modules_moment_0c55cd92._.js",
-  "static/chunks/node_modules_7073bae7._.js"
+  "static/chunks/node_modules_9f57c3ce._.js"
 ],
     source: "entry"
 });

@@ -1108,14 +1108,21 @@ function MyApp({ Component, pageProps }) {
     }["MyApp.useEffect"], [
         user
     ]);
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').then((registration)=>{
+            console.log('Service Worker registered:', registration);
+        }).catch((error)=>{
+            console.log('Service Worker registration failed:', error);
+        });
+    }
     if (loading) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Loading$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
         fileName: "[project]/pages/_app.js",
-        lineNumber: 50,
+        lineNumber: 60,
         columnNumber: 23
     }, this);
     if (!user) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$pages$2f$login$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
         fileName: "[project]/pages/_app.js",
-        lineNumber: 51,
+        lineNumber: 61,
         columnNumber: 21
     }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$DarkModeProvider$2e$js__$5b$client$5d$__$28$ecmascript$29$__["DarkModeProvider"], {
@@ -1123,12 +1130,12 @@ function MyApp({ Component, pageProps }) {
             ...pageProps
         }, void 0, false, {
             fileName: "[project]/pages/_app.js",
-            lineNumber: 55,
+            lineNumber: 65,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/pages/_app.js",
-        lineNumber: 54,
+        lineNumber: 64,
         columnNumber: 5
     }, this);
 }

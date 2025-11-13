@@ -1,6 +1,7 @@
 // components/Sidebar.jsx
 import React, { useState, useContext, useEffect, useMemo, useCallback } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useRouter } from "next/router";
 import { auth, db } from "../firebase";
 import styled from "styled-components";
 import Avatar from "@mui/material/Avatar";
@@ -49,9 +50,12 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 import { DarkModeContext } from "./DarkModeProvider";
+import NotificationPermission from "./NotificationPermission";
+import { useNotifications } from "../hooks/useNotifications";
 
 const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
   const [user] = useAuthState(auth);
+  const router = useRouter();
   const [anchorEl, setAnchorEl] = useState(null);
   const [headerAnchorEl, setHeaderAnchorEl] = useState(null);
   const [selectedChatId, setSelectedChatId] = useState(null);
@@ -82,6 +86,15 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
   const [userDocSnapshot] = useCollection(userDocRef ? query(collection(db, "users"), where("__name__", "==", user.uid)) : null);
   const currentUserData = userDocSnapshot?.docs?.[0]?.data();
   const blockedUsers = currentUserData?.blockedUsers || [];
+
+  // Get all chats for notifications
+  const allChats = chatsSnapshot?.docs || [];
+  
+  // Get current chat ID from router
+  const currentChatId = router.query.id || null;
+
+  // Enable notifications
+  useNotifications(user, currentChatId, allChats);
 
   // ✅ Fetch display names for all contacts
   useEffect(() => {
@@ -494,6 +507,9 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
           </IconsContainer>
         </Header>
 
+        {/* Notification Permission Prompt */}
+        <NotificationPermission darkMode={darkMode} />
+
         {showArchived && (
           <ArchiveHeader darkMode={darkMode}>
             <ArchiveIcon style={{ fontSize: 20, marginRight: 8 }} />
@@ -630,6 +646,7 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
           </MenuItem>
         </Menu>
 
+        {/* Settings Dialog */}
         <Dialog 
           open={settingsOpen} 
           onClose={handleSettingsClose} 
@@ -665,6 +682,7 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
           </DialogActions>
         </Dialog>
 
+        {/* Blocked Users Dialog */}
         <Dialog 
           open={blockedUsersOpen} 
           onClose={handleBlockedUsersClose} 
@@ -721,6 +739,7 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
           </DialogActions>
         </Dialog>
 
+        {/* About Dialog */}
         <Dialog 
           open={aboutOpen} 
           onClose={handleAboutClose} 
@@ -771,6 +790,8 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
                 <li>Camera photo capture</li>
                 <li>Message status indicators</li>
                 <li>Reply to messages</li>
+                <li>Push notifications</li>
+                <li>Polls</li>
               </ul>
             </Typography>
             <Typography variant="body2" color="textSecondary" style={{ marginTop: 20 }}>

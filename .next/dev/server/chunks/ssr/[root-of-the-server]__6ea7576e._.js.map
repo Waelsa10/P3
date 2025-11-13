@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 9, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/waels/OneDrive/Desktop/Expo%20projects/P3/P3/pages/_document.js"],"sourcesContent":["<Head>\r\n  <title>SwiftTalk</title>\r\n  <meta name=\"description\" content=\"WhatsApp Clone with notifications\" />\r\n  <link rel=\"icon\" href=\"/favicon.ico\" />\r\n  <meta name=\"theme-color\" content=\"#075e54\" />\r\n</Head>"],"names":[],"mappings":";AAAA,QAAC;;sBACC,QAAC;sBAAM;;;;;;sBACP,QAAC;YAAK,MAAK;YAAc,SAAQ;;;;;;sBACjC,QAAC;YAAK,KAAI;YAAO,MAAK;;;;;;sBACtB,QAAC;YAAK,MAAK;YAAc,SAAQ","debugId":null}}]
+}

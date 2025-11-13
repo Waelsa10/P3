@@ -774,7 +774,7 @@ const Sidebar = React.memo(({ isMobile, sidebarOpen, setSidebarOpen }) => {
               </ul>
             </Typography>
             <Typography variant="body2" color="textSecondary" style={{ marginTop: 20 }}>
-              © 2024 Chat App. All rights reserved.
+              © 2025 SwiftTalk. All rights reserved.
             </Typography>
           </DialogContent>
           <DialogActions>

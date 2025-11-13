@@ -71,7 +71,7 @@ export default function Home() {
             <WelcomeScreen darkMode={darkMode}>
               <WelcomeContent>
                 <ChatBubbleOutlineIcon style={{ fontSize: 100, opacity: 0.3, marginBottom: 20 }} />
-                <WelcomeTitle darkMode={darkMode}>Welcome to Chat App</WelcomeTitle>
+                <WelcomeTitle darkMode={darkMode}>Welcome to SwiftTalk</WelcomeTitle>
                 <WelcomeText darkMode={darkMode}>
                   Select a chat from the sidebar to start messaging
                 </WelcomeText>
